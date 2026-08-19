@@ -1,0 +1,2633 @@
+{
+  "brand": {
+    "name": "PEGASUS DEPOT",
+    "short": "Pegasus",
+    "tagline": "Vehicle Ventilation & Comfort",
+    "domain": "pegasusdepot.com",
+    "email": "hello@pegasusdepot.com",
+    "phone": "+31 (0)318 576 744",
+    "address": "Veenendaal, The Netherlands",
+    "currency": "EUR",
+    "vat_note": "All prices include 21% VAT. Ex-VAT pricing available for business accounts at checkout.",
+    "free_shipping_from": 150,
+    "ships_in": "Ships within 24h from our Dutch warehouse"
+  },
+  "categories": [
+    {
+      "id": "rooftop-ventilators",
+      "name": "Rooftop Ventilators",
+      "short": "Electric and wind-driven roof fans, 12V and 24V",
+      "image": "assets/products/02-2200-foto.webp"
+    },
+    {
+      "id": "interior-valves",
+      "name": "Interior Valves & Grilles",
+      "short": "Closable ceiling valves, LED valves and grilles",
+      "image": "assets/products/35-2400-foto-scaled.webp"
+    },
+    {
+      "id": "controls",
+      "name": "Switches & Controls",
+      "short": "3-way switches, speed controllers and hatch control units",
+      "image": "assets/products/89-4008-foto.webp"
+    },
+    {
+      "id": "roof-hatches",
+      "name": "Roof Hatches",
+      "short": "ECE 43R glass dome hatches, manual and electric",
+      "image": "assets/products/90-6000-E-foto1-1-scaled.webp"
+    },
+    {
+      "id": "floor-ventilation",
+      "name": "Floor Vents & Filters",
+      "short": "Floor ventilators and snow filters for a complete airflow loop",
+      "image": "assets/products/89-5600-foto.webp"
+    },
+    {
+      "id": "lighting",
+      "name": "Interior LED Lighting",
+      "short": "IP67 dome lights with white and blue night mode, 12/24V",
+      "image": "assets/products/92-GC06-foto-scaled.webp"
+    },
+    {
+      "id": "fans-blowers",
+      "name": "Axial & Radial Fans",
+      "short": "OEM blowers and cooling fans, configured on request",
+      "image": "assets/products/04-8315-foto.webp"
+    },
+    {
+      "id": "indoor-climate",
+      "name": "Indoor Climate",
+      "short": "Ceilingflow ceiling fans and HEPA air purifiers",
+      "image": "assets/products/plafondventilator-1-scaled.webp"
+    }
+  ],
+  "products": [
+    {
+      "id": "le-mans",
+      "name": "Le Mans Rooftop Ventilator",
+      "short_name": "Le Mans",
+      "category": "rooftop-ventilators",
+      "tagline": "The 850 m³/h benchmark in vehicle ventilation",
+      "badges": [
+        "Bestseller",
+        "EMC approved",
+        "12V / 24V"
+      ],
+      "summary": "The most popular electric roof fan for ambulances, horse trucks, buses and commercial vehicles. 850 m³/h of suction or blowing power under a streamlined cover, available in 12V and 24V, white or black.",
+      "description": [
+        "The Le Mans is where style meets raw airflow. A sleek, low-profile cover (only 64 mm above the roof, so it sits happily next to solar panels) hides a motor that moves 850 m³/h in either direction: suck hot, humid or contaminated air out, or blow fresh air in. It is the ventilator that bodybuilders across Europe specify when a vehicle simply has to stay fresh.",
+        "Choose 12V for vans, campers and passenger vehicles, or 24V for trucks, coaches and buses. Both versions are EMC approved, so they will not interfere with your vehicle electronics. Prefer a passive solution? The motorless version uses the same 230 mm roof cut-out and can be upgraded to electric later.",
+        "Finish the installation with a 3-way switch (blow / off / suck), an optional speed controller and one of our interior valves or grilles. Everything fits the same 230 mm opening."
+      ],
+      "features": [
+        "850 m³/h airflow, suction and blowing",
+        "12V or 24V motor, 80 W, 2600 rpm",
+        "Only 52 dB(A) at full speed, quieter with speed control",
+        "Low profile: 64 mm above the roof, 385 x 312 mm footprint",
+        "Streamlined ABS roof ring with PA6 cover, 1.3 kg",
+        "Roof opening 230 mm (245 mm with ring)",
+        "EMC approved motor, test report available",
+        "Rain-resistant design, snow filter optional"
+      ],
+      "specs": {
+        "Airflow": "850 m³/h",
+        "Voltage": "12V or 24V DC",
+        "Power": "80 W (approx. 6 A at 12V)",
+        "Nominal speed": "2600 rpm",
+        "Noise level": "52 dB(A)",
+        "Function": "Suction and blowing (reversible)",
+        "Roof opening": "Ø 230 mm (outer ring Ø 245 mm)",
+        "Outer dimensions": "385 x 312 mm, 64 mm high",
+        "Weight": "1.3 kg",
+        "Materials": "ABS roof ring, PA6 cover",
+        "Colours": "White RAL 9010 or Black RAL 9005",
+        "Approval": "EMC approved",
+        "Accessories": "Switch, speed control, interior valve, snow filter"
+      },
+      "variants": [
+        {
+          "sku": "02-2200",
+          "label": "12V · White",
+          "options": {
+            "Voltage": "12V",
+            "Colour": "White"
+          },
+          "price": 149,
+          "compare_at": 185
+        },
+        {
+          "sku": "02-2200-ZW",
+          "label": "12V · Black",
+          "options": {
+            "Voltage": "12V",
+            "Colour": "Black"
+          },
+          "price": 149,
+          "compare_at": 185
+        },
+        {
+          "sku": "02-2300",
+          "label": "24V · White",
+          "options": {
+            "Voltage": "24V",
+            "Colour": "White"
+          },
+          "price": 149,
+          "compare_at": 185
+        },
+        {
+          "sku": "02-2300-ZW",
+          "label": "24V · Black",
+          "options": {
+            "Voltage": "24V",
+            "Colour": "Black"
+          },
+          "price": 149,
+          "compare_at": 185
+        },
+        {
+          "sku": "02-2900",
+          "label": "Motorless · White",
+          "options": {
+            "Voltage": "Motorless",
+            "Colour": "White"
+          },
+          "price": 95,
+          "compare_at": 115
+        }
+      ],
+      "images": [
+        "assets/products/02-2200-foto.webp",
+        "assets/media/rooftopventilator.jpg",
+        "assets/media/le-mans-vehicle.webp",
+        "assets/media/Le-Mans-ventilator-2.webp",
+        "assets/media/20210709_155303-scaled.jpg"
+      ],
+      "drawing": "assets/products/02-2200-tekening-scaled.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-08-1.pdf",
+      "applications": [
+        "commercial-vans",
+        "horse-trailers",
+        "ambulance-emergency",
+        "buses-coaches",
+        "campers",
+        "animal-transport",
+        "marine"
+      ],
+      "accessories": [
+        "switch-fan",
+        "speedcontrol",
+        "v12-valve",
+        "snowfilter",
+        "floor-ventilator-129",
+        "grill-large",
+        "switch-round",
+        "switch-square"
+      ],
+      "faq": [
+        {
+          "q": "How large does the roof opening need to be?",
+          "a": "A 230 mm hole. The roof ring covers up to 245 mm, so a slightly oversized cut is no problem."
+        },
+        {
+          "q": "Is it loud?",
+          "a": "At full speed the Le Mans measures 52 dB(A). Add the optional speed controller to run it quietly at a fraction of the speed, which most camper and ambulance users do at night."
+        },
+        {
+          "q": "Is it waterproof?",
+          "a": "The Le Mans is designed to shrug off heavy rain in normal use. For extreme conditions, add the snow filter, which also keeps out insects."
+        },
+        {
+          "q": "Which voltage do I need?",
+          "a": "12V for passenger cars, vans and most campers; 24V for trucks, coaches and buses. Check your vehicle's system voltage before ordering."
+        },
+        {
+          "q": "How do I mount it?",
+          "a": "Cut a 230 mm hole, protect the edge against corrosion, point the arrow on the ring in the driving direction and bond the ring with an MS polymer adhesive or screw it through the eight rim holes. Fit the interior grille or valve before wiring."
+        }
+      ]
+    },
+    {
+      "id": "le-mans-ll",
+      "name": "Le Mans LL Brushless Rooftop Ventilator",
+      "short_name": "Le Mans LL",
+      "category": "rooftop-ventilators",
+      "tagline": "Brushless. Longer life. Lower draw.",
+      "badges": [
+        "Brushless",
+        "EMC approved",
+        "12V / 24V"
+      ],
+      "summary": "The long-life version of the Le Mans. A brushless motor pulls 515 to 565 m³/h of air out of your vehicle at only 34 W, with no brushes to wear out. Ideal for damp loading areas, animal transport, chemical transport and coaches.",
+      "description": [
+        "The Le Mans LL takes the proven Le Mans shape and fits it with a brushless motor. The result: a ventilator that runs for years without servicing, draws only 34 W and is available with an integrated speed control unit.",
+        "The LL is an extraction-only ventilator, which is exactly what most loading areas, animal compartments and coach toilets need: a constant, healthy discharge of humid or contaminated air. Pair it with a floor ventilator for a complete airflow loop.",
+        "Order the 12V or 24V version, with or without built-in speed control. A 3-way switch and interior valve are available separately. Saw template included."
+      ],
+      "features": [
+        "Brushless motor, maintenance-free",
+        "515 m³/h (12V) or 565 m³/h (24V) extraction",
+        "Only 34 W power consumption",
+        "3100 rpm, 65 dB(A)",
+        "Optional integrated speed control unit",
+        "Grey ABS roof ring, white PA6 cover",
+        "Roof opening 230 mm, EMC approved, saw template included"
+      ],
+      "specs": {
+        "Airflow": "515 m³/h (12V) · 565 m³/h (24V)",
+        "Voltage": "12V or 24V DC",
+        "Power": "34 W",
+        "Nominal speed": "3100 rpm",
+        "Noise level": "65 dB(A)",
+        "Function": "Suction (extraction)",
+        "Motor": "Brushless",
+        "Roof opening": "Ø 230 mm",
+        "Mounting height": "approx. 100 mm",
+        "Materials": "ABS roof ring (grey), PA6 cover (white RAL 9010)",
+        "Approval": "EMC approved"
+      },
+      "variants": [
+        {
+          "sku": "02-4200",
+          "label": "12V",
+          "options": {
+            "Voltage": "12V",
+            "Speed control": "Without"
+          },
+          "price": 259,
+          "compare_at": 299
+        },
+        {
+          "sku": "02-4250",
+          "label": "12V · with speed control unit",
+          "options": {
+            "Voltage": "12V",
+            "Speed control": "Integrated"
+          },
+          "price": 299,
+          "compare_at": 345
+        },
+        {
+          "sku": "02-4300",
+          "label": "24V",
+          "options": {
+            "Voltage": "24V",
+            "Speed control": "Without"
+          },
+          "price": 259,
+          "compare_at": 299
+        },
+        {
+          "sku": "02-4350",
+          "label": "24V · with speed control unit",
+          "options": {
+            "Voltage": "24V",
+            "Speed control": "Integrated"
+          },
+          "price": 299,
+          "compare_at": 345
+        }
+      ],
+      "images": [
+        "assets/products/02-4200-foto.webp"
+      ],
+      "drawing": "assets/products/02-4200-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-09.pdf",
+      "applications": [
+        "commercial-vans",
+        "animal-transport",
+        "buses-coaches",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "switch-fan",
+        "flower-power",
+        "v12-valve",
+        "floor-ventilator-129",
+        "switch-round"
+      ],
+      "faq": [
+        {
+          "q": "What is the difference with the standard Le Mans?",
+          "a": "The LL uses a brushless motor (longer life, lower power draw) and extracts only. The standard Le Mans can blow and suck and moves more air (850 m³/h)."
+        },
+        {
+          "q": "Can I control the speed?",
+          "a": "Yes. Choose the version with integrated speed control unit, or add our separate Speedcontrol 30-3004."
+        }
+      ]
+    },
+    {
+      "id": "rooftop-round",
+      "name": "Round Rooftop Ventilator",
+      "short_name": "Round Rooftop Ventilator",
+      "category": "rooftop-ventilators",
+      "tagline": "850 m³/h in a classic round housing",
+      "badges": [
+        "EMC approved",
+        "12V / 24V"
+      ],
+      "summary": "The same 850 m³/h motor as the Le Mans in a round ABS housing, only 62 mm high. Blow and suck with the 3-way switch, reduce noise with a speed controller. Loved in campers, caravans, trailers, houseboats and loading areas.",
+      "description": [
+        "Our round electric rooftop ventilator delivers a healthy supply and exhaust of air in commercial vehicles, campers and cars. It shares the Le Mans motor platform (850 m³/h, 80 W) but uses a round Ø 320 mm cover, just 62 mm high, that suits many classic vehicle roofs and fits under most roof racks.",
+        "Use the 3-position switch to choose intake or extraction, and add the speed controller to dial the airflow (and the noise) down when you only need a trickle of fresh air overnight.",
+        "Available in 12V and 24V, white or black, and as a motorless version that can be motorised later. The cover can be painted in your body colour."
+      ],
+      "features": [
+        "850 m³/h airflow, suction and blowing",
+        "12V or 24V, 80 W, 2600 rpm, 52 dB(A)",
+        "Round Ø 320 mm cover, only 62 mm high",
+        "ABS / PA6 housing, white or black, IP68 motor",
+        "Roof opening 230 mm (245 mm ring)",
+        "EMC approved",
+        "Optional: switch, speed control, interior valve, snow filter"
+      ],
+      "specs": {
+        "Airflow": "850 m³/h",
+        "Voltage": "12V or 24V DC",
+        "Power": "80 W",
+        "Nominal speed": "2600 rpm",
+        "Noise level": "52 dB(A)",
+        "Function": "Suction and blowing",
+        "Roof opening": "Ø 230 mm (outer ring Ø 245 mm)",
+        "Outer dimensions": "Ø 320 mm, 62 mm high",
+        "Weight": "approx. 1.5 kg",
+        "Materials": "ABS roof ring, PA6 cover",
+        "Colours": "White RAL 9010 or Black RAL 9005",
+        "Approval": "EMC approved"
+      },
+      "variants": [
+        {
+          "sku": "02-0200",
+          "label": "12V · White",
+          "options": {
+            "Voltage": "12V",
+            "Colour": "White"
+          },
+          "price": 139,
+          "compare_at": 159
+        },
+        {
+          "sku": "02-0200-ZW",
+          "label": "12V · Black",
+          "options": {
+            "Voltage": "12V",
+            "Colour": "Black"
+          },
+          "price": 139,
+          "compare_at": 159
+        },
+        {
+          "sku": "02-0300",
+          "label": "24V · White",
+          "options": {
+            "Voltage": "24V",
+            "Colour": "White"
+          },
+          "price": 139,
+          "compare_at": 159
+        },
+        {
+          "sku": "02-0300-ZW",
+          "label": "24V · Black",
+          "options": {
+            "Voltage": "24V",
+            "Colour": "Black"
+          },
+          "price": 139,
+          "compare_at": 159
+        },
+        {
+          "sku": "02-0900",
+          "label": "Motorless · White",
+          "options": {
+            "Voltage": "Motorless",
+            "Colour": "White"
+          },
+          "price": 85,
+          "compare_at": 99
+        }
+      ],
+      "images": [
+        "assets/products/02-0200-foto.webp"
+      ],
+      "drawing": "assets/products/02-0200-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-07.pdf",
+      "applications": [
+        "campers",
+        "commercial-vans",
+        "animal-transport",
+        "marine",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "switch-round",
+        "speedcontrol",
+        "flower-power",
+        "grill-large",
+        "snowfilter",
+        "floor-ventilator-129",
+        "switch-square"
+      ],
+      "faq": [
+        {
+          "q": "Le Mans or Round: which should I pick?",
+          "a": "Technically identical (850 m³/h, 80 W). The Le Mans has a lower, more aerodynamic cover; the Round suits classic roofs and tight spaces. Both use a 230 mm opening."
+        }
+      ]
+    },
+    {
+      "id": "winglet",
+      "name": "Winglet Mini Roof Fan",
+      "short_name": "Winglet",
+      "category": "rooftop-ventilators",
+      "tagline": "3 watts. 80 mm hole. Silent extraction.",
+      "badges": [
+        "Compact",
+        "EMC approved",
+        "12V"
+      ],
+      "summary": "A tiny electric extractor for small vans, camper kitchens, caravans, dog boxes and toilet compartments. 65 m³/h through an 80 mm cut-out at just 3 W, complete with interior grille, open/close frame and saw template.",
+      "description": [
+        "The Winglet is our answer for spaces where a full-size roof fan is overkill: a VW Caddy, the kitchen of a motorhome, a caravan washroom or an equipment locker. It pulls 65 m³/h of stale air out at only 3 W, so it can run all night on a leisure battery.",
+        "Installation is a single 80 mm hole. The unit comes complete with interior grille, an open/close valve and a saw template, and the low-profile cover (230 x 196 mm, 52 mm high) sits well below most roof racks.",
+        "Available in white or black, electric (12V) or motorless."
+      ],
+      "features": [
+        "65 m³/h extraction at only 3 W",
+        "Roof cut-out only 80 mm",
+        "Whisper quiet: 32 dB(A)",
+        "Complete with open/close frame, interior grille and template",
+        "Footprint 230 x 196 mm, 52 mm high, approx. 0.5 kg",
+        "Mounting set for roof thickness 1 to 17 mm",
+        "White or black ABS, EMC approved"
+      ],
+      "specs": {
+        "Airflow": "65 m³/h",
+        "Voltage": "12V DC",
+        "Power": "3 W",
+        "Noise level": "32 dB(A)",
+        "Function": "Suction (extraction)",
+        "Roof opening": "Ø 80 mm",
+        "Footprint": "230 x 196 mm, 52 mm high",
+        "Roof thickness": "1 to 17 mm (standard mounting set)",
+        "Material": "ABS",
+        "Colours": "White or Black",
+        "Approval": "EMC approved"
+      },
+      "variants": [
+        {
+          "sku": "02-5000",
+          "label": "12V · White",
+          "options": {
+            "Voltage": "12V",
+            "Colour": "White"
+          },
+          "price": 159,
+          "compare_at": 179
+        },
+        {
+          "sku": "02-5100",
+          "label": "12V · Black",
+          "options": {
+            "Voltage": "12V",
+            "Colour": "Black"
+          },
+          "price": 159,
+          "compare_at": 179
+        },
+        {
+          "sku": "02-5500",
+          "label": "Motorless · White",
+          "options": {
+            "Voltage": "Motorless",
+            "Colour": "White"
+          },
+          "price": 89,
+          "compare_at": 99
+        },
+        {
+          "sku": "02-5600",
+          "label": "Motorless · Black",
+          "options": {
+            "Voltage": "Motorless",
+            "Colour": "Black"
+          },
+          "price": 89,
+          "compare_at": 99
+        }
+      ],
+      "images": [
+        "assets/products/bovenaanzicht-scaled.webp",
+        "assets/products/uitgeklapt-scaled.webp",
+        "assets/media/vooraanzicht-scaled.jpg",
+        "assets/media/ingeklapt-scaled.jpg"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-productsheet-02-5000-2.pdf",
+      "applications": [
+        "campers",
+        "commercial-vans",
+        "dog-transport",
+        "marine"
+      ],
+      "accessories": [
+        "switch-round",
+        "switch-square",
+        "floor-ventilator-80"
+      ],
+      "faq": [
+        {
+          "q": "Does it need a switch?",
+          "a": "Yes, a simple on/off or one of our 3-way switches. The Winglet extracts only, so you will use just one position."
+        }
+      ]
+    },
+    {
+      "id": "turbo-ii",
+      "name": "Turbo II Wind-Driven Rooftop Ventilator",
+      "short_name": "Turbo II",
+      "category": "rooftop-ventilators",
+      "tagline": "Zero watts. Ventilates every time you drive.",
+      "badges": [
+        "No power needed",
+        "Grill & shutter included"
+      ],
+      "summary": "A rotating, wind-powered extractor that keeps pulling stale air out of your van, dog transporter or horse trailer without a single wire. Around 245 m³/h at motorway speed. Ø 319 mm cowl, 128 mm cut-out, only 68 mm high so it fits under most roof racks.",
+      "description": [
+        "The Turbo II is the classic mushroom-style rotating vent, refined. Airflow over the roof spins the UV-stabilised ABS cowl on two ball bearings and a venturi effect pulls air out of the vehicle: roughly 245 m³/h at 100 km/h. No wiring, no power draw, no noise. It simply works whenever the vehicle moves or the wind blows.",
+        "At 68 mm high it fits under most roof racks. The 128 mm bore hole and 26 mm installation depth make it an easy retrofit, and the kit includes an interior grille and closable shutter so you can shut it off in winter.",
+        "Perfect for transporting dogs, horses and cargo that must not sit in stale air. Combine it with a floor ventilator for a continuous flow even when parked."
+      ],
+      "features": [
+        "Wind-driven, no electricity required",
+        "Approx. 245 m³/h at 100 km/h",
+        "Ø 319 mm rotating cowl, 2 ball bearings, UV-stabilised ABS",
+        "Roof cut-out 128 mm, depth 26 mm, height 68 mm",
+        "Fits under most roof racks",
+        "Interior grille and closable shutter included",
+        "Mounting set for roof thickness 1 to 21 mm",
+        "White or black, 1.2 kg"
+      ],
+      "specs": {
+        "Function": "Suction (wind-driven)",
+        "Airflow": "approx. 245 m³/h at 100 km/h",
+        "Diameter": "Ø 319 mm",
+        "Roof cut-out": "Ø 128 mm",
+        "Height": "68 mm",
+        "Installation depth": "26 mm",
+        "Bearings": "2 ball bearings",
+        "Roof thickness": "1 to 21 mm (other sets on request)",
+        "Weight": "1.2 kg",
+        "Material": "UV-stabilised ABS",
+        "Included": "Interior grille and shutter"
+      },
+      "variants": [
+        {
+          "sku": "02-7000",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 119,
+          "compare_at": 139
+        },
+        {
+          "sku": "02-7100",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 119,
+          "compare_at": 139
+        }
+      ],
+      "images": [
+        "assets/products/02-7100-foto2-scaled.webp",
+        "assets/products/02-7100-foto1-scaled.webp"
+      ],
+      "drawing": "assets/products/02-7100-tekening-scaled.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-10-1.pdf",
+      "applications": [
+        "dog-transport",
+        "horse-trailers",
+        "commercial-vans",
+        "animal-transport"
+      ],
+      "accessories": [
+        "floor-ventilator-129",
+        "turbo-iii"
+      ],
+      "faq": [
+        {
+          "q": "Does it ventilate when parked?",
+          "a": "Only when there is wind. For guaranteed airflow when stationary, choose an electric model such as the Le Mans or Winglet, or combine the Turbo II with a floor ventilator for natural convection."
+        }
+      ]
+    },
+    {
+      "id": "turbo-iii",
+      "name": "Turbo III Compact Wind-Driven Ventilator",
+      "short_name": "Turbo III",
+      "category": "rooftop-ventilators",
+      "tagline": "The little brother: 80 mm hole, no glue",
+      "badges": [
+        "No power needed",
+        "Open/close valve included"
+      ],
+      "summary": "The compact version of the Turbo II. Ø 210 mm cowl, 80 mm cut-out, 59.5 mm high, around 120 m³/h at motorway speed, complete with open/close valve. Snaps together without glue. For boats, dog boxes, small vans and coach compartments.",
+      "description": [
+        "The Turbo III is a smaller wind-driven ventilator for spaces where every millimetre counts. It needs just an 80 mm hole, stands 59.5 mm tall and slides under almost any roof rack.",
+        "Like its bigger brother it spins on two ball bearings and extracts air by venturi effect (roughly 120 m³/h at 100 km/h), but it assembles in minutes and requires no glue. The inside is finished with a stylish grille and an open/close valve.",
+        "Ideal for venting boats, dog transporters, small service vans, caravans and coaches. Made in Holland."
+      ],
+      "features": [
+        "Wind-driven, zero power consumption",
+        "Approx. 120 m³/h at 100 km/h",
+        "Ø 210 mm cowl, only 59.5 mm high",
+        "Roof cut-out 80 mm, depth 14.5 mm",
+        "Complete with interior grille and open/close valve",
+        "No glue required",
+        "Mounting set for roof thickness 1 to 17 mm",
+        "ABS, white or black, 0.55 kg"
+      ],
+      "specs": {
+        "Function": "Suction (wind-driven)",
+        "Airflow": "approx. 120 m³/h at 100 km/h",
+        "Diameter": "Ø 210 mm",
+        "Roof cut-out": "Ø 80 mm",
+        "Height": "59.5 mm",
+        "Installation depth": "14.5 mm",
+        "Bearings": "2 ball bearings",
+        "Roof thickness": "1 to 17 mm",
+        "Weight": "0.55 kg",
+        "Material": "ABS",
+        "Included": "Interior grille and open/close valve"
+      },
+      "variants": [
+        {
+          "sku": "02-6000",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 115,
+          "compare_at": 135
+        },
+        {
+          "sku": "02-6100",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 115,
+          "compare_at": 135
+        }
+      ],
+      "images": [
+        "assets/products/TURBO-III-1-1-scaled.webp",
+        "assets/media/TURBO-III-2-scaled.webp",
+        "assets/media/TURBO-III-3-scaled.jpg"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTSHEET-02-6000-02-6100-zonder-label.pdf",
+      "applications": [
+        "marine",
+        "dog-transport",
+        "commercial-vans",
+        "buses-coaches",
+        "campers"
+      ],
+      "accessories": [
+        "floor-ventilator-80",
+        "winglet"
+      ],
+      "faq": []
+    },
+    {
+      "id": "exhaust-ventilator",
+      "name": "Exhaust Ventilator (Venturi)",
+      "short_name": "Exhaust Ventilator",
+      "category": "rooftop-ventilators",
+      "tagline": "Aerodynamic, silent, no moving parts",
+      "badges": [
+        "No power needed",
+        "Roof-rack friendly"
+      ],
+      "summary": "A low, aerodynamic ABS vent (285 x 185 mm, 50 mm high) that uses the venturi effect to pull air out of your van while driving. No motor, no moving parts, practically inaudible. Often combined with a powered roof fan or used stand-alone.",
+      "description": [
+        "The mechanical exhaust ventilator is the simplest way to keep a commercial vehicle fresh: wind passing over the cover pulls air from the cargo area below. No power, no maintenance, no noise, and it keeps working with a light breeze even when parked.",
+        "Thanks to its 50 mm height it works under roof racks, and because it needs no wiring the installation is quick: cut a hole of up to 140 mm, bond with body sealant (never silicone) and fit the interior grille. Combine it with our floor ventilator for a steady supply of fresh air, or pair it with an electric roof fan for forced ventilation when parked.",
+        "Available in white or black. Finish the inside with the 35-3003 rotary valve or the Ø 140 mm ABS grille."
+      ],
+      "features": [
+        "Venturi effect extraction, no power needed",
+        "No mechanical moving parts, practically silent",
+        "Low aerodynamic profile: 285 x 185 mm, 50 mm high",
+        "ABS, white or black, only 0.5 kg",
+        "Roof opening up to 140 mm",
+        "Interior finish: rotary valve 35-3003 or grille 35-26xx"
+      ],
+      "specs": {
+        "Function": "Suction (venturi)",
+        "Roof opening": "max. Ø 140 mm",
+        "Dimensions": "285 x 185 mm, 50 mm high",
+        "Weight": "0.5 kg",
+        "Material": "ABS",
+        "Colours": "White or Black",
+        "Power": "None"
+      },
+      "variants": [
+        {
+          "sku": "02-1030",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 54.95,
+          "compare_at": 64.95
+        },
+        {
+          "sku": "02-1030-ZW",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 54.95,
+          "compare_at": 64.95
+        }
+      ],
+      "images": [
+        "assets/products/02-1030-foto-scaled.webp",
+        "assets/media/EXHAUST-VENTILATOR-scaled.jpg",
+        "assets/products/02-1030-kopie.webp"
+      ],
+      "drawing": "assets/media/02-1030-tekening-1-scaled.jpg",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-11.pdf",
+      "applications": [
+        "commercial-vans",
+        "dog-transport",
+        "animal-transport"
+      ],
+      "accessories": [
+        "rotary-valve",
+        "grill-small",
+        "floor-ventilator-129"
+      ],
+      "faq": []
+    },
+    {
+      "id": "v12-valve",
+      "name": "V12 Interior Ventilation Valve",
+      "short_name": "V12 Valve",
+      "category": "interior-valves",
+      "tagline": "The closable ceiling valve for the Le Mans",
+      "badges": [
+        "Bestseller",
+        "Manual or electric"
+      ],
+      "summary": "Ø 290 mm ABS ceiling valve that finishes the inside of your Le Mans or Round rooftop ventilator. Adjustable louvres prevent draughts; open it for full airflow, close it in winter. Manual or electric (12/24V), in white, grey or dark grey.",
+      "description": [
+        "The V12 is the interior valve most customers pair with the Le Mans. It covers the 230 mm roof opening with a clean Ø 290 mm louvre (only 20 mm high) that you can open and close by hand, or electrically from your dashboard with the 12/24V version. It also acts as a finger guard for the fan blades.",
+        "Made from high-quality ABS, it is a statement piece rather than just a functional cover. Three colour combinations let it blend into any interior: white, grey or dark grey. Designed for vehicles with a headliner or ceiling.",
+        "Tip: order the electric version together with a Le Mans and a 3-way switch for a fully remote-controlled ventilation system."
+      ],
+      "features": [
+        "Ø 290 mm, covers the 230 mm roof opening",
+        "Open and close the airflow, adjustable louvres",
+        "Only 20 mm high, 0.5 kg",
+        "Manual or electric 12V/24V",
+        "High-quality ABS, three colour schemes",
+        "Fits Le Mans, Le Mans LL and Round rooftop ventilators"
+      ],
+      "specs": {
+        "Overall diameter": "Ø 290 mm",
+        "Height": "20 mm",
+        "Operation": "Manual or electric 12V/24V",
+        "Material": "ABS",
+        "Weight": "0.5 kg (manual) · 0.6 kg (electric)",
+        "Colours": "White, Grey, Dark grey",
+        "Compatible with": "02-2200/2300 Le Mans, 02-4200/4300 Le Mans LL, 02-0200/0300 Round"
+      },
+      "variants": [
+        {
+          "sku": "35-2400",
+          "label": "Manual · White",
+          "options": {
+            "Operation": "Manual",
+            "Colour": "White"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "35-2410",
+          "label": "Manual · Grey",
+          "options": {
+            "Operation": "Manual",
+            "Colour": "Grey"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "35-2440",
+          "label": "Manual · Dark grey",
+          "options": {
+            "Operation": "Manual",
+            "Colour": "Dark grey"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "35-2500",
+          "label": "Electric 12/24V · White",
+          "options": {
+            "Operation": "Electric 12/24V",
+            "Colour": "White"
+          },
+          "price": 139,
+          "compare_at": 159
+        },
+        {
+          "sku": "35-2510",
+          "label": "Electric 12/24V · Grey",
+          "options": {
+            "Operation": "Electric 12/24V",
+            "Colour": "Grey"
+          },
+          "price": 139,
+          "compare_at": 159
+        },
+        {
+          "sku": "35-2540",
+          "label": "Electric 12/24V · Dark grey",
+          "options": {
+            "Operation": "Electric 12/24V",
+            "Colour": "Dark grey"
+          },
+          "price": 139,
+          "compare_at": 159
+        }
+      ],
+      "images": [
+        "assets/products/35-2400-foto-scaled.webp",
+        "assets/products/35-2440-foto.webp",
+        "assets/media/PMH10.jpg"
+      ],
+      "drawing": "assets/products/35-2400-tekening-scaled.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-19.pdf",
+      "applications": [
+        "horse-trailers",
+        "buses-coaches",
+        "ambulance-emergency",
+        "commercial-vans",
+        "campers",
+        "animal-transport"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round",
+        "switch-fan"
+      ],
+      "faq": [
+        {
+          "q": "Does it fit the Le Mans?",
+          "a": "Yes. The V12 is designed for the 230 mm opening of the Le Mans, Le Mans LL and Round rooftop ventilators."
+        }
+      ]
+    },
+    {
+      "id": "flower-power",
+      "name": "Flower Power Interior Valve",
+      "short_name": "Flower Power",
+      "category": "interior-valves",
+      "tagline": "Closable Ø 280 mm valve, optionally with LED light",
+      "badges": [
+        "Design valve",
+        "LED option"
+      ],
+      "summary": "A luxurious closable ceiling grille (Ø 280 mm) for vehicles with a ceiling. Maintains maximum airflow, opens and closes by hand, and is available with 21 white + 9 blue LEDs in 12V or 24V.",
+      "description": [
+        "Flower Power is our design interior valve: a Ø 280 mm closable grille with a distinctive radial pattern that looks as good in a luxury horsebox as in a camper. It keeps the full airflow of your roof ventilator while letting you shut it off completely.",
+        "Choose the plain version in white, light grey or light grey with dark grey accent, or the LED version with 21 white and 9 blue LEDs for courtesy and night lighting, in 12V or 24V.",
+        "Designed for vehicles with a canopy or ceiling. No ceiling? Choose a standard grille instead."
+      ],
+      "features": [
+        "Closable Ø 280 mm interior valve",
+        "Maintains maximum airflow when open",
+        "Optional LED: 21 white + 9 blue LEDs, 12V or 24V",
+        "High-quality ABS, modern design",
+        "White, light grey or two-tone grey"
+      ],
+      "specs": {
+        "Overall diameter": "Ø 280 mm",
+        "Operation": "Manual open/close",
+        "LED version": "21 white / 9 blue LEDs, 12V or 24V",
+        "Material": "ABS",
+        "Colours": "White, Light grey, Light grey / Dark grey",
+        "Compatible with": "Le Mans, Le Mans LL, Round rooftop ventilators"
+      },
+      "variants": [
+        {
+          "sku": "35-2800",
+          "label": "White",
+          "options": {
+            "Light": "No LED",
+            "Colour": "White"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "35-2810",
+          "label": "Light grey",
+          "options": {
+            "Light": "No LED",
+            "Colour": "Light grey"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "35-2820",
+          "label": "Light grey / Dark grey",
+          "options": {
+            "Light": "No LED",
+            "Colour": "Light grey / Dark grey"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "35-2900",
+          "label": "LED 12V · White",
+          "options": {
+            "Light": "LED 12V",
+            "Colour": "White"
+          },
+          "price": 109,
+          "compare_at": 129
+        },
+        {
+          "sku": "35-2905",
+          "label": "LED 24V · White",
+          "options": {
+            "Light": "LED 24V",
+            "Colour": "White"
+          },
+          "price": 109,
+          "compare_at": 129
+        },
+        {
+          "sku": "35-2910",
+          "label": "LED 12V · Light grey",
+          "options": {
+            "Light": "LED 12V",
+            "Colour": "Light grey"
+          },
+          "price": 109,
+          "compare_at": 129
+        },
+        {
+          "sku": "35-2915",
+          "label": "LED 24V · Light grey",
+          "options": {
+            "Light": "LED 24V",
+            "Colour": "Light grey"
+          },
+          "price": 109,
+          "compare_at": 129
+        },
+        {
+          "sku": "35-2920",
+          "label": "LED 12V · Light grey / Dark grey",
+          "options": {
+            "Light": "LED 12V",
+            "Colour": "Light grey / Dark grey"
+          },
+          "price": 109,
+          "compare_at": 129
+        },
+        {
+          "sku": "35-2925",
+          "label": "LED 24V · Light grey / Dark grey",
+          "options": {
+            "Light": "LED 24V",
+            "Colour": "Light grey / Dark grey"
+          },
+          "price": 109,
+          "compare_at": 129
+        }
+      ],
+      "images": [
+        "assets/products/35-2820-foto-1-scaled.webp",
+        "assets/products/35-2910-foto-scaled.webp"
+      ],
+      "drawing": "assets/products/35-2820-tekening-scaled.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-17.pdf",
+      "applications": [
+        "horse-trailers",
+        "campers",
+        "buses-coaches",
+        "marine"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round",
+        "le-mans-ll"
+      ],
+      "faq": []
+    },
+    {
+      "id": "rotating-valve-300",
+      "name": "Rotating Interior Valve Ø 300 mm",
+      "short_name": "Rotating Valve 300",
+      "category": "interior-valves",
+      "tagline": "Classic rotating valve in black, white or grey",
+      "badges": [
+        "Light option"
+      ],
+      "summary": "A Ø 300 mm rotating ceiling valve that opens and closes with a twist. Available in black, white or grey, and with an integrated 12/24V light. Optional micro-switch stops the ventilator when the valve is closed.",
+      "description": [
+        "Our rotating valve is the timeless interior finish for roof ventilators: twist to open, twist to close. At Ø 300 mm it fully covers the 230 mm roof opening of our Le Mans and Round ventilators.",
+        "Pick sleek black, timeless white or contemporary grey to match your interior, or choose the white version with integrated 12V/24V light for courtesy lighting.",
+        "Optional: a micro-switch that automatically switches the ventilator off when the valve is closed."
+      ],
+      "features": [
+        "Ø 300 mm rotating open/close valve",
+        "Black, white or grey ABS",
+        "Version with integrated 12/24V light (30 mm high)",
+        "Optional micro-switch (cuts fan power when closed)",
+        "Only 0.4 kg (0.7 kg with light)"
+      ],
+      "specs": {
+        "Overall diameter": "Ø 300 mm",
+        "Operation": "Rotating open/close",
+        "Material": "ABS",
+        "Weight": "0.4 kg · 0.7 kg with light",
+        "Colours": "Grey, White, Black",
+        "Light version": "35-2200, white, 12V/24V"
+      },
+      "variants": [
+        {
+          "sku": "35-2100",
+          "label": "Grey",
+          "options": {
+            "Colour": "Grey",
+            "Light": "No"
+          },
+          "price": 44.95,
+          "compare_at": 54.95
+        },
+        {
+          "sku": "35-2110",
+          "label": "White",
+          "options": {
+            "Colour": "White",
+            "Light": "No"
+          },
+          "price": 44.95,
+          "compare_at": 54.95
+        },
+        {
+          "sku": "35-2120",
+          "label": "Black",
+          "options": {
+            "Colour": "Black",
+            "Light": "No"
+          },
+          "price": 44.95,
+          "compare_at": 54.95
+        },
+        {
+          "sku": "35-2200",
+          "label": "White · with light 12/24V",
+          "options": {
+            "Colour": "White",
+            "Light": "12/24V light"
+          },
+          "price": 84.95,
+          "compare_at": 99
+        }
+      ],
+      "images": [
+        "assets/products/35-2120-foto-scaled.webp",
+        "assets/products/35-2200-foto-scaled.webp"
+      ],
+      "drawing": "assets/products/35-2120-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-18.pdf",
+      "applications": [
+        "commercial-vans",
+        "campers",
+        "horse-trailers",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round"
+      ],
+      "faq": []
+    },
+    {
+      "id": "rotary-valve",
+      "name": "Rotary Ventilation Valve 35-3003",
+      "short_name": "Rotary Valve",
+      "category": "interior-valves",
+      "tagline": "The interior finish for the Exhaust Ventilator",
+      "badges": [
+        "For 02-1030"
+      ],
+      "summary": "White plastic rotary valve with open/close mechanism for roof openings up to 160 mm. Designed to complete our venturi Exhaust Ventilator 02-1030.",
+      "description": [
+        "A simple, effective interior finish for the Exhaust Ventilator: turn the knob to open or close the airflow. Fits roof openings up to 160 mm and gives the ceiling a clean white look.",
+        "Use it with the 02-1030 exhaust ventilator (and the older 02-1026 / 02-1027 models) for a complete, closable passive ventilation system."
+      ],
+      "features": [
+        "Open/close rotary mechanism",
+        "Max. roof opening 160 mm",
+        "White plastic",
+        "For exhaust ventilator 02-1030 (also 02-1026 / 02-1027)"
+      ],
+      "specs": {
+        "Max. roof opening": "160 mm",
+        "Construction": "Plastic, white",
+        "Compatible with": "02-1026 / 02-1027 / 02-1030"
+      },
+      "variants": [
+        {
+          "sku": "35-3003",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 29.95,
+          "compare_at": 34.95
+        }
+      ],
+      "images": [
+        "assets/products/35-3003-foto.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-21.pdf",
+      "applications": [
+        "commercial-vans",
+        "dog-transport"
+      ],
+      "accessories": [
+        "exhaust-ventilator",
+        "grill-small"
+      ],
+      "faq": []
+    },
+    {
+      "id": "rotary-valve-metal",
+      "name": "Polished Light-Metal Rotary Valve",
+      "short_name": "Metal Rotary Valve",
+      "category": "interior-valves",
+      "tagline": "Polished aluminium, five diameters",
+      "badges": [
+        "Premium finish"
+      ],
+      "summary": "A rotating ventilation valve crafted from lightweight polished metal. From Ø 130 mm to Ø 250 mm, for commercial vehicles, horse trucks, boats and public vehicles that deserve a premium interior detail.",
+      "description": [
+        "When plastic is not enough. Our light-metal rotary valve is polished to a mirror finish and rotates to regulate the airflow. A functional necessity turned into a stylish detail for horse trucks, boats and luxury conversions.",
+        "Available in five diameters from Ø 130 mm to Ø 250 mm to suit different roof openings and ventilators."
+      ],
+      "features": [
+        "Lightweight polished metal",
+        "Rotating open/close mechanism",
+        "Five diameters: 130, 160, 180, 200, 250 mm",
+        "Suitable for commercial vehicles, horse trucks, boats and public vehicles"
+      ],
+      "specs": {
+        "Construction": "Light metal, polished",
+        "Diameters": "Ø 130 / 160 / 180 / 200 / 250 mm",
+        "Operation": "Rotating"
+      },
+      "variants": [
+        {
+          "sku": "35-4080",
+          "label": "Ø 130 mm",
+          "options": {
+            "Diameter": "Ø 130 mm"
+          },
+          "price": 49,
+          "compare_at": 59
+        },
+        {
+          "sku": "35-4082",
+          "label": "Ø 160 mm",
+          "options": {
+            "Diameter": "Ø 160 mm"
+          },
+          "price": 59,
+          "compare_at": 69
+        },
+        {
+          "sku": "35-4084",
+          "label": "Ø 180 mm",
+          "options": {
+            "Diameter": "Ø 180 mm"
+          },
+          "price": 69,
+          "compare_at": 79
+        },
+        {
+          "sku": "35-4086",
+          "label": "Ø 200 mm",
+          "options": {
+            "Diameter": "Ø 200 mm"
+          },
+          "price": 79,
+          "compare_at": 89
+        },
+        {
+          "sku": "35-4088",
+          "label": "Ø 250 mm",
+          "options": {
+            "Diameter": "Ø 250 mm"
+          },
+          "price": 99,
+          "compare_at": 115
+        }
+      ],
+      "images": [
+        "assets/products/35-4080-foto.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-22.pdf",
+      "applications": [
+        "marine",
+        "horse-trailers",
+        "commercial-vans",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "exhaust-ventilator",
+        "le-mans"
+      ],
+      "faq": []
+    },
+    {
+      "id": "grill-small",
+      "name": "ABS Grille Small Ø 140 mm",
+      "short_name": "Grille Small",
+      "category": "interior-valves",
+      "tagline": "Clean finish for the Exhaust Ventilator",
+      "badges": [
+        "For 02-1030"
+      ],
+      "summary": "Ø 140 mm ABS interior grille in white, light grey or black. The neat, fixed interior cover for the 02-1030 exhaust ventilator. Custom colours on request.",
+      "description": [
+        "A quality ABS grille with a Ø 140 mm honeycomb face that covers the interior side of our exhaust ventilator. Choose classic white, subtle light grey or sleek black. Need another colour? Custom colours are available on request."
+      ],
+      "features": [
+        "Ø 140 mm x 4 mm",
+        "ABS, white / light grey / black",
+        "For exhaust ventilator 02-1030 (02-1026 / 02-1027)",
+        "Custom colours on request"
+      ],
+      "specs": {
+        "Dimensions": "Ø 140 mm x 4 mm",
+        "Material": "ABS",
+        "Colours": "White, Light grey, Black",
+        "Compatible with": "02-1026 / 02-1027 / 02-1030"
+      },
+      "variants": [
+        {
+          "sku": "35-2600",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 19.95,
+          "compare_at": 24.95
+        },
+        {
+          "sku": "35-2610",
+          "label": "Light grey",
+          "options": {
+            "Colour": "Light grey"
+          },
+          "price": 19.95,
+          "compare_at": 24.95
+        },
+        {
+          "sku": "35-2620",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 19.95,
+          "compare_at": 24.95
+        }
+      ],
+      "images": [
+        "assets/products/35-2610-foto.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-23.pdf",
+      "applications": [
+        "commercial-vans",
+        "dog-transport"
+      ],
+      "accessories": [
+        "exhaust-ventilator"
+      ],
+      "faq": []
+    },
+    {
+      "id": "grill-large",
+      "name": "ABS Grille Large Ø 270 mm",
+      "short_name": "Grille Large",
+      "category": "interior-valves",
+      "tagline": "Honeycomb grille for Le Mans and Round ventilators",
+      "badges": [
+        "For Le Mans"
+      ],
+      "summary": "Ø 270 mm ABS honeycomb grille that covers the interior side of the Le Mans 02-2200 and Round 02-0200 ventilators. Fixed (non-closable) for unobstructed airflow and a safe finger guard. White, light grey or black.",
+      "description": [
+        "The large ABS grille gives the inside of your Le Mans or Round rooftop ventilator a clean, professional finish while leaving the full 850 m³/h airflow unobstructed. It cannot be closed; if you need to shut off the airflow, choose the V12 or Flower Power valve instead.",
+        "Choose white, light grey or black. Custom colours on request."
+      ],
+      "features": [
+        "Ø 270 mm x 4 mm honeycomb grille",
+        "ABS, white / light grey / black",
+        "Unobstructed airflow (non-closable), finger guard",
+        "For 02-0200 Round and 02-2200 Le Mans",
+        "Custom colours on request"
+      ],
+      "specs": {
+        "Dimensions": "Ø 270 mm x 4 mm",
+        "Material": "ABS",
+        "Colours": "White, Light grey, Black",
+        "Compatible with": "02-0200/0300 Round, 02-2200/2300 Le Mans"
+      },
+      "variants": [
+        {
+          "sku": "35-2700",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 27.5,
+          "compare_at": 32.5
+        },
+        {
+          "sku": "35-2710",
+          "label": "Light grey",
+          "options": {
+            "Colour": "Light grey"
+          },
+          "price": 27.5,
+          "compare_at": 32.5
+        },
+        {
+          "sku": "35-2720",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 27.5,
+          "compare_at": 32.5
+        }
+      ],
+      "images": [
+        "assets/products/35-2720-foto-scaled.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-20.pdf",
+      "applications": [
+        "commercial-vans",
+        "ambulance-emergency",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round"
+      ],
+      "faq": []
+    },
+    {
+      "id": "speedcontrol",
+      "name": "Speedcontrol 30-3004",
+      "short_name": "Speedcontrol",
+      "category": "controls",
+      "tagline": "0 to 100% stepless control, waterproof housing",
+      "badges": [
+        "Waterproof",
+        "11 to 30V"
+      ],
+      "summary": "Stepless speed controller for DC roof fans. Dial the Le Mans down for silent night ventilation or run it flat out on hot days. 25 A continuous, waterproof housing, one unit can drive several ventilators.",
+      "description": [
+        "The Speedcontrol lets you run any of our DC roof fans at exactly the speed you need: from a silent trickle to full power. The range is stepless from 0 to 100%, and at the zero position the unit draws no current at all.",
+        "Rated for 11 to 30 VDC and 25 A continuous (30 A peak), it works on 12V and 24V systems and can control one or several ventilators at once. The housing is waterproof, the unit is current-limited and transient-suppressed, and it connects with standard 6.3 mm flat connectors. Supplied with potentiometer knob and instructions."
+      ],
+      "features": [
+        "Stepless 0 to 100% speed control",
+        "11 to 30 VDC input, 12V and 24V systems",
+        "25 A continuous, 30 A max output",
+        "Waterproof housing, 80 x 60 x 20 mm",
+        "Current-limited and transient-suppressed",
+        "Controls one or multiple ventilators"
+      ],
+      "specs": {
+        "Input voltage": "11 to 30 VDC",
+        "Max. continuous output": "25 A",
+        "Max. output current": "30 A",
+        "Potentiometer": "4k7",
+        "Connectors": "6.3 mm flat connectors",
+        "Housing": "80 x 60 x 20 mm (30 mm incl. connectors), waterproof",
+        "Range": "0 to 100%"
+      },
+      "variants": [
+        {
+          "sku": "30-3004",
+          "label": "Speedcontrol",
+          "options": {},
+          "price": 84.95,
+          "compare_at": 99
+        }
+      ],
+      "images": [
+        "assets/products/30-3004-foto.webp"
+      ],
+      "drawing": "assets/products/30-3004-tekening-scaled.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-12.pdf",
+      "applications": [
+        "ambulance-emergency",
+        "campers",
+        "horse-trailers",
+        "buses-coaches",
+        "commercial-vans"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round",
+        "switch-fan"
+      ],
+      "faq": [
+        {
+          "q": "Can I use it together with a 3-way switch?",
+          "a": "Yes. The switch selects blow / off / suck, the Speedcontrol sets the speed. The slower the fan runs, the quieter it is and the less air it moves."
+        }
+      ]
+    },
+    {
+      "id": "switch-round",
+      "name": "3-Way Switch Round 89-4002",
+      "short_name": "Switch Round",
+      "category": "controls",
+      "tagline": "On-Off-On, round built-in model",
+      "badges": [
+        "3-way"
+      ],
+      "summary": "Round double-changeover rocker switch (on-off-on) to switch your Le Mans, Round ventilator or Winglet between intake, off and exhaust. Presses into a Ø 20 mm dashboard hole.",
+      "description": [
+        "The round 3-position switch for our rooftop ventilators. Flick up for intake, down for exhaust, centre for off. It is a double-changeover switch that reverses the motor, so you get both directions from a single control.",
+        "Suitable for most vehicles: it presses into a round dashboard hole or a prepared switch holder. Check the mounting hole dimensions in the datasheet before ordering. Combine with the Speedcontrol for stepless speed adjustment."
+      ],
+      "features": [
+        "3-position: on-off-on",
+        "Double changeover (reverses fan direction)",
+        "Round built-in model, Ø 20 mm hole",
+        "Works with Le Mans, Le Mans LL, Round and Winglet",
+        "Combine with Speedcontrol"
+      ],
+      "specs": {
+        "Type": "3-way rocker switch, on-off-on",
+        "Form": "Round, built-in",
+        "Mounting hole": "Ø 20 mm (see datasheet)",
+        "Compatible with": "All Pegasus Depot DC roof fans"
+      },
+      "variants": [
+        {
+          "sku": "89-4002",
+          "label": "Round",
+          "options": {},
+          "price": 14.95,
+          "compare_at": 17.95
+        }
+      ],
+      "images": [
+        "assets/products/89-4002-Switch-aangepast.webp",
+        "assets/products/89-4002-Switch-round-1.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-SWITCHES.pdf",
+      "applications": [
+        "commercial-vans",
+        "campers",
+        "horse-trailers",
+        "marine"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round",
+        "speedcontrol"
+      ],
+      "faq": []
+    },
+    {
+      "id": "switch-square",
+      "name": "3-Way Switch Square 89-4005",
+      "short_name": "Switch Square",
+      "category": "controls",
+      "tagline": "On-Off-On, square built-in model",
+      "badges": [
+        "3-way"
+      ],
+      "summary": "Square double-changeover rocker switch (on-off-on) for intake / off / exhaust control of your electric roof fan. Presses into a rectangular dashboard cut-out.",
+      "description": [
+        "The square 3-position switch for our rooftop ventilators. Up for intake, down for exhaust, centre off. Double changeover, so one switch reverses the motor.",
+        "A square built-in model for most vehicles; it presses into a prepared holder or rectangular cut-out (dimensions in the datasheet). Add the Speedcontrol to make the fan run steplessly from 0 to 100%."
+      ],
+      "features": [
+        "3-position: on-off-on",
+        "Double changeover (reverses fan direction)",
+        "Square built-in model",
+        "Works with Le Mans, Le Mans LL, Round and Winglet",
+        "Combine with Speedcontrol"
+      ],
+      "specs": {
+        "Type": "3-way rocker switch, on-off-on",
+        "Form": "Square, built-in",
+        "Mounting": "Rectangular cut-out (see datasheet)",
+        "Compatible with": "All Pegasus Depot DC roof fans"
+      },
+      "variants": [
+        {
+          "sku": "89-4005",
+          "label": "Square",
+          "options": {},
+          "price": 12.95,
+          "compare_at": 14.95
+        }
+      ],
+      "images": [
+        "assets/products/89-4005-new.webp",
+        "assets/products/GC-switch-002-89-4005-NEW.webp"
+      ],
+      "drawing": "assets/media/GC-switch-002-89-4005-NEW.jpg",
+      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-SWITCHES.pdf",
+      "applications": [
+        "commercial-vans",
+        "campers",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round",
+        "speedcontrol"
+      ],
+      "faq": []
+    },
+    {
+      "id": "switch-fan",
+      "name": "Fan Switch 89-4008 with Symbols",
+      "short_name": "Fan Switch",
+      "category": "controls",
+      "tagline": "Illuminated rocker with ventilation symbols",
+      "badges": [
+        "Illuminated",
+        "3-way"
+      ],
+      "summary": "Premium rectangular 3-way rocker switch with ventilation symbol and red / amber illumination. The dashboard-grade control for Le Mans, Le Mans LL, Round and Winglet ventilators. 25 A 12V / 15 A 24V.",
+      "description": [
+        "The Fan Switch is the one to choose when the dashboard has to look OEM. A rectangular rocker with a printed ventilation symbol, red and amber illumination, and three positions: intake, off, exhaust.",
+        "It is a double-changeover switch that reverses the motor, suitable for 12V (25 A) and 24V (15 A) systems. It presses into a standard rectangular holder; check the cut-out dimensions in the datasheet. Combine with the Speedcontrol for stepless airflow."
+      ],
+      "features": [
+        "3-position: on-off-on with ventilation symbol",
+        "Red and amber illumination",
+        "25 A at 12V · 15 A at 24V",
+        "Double changeover (reverses fan direction)",
+        "Rectangular built-in rocker",
+        "Combine with Speedcontrol"
+      ],
+      "specs": {
+        "Type": "3-way rocker switch, on-off-on",
+        "Illumination": "Red and amber",
+        "Rating": "25 A 12V DC · 15 A 24V DC",
+        "Form": "Rectangular, built-in",
+        "Compatible with": "All Pegasus Depot DC roof fans"
+      },
+      "variants": [
+        {
+          "sku": "89-4008",
+          "label": "Fan Switch",
+          "options": {},
+          "price": 19.95,
+          "compare_at": 24.95
+        }
+      ],
+      "images": [
+        "assets/products/89-4008-foto.webp"
+      ],
+      "drawing": "assets/products/89-4008-tekening.webp",
+      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-SWITCHES.pdf",
+      "applications": [
+        "ambulance-emergency",
+        "buses-coaches",
+        "commercial-vans",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "le-mans",
+        "speedcontrol",
+        "v12-valve"
+      ],
+      "faq": []
+    },
+    {
+      "id": "control-unit",
+      "name": "Roof Hatch Control Unit 30-6000",
+      "short_name": "Control Unit",
+      "category": "controls",
+      "tagline": "Controls one or two electric roof hatches",
+      "badges": [
+        "EMC approved",
+        "EC 2004/104"
+      ],
+      "summary": "The 24V control panel for our electric roof hatches. Opens and closes the front and rear of one or two hatches, shows dome position on green LEDs, auto-closes when the ignition goes off, and still allows ventilation when parked.",
+      "description": [
+        "Always use the 30-6000 with our electric roof hatches. This compact 24V control unit manages one or two hatches: open or close the front and rear side independently, and read the dome position on the green LED display.",
+        "Safety and comfort are built in. The unit closes the hatches automatically when the ignition key is turned off, but the hatch can still be opened for ventilation while parked. The display has a current-save function and the push buttons are illuminated with orange LEDs for operation in the dark.",
+        "EMC approved and homologated according to EC 2004/104. For 12V vehicles, use our 12V to 24V converter (89-STEP12-24, on request)."
+      ],
+      "features": [
+        "Controls 1 or 2 electric roof hatches",
+        "Open/close front and rear side separately",
+        "Green LED dome position display",
+        "Auto-close when ignition is switched off",
+        "Ventilation position available with ignition off",
+        "Orange LED illuminated push buttons",
+        "EMC approved, homologated EC 2004/104",
+        "96 x 49 x 28 mm, 24V"
+      ],
+      "specs": {
+        "Voltage": "24V (12V via converter 89-STEP12-24)",
+        "Controls": "1 or 2 electric roof hatches",
+        "Dimensions": "96 x 49 x 28 mm",
+        "Approvals": "EMC approved, EC 2004/104",
+        "Display": "Green LEDs (position), orange LEDs (buttons)"
+      },
+      "variants": [
+        {
+          "sku": "30-6000",
+          "label": "Control Unit 24V",
+          "options": {},
+          "price": 189,
+          "compare_at": 219
+        }
+      ],
+      "images": [
+        "assets/products/30-6000-foto2-scaled.webp",
+        "assets/products/30-6000-foto1fc.webp"
+      ],
+      "drawing": "assets/products/30-6000-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-39.pdf",
+      "applications": [
+        "buses-coaches",
+        "ambulance-emergency"
+      ],
+      "accessories": [
+        "roof-hatch-electric-small",
+        "roof-hatch-electric-large"
+      ],
+      "faq": [
+        {
+          "q": "Do I need one unit per hatch?",
+          "a": "No. One 30-6000 controls one or two electric roof hatches."
+        },
+        {
+          "q": "My vehicle is 12V. Can I use it?",
+          "a": "Yes, with the 89-STEP12-24 converter. Contact us and we add it to your order."
+        }
+      ]
+    },
+    {
+      "id": "floor-ventilator-129",
+      "name": "Floor Ventilator Ø 129 mm",
+      "short_name": "Floor Vent 129",
+      "category": "floor-ventilation",
+      "tagline": "Closes the loop: fresh air in, low gases out",
+      "badges": [
+        "Bestseller",
+        "PC/ABS"
+      ],
+      "summary": "Black PC/ABS floor ventilator for the loading floor. Removes low-hanging gases and boosts the capacity of your roof fan by giving it an inlet. Essential for gas bottles, dogs, horses and oil-containing goods.",
+      "description": [
+        "A roof fan can only extract what it can replace. The floor ventilator gives your vehicle a low air inlet so the roof fan works at full capacity and a constant flow runs from floor to roof. At the same time it removes heavy, low-hanging gases. Mount it diagonally opposite the roof ventilator for the best cross-flow.",
+        "Made from tough PC/ABS with a Ø 129 mm cut-out (Ø 169 mm flange, 90 mm deep), it is the standard recommendation with every mechanical or electric rooftop ventilator. Particularly suitable when transporting gas bottles, dogs, animals and oil-containing products, and for meeting the ventilation guidance for gas cylinders in closed vans."
+      ],
+      "features": [
+        "Removes low-hanging gases",
+        "Increases roof fan capacity",
+        "Cut-out Ø 129 mm, flange Ø 169 mm, 90 mm deep",
+        "PC/ABS, black",
+        "For loading floors of vans and trailers"
+      ],
+      "specs": {
+        "Cut-out": "Ø 129 mm",
+        "Material": "PC / ABS",
+        "Colour": "Black",
+        "Dimensions": "Ø 169 mm flange, 90 mm deep"
+      },
+      "variants": [
+        {
+          "sku": "89-5600",
+          "label": "Ø 129 mm",
+          "options": {},
+          "price": 64.95,
+          "compare_at": 74.95
+        }
+      ],
+      "images": [
+        "assets/products/89-5600-foto.webp"
+      ],
+      "drawing": "assets/products/89-5600-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-15.pdf",
+      "applications": [
+        "commercial-vans",
+        "dog-transport",
+        "horse-trailers",
+        "animal-transport"
+      ],
+      "accessories": [
+        "le-mans",
+        "turbo-ii",
+        "exhaust-ventilator"
+      ],
+      "faq": []
+    },
+    {
+      "id": "floor-ventilator-80",
+      "name": "Floor Ventilator Ø 80 mm",
+      "short_name": "Floor Vent 80",
+      "category": "floor-ventilation",
+      "tagline": "Compact inlet for small vehicles",
+      "badges": [
+        "New",
+        "Compact"
+      ],
+      "summary": "The compact 80 mm floor ventilator. Same double function as the 129 mm model (gas removal and roof-fan boost) in a smaller footprint for small vans, dog boxes and compartments.",
+      "description": [
+        "The 80 mm floor ventilator brings the same logic to small vehicles: create a low inlet so your Winglet, Turbo III or exhaust ventilator can actually move air, and let heavy gases escape at floor level.",
+        "PC/ABS, black RAL 9005, Ø 80 mm cut-out, Ø 119 mm outer, 90 mm deep, 0.4 kg. Recommended with any mechanical or electric rooftop ventilator."
+      ],
+      "features": [
+        "Removes low-hanging gases",
+        "Increases roof fan capacity",
+        "Cut-out Ø 80 mm",
+        "PC/ABS, black, 0.4 kg",
+        "Ideal for small vans and dog boxes"
+      ],
+      "specs": {
+        "Cut-out": "Ø 80 mm",
+        "Material": "PC / ABS",
+        "Colour": "Black RAL 9005",
+        "Overall": "Ø 119 mm, 90 mm deep",
+        "Weight": "0.4 kg"
+      },
+      "variants": [
+        {
+          "sku": "89-5700",
+          "label": "Ø 80 mm",
+          "options": {},
+          "price": 57.5,
+          "compare_at": 67.5
+        }
+      ],
+      "images": [
+        "assets/products/89-5700-foto.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-productsheet-89-5700-3.pdf",
+      "applications": [
+        "dog-transport",
+        "commercial-vans",
+        "campers"
+      ],
+      "accessories": [
+        "winglet",
+        "turbo-iii"
+      ],
+      "faq": []
+    },
+    {
+      "id": "snowfilter",
+      "name": "Snow Filter 89-5011",
+      "short_name": "Snow Filter",
+      "category": "floor-ventilation",
+      "tagline": "Keeps snow, insects and the last raindrops out",
+      "badges": [
+        "For Le Mans & Round"
+      ],
+      "summary": "Coarse-mesh carbon filter strip (860 x 40 x 10 mm) that fits inside the Le Mans and Round rooftop ventilators. Blocks snowflakes, insects and residual rain without choking the airflow.",
+      "description": [
+        "Our roof ventilators are built so that virtually no rainwater enters the vehicle, but in snow, heavy weather or insect season a filter is the final safeguard. The snow filter is a medium, coarse-mesh net of carbon-infused polymer that shields the intake while leaving the airflow almost untouched.",
+        "The 89-5011 fits the 02-0200/0300 Round and 02-2200/2300 Le Mans ventilators. Recommended for vehicles operating in regions where snow can be drawn into the air intake."
+      ],
+      "features": [
+        "Blocks snow, insects and residual rain",
+        "Coarse mesh, minimal airflow loss",
+        "860 x 40 x 10 mm",
+        "For Le Mans 02-2200/2300 and Round 02-0200/0300"
+      ],
+      "specs": {
+        "Dimensions": "860 x 40 x 10 mm",
+        "Material": "Carbon-infused polymer mesh",
+        "Compatible with": "02-0200/0300, 02-2200/2300, 02-0400/0500, 02-2400/2500"
+      },
+      "variants": [
+        {
+          "sku": "89-5011",
+          "label": "860 x 40 x 10 mm",
+          "options": {},
+          "price": 12.95,
+          "compare_at": 16.95
+        }
+      ],
+      "images": [
+        "assets/products/89-5010-foto2-scaled.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-14.pdf",
+      "applications": [
+        "horse-trailers",
+        "commercial-vans",
+        "ambulance-emergency",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round"
+      ],
+      "faq": []
+    },
+    {
+      "id": "roof-hatch-manual-small",
+      "name": "Roof Hatch Manual 530 x 530",
+      "short_name": "Roof Hatch Manual S",
+      "category": "roof-hatches",
+      "tagline": "ECE 43R glass dome, manual operation",
+      "badges": [
+        "ECE 43R",
+        "EC 2004/104"
+      ],
+      "summary": "Compact 530 x 530 mm manual roof hatch with dark tinted ECE 43R homologated glass dome. Suits roof thickness 30 to 70 mm, with high-quality gaskets and pre-drilled outer frame (640 x 640 mm). Grey finish, 8.5 kg.",
+      "description": [
+        "Our small roof hatch brings daylight, ventilation and privacy to minibuses, horse trucks, ambulances and campers. The dark tinted glass dome is homologated ECE 43R (UV transmission 6%, heat 16%, light 17%), and the hatch is homologated according to EC 2004/104.",
+        "The internal frame mounts easily inside the outside frame, which comes pre-drilled with mounting holes (outer frame 640 x 640 mm, 40 mm high; screw or bond). High-quality gaskets keep wind and water out. Suits roof thicknesses from 30 to 70 mm.",
+        "Need automation? The same hatch is available as an electric version (90-5000-E)."
+      ],
+      "features": [
+        "Aperture 530 x 530 mm, R80 corners",
+        "Dark tinted glass dome, homologated ECE 43R",
+        "Homologated EC 2004/104",
+        "Suits roof thickness 30 to 70 mm",
+        "High-quality gaskets",
+        "Pre-drilled outer frame 640 x 640 mm, easy internal frame mounting",
+        "Grey finish, manual operation, 8.5 kg"
+      ],
+      "specs": {
+        "Aperture": "530 x 530 mm",
+        "Outer frame": "640 x 640 mm, 40 mm high",
+        "Radius": "R80",
+        "Glass": "Dark, UV 6% / Heat 16% / Light 17%, ECE 43R",
+        "Roof thickness": "30 to 70 mm",
+        "Operation": "Manual",
+        "Weight": "approx. 8.5 kg",
+        "Approvals": "ECE 43R, EC 2004/104",
+        "Colour": "Grey"
+      },
+      "variants": [
+        {
+          "sku": "90-5000-DG-LUS",
+          "label": "Manual 530 x 530",
+          "options": {},
+          "price": 349,
+          "compare_at": 389
+        }
+      ],
+      "images": [
+        "assets/products/90-5000-DG-LUS-foto1-1-rotated.webp",
+        "assets/media/90-5000-DG-LUS-foto2.jpg",
+        "assets/media/PMH14.jpg"
+      ],
+      "drawing": "assets/products/90-5000-DG-LUS-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-35.pdf",
+      "applications": [
+        "buses-coaches",
+        "horse-trailers",
+        "ambulance-emergency",
+        "campers",
+        "marine"
+      ],
+      "accessories": [
+        "roof-hatch-electric-small",
+        "lighting-round"
+      ],
+      "faq": []
+    },
+    {
+      "id": "roof-hatch-manual-large",
+      "name": "Roof Hatch Manual 970 x 530 Emergency Exit",
+      "short_name": "Roof Hatch Manual L",
+      "category": "roof-hatches",
+      "tagline": "Emergency exit hatch, EC 2001/85 compliant",
+      "badges": [
+        "Emergency exit",
+        "ECE 43R",
+        "Break-glass hammer"
+      ],
+      "summary": "Large 970 x 530 mm manual roof hatch designed as an emergency exit according to EC 2001/85. ECE 43R dark glass dome, 30 to 70 mm roof thickness, pre-drilled frame (1080 x 640 mm), break-glass hammer included. 14 kg.",
+      "description": [
+        "The large emergency roof hatch for buses, coaches and specialty vehicles. At 970 x 530 mm it meets the EC 2001/85 emergency exit standard and doubles as a generous ventilation and daylight opening.",
+        "The dark tinted glass dome is homologated ECE 43R and the hatch is homologated EC 2004/104. High-quality gaskets, an internal frame that mounts easily in the pre-drilled outside frame (1080 x 640 mm), interior trim frame and a break-glass hammer complete the package. Suits roof thicknesses from 30 to 70 mm.",
+        "Also available as an electric version (90-6000-E) with our 30-6000 control unit."
+      ],
+      "features": [
+        "Aperture 970 x 530 mm, R80 corners",
+        "Emergency exit according to EC 2001/85",
+        "Dark glass dome homologated ECE 43R",
+        "Homologated EC 2004/104",
+        "Suits roof thickness 30 to 70 mm",
+        "High-quality gaskets, pre-drilled outer frame 1080 x 640 mm",
+        "Break-glass hammer included",
+        "Grey finish, approx. 14 kg"
+      ],
+      "specs": {
+        "Aperture": "970 x 530 mm",
+        "Outer frame": "1080 x 640 mm, 40 mm high",
+        "Radius": "R80",
+        "Glass": "Dark, UV 6% / Heat 16% / Light 17%, ECE 43R",
+        "Roof thickness": "30 to 70 mm",
+        "Operation": "Manual",
+        "Weight": "approx. 14 kg",
+        "Approvals": "ECE 43R, EC 2004/104, EC 2001/85 emergency exit",
+        "Included": "Break-glass hammer"
+      },
+      "variants": [
+        {
+          "sku": "90-6000-DG-LUS",
+          "label": "Manual 970 x 530",
+          "options": {},
+          "price": 419,
+          "compare_at": 469
+        }
+      ],
+      "images": [
+        "assets/products/90-6000-DG-LUS-foto1-1-scaled.webp",
+        "assets/media/90-6000-DG-LUS-foto2.jpg",
+        "assets/media/noodhamer.jpg"
+      ],
+      "drawing": "assets/products/90-6000-DG-LUS-tekening-1.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-36.pdf",
+      "applications": [
+        "buses-coaches",
+        "ambulance-emergency",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "roof-hatch-electric-large",
+        "control-unit"
+      ],
+      "faq": []
+    },
+    {
+      "id": "roof-hatch-electric-small",
+      "name": "Roof Hatch Electric 530 x 530",
+      "short_name": "Roof Hatch Electric S",
+      "category": "roof-hatches",
+      "tagline": "Push-button comfort, ECE 43R dome",
+      "badges": [
+        "Electric 24V",
+        "EMC approved",
+        "ECE 43R"
+      ],
+      "summary": "Electric 24V version of the 530 x 530 mm hatch. Dark tinted ECE 43R glass dome, EMC approved, homologated EC 2004/104, roof thickness 30 to 70 mm. Operate with the 30-6000 control unit (sold separately or in our kit).",
+      "description": [
+        "Elevate the experience with push-button operation. The electric small roof hatch opens front or rear at the touch of the 30-6000 control unit, shows its position on the display and closes automatically when you switch off the ignition.",
+        "Dark tinted ECE 43R glass dome, EMC approved, homologated EC 2004/104, high-quality gaskets and a pre-drilled outer frame (640 x 640 mm). Suits roof thicknesses from 30 to 70 mm.",
+        "24V as standard. For 12V vehicles use our 12V to 24V converter (89-STEP12-24). Always combine with the 30-6000 control unit."
+      ],
+      "features": [
+        "Aperture 530 x 530 mm, electric 24V",
+        "Dark tinted glass dome homologated ECE 43R",
+        "EMC approved, homologated EC 2004/104",
+        "Suits roof thickness 30 to 70 mm",
+        "High-quality gaskets, pre-drilled outer frame 640 x 640 mm",
+        "Use with control unit 30-6000",
+        "12V possible via converter 89-STEP12-24"
+      ],
+      "specs": {
+        "Aperture": "530 x 530 mm",
+        "Outer frame": "640 x 640 mm",
+        "Radius": "R80",
+        "Glass": "Dark, UV 6% / Heat 16% / Light 17%, ECE 43R",
+        "Roof thickness": "30 to 70 mm",
+        "Operation": "Electric 24V",
+        "Approvals": "EMC, ECE 43R, EC 2004/104",
+        "Required": "Control unit 30-6000"
+      },
+      "variants": [
+        {
+          "sku": "90-5000-E",
+          "label": "Electric 530 x 530",
+          "options": {},
+          "price": 949,
+          "compare_at": 1059
+        }
+      ],
+      "images": [
+        "assets/products/90-5000-E-foto1.webp",
+        "assets/media/90-5000-E-foto2fc-scaled.jpg",
+        "assets/media/PMH2.jpg"
+      ],
+      "drawing": "assets/products/90-5000-E-tekening.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-37.pdf",
+      "applications": [
+        "buses-coaches",
+        "ambulance-emergency",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "control-unit",
+        "roof-hatch-electric-large"
+      ],
+      "faq": []
+    },
+    {
+      "id": "roof-hatch-electric-large",
+      "name": "Roof Hatch Electric 970 x 530 Emergency Exit",
+      "short_name": "Roof Hatch Electric L",
+      "category": "roof-hatches",
+      "tagline": "The flagship hatch for buses and coaches",
+      "badges": [
+        "Electric 24V",
+        "Emergency exit",
+        "ECE 43R"
+      ],
+      "summary": "Large electric 970 x 530 mm roof hatch: EC 2001/85 emergency exit, ECE 43R dark glass dome, EMC approved, EC 2004/104, 30 to 70 mm roof thickness, break-glass hammer included. Controlled by the 30-6000 unit (sold separately or in our kit).",
+      "description": [
+        "Our flagship roof hatch redefines safety and comfort for buses, coaches and emergency vehicles. It combines an EC 2001/85 compliant emergency exit with electric operation: open front or rear from the 30-6000 control unit, read the position on the display, and let it close automatically when the ignition goes off.",
+        "The standard dark tinted glass dome is homologated ECE 43R and reduces glare and heat. The hatch is EMC approved and homologated EC 2004/104, fits roof thicknesses from 30 to 70 mm, and comes with high-quality gaskets, a pre-drilled outer frame (1080 x 640 mm) and a break-glass hammer.",
+        "24V as standard; 12V vehicles use our 89-STEP12-24 converter. Always combine with the 30-6000 control unit."
+      ],
+      "features": [
+        "Aperture 970 x 530 mm, electric 24V",
+        "Emergency exit according to EC 2001/85",
+        "Dark tinted glass dome homologated ECE 43R",
+        "EMC approved, homologated EC 2004/104",
+        "Suits roof thickness 30 to 70 mm",
+        "High-quality gaskets, pre-drilled outer frame 1080 x 640 mm",
+        "Break-glass hammer included",
+        "Use with control unit 30-6000"
+      ],
+      "specs": {
+        "Aperture": "970 x 530 mm",
+        "Outer frame": "1080 x 640 mm",
+        "Radius": "R80",
+        "Glass": "Dark, UV 6% / Heat 16% / Light 17%, ECE 43R",
+        "Roof thickness": "30 to 70 mm",
+        "Operation": "Electric 24V",
+        "Approvals": "EMC, ECE 43R, EC 2004/104, EC 2001/85",
+        "Included": "Break-glass hammer",
+        "Required": "Control unit 30-6000"
+      },
+      "variants": [
+        {
+          "sku": "90-6000-E",
+          "label": "Electric 970 x 530",
+          "options": {},
+          "price": 985,
+          "compare_at": 1095
+        }
+      ],
+      "images": [
+        "assets/products/90-6000-E-foto1-1-scaled.webp",
+        "assets/media/PMH3.jpg",
+        "assets/media/Jozef-1-scaled.webp"
+      ],
+      "drawing": "assets/media/90-6000-E-tekening.jpg",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-38.pdf",
+      "applications": [
+        "buses-coaches",
+        "ambulance-emergency",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "control-unit",
+        "roof-hatch-electric-small"
+      ],
+      "faq": []
+    },
+    {
+      "id": "lighting-round",
+      "name": "Dome LED Light Round Ø 150 mm",
+      "short_name": "LED Light Round",
+      "category": "lighting",
+      "tagline": "24 white + 6 blue LEDs, IP67, made in NL",
+      "badges": [
+        "Made in NL",
+        "IP67",
+        "12/24V"
+      ],
+      "summary": "Round Ø 150 mm interior dome light with 24 white and 6 blue LEDs (230 lm). Dual voltage 12/24V, IP67, IK10, 50% dimming through wiring and a blue night-light mode. White or grey housing. Proudly made in the Netherlands.",
+      "description": [
+        "The round Dome LED Light is the interior light we fit in horse trucks, ambulances and commercial vehicles that need reliable, glare-free lighting. 24 white LEDs give 230 lm of bright working light at only 2 W, 6 blue LEDs provide a soft night mode that does not disturb animals or patients.",
+        "Dual voltage 12V/24V, IP67 sealed against dust and water, IK10 impact resistant, and dimmable to 50% through the wiring (black ground, red 100%, white 50%, blue night light). Only 13.5 mm thick and 150 g. Rated for 40,000 hours, -40 to +85 °C. Available in white or grey, and made in the Netherlands."
+      ],
+      "features": [
+        "24 white + 6 blue LEDs, approx. 230 lm / 2 W",
+        "12V / 24V DC dual voltage",
+        "IP67 dust and water tight, IK10",
+        "50% dimming via wiring, blue night light",
+        "Ø 150 mm, only 13.5 mm thick, 150 g",
+        "Approx. 5000 K, L70 40,000 h",
+        "White or grey housing",
+        "Made in the Netherlands"
+      ],
+      "specs": {
+        "LEDs": "24 white / 6 blue (Everlight)",
+        "Light output": "approx. 230 lm at 100%, 115 lm at 50%",
+        "Power": "2.0 W (100%) · 1.0 W (50%) · 0.5 W night",
+        "Voltage": "12V / 24V DC",
+        "Protection": "IP67, IK10",
+        "Dimensions": "Ø 150 mm x 13.5 mm, 150 g",
+        "Dimming": "50% via wiring",
+        "Night light": "Blue",
+        "Colours": "White (92-GC01) or Grey (92-GC02)",
+        "Origin": "Made in the Netherlands"
+      },
+      "variants": [
+        {
+          "sku": "92-GC01",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 59.95,
+          "compare_at": 69.95
+        },
+        {
+          "sku": "92-GC02",
+          "label": "Grey",
+          "options": {
+            "Colour": "Grey"
+          },
+          "price": 59.95,
+          "compare_at": 69.95
+        }
+      ],
+      "images": [
+        "assets/products/92-GC01-foto.webp",
+        "assets/products/92-GC02-foto.webp",
+        "assets/media/DSC_0841-1-1280x853-1-1.webp"
+      ],
+      "drawing": "assets/products/92-GC01-tekening-scaled.webp",
+      "pdf": null,
+      "applications": [
+        "horse-trailers",
+        "ambulance-emergency",
+        "commercial-vans",
+        "animal-transport",
+        "marine"
+      ],
+      "accessories": [
+        "lighting-rectangle",
+        "roof-hatch-manual-small"
+      ],
+      "faq": []
+    },
+    {
+      "id": "lighting-rectangle",
+      "name": "Dome LED Light Rectangle 350 x 140 mm",
+      "short_name": "LED Light Rectangle",
+      "category": "lighting",
+      "tagline": "51 LEDs, IK10 vandal resistant, IP66",
+      "badges": [
+        "Made in NL",
+        "IP66 / IP67",
+        "12/24V"
+      ],
+      "summary": "Rectangular 350 x 140 mm dome light with 39 white and 12 blue LEDs (approx. 368 lm). 12/24V DC (230V AC optional), IP66 (IP67 optional), vandal resistant IK10, 50% dimming and blue night light. White or grey.",
+      "description": [
+        "The rectangular Dome LED Light is the workhorse for buses, ambulances, horse trucks and service vehicles: 39 white LEDs (around 5000 K, approx. 368 lm) for bright, even light and 12 blue LEDs for a calm night mode.",
+        "Built to last: IP66 sealed (IP67 optional), vandal resistant to IK10, dual voltage 12V/24V DC with a 230V AC option. Dim to 50% through the wiring (black ground, red 100%, white 50%, blue night light). 350 x 140 mm, only 13.6 mm thick. Made in the Netherlands, chromium finish optional."
+      ],
+      "features": [
+        "51 LEDs: 39 white + 12 blue (Everlight 67-21)",
+        "Approx. 368 lm at 100%, 184 lm at 50%",
+        "12V / 24V DC, 230V AC optional",
+        "IP66 (IP67 optional), IK10 vandal resistant",
+        "Approx. 5000 K light colour",
+        "50% dimming via wiring, blue night light",
+        "350 x 140 mm, 13.6 mm thick, approx. 250 g",
+        "White or grey, chromium optional",
+        "EMC approved, made in the Netherlands"
+      ],
+      "specs": {
+        "LEDs": "39 white / 12 blue",
+        "Light output": "approx. 368 lm at 100%",
+        "Power": "approx. 3.2 W (100%) · 1 W night",
+        "Voltage": "12V / 24V DC (230V AC optional)",
+        "Protection": "IP66 (IP67 optional), IK10",
+        "Light colour": "± 5000 K",
+        "Dimming": "50% via wiring",
+        "Dimensions": "350 x 140 mm, 13.6 mm thick",
+        "Colours": "White (92-GC05) or Grey (92-GC06)",
+        "Origin": "Made in the Netherlands"
+      },
+      "variants": [
+        {
+          "sku": "92-GC05",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 89.95,
+          "compare_at": 109
+        },
+        {
+          "sku": "92-GC06",
+          "label": "Grey",
+          "options": {
+            "Colour": "Grey"
+          },
+          "price": 89.95,
+          "compare_at": 109
+        }
+      ],
+      "images": [
+        "assets/products/92-GC06-foto-scaled.webp",
+        "assets/products/92-GC05-foto-1-scaled.webp",
+        "assets/media/Jozef-scaled.jpg"
+      ],
+      "drawing": "assets/products/92-GC05-tekening-scaled.webp",
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-25.pdf",
+      "applications": [
+        "buses-coaches",
+        "ambulance-emergency",
+        "horse-trailers",
+        "commercial-vans"
+      ],
+      "accessories": [
+        "lighting-round",
+        "roof-hatch-manual-large"
+      ],
+      "faq": []
+    },
+    {
+      "id": "axial-ventilator",
+      "name": "Axial Ventilator",
+      "short_name": "Axial Ventilator",
+      "category": "fans-blowers",
+      "tagline": "Radiator cooling fans and blower assemblies",
+      "badges": [
+        "On request",
+        "EMC approved"
+      ],
+      "summary": "Axial fans move air in a straight line, like an aircraft propeller. We supply blower motor assemblies, radiator cooling fans and spare parts for aftermarket automotive, heavy-duty truck, off-road and bus applications. Configured to your specification.",
+      "description": [
+        "Axial fans contain a rotating shaft with propeller-style blades that pull air in on one side and push it out the other, creating a flow parallel to the fan axis. We supply a wide range of axial products for automotive climate systems: blower motor assemblies, radiator cooling fans and spare parts.",
+        "Widely used in aftermarket automotive, heavy-duty trucks, off-road machinery and buses. Different models, diameters and motors are available; tell us your application and we configure the right fan."
+      ],
+      "features": [
+        "Different models and dimensions",
+        "IP68 protected motors available",
+        "High efficiency, long life",
+        "EMC approved",
+        "Quoted per application"
+      ],
+      "specs": {
+        "Type": "Axial fan",
+        "Availability": "On request, configured per application",
+        "Approval": "EMC approved"
+      },
+      "variants": [
+        {
+          "sku": "03-AXIAL",
+          "label": "Configured on request",
+          "options": {},
+          "price": null,
+          "compare_at": null
+        }
+      ],
+      "images": [
+        "assets/products/03-3910-foto.webp",
+        "assets/media/03-3010-foto.jpg"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-40-1.pdf",
+      "applications": [
+        "buses-coaches",
+        "commercial-vans"
+      ],
+      "accessories": [
+        "radial-ventilator",
+        "auto-ventilator"
+      ],
+      "faq": [],
+      "quote_only": true
+    },
+    {
+      "id": "radial-ventilator",
+      "name": "Radial Ventilator",
+      "short_name": "Radial Ventilator",
+      "category": "fans-blowers",
+      "tagline": "Centrifugal blowers for ducted systems",
+      "badges": [
+        "On request",
+        "EMC approved"
+      ],
+      "summary": "Radial (centrifugal) fans draw air in axially and blow it out at 90 degrees, ideal for moving air through ducts and restricted openings in HVAC systems, buses and specialty vehicles. Configured to your specification.",
+      "description": [
+        "A radial fan, also known as a centrifugal fan, sucks air in axially and blows it out through a 90 degree bend on the radial axis, from the centre outwards. This makes it the right choice where air has to be pushed through ducts, pipes or restricted openings.",
+        "We supply single and double radial blowers with a wide choice of electric motors, IP68 protection and EMC approval. Tell us your airflow, voltage and space envelope and we will quote the matching unit."
+      ],
+      "features": [
+        "Single and double blower housings",
+        "Wide choice of electric motors",
+        "IP68 protected, high efficiency, long life",
+        "EMC approved",
+        "Quoted per application"
+      ],
+      "specs": {
+        "Type": "Radial / centrifugal blower",
+        "Availability": "On request, configured per application",
+        "Approval": "EMC approved"
+      },
+      "variants": [
+        {
+          "sku": "04-RADIAL",
+          "label": "Configured on request",
+          "options": {},
+          "price": null,
+          "compare_at": null
+        }
+      ],
+      "images": [
+        "assets/products/04-8315-foto.webp",
+        "assets/products/04-8705-foto.webp",
+        "assets/media/04-8005-foto.jpg",
+        "assets/media/04-8015-foto.jpg"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-40-1.pdf",
+      "applications": [
+        "buses-coaches",
+        "ambulance-emergency"
+      ],
+      "accessories": [
+        "axial-ventilator"
+      ],
+      "faq": [],
+      "quote_only": true
+    },
+    {
+      "id": "auto-ventilator",
+      "name": "Auto Ventilator 12/24V",
+      "short_name": "Auto Ventilator",
+      "category": "fans-blowers",
+      "tagline": "Compact cabin fan, 1 or 2 speeds",
+      "badges": [
+        "On request",
+        "12V / 24V"
+      ],
+      "summary": "A compact cabin fan for cars, campers, caravans and boats. 12V or 24V, 1 or 2 speeds, with or without switch, with or without protective grid. Configured to your preference.",
+      "description": [
+        "Our auto ventilator is the classic swivel cabin fan, built properly. Choose 12V or 24V, one or two speeds, with or without an integrated switch, and with or without a protective grid.",
+        "Compact and efficient, it is the ideal companion in a car, camper, caravan or boat cabin. Available on request; tell us your configuration and we quote within 24 hours."
+      ],
+      "features": [
+        "12V or 24V",
+        "1 or 2 speed settings",
+        "With or without switch",
+        "With or without protective grid",
+        "EMC approved, different models and dimensions"
+      ],
+      "specs": {
+        "Voltage": "12V or 24V",
+        "Speeds": "1 or 2",
+        "Options": "Switch, grid",
+        "Availability": "On request"
+      },
+      "variants": [
+        {
+          "sku": "03-8000",
+          "label": "Configured on request",
+          "options": {},
+          "price": null,
+          "compare_at": null
+        }
+      ],
+      "images": [
+        "assets/products/03-8000-foto.webp",
+        "assets/products/grid2.webp"
+      ],
+      "drawing": null,
+      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-40-1.pdf",
+      "applications": [
+        "campers",
+        "marine",
+        "commercial-vans"
+      ],
+      "accessories": [
+        "axial-ventilator"
+      ],
+      "faq": [],
+      "quote_only": true
+    },
+    {
+      "id": "ceilingflow",
+      "name": "Ceilingflow Ceiling Fan",
+      "short_name": "Ceilingflow",
+      "category": "indoor-climate",
+      "tagline": "Plug & play ceiling fan for suspended ceilings",
+      "badges": [
+        "Plug & Play",
+        "Remote included",
+        "CE"
+      ],
+      "summary": "The professional ceiling fan that drops into a standard 600 x 600 suspended-ceiling tile. 130 m³/min, 27 to 41 W, 35 to 47 dB(A), remote control included. Cools in summer, destratifies heat in winter. Black or white.",
+      "description": [
+        "Ceilingflow is the plug-and-play ceiling fan for offices, workshops, showrooms, shops, schools, kitchens, meeting rooms and server rooms. Remove a ceiling tile, insert the Ceilingflow (595 x 595 x 166 mm, 5.5 kg), plug it in and play. No installation costs, no installer, under five minutes.",
+        "With 130 m³/min of airflow at only 27 to 41 W and a noise level of 35 to 47 dB(A), it cools on warm days and pushes warm air back down on cold days, making optimal use of the vertical temperature profile of your heating. Three speeds, reversible direction and timer on the RF remote. Brushless motor with short-circuit and peak-voltage protection, recyclable ABS, RoHS, CE and LVD certified, IP44.",
+        "Remote control included (can also be operated without). Frame for solid ceilings available separately. One unit covers roughly 40 to 50 m²."
+      ],
+      "features": [
+        "Fits standard 600 x 600 suspended ceiling tile",
+        "130 m³/min airflow, 3 speeds, reversible",
+        "27 W (low) to 41 W (high)",
+        "35 to 47 dB(A)",
+        "220-230V, plug & play, 2 m cable",
+        "RF remote control included (speed, direction, timer)",
+        "Brushless motor, short-circuit protected, IP44",
+        "Recyclable ABS, RoHS, CE, LVD",
+        "Black or white, 5.5 kg"
+      ],
+      "specs": {
+        "Airflow": "130 m³/min",
+        "Voltage": "220-230V",
+        "Power": "27 W (low) to 41 W (high)",
+        "Noise level": "35 dB(A) low to 47 dB(A) high",
+        "Dimensions": "595 x 595 x 166 mm, 5.5 kg",
+        "Colours": "Black (24-0008) or White (24-0009)",
+        "Accessory": "Frame for solid ceiling 24-0013 (white) / 24-0113 (black)"
+      },
+      "variants": [
+        {
+          "sku": "24-0008",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 329,
+          "compare_at": 369
+        },
+        {
+          "sku": "24-0009",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 329,
+          "compare_at": 369
+        }
+      ],
+      "images": [
+        "assets/products/plafondventilator-1-scaled.webp",
+        "assets/products/plafondventilator-0-scaled.webp",
+        "assets/media/Ceilingflow-at-school-scaled.webp",
+        "assets/media/Project1-1480x1100-1.webp"
+      ],
+      "drawing": "assets/products/MCU-24.0009-exterior-drawing.webp",
+      "pdf": "assets/pdf/GC-OK2314194-PAGINA-CEILINGFLOW-2.pdf",
+      "applications": [],
+      "accessories": [
+        "air-purifier-large",
+        "air-purifier-small"
+      ],
+      "faq": []
+    },
+    {
+      "id": "air-purifier-small",
+      "name": "HEPA Air Purifier Small (8 to 15 m²)",
+      "short_name": "Air Purifier Small",
+      "category": "indoor-climate",
+      "tagline": "H13 HEPA + carbon, 27 dB sleep mode",
+      "badges": [
+        "H13 HEPA",
+        "CADR certified"
+      ],
+      "summary": "Compact dark grey air purifier for workstations, bedrooms and small rooms. H13 HEPA + activated carbon filter, CADR 125 m³/h, 360° bottom intake, 3 speeds from 27 dB. Plug & play.",
+      "description": [
+        "The 24-0125 is perfect for individual workstations, bedrooms and other areas with limited floor space. The 360° bottom air inlet and top outlet pull polluted air through an H13 HEPA and activated carbon filter and return clean air to the room.",
+        "CADR 125 m³/h (PM), TVOC CADR 40 to 60 m³/h, three speeds from a whisper-quiet 27 dB. 25 W, child lock, 1.8 kg, sleek matt dark grey."
+      ],
+      "features": [
+        "H13 HEPA + activated carbon filter",
+        "Applicable area 8 to 15 m²",
+        "PM CADR 125 m³/h, CCM P1",
+        "3 speeds: 27 / 35 / 42 dB",
+        "25 W, 24V adapter, 1.8 m cord",
+        "Child lock, plug & play",
+        "190 x 200 x 313 mm, 1.8 kg"
+      ],
+      "specs": {
+        "Area": "8 to 15 m²",
+        "Filter": "H13 HEPA + activated carbon",
+        "PM CADR": "125 m³/h",
+        "TVOC CADR": "40 to 60 m³/h",
+        "Noise": "27 / 35 / 42 dB",
+        "Power": "25 W",
+        "Size": "190 x 200 x 313 mm",
+        "Weight": "1.8 kg",
+        "Colour": "Dark grey"
+      },
+      "variants": [
+        {
+          "sku": "24-0125",
+          "label": "Small",
+          "options": {},
+          "price": 149,
+          "compare_at": 179
+        }
+      ],
+      "images": [
+        "assets/products/GC125-3.webp"
+      ],
+      "drawing": "assets/products/Technical-drawing-GC-125-Correct.webp",
+      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-GC125.pdf",
+      "applications": [],
+      "accessories": [
+        "ceilingflow",
+        "air-purifier-large"
+      ],
+      "faq": []
+    },
+    {
+      "id": "air-purifier-large",
+      "name": "HEPA Air Purifier Large (42 to 74 m²)",
+      "short_name": "Air Purifier Large",
+      "category": "indoor-climate",
+      "tagline": "600 m³/h CADR, anion, remote control",
+      "badges": [
+        "H13 HEPA",
+        "CADR certified",
+        "Remote included"
+      ],
+      "summary": "High-capacity air purifier for meeting rooms, lobbies and open-plan offices. H13 HEPA + activated carbon + anion, CADR 600 m³/h, 6 speeds from 32.9 dB sleep mode, remote control, universal wheels.",
+      "description": [
+        "The 24-0600 is ideal for large spaces where high-capacity filtration is required: meeting rooms, lobbies, open-plan offices, classrooms. H13 HEPA, activated carbon and an anion purifier (10 million/cm³) tackle fine dust, bacteria, viruses, dust mites, mould, pollen and odours.",
+        "PM CADR 600 m³/h, TVOC CADR 200 to 390 m³/h, six speeds from a 32.9 dB sleep mode, filter replacement reminder, child lock and a remote control that works from up to 5 metres. Matt grey, universal wheels, 10.5 kg."
+      ],
+      "features": [
+        "H13 HEPA + activated carbon + anion purifier",
+        "Applicable area 42 to 74 m²",
+        "PM CADR 600 m³/h, CCM P4",
+        "6 speeds: 32.9 dB sleep mode to 69.5 dB",
+        "Remote control (5 m), child lock",
+        "Filter replacement reminder",
+        "Universal wheels, 10.5 kg, 479 x 269 x 710 mm"
+      ],
+      "specs": {
+        "Area": "42 to 74 m²",
+        "Filter": "H13 HEPA + activated carbon + anion",
+        "PM CADR": "600 m³/h",
+        "TVOC CADR": "200 to 390 m³/h",
+        "Noise": "32.9 to 69.5 dB (6 speeds)",
+        "Power": "60 W, 220-240V",
+        "Size": "479 x 269 x 710 mm",
+        "Weight": "10.5 kg",
+        "Colour": "Dark grey"
+      },
+      "variants": [
+        {
+          "sku": "24-0600",
+          "label": "Large",
+          "options": {},
+          "price": 449,
+          "compare_at": 499
+        }
+      ],
+      "images": [
+        "assets/products/GC600-grijs-2.webp"
+      ],
+      "drawing": "assets/products/Technical-drawing-GC-600-correct.webp",
+      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-GC600.pdf",
+      "applications": [],
+      "accessories": [
+        "ceilingflow",
+        "air-purifier-small"
+      ],
+      "faq": []
+    }
+  ]
+}

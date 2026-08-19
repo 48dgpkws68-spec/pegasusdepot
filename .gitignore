@@ -1,0 +1,11 @@
+# raw source photos (optimised copies live in assets/img)
+assets/media/
+assets/products/
+assets/scenes/
+assets/brand/
+.DS_Store
+__pycache__/
+# keep manufacturer-branded datasheets and internal pricing research out of the public site
+assets/pdf/
+docs/
+PRICING.md

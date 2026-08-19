@@ -1,0 +1,320 @@
+{
+  "bundles": [
+    {
+      "id": "le-mans-complete-kit",
+      "name": "Le Mans Complete Kit",
+      "tagline": "Roof fan + switch + closable valve. Everything for one 230 mm hole.",
+      "discount": 0.10,
+      "badges": ["Most popular", "Save 10%"],
+      "hero": true,
+      "summary": "The set 9 out of 10 bodybuilders order: a Le Mans rooftop ventilator, the illuminated Fan Switch and a manual V12 interior valve so you can open and close the airflow. One cut-out, one afternoon, done.",
+      "description": [
+        "Stop piecing parts together. The Le Mans Complete Kit gives you the three components every installation needs: the 850 m³/h Le Mans, a 3-position Fan Switch with ventilation symbol (blow / off / suck) and the V12 interior valve that finishes the ceiling and lets you close the airflow when parked.",
+        "Choose your voltage and colour below. White or black cover, 12V for vans and campers, 24V for trucks and coaches. Every kit ships the same day from stock."
+      ],
+      "items": [
+        {"product": "le-mans", "variant_group": "Voltage & colour", "choices": ["02-2200", "02-2200-ZW", "02-2300", "02-2300-ZW"], "qty": 1},
+        {"product": "switch-fan", "sku": "89-4008", "qty": 1},
+        {"product": "v12-valve", "variant_group": "Valve colour", "choices": ["35-2400", "35-2410", "35-2440"], "qty": 1}
+      ],
+      "images": ["assets/products/02-2200-foto.webp", "assets/products/89-4008-foto.webp", "assets/products/35-2400-foto-scaled.webp"],
+      "scene": "assets/media/le-mans-vehicle.webp",
+      "for": ["commercial-vans", "horse-trailers", "ambulance-emergency", "buses-coaches", "animal-transport"]
+    },
+    {
+      "id": "le-mans-pro-kit",
+      "name": "Le Mans Pro Kit",
+      "tagline": "Full control: speed, direction, valve and snow filter.",
+      "discount": 0.12,
+      "badges": ["Best value", "Save 12%"],
+      "hero": true,
+      "summary": "For vehicles that run all year: Le Mans + Speedcontrol + Fan Switch + electric V12 valve + snow filter. Silent night ventilation, full power on hot days, closable from the dashboard, protected against snow and insects.",
+      "description": [
+        "The Pro Kit is the specification we recommend for ambulances, horse trucks and any vehicle that ventilates 24/7. The Speedcontrol lets you run the Le Mans at a whisper overnight and at full 850 m³/h on a hot afternoon. The electric V12 valve opens and closes from the dashboard. The snow filter keeps snow, rain and insects out of the intake.",
+        "Select voltage and colour. All five components ship together, from stock."
+      ],
+      "items": [
+        {"product": "le-mans", "variant_group": "Voltage & colour", "choices": ["02-2200", "02-2200-ZW", "02-2300", "02-2300-ZW"], "qty": 1},
+        {"product": "speedcontrol", "sku": "30-3004", "qty": 1},
+        {"product": "switch-fan", "sku": "89-4008", "qty": 1},
+        {"product": "v12-valve", "variant_group": "Valve colour", "choices": ["35-2500", "35-2510", "35-2540"], "qty": 1},
+        {"product": "snowfilter", "sku": "89-5011", "qty": 1}
+      ],
+      "images": ["assets/products/02-2200-foto.webp", "assets/products/30-3004-foto.webp", "assets/products/35-2440-foto.webp", "assets/products/89-5010-foto2-scaled.webp"],
+      "scene": "assets/media/Le-Mans-ventilator-2.webp",
+      "for": ["ambulance-emergency", "horse-trailers", "buses-coaches", "commercial-vans"]
+    },
+    {
+      "id": "le-mans-honeycomb-kit",
+      "name": "Le Mans Honeycomb Kit",
+      "tagline": "Maximum airflow, minimal fuss: fan, switch and fixed grille.",
+      "discount": 0.10,
+      "badges": ["Save 10%"],
+      "summary": "Le Mans + round 3-way switch + Ø 270 mm honeycomb grille. The cleanest interior finish with unobstructed 850 m³/h airflow. For cargo areas and workshops on wheels.",
+      "description": [
+        "When you never need to close the vent, the honeycomb grille is the neatest and most affordable finish. This kit pairs the Le Mans with the compact round 3-way switch and the large ABS grille in white, light grey or black."
+      ],
+      "items": [
+        {"product": "le-mans", "variant_group": "Voltage & colour", "choices": ["02-2200", "02-2200-ZW", "02-2300", "02-2300-ZW"], "qty": 1},
+        {"product": "switch-round", "sku": "89-4002", "qty": 1},
+        {"product": "grill-large", "variant_group": "Grille colour", "choices": ["35-2700", "35-2710", "35-2720"], "qty": 1}
+      ],
+      "images": ["assets/products/02-2200-foto.webp", "assets/products/89-4002-Switch-aangepast.webp", "assets/products/35-2720-foto-scaled.webp"],
+      "scene": "assets/media/Le-Mans-ventilator-3.webp",
+      "for": ["commercial-vans", "dog-transport"]
+    },
+    {
+      "id": "dual-le-mans-kit",
+      "name": "Dual Le Mans Kit",
+      "tagline": "Two fans, two valves, two switches, one speed controller.",
+      "discount": 0.12,
+      "badges": ["Long vehicles", "Save 12%"],
+      "summary": "For long bodies, horse trucks with two compartments and coaches: 2x Le Mans, 2x Fan Switch, 2x manual V12 valve and one Speedcontrol that drives both fans. Run one in and one out for true cross-ventilation.",
+      "description": [
+        "Long loading areas and multi-compartment vehicles need two ventilators: one blowing fresh air in, one pulling stale air out. The Dual Kit gives you both, each with its own switch and closable V12 valve, plus one Speedcontrol that regulates both fans at once."
+      ],
+      "items": [
+        {"product": "le-mans", "variant_group": "Voltage & colour", "choices": ["02-2200", "02-2200-ZW", "02-2300", "02-2300-ZW"], "qty": 2},
+        {"product": "switch-fan", "sku": "89-4008", "qty": 2},
+        {"product": "v12-valve", "variant_group": "Valve colour", "choices": ["35-2400", "35-2410", "35-2440"], "qty": 2},
+        {"product": "speedcontrol", "sku": "30-3004", "qty": 1}
+      ],
+      "images": ["assets/products/02-2200-foto.webp", "assets/products/02-2200-foto.webp", "assets/products/30-3004-foto.webp"],
+      "scene": "assets/media/b1b68eb0-4e4c-4369-8082-bbd155547943-Bewerkt.png",
+      "for": ["horse-trailers", "buses-coaches", "animal-transport", "commercial-vans"]
+    },
+    {
+      "id": "le-mans-ll-silent-kit",
+      "name": "Le Mans LL Silent Extraction Kit",
+      "tagline": "Brushless fan with speed control, switch and design valve.",
+      "discount": 0.10,
+      "badges": ["Brushless", "Save 10%"],
+      "summary": "Le Mans LL with integrated speed control unit + square 3-way switch + Flower Power closable valve. Long-life extraction for damp loading areas, animal transport and coaches.",
+      "description": [
+        "The brushless Le Mans LL runs for years without maintenance and draws only 34 W. With the integrated speed control unit you set exactly the extraction you need. The Flower Power valve closes the ceiling off in style."
+      ],
+      "items": [
+        {"product": "le-mans-ll", "variant_group": "Voltage", "choices": ["02-4250", "02-4350"], "qty": 1},
+        {"product": "switch-square", "sku": "89-4005", "qty": 1},
+        {"product": "flower-power", "variant_group": "Valve colour", "choices": ["35-2800", "35-2810", "35-2820"], "qty": 1}
+      ],
+      "images": ["assets/products/02-4200-foto.webp", "assets/products/89-4005-new.webp", "assets/products/35-2820-foto-1-scaled.webp"],
+      "scene": "assets/media/51.webp",
+      "for": ["animal-transport", "commercial-vans", "buses-coaches"]
+    },
+    {
+      "id": "round-camper-kit",
+      "name": "Camper Night-Air Kit",
+      "tagline": "Round rooftop fan, speed control, switch and LED valve.",
+      "discount": 0.12,
+      "badges": ["Campers", "Save 12%"],
+      "hero": true,
+      "summary": "Designed for motorhomes and caravans: 12V Round Rooftop Ventilator + Speedcontrol for silent night running + round switch + Flower Power valve with white and blue LED light. Fresh air and mood lighting in one opening.",
+      "description": [
+        "Condensation, cooking smells and hot nights are the three enemies of camper comfort. This kit fixes all three: the 850 m³/h Round ventilator clears the air fast, the Speedcontrol turns it into a silent trickle at bedtime, and the Flower Power LED valve doubles as a ceiling light with a blue night mode.",
+        "12V as standard. Choose white or black outside, and the valve colour inside."
+      ],
+      "items": [
+        {"product": "rooftop-round", "variant_group": "Colour", "choices": ["02-0200", "02-0200-ZW"], "qty": 1},
+        {"product": "speedcontrol", "sku": "30-3004", "qty": 1},
+        {"product": "switch-round", "sku": "89-4002", "qty": 1},
+        {"product": "flower-power", "variant_group": "LED valve colour", "choices": ["35-2900", "35-2910", "35-2920"], "qty": 1}
+      ],
+      "images": ["assets/products/02-0200-foto.webp", "assets/products/30-3004-foto.webp", "assets/products/35-2910-foto-scaled.webp"],
+      "scene": "assets/media/krismar-exclusive-19135121-min-scaled-aspect-ratio-600-400-1-scaled.jpg.webp",
+      "for": ["campers", "marine"]
+    },
+    {
+      "id": "winglet-mini-kit",
+      "name": "Winglet Mini Kit",
+      "tagline": "Silent 3 W extractor with switch and floor inlet.",
+      "discount": 0.10,
+      "badges": ["Small vans", "Save 10%"],
+      "summary": "Winglet 12V + round switch + 80 mm floor ventilator. The complete micro-ventilation loop for a VW Caddy, camper kitchen, caravan washroom or dog box.",
+      "description": [
+        "Small spaces need a small, silent solution. The Winglet pulls 65 m³/h out through an 80 mm hole at only 3 W, the switch turns it on and off from the dashboard, and the 80 mm floor ventilator gives the air a way in so the fan can actually do its job."
+      ],
+      "items": [
+        {"product": "winglet", "variant_group": "Colour", "choices": ["02-5000", "02-5100"], "qty": 1},
+        {"product": "switch-round", "sku": "89-4002", "qty": 1},
+        {"product": "floor-ventilator-80", "sku": "89-5700", "qty": 1}
+      ],
+      "images": ["assets/products/bovenaanzicht-scaled.webp", "assets/products/89-4002-Switch-aangepast.webp", "assets/products/89-5700-foto.webp"],
+      "scene": "assets/media/Le-Mans-ventilator-3.webp",
+      "for": ["commercial-vans", "campers", "dog-transport"]
+    },
+    {
+      "id": "turbo-ii-airflow-duo",
+      "name": "Turbo II Airflow Duo",
+      "tagline": "Wind-driven roof vent + floor inlet. Zero wiring.",
+      "discount": 0.10,
+      "badges": ["No power needed", "Save 10%"],
+      "summary": "Turbo II rotating roof ventilator + Ø 129 mm floor ventilator. The classic passive loop for dog transporters, horse trailers and vans: air in at the floor, out through the roof, every time you drive.",
+      "description": [
+        "No electrics, no maintenance. The Turbo II spins in the airstream and pulls stale air out; the floor ventilator lets fresh air in at the bottom and vents heavy gases. Install both in an hour with a hole saw."
+      ],
+      "items": [
+        {"product": "turbo-ii", "variant_group": "Colour", "choices": ["02-7000", "02-7100"], "qty": 1},
+        {"product": "floor-ventilator-129", "sku": "89-5600", "qty": 1}
+      ],
+      "images": ["assets/products/02-7100-foto2-scaled.webp", "assets/products/89-5600-foto.webp"],
+      "scene": "assets/media/Horse-Truck-1.jpg",
+      "for": ["dog-transport", "horse-trailers", "commercial-vans", "animal-transport"]
+    },
+    {
+      "id": "turbo-iii-compact-duo",
+      "name": "Turbo III Compact Duo",
+      "tagline": "Compact wind-driven vent + 80 mm floor inlet.",
+      "discount": 0.10,
+      "badges": ["No power needed", "Save 10%"],
+      "summary": "Turbo III + Ø 80 mm floor ventilator. The compact passive airflow loop for boats, dog boxes, small vans and coach compartments. Assembles without glue.",
+      "description": [
+        "Two 80 mm holes, no wiring: the Turbo III extracts through the roof while the floor ventilator supplies fresh air from below. Ideal for boats, kennel vehicles and equipment compartments."
+      ],
+      "items": [
+        {"product": "turbo-iii", "variant_group": "Colour", "choices": ["02-6000", "02-6100"], "qty": 1},
+        {"product": "floor-ventilator-80", "sku": "89-5700", "qty": 1}
+      ],
+      "images": ["assets/products/TURBO-III-1-1-scaled.webp", "assets/products/89-5700-foto.webp"],
+      "scene": "assets/media/SANY0043.jpg",
+      "for": ["marine", "dog-transport", "commercial-vans"]
+    },
+    {
+      "id": "exhaust-ventilator-set",
+      "name": "Exhaust Ventilator Set",
+      "tagline": "Venturi roof vent, rotary valve and floor inlet.",
+      "discount": 0.10,
+      "badges": ["Passive", "Save 10%"],
+      "summary": "02-1030 exhaust ventilator + 35-3003 rotary valve + Ø 129 mm floor ventilator. The silent, powerless ventilation system for service vans and dog transport, closable from inside.",
+      "description": [
+        "The aerodynamic exhaust ventilator pulls air out while you drive, the rotary valve lets you close it off from inside, and the floor ventilator provides the inlet. Nothing to wire, nothing to maintain, nothing to hear."
+      ],
+      "items": [
+        {"product": "exhaust-ventilator", "variant_group": "Colour", "choices": ["02-1030", "02-1030-ZW"], "qty": 1},
+        {"product": "rotary-valve", "sku": "35-3003", "qty": 1},
+        {"product": "floor-ventilator-129", "sku": "89-5600", "qty": 1}
+      ],
+      "images": ["assets/products/02-1030-foto-scaled.webp", "assets/products/35-3003-foto.webp", "assets/products/89-5600-foto.webp"],
+      "scene": "assets/media/51.webp",
+      "for": ["commercial-vans", "dog-transport"]
+    },
+    {
+      "id": "horse-trailer-climate-kit",
+      "name": "Horse Trailer Climate Kit",
+      "tagline": "Fan, valve, floor inlet, switch, snow filter and two LED lights.",
+      "discount": 0.12,
+      "badges": ["Equestrian", "Save 12%"],
+      "hero": true,
+      "summary": "The complete horse compartment package: Le Mans 12V + manual V12 valve + Ø 129 mm floor ventilator + Fan Switch + snow filter + 2x round Dome LED light with blue night mode. Cool, dry, calm horses.",
+      "description": [
+        "Horses produce heat, humidity and ammonia; a closed trailer traps all three. This kit installs a full airflow loop (floor inlet, 850 m³/h roof extraction, closable valve) and adds two IP67 round LED lights with a blue night mode that keeps horses calm while you load at dawn.",
+        "Designed for 12V towing vehicles and horseboxes. Choose cover colour, valve colour and light colour."
+      ],
+      "items": [
+        {"product": "le-mans", "variant_group": "Colour", "choices": ["02-2200", "02-2200-ZW"], "qty": 1},
+        {"product": "v12-valve", "variant_group": "Valve colour", "choices": ["35-2400", "35-2410", "35-2440"], "qty": 1},
+        {"product": "floor-ventilator-129", "sku": "89-5600", "qty": 1},
+        {"product": "switch-fan", "sku": "89-4008", "qty": 1},
+        {"product": "snowfilter", "sku": "89-5011", "qty": 1},
+        {"product": "lighting-round", "variant_group": "Light colour", "choices": ["92-GC01", "92-GC02"], "qty": 2}
+      ],
+      "images": ["assets/products/02-2200-foto.webp", "assets/products/35-2400-foto-scaled.webp", "assets/products/92-GC01-foto.webp", "assets/products/89-5600-foto.webp"],
+      "scene": "assets/media/krismar-exclusive-19135121-min-scaled-aspect-ratio-600-400-1-scaled.jpg.webp",
+      "for": ["horse-trailers", "animal-transport"]
+    },
+    {
+      "id": "ambulance-hygiene-kit",
+      "name": "Ambulance Air Hygiene Kit",
+      "tagline": "Powerful aerosol extraction, dashboard-controlled.",
+      "discount": 0.12,
+      "badges": ["Emergency vehicles", "Save 12%"],
+      "summary": "Le Mans 12V + Speedcontrol + illuminated Fan Switch + electric V12 valve + rectangular Dome LED light. Removes aerosols and odours in the patient compartment, controlled entirely from the crew's seats.",
+      "description": [
+        "In ambulances and patient transport vehicles, air changes protect crew and patients. The Le Mans extracts 850 m³/h, the Speedcontrol sets a quiet continuous flow, the electric V12 valve opens and closes at the press of a button, and the IK10 rectangular LED light delivers bright working light with a blue night mode."
+      ],
+      "items": [
+        {"product": "le-mans", "variant_group": "Colour", "choices": ["02-2200", "02-2200-ZW"], "qty": 1},
+        {"product": "speedcontrol", "sku": "30-3004", "qty": 1},
+        {"product": "switch-fan", "sku": "89-4008", "qty": 1},
+        {"product": "v12-valve", "variant_group": "Valve colour", "choices": ["35-2500", "35-2510", "35-2540"], "qty": 1},
+        {"product": "lighting-rectangle", "variant_group": "Light colour", "choices": ["92-GC05", "92-GC06"], "qty": 1}
+      ],
+      "images": ["assets/products/02-2200-foto.webp", "assets/products/89-4008-foto.webp", "assets/products/92-GC06-foto-scaled.webp"],
+      "scene": "assets/media/c294b9fb82e9ef01c363396c67ef37c09448a024-7254x4595-1-scaled.webp",
+      "for": ["ambulance-emergency"]
+    },
+    {
+      "id": "coach-hatch-kit",
+      "name": "Coach Electric Emergency Hatch Kit",
+      "tagline": "970 x 530 electric hatch with control unit.",
+      "discount": 0.08,
+      "badges": ["Buses & coaches", "Save 8%"],
+      "summary": "Electric 970 x 530 mm emergency exit roof hatch + 30-6000 control unit. EC 2001/85 emergency exit, ECE 43R glass, EMC approved, auto-close on ignition off. The complete 24V system for a coach or city bus.",
+      "description": [
+        "The large electric hatch must always be operated with the 30-6000 control unit. This kit pairs them at a bundle price: the EC 2001/85 emergency exit hatch with ECE 43R dark glass dome and the 24V control unit that opens front or rear, shows the dome position and closes automatically when the ignition goes off. 12V vehicle? Ask us to add the 89-STEP12-24 converter."
+      ],
+      "items": [
+        {"product": "roof-hatch-electric-large", "sku": "90-6000-E", "qty": 1},
+        {"product": "control-unit", "sku": "30-6000", "qty": 1}
+      ],
+      "images": ["assets/products/90-6000-E-foto1-1-scaled.webp", "assets/products/30-6000-foto2-scaled.webp"],
+      "scene": "assets/media/vanhool_a12_022-scaled.webp",
+      "for": ["buses-coaches"]
+    },
+    {
+      "id": "minibus-hatch-kit",
+      "name": "Minibus Electric Hatch Kit",
+      "tagline": "530 x 530 electric hatch with control unit.",
+      "discount": 0.08,
+      "badges": ["Save 8%"],
+      "summary": "Electric 530 x 530 mm roof hatch + 30-6000 control unit. ECE 43R dark glass, EMC approved, EC 2004/104. Daylight, ventilation and push-button comfort for minibuses, ambulances and luxury horse trucks.",
+      "description": [
+        "The compact electric hatch and its control unit, sold together. Push-button open and close, green LED position display, automatic close when the ignition is switched off, ventilation position when parked. 24V; 12V via our converter."
+      ],
+      "items": [
+        {"product": "roof-hatch-electric-small", "sku": "90-5000-E", "qty": 1},
+        {"product": "control-unit", "sku": "30-6000", "qty": 1}
+      ],
+      "images": ["assets/products/90-5000-E-foto1.webp", "assets/products/30-6000-foto2-scaled.webp"],
+      "scene": "assets/media/Transfer-416_2268_0182.webp",
+      "for": ["buses-coaches", "ambulance-emergency", "horse-trailers"]
+    },
+    {
+      "id": "dog-transport-kit",
+      "name": "Dog & K9 Transport Kit",
+      "tagline": "Turbo II + floor vent + Winglet for the kennel area.",
+      "discount": 0.10,
+      "badges": ["K9 vehicles", "Save 10%"],
+      "summary": "Turbo II wind-driven roof vent + Ø 129 mm floor ventilator + Winglet 12V electric extractor + round switch. Passive airflow while driving, electric extraction when parked. Keeps dogs cool and the vehicle odour-free.",
+      "description": [
+        "Dogs in a parked vehicle are a heat risk. This kit combines a wind-driven Turbo II (works whenever you drive), a floor ventilator for fresh air and gas removal, and a 3 W Winglet extractor that keeps air moving when the engine is off, switched from the dashboard."
+      ],
+      "items": [
+        {"product": "turbo-ii", "variant_group": "Turbo colour", "choices": ["02-7000", "02-7100"], "qty": 1},
+        {"product": "floor-ventilator-129", "sku": "89-5600", "qty": 1},
+        {"product": "winglet", "variant_group": "Winglet colour", "choices": ["02-5000", "02-5100"], "qty": 1},
+        {"product": "switch-round", "sku": "89-4002", "qty": 1}
+      ],
+      "images": ["assets/products/02-7100-foto2-scaled.webp", "assets/products/bovenaanzicht-scaled.webp", "assets/products/89-5600-foto.webp"],
+      "scene": "assets/media/mercedes_justitie_denoised_sharp.webp",
+      "for": ["dog-transport", "commercial-vans"]
+    },
+    {
+      "id": "ceilingflow-office-duo",
+      "name": "Ceilingflow Office Duo",
+      "tagline": "Two ceiling fans for up to 100 m² of office.",
+      "discount": 0.08,
+      "badges": ["Indoor", "Save 8%"],
+      "summary": "2x Ceilingflow plug-and-play ceiling fan. Drop into two suspended-ceiling tiles, plug in, and cool an open-plan office or classroom for less than a coffee per month.",
+      "description": [
+        "One Ceilingflow covers roughly 40 to 50 m². Two cover a typical open-plan office, classroom or showroom. Remote controls included; no installer required."
+      ],
+      "items": [
+        {"product": "ceilingflow", "variant_group": "Colour", "choices": ["24-0008", "24-0009"], "qty": 2}
+      ],
+      "images": ["assets/products/plafondventilator-1-scaled.webp", "assets/products/plafondventilator-0-scaled.webp"],
+      "scene": "assets/media/Project1-1480x1100-1.webp",
+      "for": []
+    }
+  ]
+}
