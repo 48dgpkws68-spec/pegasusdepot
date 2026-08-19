@@ -274,6 +274,14 @@
   }
   const ty = $('#order-id'); if (ty) { const o = new URLSearchParams(location.search).get('o'); ty.textContent = o || 'PD-DEMO'; }
 
+  /* ---------- contact prefill ---------- */
+  (function () {
+    const ta = $('.contact-grid textarea'); if (!ta) return;
+    const q = new URLSearchParams(location.search);
+    if (q.get('datasheet')) ta.value = 'Please send me the technical datasheet and drawing for article ' + q.get('datasheet') + '.';
+    if (q.get('product') && byId[q.get('product')]) ta.value = 'Please send me a quote for: ' + byId[q.get('product')].name + '. Vehicle / application: ';
+  })();
+
   /* ---------- newsletter / contact (demo) ---------- */
   $$('form[data-demo]').forEach(f => f.addEventListener('submit', (e) => { e.preventDefault(); toast('Thank you, we will be in touch within 24 hours.'); f.reset(); }));
 
