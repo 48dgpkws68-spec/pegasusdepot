@@ -153,6 +153,22 @@ FAVICON = "data:image/svg+xml," + LOGO_SVG.replace('#', '%23').replace('"', "'")
 def rel(depth):
     return '../' * depth
 
+def jsonld(obj):
+    return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
+
+def product_ld(p):
+    offers = [{"@type": "Offer", "sku": v['sku'], "name": v['label'], "price": f"{v['price']:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": f"{SITE_URL}/products/{p['id']}.html", "shippingDetails": {"@type": "OfferShippingDetails", "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "NL"}}} for v in p['variants'] if v.get('price') is not None]
+    d = {"@context": "https://schema.org", "@type": "Product", "name": p['name'], "sku": p['variants'][0]['sku'], "description": p['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{sq(p['images'][0], 1400)}"], "category": CAT[p['category']]['name'], "url": f"{SITE_URL}/products/{p['id']}.html"}
+    if offers:
+        prices = [float(o['price']) for o in offers]
+        d["offers"] = {"@type": "AggregateOffer", "lowPrice": f"{min(prices):.2f}", "highPrice": f"{max(prices):.2f}", "priceCurrency": "EUR", "offerCount": len(offers), "offers": offers}
+    ld = [d, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}, {"@type": "ListItem", "position": 2, "name": "Shop", "item": SITE_URL + "/shop.html"}, {"@type": "ListItem", "position": 3, "name": CAT[p['category']]['name'], "item": f"{SITE_URL}/shop.html?cat={p['category']}"}, {"@type": "ListItem", "position": 4, "name": p['name']}]}]
+    if p.get('faq'):
+        ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
+    return ''.join(jsonld(x) for x in ld)
+
+ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/assets/img/og-default.webp", "email": BRAND['email'], "telephone": BRAND['phone'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
+
 # ---------------------------------------------------------------- layout
 def head(title, desc, depth=0, og_image=None, canonical=None):
     r = rel(depth)
@@ -324,6 +340,7 @@ def page_index():
                     ('turbo-iii', '~120 m³/h at 100 km/h', 'None', '0 W', 'Silent', 'Ø 80 mm', 'Suck while driving'),
                     ('exhaust-ventilator', 'Venturi', 'None', '0 W', 'Silent', 'max. Ø 140 mm', 'Suck while driving')]
     h = head('Pegasus Depot · Premium Vehicle Ventilation, Roof Hatches & LED Lighting', 'Rooftop ventilators, interior valves, switches, roof hatches and LED lighting for vans, campers, horse trailers, buses and ambulances. Dutch engineered, EMC approved, shipped within 24h across Europe.', 0, lm['images'][2], '')
+    h += jsonld(ORG_LD) + jsonld({"@context": "https://schema.org", "@type": "WebSite", "name": "Pegasus Depot", "url": SITE_URL})
     h += header(0)
     h += f'''
 <section class="hero"><div class="hero-bg" style="background-image:url('{scene(lm['images'][2],2000)}')"></div>
@@ -486,6 +503,7 @@ def page_product(p):
     qty_html = '' if quote else '<div class="qty"><button id="qty-minus" aria-label="Less">−</button><input id="qty" value="1" inputmode="numeric"><button id="qty-plus" aria-label="More">+</button></div>'
     sticky_btn = f'<a class="btn btn-gold" href="{r}contact.html">Request a quote</a>' if quote else '<button class="btn btn-gold" id="sticky-add">Add to cart</button>'
     h = head(f'{p["name"]} · {p["tagline"]} · Pegasus Depot', p['summary'], depth, p['images'][0], f'products/{p["id"]}.html')
+    h += product_ld(p)
     h += header(depth)
     h += f'''
 <div class="wrap"><div class="crumbs light-crumbs"><a href="{r}index.html">Home</a> / <a href="{r}shop.html">Shop</a> / <a href="{r}shop.html?cat={c['id']}">{esc(c['name'])}</a> / <span>{esc(p['short_name'])}</span></div></div>
@@ -541,6 +559,7 @@ def page_bundle(b):
     other = [x for x in BUNDLES if x['id'] != b['id'] and set(x.get('for', [])) & set(b.get('for', []))][:3] or [x for x in BUNDLES if x['id'] != b['id']][:3]
     ideal = ('<div class="pill-row" style="margin-top:10px"><span class="muted" style="font-size:13px;align-self:center">Ideal for:</span>' + ''.join(f'<a class="pill" href="{r}vehicles/{v["id"]}.html">{esc(v["nav"])}</a>' for v in vehicles) + '</div>') if vehicles else ''
     h = head(f'{b["name"]} · save {int(b["discount"]*100)}% · Pegasus Depot', b['summary'], depth, b['scene'], f'bundles/{b["id"]}.html')
+    h += jsonld({"@context": "https://schema.org", "@type": "Product", "name": b['name'], "description": b['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{scene(b['scene'], 1400)}"], "url": f"{SITE_URL}/bundles/{b['id']}.html", "offers": {"@type": "Offer", "price": f"{price:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": f"{SITE_URL}/bundles/{b['id']}.html"}})
     h += header(depth)
     h += f'''
 <div class="wrap"><div class="crumbs light-crumbs"><a href="{r}index.html">Home</a> / <a href="{r}bundles.html">Kits &amp; bundles</a> / <span>{esc(b['name'])}</span></div></div>
