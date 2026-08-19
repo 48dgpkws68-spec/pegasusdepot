@@ -1,12 +1,24 @@
 /* Pegasus Depot · storefront logic (static prototype, Shopify-ready data model) */
 (function () {
   if (location.search.includes('capture')) document.documentElement.classList.add('capture');
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+  /* reveal on scroll (works without catalog) */
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .08 }) : null;
+  $$('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+  /* header: mega menu (hover + keyboard), mobile nav */
+  $$('.nav > li').forEach(li => {
+    let t; li.addEventListener('mouseenter', () => { clearTimeout(t); $$('.nav > li').forEach(x => x.classList.remove('open')); li.classList.add('open'); });
+    li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 120); });
+    li.addEventListener('focusin', () => { $$('.nav > li').forEach(x => x.classList.remove('open')); li.classList.add('open'); });
+    li.addEventListener('focusout', (e) => { if (!li.contains(e.relatedTarget)) li.classList.remove('open'); });
+  });
+  $('#burger')?.addEventListener('click', () => $('#mnav').classList.add('open'));
+  $('#mnav-close')?.addEventListener('click', () => $('#mnav').classList.remove('open'));
   const C = window.CATALOG;
   if (!C) return;
   const ROOT = document.documentElement.getAttribute('data-root') || '';
   const money = (n) => '€' + (Math.round(n * 100) / 100).toLocaleString('en-IE', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
-  const $ = (s, el = document) => el.querySelector(s);
-  const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
   const byId = {}; C.products.forEach(p => byId[p.id] = p);
   const bySku = {}; C.products.forEach(p => p.variants.forEach(v => bySku[v.sku] = { p, v }));
   const bundleById = {}; (C.bundles || []).forEach(b => bundleById[b.id] = b);
@@ -14,7 +26,7 @@
   /* ---------- cart ---------- */
   const KEY = 'pegasus_cart_v1';
   let cart = [];
-  try { cart = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { cart = []; }
+  try { const c = JSON.parse(localStorage.getItem(KEY) || '[]'); cart = Array.isArray(c) ? c.filter(l => l && Number.isFinite(+l.price) && Number.isInteger(+l.qty) && +l.qty > 0) : []; } catch (e) { cart = []; }
   const save = () => { localStorage.setItem(KEY, JSON.stringify(cart)); renderCart(); };
   const lineKey = (l) => l.type + ':' + l.id + ':' + (l.skus || []).join('+');
   function addLine(line) {
@@ -25,6 +37,16 @@
   }
   function setQty(i, q) { if (q <= 0) cart.splice(i, 1); else cart[i].qty = q; save(); }
   const subtotal = () => cart.reduce((s, l) => s + l.price * l.qty, 0);
+  const SHIP = C.brand.shipping || { zones: [], oversize_categories: [], oversize_price: 0 };
+  const ISO = { 'Netherlands': 'NL', 'Belgium': 'BE', 'Germany': 'DE', 'France': 'FR', 'Luxembourg': 'LU', 'Austria': 'AT', 'Denmark': 'DK', 'United Kingdom': 'UK', 'Switzerland': 'CH', 'Norway': 'NO' };
+  function shipping(st, country) {
+    const zone = SHIP.zones.find(z => z.countries.includes(country)) || SHIP.zones.find(z => z.id === 'eu') || { price: 0, free_from: 0 };
+    const short = ISO[country] || 'EU';
+    if (zone.price == null) return { price: 0, quote: true, short };
+    let base = (zone.free_from != null && st >= zone.free_from) || st === 0 ? 0 : zone.price;
+    const hatches = cart.reduce((n, l) => n + ((l.type === 'product' && (byId[l.id] || {}).category && SHIP.oversize_categories.includes(byId[l.id].category)) ? l.qty : 0) + ((l.type === 'bundle' && (bundleById[l.id] || { items: [] }).items.some(it => SHIP.oversize_categories.includes((byId[it.product] || {}).category))) ? l.qty * (bundleById[l.id].items.filter(it => SHIP.oversize_categories.includes((byId[it.product] || {}).category)).reduce((a, it) => a + it.qty, 0)) : 0), 0);
+    return { price: base + hatches * SHIP.oversize_price, quote: false, short, hatches };
+  }
   const count = () => cart.reduce((s, l) => s + l.qty, 0);
 
   function renderCart() {
@@ -44,9 +66,12 @@
     }
     const st = subtotal();
     const free = C.brand.free_shipping_from;
-    const ship = st >= free || st === 0 ? 0 : 9.95;
+    const country = localStorage.getItem('pegasus_country') || 'Netherlands';
+    const sh = shipping(st, country);
+    const ship = sh.price || 0;
     $('#cart-sub').textContent = money(st);
-    $('#cart-ship').textContent = st === 0 ? '–' : (ship ? money(ship) : 'Free');
+    const lbl = $('#cart-ship-lbl'); if (lbl) lbl.textContent = 'Shipping (' + sh.short + ')';
+    $('#cart-ship').textContent = st === 0 ? '–' : sh.quote ? 'Quoted' : (ship ? money(ship) : 'Free');
     $('#cart-total').textContent = money(st + ship);
     const bar = $('#ship-bar'); const txt = $('#ship-txt');
     if (bar) { bar.style.width = Math.min(100, st / free * 100) + '%'; }
@@ -60,7 +85,7 @@
     const sum = $('#co-lines');
     if (sum) {
       sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">Your cart is empty.</p>';
-      $('#co-sub').textContent = money(st); $('#co-ship').textContent = ship ? money(ship) : 'Free'; $('#co-total').textContent = money(st + ship);
+      $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? 'Quoted after order' : (ship ? money(ship) + (sh.hatches ? ' (incl. hatch oversize)' : '') : 'Free'); $('#co-total').textContent = money(st + ship);
     }
   }
   const openCart = () => { $('#drawer')?.classList.add('open'); $('#overlay')?.classList.add('open'); document.body.style.overflow = 'hidden'; };
@@ -79,13 +104,7 @@
     addLine({ type: 'product', id: p.id, skus: [v.sku], title: p.name, sub: v.label + ' · ' + v.sku, price: v.price, qty: 1, image: p.images[0] });
   });
 
-  /* ---------- header: mega menu, mobile nav, search ---------- */
-  $$('.nav > li').forEach(li => {
-    let t; li.addEventListener('mouseenter', () => { clearTimeout(t); $$('.nav > li').forEach(x => x.classList.remove('open')); li.classList.add('open'); });
-    li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 120); });
-  });
-  $('#burger')?.addEventListener('click', () => $('#mnav').classList.add('open'));
-  $('#mnav-close')?.addEventListener('click', () => $('#mnav').classList.remove('open'));
+  /* ---------- search ---------- */
   const openSearch = () => { $('#search').classList.add('open'); setTimeout(() => $('#search-input')?.focus(), 50); };
   const closeSearch = () => $('#search')?.classList.remove('open');
   $$('[data-open-search]').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); openSearch(); }));
@@ -106,10 +125,6 @@
     });
   }
 
-  /* ---------- reveal on scroll ---------- */
-  const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .08 }) : null;
-  $$('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
-
   /* ---------- PDP ---------- */
   const pdp = $('[data-pdp]');
   if (pdp) {
@@ -124,16 +139,18 @@
         box.innerHTML = vals.map(val => {
           const avail = p.variants.some(v => v.options[k] === val && optNames.every(o => o === k || v.options[o] === sel[o]));
           const sw = /colour/i.test(k) ? `<i class="sw" style="background:${swatch(val)}"></i>` : '';
-          return `<button class="opt ${sel[k] === val ? 'on' : ''} ${avail ? '' : 'dim'}" data-k="${k}" data-v="${val}">${sw}${val}</button>`;
+          return `<button class="opt ${sel[k] === val ? 'on' : ''} ${avail ? '' : 'dim'}" data-k="${k}" data-v="${val}" ${avail ? '' : 'title="Not available with the current selection; selecting it switches the other option"'}>${sw}${val}</button>`;
         }).join('');
         const lbl = $(`[data-opt-label="${k}"]`); if (lbl) lbl.textContent = sel[k];
       });
       const v = cur();
       $('#pdp-sku').textContent = 'Article no. ' + v.sku;
       $('#pdp-price').textContent = v.price == null ? 'Quote' : money(v.price);
-      const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
-      const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = 'Save ' + Math.round((1 - v.price / v.compare_at) * 100) + '%'; sv.style.display = ''; } else sv.style.display = 'none'; }
+      const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? 'RRP ' + money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
+      const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = Math.round((1 - v.price / v.compare_at) * 100) + '% below RRP'; sv.style.display = ''; } else sv.style.display = 'none'; }
       const sp = $('#sticky-price'); if (sp) sp.textContent = v.price == null ? 'Quote' : money(v.price);
+      // gallery follows the chosen option when the product maps options to images
+      try { const map = JSON.parse(pdp.dataset.imgmap || '{}'); const hit = Object.keys(map).find(k => Object.values(sel).includes(k)); if (hit != null) { const th = $$('.thumbs button')[map[hit]]; if (th && !th.classList.contains('on')) th.click(); } } catch (e) {}
       updateAddons();
     }
     function swatch(val) {
@@ -150,19 +167,28 @@
       renderOpts();
     });
     const qtyI = $('#qty');
-    $('#qty-minus')?.addEventListener('click', () => { qtyI.value = Math.max(1, +qtyI.value - 1); });
-    $('#qty-plus')?.addEventListener('click', () => { qtyI.value = +qtyI.value + 1; });
+    const getQ = () => { const q = Math.max(1, parseInt(qtyI?.value, 10) || 1); if (qtyI) qtyI.value = q; return q; };
+    $('#qty-minus')?.addEventListener('click', () => { qtyI.value = Math.max(1, getQ() - 1); updateAddons(); });
+    $('#qty-plus')?.addEventListener('click', () => { qtyI.value = getQ() + 1; updateAddons(); });
+    qtyI?.addEventListener('change', () => { getQ(); updateAddons(); });
+    function addonVariant(i) {
+      // prefer the add-on variant that matches the chosen colour / voltage of the main product
+      const ap = byId[i.dataset.product]; if (!ap) return bySku[i.dataset.sku];
+      const want = cur().options || {};
+      const match = ap.variants.find(v => v.price != null && Object.keys(v.options || {}).every(k => !want[k] || v.options[k] === want[k]) && Object.keys(want).some(k => v.options && v.options[k] === want[k]));
+      return match ? { p: ap, v: match } : bySku[i.dataset.sku];
+    }
     function updateAddons() {
-      const v = cur(); let total = (v.price || 0);
-      $$('.addon input:checked').forEach(i => total += +i.dataset.price);
-      const t = $('#addon-total'); if (t) t.textContent = money(total);
+      const v = cur(); const q = qtyI ? getQ() : 1; let total = (v.price || 0);
+      $$('.addon input:checked').forEach(i => total += +(addonVariant(i).v.price));
+      const t = $('#addon-total'); if (t) t.textContent = money(total * q) + (q > 1 ? ' for ' + q + ' sets' : '');
     }
     $$('.addon input').forEach(i => i.addEventListener('change', updateAddons));
     const add = () => {
       const v = cur(); if (v.price == null) return;
-      const q = Math.max(1, +($('#qty')?.value || 1));
+      const q = getQ();
       addLine({ type: 'product', id: p.id, skus: [v.sku], title: p.name, sub: v.label + ' · ' + v.sku, price: v.price, qty: q, image: p.images[0] });
-      $$('.addon input:checked').forEach(i => { const { p: ap, v: av } = bySku[i.dataset.sku]; addLine({ type: 'product', id: ap.id, skus: [av.sku], title: ap.name, sub: av.label + ' · ' + av.sku, price: av.price, qty: q, image: ap.images[0] }); i.checked = false; });
+      $$('.addon input:checked').forEach(i => { const { p: ap, v: av } = addonVariant(i); addLine({ type: 'product', id: ap.id, skus: [av.sku], title: ap.name, sub: av.label + ' · ' + av.sku, price: av.price, qty: q, image: ap.images[0] }); i.checked = false; });
       updateAddons();
     };
     $('#add-btn')?.addEventListener('click', add);
@@ -189,7 +215,7 @@
     function calc() {
       let full = 0;
       b.items.forEach((it, i) => { const { v } = bySku[choice[i]]; full += v.price * it.qty; });
-      const price = Math.round(full * (1 - b.discount));
+      const price = Math.floor(full * (1 - b.discount));
       return { full, price };
     }
     function render() {
@@ -250,19 +276,25 @@
       });
       sorted.forEach(c => grid.appendChild(c));
       $('#shop-count').textContent = vis + ' product' + (vis === 1 ? '' : 's');
+      let em = $('#shop-empty'); if (!em) { em = document.createElement('div'); em.id = 'shop-empty'; em.className = 'empty'; em.innerHTML = '<b>No products match these filters</b>Try fewer filters or search by article number.'; grid.parentNode.insertBefore(em, grid.nextSibling); }
+      em.style.display = vis ? 'none' : '';
+      const ap = $('#apply-f'); if (ap) ap.textContent = 'Show ' + vis + ' product' + (vis === 1 ? '' : 's');
       $$('[data-f]').forEach(i => { const [k, v] = i.dataset.f.split(':'); i.checked = state[k].has(v); });
     }
     $$('[data-f]').forEach(i => i.addEventListener('change', () => { const [k, v] = i.dataset.f.split(':'); i.checked ? state[k].add(v) : state[k].delete(v); apply(); }));
     $('#sort')?.addEventListener('change', (e) => { state.sort = e.target.value; apply(); });
     $('#shop-q')?.addEventListener('input', (e) => { state.q = e.target.value.toLowerCase(); apply(); });
     $('#clear-f')?.addEventListener('click', () => { state.cat.clear(); state.veh.clear(); state.volt.clear(); state.q = ''; if ($('#shop-q')) $('#shop-q').value = ''; apply(); });
-    $('#mob-filter')?.addEventListener('click', () => $('.filters').classList.toggle('open'));
+    $('#mob-filter')?.addEventListener('click', () => { $('.filters').classList.add('open'); document.body.style.overflow = 'hidden'; });
+    $('#apply-f')?.addEventListener('click', () => { $('.filters').classList.remove('open'); document.body.style.overflow = ''; });
     apply();
   }
 
   /* ---------- checkout (prototype) ---------- */
   const cof = $('#checkout-form');
   if (cof) {
+    const cc = $('#co-country');
+    if (cc) { cc.value = localStorage.getItem('pegasus_country') || 'Netherlands'; cc.addEventListener('change', () => { localStorage.setItem('pegasus_country', cc.value); renderCart(); }); }
     cof.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!cart.length) { toast('Your cart is empty'); return; }

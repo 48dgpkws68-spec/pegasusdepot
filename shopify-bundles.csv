@@ -1,19 +1,20 @@
 Bundle handle,Bundle title,Discount,Component product,Component SKU options,Qty,Bundle price (default options),Compare at
-le-mans-complete-kit,Le Mans Complete Kit,10%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,202,223.89999999999998
-le-mans-complete-kit,Le Mans Complete Kit,10%,Fan Switch 89-4008 with Symbols,89-4008,1,202,223.89999999999998
-le-mans-complete-kit,Le Mans Complete Kit,10%,V12 Interior Ventilation Valve,35-2400 | 35-2410 | 35-2440,1,202,223.89999999999998
-le-mans-pro-kit,Le Mans Pro Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,357,405.84999999999997
-le-mans-pro-kit,Le Mans Pro Kit,12%,Speedcontrol 30-3004,30-3004,1,357,405.84999999999997
-le-mans-pro-kit,Le Mans Pro Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,1,357,405.84999999999997
-le-mans-pro-kit,Le Mans Pro Kit,12%,V12 Interior Ventilation Valve,35-2500 | 35-2510 | 35-2540,1,357,405.84999999999997
-le-mans-pro-kit,Le Mans Pro Kit,12%,Snow Filter 89-5011,89-5011,1,357,405.84999999999997
+le-mans-complete-kit,Le Mans Complete Kit,10%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,201,223.89999999999998
+le-mans-complete-kit,Le Mans Complete Kit,10%,Fan Switch 89-4008 with Symbols,89-4008,1,201,223.89999999999998
+le-mans-complete-kit,Le Mans Complete Kit,10%,V12 Interior Ventilation Valve,35-2400 | 35-2410 | 35-2440,1,201,223.89999999999998
+le-mans-pro-kit,Le Mans Pro Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,368,418.79999999999995
+le-mans-pro-kit,Le Mans Pro Kit,12%,Speedcontrol 30-3004,30-3004,1,368,418.79999999999995
+le-mans-pro-kit,Le Mans Pro Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,1,368,418.79999999999995
+le-mans-pro-kit,Le Mans Pro Kit,12%,V12 Interior Ventilation Valve,35-2500 | 35-2510 | 35-2540,1,368,418.79999999999995
+le-mans-pro-kit,Le Mans Pro Kit,12%,3-Way Switch Square 89-4005,89-4005,1,368,418.79999999999995
+le-mans-pro-kit,Le Mans Pro Kit,12%,Snow Filter 89-5011,89-5011,1,368,418.79999999999995
 le-mans-honeycomb-kit,Le Mans Honeycomb Kit,10%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,172,191.45
 le-mans-honeycomb-kit,Le Mans Honeycomb Kit,10%,3-Way Switch Round 89-4002,89-4002,1,172,191.45
 le-mans-honeycomb-kit,Le Mans Honeycomb Kit,10%,ABS Grille Large Ø 270 mm,35-2700 | 35-2710 | 35-2720,1,172,191.45
-dual-le-mans-kit,Dual Le Mans Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,2,469,532.75
-dual-le-mans-kit,Dual Le Mans Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,2,469,532.75
-dual-le-mans-kit,Dual Le Mans Kit,12%,V12 Interior Ventilation Valve,35-2400 | 35-2410 | 35-2440,2,469,532.75
-dual-le-mans-kit,Dual Le Mans Kit,12%,Speedcontrol 30-3004,30-3004,1,469,532.75
+dual-le-mans-kit,Dual Le Mans Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,2,468,532.75
+dual-le-mans-kit,Dual Le Mans Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,2,468,532.75
+dual-le-mans-kit,Dual Le Mans Kit,12%,V12 Interior Ventilation Valve,35-2400 | 35-2410 | 35-2440,2,468,532.75
+dual-le-mans-kit,Dual Le Mans Kit,12%,Speedcontrol 30-3004,30-3004,1,468,532.75
 le-mans-ll-silent-kit,Le Mans LL Silent Extraction Kit,10%,Le Mans LL Brushless Rooftop Ventilator,02-4250 | 02-4350,1,330,366.9
 le-mans-ll-silent-kit,Le Mans LL Silent Extraction Kit,10%,3-Way Switch Square 89-4005,89-4005,1,330,366.9
 le-mans-ll-silent-kit,Le Mans LL Silent Extraction Kit,10%,Flower Power Interior Valve,35-2800 | 35-2810 | 35-2820,1,330,366.9
@@ -24,30 +25,33 @@ round-camper-kit,Camper Night-Air Kit,12%,Flower Power Interior Valve,35-2900 | 
 winglet-mini-kit,Winglet Mini Kit,10%,Winglet Mini Roof Fan,02-5000 | 02-5100,1,208,231.45
 winglet-mini-kit,Winglet Mini Kit,10%,3-Way Switch Round 89-4002,89-4002,1,208,231.45
 winglet-mini-kit,Winglet Mini Kit,10%,Floor Ventilator Ø 80 mm,89-5700,1,208,231.45
-turbo-ii-airflow-duo,Turbo II Airflow Duo,10%,Turbo II Wind-Driven Rooftop Ventilator,02-7000 | 02-7100,1,166,183.95
-turbo-ii-airflow-duo,Turbo II Airflow Duo,10%,Floor Ventilator Ø 129 mm,89-5600,1,166,183.95
+turbo-ii-airflow-duo,Turbo II Airflow Duo,10%,Turbo II Wind-Driven Rooftop Ventilator,02-7000 | 02-7100,1,165,183.95
+turbo-ii-airflow-duo,Turbo II Airflow Duo,10%,Floor Ventilator Ø 129 mm,89-5600,1,165,183.95
 turbo-iii-compact-duo,Turbo III Compact Duo,10%,Turbo III Compact Wind-Driven Ventilator,02-6000 | 02-6100,1,155,172.5
 turbo-iii-compact-duo,Turbo III Compact Duo,10%,Floor Ventilator Ø 80 mm,89-5700,1,155,172.5
-exhaust-ventilator-set,Exhaust Ventilator Set,10%,Exhaust Ventilator (Venturi),02-1030 | 02-1030-ZW,1,135,149.85000000000002
-exhaust-ventilator-set,Exhaust Ventilator Set,10%,Rotary Ventilation Valve 35-3003,35-3003,1,135,149.85000000000002
-exhaust-ventilator-set,Exhaust Ventilator Set,10%,Floor Ventilator Ø 129 mm,89-5600,1,135,149.85000000000002
-horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW,1,371,421.69999999999993
+exhaust-ventilator-set,Exhaust Ventilator Set,10%,Exhaust Ventilator (Venturi),02-1030 | 02-1030-ZW,1,134,149.85000000000002
+exhaust-ventilator-set,Exhaust Ventilator Set,10%,Rotary Ventilation Valve 35-3003,35-3003,1,134,149.85000000000002
+exhaust-ventilator-set,Exhaust Ventilator Set,10%,Floor Ventilator Ø 129 mm,89-5600,1,134,149.85000000000002
+horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,371,421.69999999999993
 horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,V12 Interior Ventilation Valve,35-2400 | 35-2410 | 35-2440,1,371,421.69999999999993
 horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,Floor Ventilator Ø 129 mm,89-5600,1,371,421.69999999999993
 horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,1,371,421.69999999999993
 horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,Snow Filter 89-5011,89-5011,1,371,421.69999999999993
 horse-trailer-climate-kit,Horse Trailer Climate Kit,12%,Dome LED Light Round Ø 150 mm,92-GC01 | 92-GC02,2,371,421.69999999999993
-ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW,1,425,482.84999999999997
-ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Speedcontrol 30-3004,30-3004,1,425,482.84999999999997
-ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,1,425,482.84999999999997
-ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,V12 Interior Ventilation Valve,35-2500 | 35-2510 | 35-2540,1,425,482.84999999999997
-ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Dome LED Light Rectangle 350 x 140 mm,92-GC05 | 92-GC06,1,425,482.84999999999997
+ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Le Mans Rooftop Ventilator,02-2200 | 02-2200-ZW | 02-2300 | 02-2300-ZW,1,436,495.79999999999995
+ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Speedcontrol 30-3004,30-3004,1,436,495.79999999999995
+ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Fan Switch 89-4008 with Symbols,89-4008,1,436,495.79999999999995
+ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,V12 Interior Ventilation Valve,35-2500 | 35-2510 | 35-2540,1,436,495.79999999999995
+ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,3-Way Switch Square 89-4005,89-4005,1,436,495.79999999999995
+ambulance-hygiene-kit,Ambulance Air Hygiene Kit,12%,Dome LED Light Rectangle 350 x 140 mm,92-GC05 | 92-GC06,1,436,495.79999999999995
 coach-hatch-kit,Coach Electric Emergency Hatch Kit,8%,Roof Hatch Electric 970 x 530 Emergency Exit,90-6000-E,1,1080,1174
 coach-hatch-kit,Coach Electric Emergency Hatch Kit,8%,Roof Hatch Control Unit 30-6000,30-6000,1,1080,1174
-minibus-hatch-kit,Minibus Electric Hatch Kit,8%,Roof Hatch Electric 530 x 530,90-5000-E,1,1047,1138
-minibus-hatch-kit,Minibus Electric Hatch Kit,8%,Roof Hatch Control Unit 30-6000,30-6000,1,1047,1138
+coach-twin-hatch-kit,Coach Twin Electric Hatch Kit,8%,Roof Hatch Electric 970 x 530 Emergency Exit,90-6000-E,2,1986,2159
+coach-twin-hatch-kit,Coach Twin Electric Hatch Kit,8%,Roof Hatch Control Unit 30-6000,30-6000,1,1986,2159
+minibus-hatch-kit,Minibus Electric Hatch Kit,8%,Roof Hatch Electric 530 x 530,90-5000-E,1,1046,1138
+minibus-hatch-kit,Minibus Electric Hatch Kit,8%,Roof Hatch Control Unit 30-6000,30-6000,1,1046,1138
 dog-transport-kit,Dog & K9 Transport Kit,10%,Turbo II Wind-Driven Rooftop Ventilator,02-7000 | 02-7100,1,322,357.9
 dog-transport-kit,Dog & K9 Transport Kit,10%,Floor Ventilator Ø 129 mm,89-5600,1,322,357.9
 dog-transport-kit,Dog & K9 Transport Kit,10%,Winglet Mini Roof Fan,02-5000 | 02-5100,1,322,357.9
 dog-transport-kit,Dog & K9 Transport Kit,10%,3-Way Switch Round 89-4002,89-4002,1,322,357.9
-ceilingflow-office-duo,Ceilingflow Office Duo,8%,Ceilingflow Ceiling Fan,24-0008 | 24-0009,2,605,658
+ceilingflow-office-duo,Ceilingflow Office Duo,3%,Ceilingflow Ceiling Fan,24-0008 | 24-0009,2,634,654

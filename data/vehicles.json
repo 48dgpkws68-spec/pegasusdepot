@@ -9,15 +9,46 @@
       "intro": "Condensation on the windows, cooking smells that linger and nights too hot to sleep: every camper owner knows the drill. A proper roof ventilator with speed control clears the air in minutes and runs silently all night on a leisure battery.",
       "hero": "assets/media/krismar-exclusive-19135121-min-scaled-aspect-ratio-600-400-1-scaled.jpg.webp",
       "pains": [
-        {"title": "Condensation & mould", "text": "Two people exhale over a litre of moisture a night. Extract it before it settles in the walls."},
-        {"title": "Kitchen & bathroom odours", "text": "A 3 W Winglet above the hob or in the washroom removes steam and smells at source."},
-        {"title": "Hot nights", "text": "850 m³/h on a speed controller moves cool evening air through the whole living space, quietly."}
+        {
+          "title": "Condensation & mould",
+          "text": "Two people exhale over a litre of moisture a night. Extract it before it settles in the walls."
+        },
+        {
+          "title": "Kitchen & bathroom odours",
+          "text": "A 3 W Winglet above the hob or in the washroom removes steam and smells at source."
+        },
+        {
+          "title": "Hot nights",
+          "text": "850 m³/h on a speed controller moves cool evening air through the whole living space, quietly."
+        }
       ],
-      "products": ["rooftop-round", "winglet", "speedcontrol", "flower-power", "switch-round", "turbo-iii", "auto-ventilator"],
-      "bundles": ["round-camper-kit", "winglet-mini-kit", "turbo-iii-compact-duo"],
+      "products": [
+        "rooftop-round",
+        "winglet",
+        "speedcontrol",
+        "flower-power",
+        "switch-round",
+        "turbo-iii",
+        "auto-ventilator",
+        "le-mans",
+        "floor-ventilator-80",
+        "v12-valve",
+        "roof-hatch-manual-small"
+      ],
+      "bundles": [
+        "round-camper-kit",
+        "winglet-mini-kit",
+        "turbo-iii-compact-duo"
+      ],
       "faq": [
-        {"q": "Will a roof fan drain my leisure battery?", "a": "The Winglet draws 3 W. The Round and Le Mans draw 80 W at full speed, but with the Speedcontrol you typically run them at 10 to 20 W overnight."},
-        {"q": "Can I still use my roof rack or solar panels?", "a": "The Turbo III (59.5 mm) and exhaust ventilator are designed to sit under roof racks. The Le Mans is only 64 mm high and sits happily next to solar panels; check the drawing for exact dimensions."}
+        {
+          "q": "Will a roof fan drain my leisure battery?",
+          "a": "The Winglet draws 3 W. The Round and Le Mans draw 80 W at full speed, but with the Speedcontrol you typically run them at 10 to 20 W overnight."
+        },
+        {
+          "q": "Can I still use my roof rack or solar panels?",
+          "a": "The Turbo III (59.5 mm) and exhaust ventilator are designed to sit under roof racks. The Le Mans is only 64 mm high and sits happily next to solar panels; check the drawing for exact dimensions."
+        }
       ]
     },
     {
@@ -29,15 +60,50 @@
       "intro": "Heat, humidity and ammonia build up fast in a closed horse compartment. Our ventilators, roof hatches and blue night-mode LED lights are specified by leading horsebox builders across Europe for one reason: the horses travel better.",
       "hero": "assets/media/Horse-Truck-1.jpg",
       "pains": [
-        {"title": "Heat stress on the road", "text": "A Le Mans extracts 850 m³/h: a full air change of a two-horse compartment every few minutes."},
-        {"title": "Ammonia & moisture", "text": "Floor ventilators vent heavy gases at floor level and feed the roof fan with fresh air."},
-        {"title": "Loading at dawn", "text": "Round Dome LED lights with a blue night mode keep horses calm while you work."}
+        {
+          "title": "Heat stress on the road",
+          "text": "A Le Mans extracts 850 m³/h: a full air change of a two-horse compartment every few minutes."
+        },
+        {
+          "title": "Ammonia & moisture",
+          "text": "Floor ventilators vent heavy gases at floor level and feed the roof fan with fresh air."
+        },
+        {
+          "title": "Loading at dawn",
+          "text": "Round Dome LED lights with a blue night mode keep horses calm while you work."
+        }
       ],
-      "products": ["le-mans", "v12-valve", "floor-ventilator-129", "lighting-round", "roof-hatch-manual-small", "roof-hatch-electric-small", "snowfilter", "turbo-ii", "switch-fan", "rotary-valve-metal"],
-      "bundles": ["horse-trailer-climate-kit", "le-mans-complete-kit", "dual-le-mans-kit", "minibus-hatch-kit"],
+      "products": [
+        "le-mans",
+        "v12-valve",
+        "floor-ventilator-129",
+        "lighting-round",
+        "roof-hatch-manual-small",
+        "roof-hatch-electric-small",
+        "snowfilter",
+        "turbo-ii",
+        "switch-fan",
+        "rotary-valve-metal",
+        "speedcontrol",
+        "control-unit",
+        "flower-power",
+        "step-converter"
+      ],
+      "bundles": [
+        "horse-trailer-climate-kit",
+        "le-mans-complete-kit",
+        "dual-le-mans-kit",
+        "minibus-hatch-kit"
+      ],
       "faq": [
-        {"q": "12V or 24V?", "a": "Horse trailers pulled by a car or van: 12V. Horse trucks built on a truck chassis: usually 24V. When in doubt, check the vehicle's battery system."},
-        {"q": "Can I close the vent in winter?", "a": "Yes, with the V12 or Flower Power interior valve. The snow filter keeps snow and insects out of the intake."}
+        {
+          "q": "12V or 24V?",
+          "a": "Horse trailers pulled by a car or van: 12V. Horse trucks built on a truck chassis: usually 24V. When in doubt, check the vehicle's battery system."
+        },
+        {
+          "q": "Can I close the vent in winter?",
+          "a": "Yes, with the V12 or Flower Power interior valve. The snow filter keeps snow and insects out of the intake."
+        }
       ]
     },
     {
@@ -49,15 +115,54 @@
       "intro": "Tools, gas bottles, chemicals, food, dogs or people: whatever rides in the back, heat build-up and stale air shorten its life. Low-profile roof ventilators from our range integrate into any van conversion without compromising roof racks or aerodynamics.",
       "hero": "assets/media/Le-Mans-ventilator-3.webp",
       "pains": [
-        {"title": "Heat build-up in the cargo area", "text": "Parked vans hit 60 °C inside. The Le Mans or a wind-driven Turbo II keeps temperatures and condensation down."},
-        {"title": "Gas bottles & solvents", "text": "Floor ventilators vent heavy gases at the lowest point, exactly where they collect."},
-        {"title": "Roof racks", "text": "Exhaust ventilator, Turbo II and Turbo III are all designed to fit under most racks."}
+        {
+          "title": "Heat build-up in the cargo area",
+          "text": "Parked vans hit 60 °C inside. The Le Mans or a wind-driven Turbo II keeps temperatures and condensation down."
+        },
+        {
+          "title": "Gas bottles & solvents",
+          "text": "Floor ventilators vent heavy gases at the lowest point, exactly where they collect."
+        },
+        {
+          "title": "Roof racks",
+          "text": "Exhaust ventilator, Turbo II and Turbo III are all designed to fit under most racks."
+        }
       ],
-      "products": ["le-mans", "turbo-ii", "turbo-iii", "exhaust-ventilator", "winglet", "floor-ventilator-129", "floor-ventilator-80", "grill-large", "grill-small", "rotary-valve", "switch-square", "rotating-valve-300"],
-      "bundles": ["le-mans-complete-kit", "le-mans-honeycomb-kit", "turbo-ii-airflow-duo", "exhaust-ventilator-set", "winglet-mini-kit"],
+      "products": [
+        "le-mans",
+        "turbo-ii",
+        "turbo-iii",
+        "exhaust-ventilator",
+        "winglet",
+        "floor-ventilator-129",
+        "floor-ventilator-80",
+        "grill-large",
+        "grill-small",
+        "rotary-valve",
+        "switch-square",
+        "rotating-valve-300",
+        "switch-fan",
+        "switch-round",
+        "v12-valve",
+        "speedcontrol",
+        "snowfilter"
+      ],
+      "bundles": [
+        "le-mans-complete-kit",
+        "le-mans-honeycomb-kit",
+        "turbo-ii-airflow-duo",
+        "exhaust-ventilator-set",
+        "winglet-mini-kit"
+      ],
       "faq": [
-        {"q": "Electric or wind-driven?", "a": "Wind-driven (Turbo II, Turbo III, exhaust ventilator) is silent, free to run and maintenance-free, but only works while driving. Electric (Le Mans, Round, Winglet) ventilates on demand, also when parked."},
-        {"q": "Do you supply fleets and bodybuilders?", "a": "Yes. Contact us for volume pricing and ex-VAT invoicing."}
+        {
+          "q": "Electric or wind-driven?",
+          "a": "Wind-driven (Turbo II, Turbo III, exhaust ventilator) is silent, free to run and maintenance-free, but only works while driving. Electric (Le Mans, Round, Winglet) ventilates on demand, also when parked."
+        },
+        {
+          "q": "Do you supply fleets and bodybuilders?",
+          "a": "Yes. Contact us for volume pricing and ex-VAT invoicing."
+        }
       ]
     },
     {
@@ -69,15 +174,52 @@
       "intro": "City buses, coaches and minibuses need ventilation that meets strict standards for airflow, noise and safety. Our ECE 43R roof hatches with EC 2001/85 emergency exit compliance and our EMC approved 24V ventilators are fitted by bus builders and fleet workshops across Europe.",
       "hero": "assets/media/vanhool_a12_022-scaled.webp",
       "pains": [
-        {"title": "Emergency exit compliance", "text": "970 x 530 mm hatches according to EC 2001/85, with break-glass hammer, manual or electric."},
-        {"title": "Passenger comfort", "text": "24V Le Mans ventilators deliver 850 m³/h with only 52 dB(A), speed-controllable."},
-        {"title": "Retrofit & new build", "text": "Pre-drilled outer frames and 30 to 70 mm roof thickness range make installation straightforward."}
+        {
+          "title": "Emergency exit compliance",
+          "text": "970 x 530 mm hatches according to EC 2001/85, with break-glass hammer, manual or electric."
+        },
+        {
+          "title": "Passenger comfort",
+          "text": "24V Le Mans ventilators deliver 850 m³/h with only 52 dB(A), speed-controllable."
+        },
+        {
+          "title": "Retrofit & new build",
+          "text": "Pre-drilled outer frames and 30 to 70 mm roof thickness range make installation straightforward."
+        }
       ],
-      "products": ["roof-hatch-electric-large", "roof-hatch-manual-large", "roof-hatch-electric-small", "control-unit", "le-mans", "le-mans-ll", "v12-valve", "lighting-rectangle", "speedcontrol", "axial-ventilator", "radial-ventilator"],
-      "bundles": ["coach-hatch-kit", "minibus-hatch-kit", "le-mans-pro-kit", "dual-le-mans-kit"],
+      "products": [
+        "roof-hatch-electric-large",
+        "roof-hatch-manual-large",
+        "roof-hatch-electric-small",
+        "control-unit",
+        "le-mans",
+        "le-mans-ll",
+        "v12-valve",
+        "lighting-rectangle",
+        "speedcontrol",
+        "axial-ventilator",
+        "radial-ventilator",
+        "switch-fan",
+        "snowfilter",
+        "step-converter",
+        "roof-hatch-manual-small"
+      ],
+      "bundles": [
+        "coach-hatch-kit",
+        "coach-twin-hatch-kit",
+        "minibus-hatch-kit",
+        "le-mans-pro-kit",
+        "dual-le-mans-kit"
+      ],
       "faq": [
-        {"q": "Are the roof hatches homologated?", "a": "Yes. The glass dome is homologated ECE 43R, the hatches EC 2004/104, and the 970 x 530 mm versions comply with EC 2001/85 as emergency exits."},
-        {"q": "Do the electric hatches work on 12V?", "a": "They are 24V units. For 12V vehicles we supply the 89-STEP12-24 converter."}
+        {
+          "q": "Are the roof hatches homologated?",
+          "a": "Yes. The glass dome is homologated ECE 43R, the hatches EC 2004/104, and the 970 x 530 mm versions comply with EC 2001/85 as emergency exits."
+        },
+        {
+          "q": "Do the electric hatches work on 12V?",
+          "a": "They are 24V units. For 12V vehicles add our 12V to 24V converter 89-STEP12-24 (one per control unit)."
+        }
       ]
     },
     {
@@ -89,14 +231,43 @@
       "intro": "Ambulances, police vans, fire service vehicles and mobile command units run for hours with the doors closed. Aerosol and odour extraction, reliable interior lighting and EMC approved electronics are not optional. They are the specification.",
       "hero": "assets/media/c294b9fb82e9ef01c363396c67ef37c09448a024-7254x4595-1-scaled.webp",
       "pains": [
-        {"title": "Aerosols & odours", "text": "The Le Mans extracts 850 m³/h from the patient compartment, adjustable with the Speedcontrol."},
-        {"title": "EMC", "text": "All our motors are EMC approved so they never interfere with medical or radio equipment."},
-        {"title": "Working light", "text": "IK10 rectangular Dome LED lights: 39 white LEDs for work, 12 blue for a calm night mode."}
+        {
+          "title": "Aerosols & odours",
+          "text": "The Le Mans extracts 850 m³/h from the patient compartment, adjustable with the Speedcontrol."
+        },
+        {
+          "title": "EMC",
+          "text": "All our motors are EMC approved so they never interfere with medical or radio equipment."
+        },
+        {
+          "title": "Working light",
+          "text": "IK10 rectangular Dome LED lights: 39 white LEDs for work, 12 blue for a calm night mode."
+        }
       ],
-      "products": ["le-mans", "speedcontrol", "switch-fan", "v12-valve", "lighting-rectangle", "lighting-round", "roof-hatch-electric-small", "control-unit", "snowfilter", "grill-large"],
-      "bundles": ["ambulance-hygiene-kit", "le-mans-pro-kit", "minibus-hatch-kit"],
+      "products": [
+        "le-mans",
+        "speedcontrol",
+        "switch-fan",
+        "v12-valve",
+        "lighting-rectangle",
+        "lighting-round",
+        "roof-hatch-electric-small",
+        "control-unit",
+        "snowfilter",
+        "grill-large",
+        "step-converter",
+        "switch-square"
+      ],
+      "bundles": [
+        "ambulance-hygiene-kit",
+        "le-mans-pro-kit",
+        "minibus-hatch-kit"
+      ],
       "faq": [
-        {"q": "Can the fan run continuously?", "a": "Yes. The Le Mans is designed for continuous duty; with the Speedcontrol it runs quietly at reduced speed for hours."}
+        {
+          "q": "Can the fan run continuously?",
+          "a": "Yes. The Le Mans is designed for continuous duty; with the Speedcontrol it runs quietly at reduced speed for hours."
+        }
       ]
     },
     {
@@ -108,12 +279,37 @@
       "intro": "Cattle, pigs, poultry and specialty animal transport face high ventilation demands from animal density, heat load and organic moisture. Our ABS ventilators, floor vents and valves withstand harsh agricultural environments and frequent cleaning.",
       "hero": "assets/media/IMG_010422.webp",
       "pains": [
-        {"title": "Density & heat", "text": "Multiple Le Mans LL brushless extractors keep air exchanging in multi-deck bodies."},
-        {"title": "Moisture & ammonia", "text": "Floor ventilators remove heavy gases; V12 valves close the loop when cleaning."},
-        {"title": "Stationary periods", "text": "Electric ventilation on a speed controller keeps air moving during loading and waiting."}
+        {
+          "title": "Density & heat",
+          "text": "Multiple Le Mans LL brushless extractors keep air exchanging in multi-deck bodies."
+        },
+        {
+          "title": "Moisture & ammonia",
+          "text": "Floor ventilators remove heavy gases; V12 valves close the loop when cleaning."
+        },
+        {
+          "title": "Stationary periods",
+          "text": "Electric ventilation on a speed controller keeps air moving during loading and waiting."
+        }
       ],
-      "products": ["le-mans-ll", "le-mans", "turbo-ii", "floor-ventilator-129", "v12-valve", "exhaust-ventilator", "lighting-round", "speedcontrol"],
-      "bundles": ["le-mans-ll-silent-kit", "dual-le-mans-kit", "turbo-ii-airflow-duo"],
+      "products": [
+        "le-mans-ll",
+        "le-mans",
+        "turbo-ii",
+        "floor-ventilator-129",
+        "v12-valve",
+        "exhaust-ventilator",
+        "lighting-round",
+        "speedcontrol",
+        "switch-fan",
+        "snowfilter",
+        "grill-large"
+      ],
+      "bundles": [
+        "le-mans-ll-silent-kit",
+        "dual-le-mans-kit",
+        "turbo-ii-airflow-duo"
+      ],
       "faq": []
     },
     {
@@ -125,12 +321,36 @@
       "intro": "Salt, humidity and confined cabins make ventilation essential on board. Compact wind-driven vents for lockers and engine rooms, electric extractors for galleys and heads, and polished metal valves for the interior.",
       "hero": "assets/media/SANY0043.jpg",
       "pains": [
-        {"title": "Cabin humidity", "text": "A Round rooftop ventilator on a speed controller exchanges cabin air overnight without waking anyone."},
-        {"title": "Lockers & engine room", "text": "Turbo III and exhaust ventilators vent compartments passively whenever there is wind."},
-        {"title": "Interior finish", "text": "Polished light-metal rotary valves from Ø 130 to Ø 250 mm for the saloon."}
+        {
+          "title": "Cabin humidity",
+          "text": "A Round rooftop ventilator on a speed controller exchanges cabin air overnight without waking anyone."
+        },
+        {
+          "title": "Lockers & engine room",
+          "text": "Turbo III and exhaust ventilators vent compartments passively whenever there is wind."
+        },
+        {
+          "title": "Interior finish",
+          "text": "Polished light-metal rotary valves from Ø 130 to Ø 250 mm for the saloon."
+        }
       ],
-      "products": ["rooftop-round", "turbo-iii", "winglet", "rotary-valve-metal", "roof-hatch-manual-small", "lighting-round", "auto-ventilator"],
-      "bundles": ["turbo-iii-compact-duo", "round-camper-kit", "winglet-mini-kit"],
+      "products": [
+        "rooftop-round",
+        "turbo-iii",
+        "winglet",
+        "rotary-valve-metal",
+        "roof-hatch-manual-small",
+        "lighting-round",
+        "auto-ventilator",
+        "speedcontrol",
+        "switch-round",
+        "floor-ventilator-80"
+      ],
+      "bundles": [
+        "turbo-iii-compact-duo",
+        "round-camper-kit",
+        "winglet-mini-kit"
+      ],
       "faq": []
     },
     {
@@ -142,12 +362,35 @@
       "intro": "Dogs in a closed vehicle are at risk within minutes. Combine a wind-driven Turbo II for driving, a floor ventilator for fresh air and a 3 W Winglet that keeps extracting when the engine is off.",
       "hero": "assets/media/mercedes_justitie_denoised_sharp.webp",
       "pains": [
-        {"title": "Parked vehicles", "text": "The Winglet draws only 3 W, so it can run for hours on the vehicle battery."},
-        {"title": "Odours", "text": "Floor-to-roof airflow carries odours out instead of into the cab."},
-        {"title": "Wash-down", "text": "ABS and PC/ABS components tolerate frequent cleaning."}
+        {
+          "title": "Parked vehicles",
+          "text": "The Winglet draws only 3 W, so it can run for hours on the vehicle battery."
+        },
+        {
+          "title": "Odours",
+          "text": "Floor-to-roof airflow carries odours out instead of into the cab."
+        },
+        {
+          "title": "Wash-down",
+          "text": "ABS and PC/ABS components tolerate frequent cleaning."
+        }
       ],
-      "products": ["turbo-ii", "winglet", "floor-ventilator-129", "floor-ventilator-80", "turbo-iii", "exhaust-ventilator", "switch-round"],
-      "bundles": ["dog-transport-kit", "turbo-ii-airflow-duo", "winglet-mini-kit"],
+      "products": [
+        "turbo-ii",
+        "winglet",
+        "floor-ventilator-129",
+        "floor-ventilator-80",
+        "turbo-iii",
+        "exhaust-ventilator",
+        "switch-round",
+        "grill-small",
+        "rotary-valve"
+      ],
+      "bundles": [
+        "dog-transport-kit",
+        "turbo-ii-airflow-duo",
+        "winglet-mini-kit"
+      ],
       "faq": []
     }
   ]

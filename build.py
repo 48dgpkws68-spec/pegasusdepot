@@ -29,7 +29,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '3'
+VERSION = '4'
 
 # ---------------------------------------------------------------- images
 _img_cache = {}
@@ -102,7 +102,8 @@ def bundle_calc(b, choice=None):
     for i, it in enumerate(b['items']):
         sku = it.get('sku') or (choice[i] if choice else it['choices'][0])
         full += SKU[sku][1]['price'] * it['qty']
-    return full, round(full * (1 - b['discount']))
+    import math
+    return full, math.floor(full * (1 - b['discount']))
 
 def voltages(p):
     vs = set()
@@ -147,8 +148,9 @@ ICON = {
  'ruler': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m3 17 14-14 4 4L7 21z"/><path d="m13 7 2 2M10 10l2 2M7 13l2 2"/></svg>',
 }
 
-LOGO_SVG = '''<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3C990"/><stop offset=".55" stop-color="#C9A96A"/><stop offset="1" stop-color="#9C7B3E"/></linearGradient></defs><circle cx="24" cy="24" r="23" stroke="url(#pg)" stroke-width="1.4"/><path d="M14 33c2.5-9 8-14 20-15-3 3.5-7 5-9.5 5.5 2 0 5-.5 7.5-2-2 3.5-5.5 5-8.5 5.2 1.5.3 4 .2 6-.8-2.5 3.6-6.3 4.6-9 4.2 1.2.6 2.7.9 4 .8-3 2.6-7 2.8-10.5 2.1z" fill="url(#pg)"/><path d="M14 33l-1.5 3.2" stroke="url(#pg)" stroke-width="1.6" stroke-linecap="round"/></svg>'''
-FAVICON = "data:image/svg+xml," + LOGO_SVG.replace('#', '%23').replace('"', "'").replace('<', '%3C').replace('>', '%3E')
+LOGO_SVG = '''<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="23" stroke="url(#pg)" stroke-width="1.4"/><path d="M14 33c2.5-9 8-14 20-15-3 3.5-7 5-9.5 5.5 2 0 5-.5 7.5-2-2 3.5-5.5 5-8.5 5.2 1.5.3 4 .2 6-.8-2.5 3.6-6.3 4.6-9 4.2 1.2.6 2.7.9 4 .8-3 2.6-7 2.8-10.5 2.1z" fill="url(#pg)"/><path d="M14 33l-1.5 3.2" stroke="url(#pg)" stroke-width="1.6" stroke-linecap="round"/></svg>'''
+FAV_SVG = LOGO_SVG.replace('aria-hidden="true">', 'aria-hidden="true"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3C990"/><stop offset=".55" stop-color="#C9A96A"/><stop offset="1" stop-color="#9C7B3E"/></linearGradient></defs>', 1)
+FAVICON = "data:image/svg+xml," + FAV_SVG.replace('#', '%23').replace('"', "'").replace('<', '%3C').replace('>', '%3E')
 
 def rel(depth):
     return '../' * depth
@@ -167,12 +169,13 @@ def product_ld(p):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
     return ''.join(jsonld(x) for x in ld)
 
-ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/assets/img/og-default.webp", "email": BRAND['email'], "telephone": BRAND['phone'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
+ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/assets/img/og-default.webp", "email": BRAND['email'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
 
 # ---------------------------------------------------------------- layout
-def head(title, desc, depth=0, og_image=None, canonical=None):
+def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, preload=None):
     r = rel(depth)
     og = scene(og_image) if og_image else 'assets/img/og-default.webp'
+    extra = ('<meta name="robots" content="noindex,nofollow">' if noindex else '') + (f'<link rel="preload" as="image" href="{r}{preload}" fetchpriority="high">' if preload else '')
     return f'''<!DOCTYPE html>
 <html lang="en" data-root="{r}">
 <head>
@@ -181,13 +184,16 @@ def head(title, desc, depth=0, og_image=None, canonical=None):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE_URL}/{canonical or ''}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="website"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot">
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{SITE_URL}/{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}
 <meta name="theme-color" content="#0B0C0E">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="{r}assets/css/site.css?v={VERSION}">
+<script>document.documentElement.classList.add('js')</script>
 </head>
-<body>'''
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3C990"/><stop offset=".55" stop-color="#C9A96A"/><stop offset="1" stop-color="#9C7B3E"/></linearGradient></defs></svg>'''
 
 def header(depth=0):
     r = rel(depth)
@@ -197,9 +203,9 @@ def header(depth=0):
     hero_b = [b for b in BUNDLES if b.get('hero')][:4]
     bundle_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>{esc(b["tagline"])}</span></div></a>' for b in hero_b)
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
-    best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>from {money(price_from(p))}</span></div></a>' for p in best)
+    best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>{money(price_from(p))}</span></div></a>' for p in best)
     return f'''
-<div class="announce"><span>Free EU shipping from €{BRAND["free_shipping_from"]}</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
+<div class="announce"><span>Free EU shipping from €{BRAND["free_shipping_from"]}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
 <header class="header"><div class="wrap header-in">
   <a class="logo" href="{r}index.html" aria-label="Pegasus Depot home">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
   <ul class="nav">
@@ -234,14 +240,14 @@ def header(depth=0):
   <h5>By vehicle</h5>{''.join(f'<a class="row" href="{r}vehicles/{v["id"]}.html">{esc(v["name"])}</a>' for v in VEHICLES)}
   <h5>Company</h5><a class="row" href="{r}trade.html">Trade &amp; fleet accounts</a><a class="row" href="{r}about.html">About Pegasus Depot</a><a class="row" href="{r}contact.html">Contact</a><a class="row" href="{r}shipping-returns.html">Shipping &amp; returns</a>
 </nav>
-<div class="search" id="search"><button class="icon-btn search-close" id="search-close" aria-label="Close">{ICON['close']}</button><div class="search-in"><input id="search-input" type="search" placeholder="Search products, kits or article numbers…" autocomplete="off"><div class="search-res" id="search-res"></div></div></div>
+<div class="search" id="search"><button class="icon-btn search-close" id="search-close" aria-label="Close">{ICON['close']}</button><div class="search-in"><input id="search-input" type="search" aria-label="Search products" placeholder="Search products, kits or article numbers…" autocomplete="off"><div class="search-res" id="search-res"></div></div></div>
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" aria-label="Cart">
   <div class="drawer-head"><b>Your cart</b><button class="icon-btn" data-close-cart aria-label="Close" style="color:var(--text)">{ICON['close']}</button></div>
   <div class="ship-bar"><span id="ship-txt"></span><div class="bar"><i id="ship-bar"></i></div></div>
   <div class="drawer-body" id="cart-body"></div>
-  <div class="drawer-foot"><div class="row"><span>Subtotal</span><span id="cart-sub">€0</span></div><div class="row"><span>Shipping (EU)</span><span id="cart-ship">–</span></div><div class="row total"><span>Total incl. VAT</span><span id="cart-total">€0</span></div>
-  <a class="btn btn-gold btn-block" id="checkout-btn" href="{r}checkout.html" style="margin-top:14px">Secure checkout {ICON['arrow']}</a><p class="muted" style="font-size:12px;text-align:center;margin-top:10px">iDEAL · Visa · Mastercard · PayPal · Bancontact · Invoice for trade</p></div>
+  <div class="drawer-foot"><div class="row"><span>Subtotal</span><span id="cart-sub">€0</span></div><div class="row"><span id="cart-ship-lbl">Shipping (NL)</span><span id="cart-ship">–</span></div><div class="row total"><span>Total incl. VAT</span><span id="cart-total">€0</span></div>
+  <a class="btn btn-gold btn-block" id="checkout-btn" href="{r}checkout.html" style="margin-top:14px">Secure checkout {ICON['arrow']}</a><p class="muted" style="font-size:12px;text-align:center;margin-top:10px">Shipping shown for the Netherlands; other countries at checkout. Roof hatches €29 oversize.</p><p class="muted" style="font-size:12px;text-align:center;margin-top:6px">iDEAL · Visa · Mastercard · PayPal · Bancontact · Invoice for trade</p></div>
 </aside>
 <div class="toast" id="toast">{ICON['check']}<span></span></div>
 '''
@@ -252,12 +258,12 @@ def footer(depth=0):
 <footer class="footer"><div class="wrap">
   <div class="footer-grid">
     <div><a class="logo" href="{r}index.html">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
-      <p style="margin-top:16px;max-width:34ch">Premium ventilation, roof hatches and interior lighting for vehicles that work harder. Engineered in the Netherlands, shipped across Europe from stock.</p>
-      <p style="margin-top:14px;color:var(--text-inv)">{esc(BRAND['email'])}<br>{esc(BRAND['phone'])}<br>{esc(BRAND['address'])}</p></div>
+      <p style="margin-top:16px;max-width:34ch">Independent specialist in premium ventilation, roof hatches and interior lighting for vehicles that work harder. Dutch engineered products, shipped across Europe from our own stock.</p>
+      <p style="margin-top:14px;color:var(--text-inv)">{esc(BRAND['email'])}<br>{(esc(BRAND['phone']) + '<br>') if BRAND.get('phone') else ''}{esc(BRAND['address'])}</p></div>
     <div><h5>Shop</h5>{''.join(f'<a href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}<a href="{r}bundles.html">Kits &amp; bundles</a></div>
     <div><h5>By vehicle</h5>{''.join(f'<a href="{r}vehicles/{v["id"]}.html">{esc(v["nav"])}</a>' for v in VEHICLES)}</div>
     <div><h5>Company</h5><a href="{r}about.html">About us</a><a href="{r}trade.html">Trade &amp; fleet accounts</a><a href="{r}contact.html">Contact</a><a href="{r}shipping-returns.html">Shipping &amp; returns</a><a href="{r}terms.html">Terms &amp; warranty</a><a href="{r}privacy.html">Privacy</a></div>
-    <div><h5>Why Pegasus Depot</h5><p>✓ Manufacturer-direct quality<br>✓ EMC approved motors<br>✓ Ships within 24h from NL<br>✓ 2-year warranty<br>✓ Trade pricing for fleets and bodybuilders</p>
+    <div><h5>Why Pegasus Depot</h5><p>✓ OEM-grade products<br>✓ EMC approved motors<br>✓ Ships within 24h from NL<br>✓ 2-year warranty<br>✓ Trade pricing for fleets and bodybuilders</p>
       <div class="pay" style="margin-top:16px"><span>iDEAL</span><span>VISA</span><span>MASTERCARD</span><span>PAYPAL</span><span>BANCONTACT</span><span>SEPA</span></div></div>
   </div>
   <div class="footer-bottom"><span>© 2026 Pegasus Depot · {esc(BRAND['domain'])} · All prices incl. 21% VAT</span><span>Pegasus Depot is an independent online retailer. Product names and article numbers refer to the original manufacturer's specifications.</span></div>
@@ -276,9 +282,8 @@ def card(p, depth=0, dark=False):
     first = next((v for v in p['variants'] if v.get('price') is not None), p['variants'][0])
     prices = sorted(set(v['price'] for v in p['variants'] if v.get('price') is not None))
     multi = len([v for v in p['variants'] if v.get('price') is not None]) > 1
-    show_from = len(prices) > 1 and pf == prices[0]
-    pr = ('<span class="from">from</span>' if show_from else '') + (money(pf) if pf is not None else 'On request')
-    was = f'<span class="was">{money(cf)}</span>' if cf and pf and cf > pf and not show_from else ''
+    pr = (money(pf) if pf is not None else 'On request') + (f'<small>{len(p["variants"])} options</small>' if multi else '')
+    was = f'<span class="was" title="Recommended retail price">RRP {money(cf)}</span>' if cf and pf and cf > pf else ''
     add = (f'<a class="add" href="{r}products/{p["id"]}.html" aria-label="Choose options">{ICON["arrow"]}</a>' if multi or p.get('quote_only')
            else f'<button class="add" data-add-sku="{first["sku"]}" data-product="{p["id"]}" aria-label="Add to cart">{ICON["plus"]}</button>')
     return f'''<article class="card {'card--dark' if dark else ''}" data-card data-cat="{p['category']}" data-veh="{','.join(p.get('applications',[]))}" data-volt="{','.join(voltages(p))}" data-price="{pf or 99999}" data-name="{esc(p['name'])}" data-order="{PRODUCTS.index(p)}" data-txt="{esc((p['name']+' '+p['tagline']+' '+' '.join(v['sku'] for v in p['variants'])).lower())}">
@@ -311,7 +316,7 @@ def newsletter(depth=0):
     r = rel(depth)
     return f'''<section class="section ivory"><div class="wrap"><div class="band reveal">
   <div><div class="eyebrow">Trade &amp; fleet</div><h2 class="h2" style="margin:12px 0 14px">Bodybuilder, converter or fleet manager?</h2><p class="lead">Open a trade account for volume pricing, ex-VAT invoicing and a dedicated contact who answers within 24 hours.</p></div>
-  <div><form data-demo><input type="email" placeholder="Your work email" required><button class="btn btn-gold">Request trade pricing</button></form><p class="muted" style="font-size:12.5px;margin-top:12px">Or call {esc(BRAND['phone'])}. No spam, no newsletters you did not ask for.</p></div>
+  <div><form data-demo><input type="email" placeholder="Your work email" required><button class="btn btn-gold">Request trade pricing</button></form><p class="muted" style="font-size:12.5px;margin-top:12px">Or email {esc(BRAND['email'])}. No spam, no newsletters you did not ask for.</p></div>
 </div></div></section>'''
 
 def trust_strip():
@@ -319,7 +324,7 @@ def trust_strip():
   <div class="trust-item">{ICON['truck']}<div><b>Ships within 24h</b><span>From our Dutch warehouse, across the EU</span></div></div>
   <div class="trust-item">{ICON['shield']}<div><b>EMC approved motors</b><span>No interference with vehicle electronics</span></div></div>
   <div class="trust-item">{ICON['box']}<div><b>Complete kits</b><span>Fan, switch, valve and filter in one box</span></div></div>
-  <div class="trust-item">{ICON['chat']}<div><b>Engineers on the phone</b><span>Real advice on cut-outs, voltage and airflow</span></div></div>
+  <div class="trust-item">{ICON['chat']}<div><b>Specialist advice</b><span>Real answers on cut-outs, voltage and airflow, within 24h</span></div></div>
 </div></div>'''
 
 # ---------------------------------------------------------------- pages
@@ -328,9 +333,9 @@ def page_index():
     best_ids = ['le-mans', 'v12-valve', 'turbo-ii', 'winglet', 'speedcontrol', 'switch-fan', 'floor-ventilator-129', 'roof-hatch-electric-large']
     hero_bundles = [b for b in BUNDLES if b.get('hero')]
     reviews = [
-        ('Excellent products for a fair price, lightning-fast reply to my email and shipping usually the same day.', 'Rick de K.', 'Van conversion, NL'),
-        ('Very satisfied with the products and the team. Customer care and assistance are excellent.', 'Stefania D.', 'Coach builder, IT'),
-        ('Reliable and of excellent quality. Our horse trucks have run these roof fans for years.', 'Tommy S.', 'Horsebox builder'),
+        ('Same-day dispatch from real stock, so the vehicle leaves the workshop on the day you promised.', 'Stock and speed'),
+        ('Kits that arrive complete: fan, switch, valve and filter in one box, matched to the same cut-out.', 'Nothing missing on installation day'),
+        ('Specialists who answer technical questions with drawings and EMC reports, not with a chatbot.', 'Real technical support'),
     ]
     compare_rows = [('le-mans', '850 m³/h', '12V / 24V', '80 W', '52 dB(A)', 'Ø 230 mm', 'Blow &amp; suck'),
                     ('le-mans-ll', '515 to 565 m³/h', '12V / 24V', '34 W', '65 dB(A)', 'Ø 230 mm', 'Suck, brushless'),
@@ -339,7 +344,7 @@ def page_index():
                     ('turbo-ii', '~245 m³/h at 100 km/h', 'None', '0 W', 'Silent', 'Ø 128 mm', 'Suck while driving'),
                     ('turbo-iii', '~120 m³/h at 100 km/h', 'None', '0 W', 'Silent', 'Ø 80 mm', 'Suck while driving'),
                     ('exhaust-ventilator', 'Venturi', 'None', '0 W', 'Silent', 'max. Ø 140 mm', 'Suck while driving')]
-    h = head('Pegasus Depot · Premium Vehicle Ventilation, Roof Hatches & LED Lighting', 'Rooftop ventilators, interior valves, switches, roof hatches and LED lighting for vans, campers, horse trailers, buses and ambulances. Dutch engineered, EMC approved, shipped within 24h across Europe.', 0, lm['images'][2], '')
+    h = head('Pegasus Depot · Premium Vehicle Ventilation, Roof Hatches & LED Lighting', 'Rooftop ventilators, interior valves, switches, roof hatches and LED lighting for vans, campers, horse trailers, buses and ambulances. Dutch engineered, EMC approved, shipped within 24h across Europe.', 0, lm['images'][2], '', preload=scene(lm['images'][2], 2000))
     h += jsonld(ORG_LD) + jsonld({"@context": "https://schema.org", "@type": "WebSite", "name": "Pegasus Depot", "url": SITE_URL})
     h += header(0)
     h += f'''
@@ -347,9 +352,9 @@ def page_index():
 <div class="wrap hero-in">
   <div><div class="eyebrow">Dutch engineered · EMC approved · Ships in 24h</div>
     <h1 class="h-display">Engineered airflow for vehicles that <em>work harder.</em></h1>
-    <p class="lead">Rooftop ventilators, closable valves, roof hatches and LED lighting for vans, campers, horse trailers, coaches and ambulances. Bought direct, delivered fast, backed by engineers who answer the phone.</p>
+    <p class="lead">Rooftop ventilators, closable valves, roof hatches and LED lighting for vans, campers, horse trailers, coaches and ambulances. OEM-grade parts, in stock, shipped within 24h, backed by specialists who know the products.</p>
     <div class="hero-cta"><a class="btn btn-gold btn-lg" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a><a class="btn btn-ghost btn-lg" href="bundles.html">Build a complete kit</a></div></div>
-  <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>42</b><span>countries served through dealers and direct</span></div><div class="stat"><b>20+</b><span>years of vehicle ventilation manufacturing</span></div></div>
+  <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>{len(BUNDLES)}</b><span>complete kits, pre-matched and up to 12% cheaper</span></div><div class="stat"><b>{sum(len(p['variants']) for p in PRODUCTS)}</b><span>article numbers, all EMC approved where it matters</span></div></div>
 </div></section>
 {trust_strip()}
 
@@ -382,24 +387,24 @@ def page_index():
 
 <section class="section white"><div class="wrap">
   <div class="sec-head reveal"><div><div class="eyebrow">Which roof fan?</div><h2 class="h2">Seven ventilators, one honest comparison.</h2></div><a class="link" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a></div>
-  <div class="table-wrap reveal"><table class="compare"><thead><tr><th>Model</th><th></th><th>Airflow</th><th>Voltage</th><th>Power</th><th>Noise</th><th>Roof cut-out</th><th>Function</th><th>From</th></tr></thead><tbody>
+  <div class="table-wrap reveal"><table class="compare"><thead><tr><th>Model</th><th></th><th>Airflow</th><th>Voltage</th><th>Power</th><th>Noise</th><th>Roof cut-out</th><th>Function</th><th>Price</th></tr></thead><tbody>
   {''.join(f'<tr><td><a href="products/{i}.html">{esc(P[i]["short_name"])}</a></td><td><img src="{sq(P[i]["images"][0],200)}" alt=""></td><td>{a}</td><td>{v}</td><td>{w}</td><td>{n}</td><td>{c}</td><td>{f}</td><td><b>{money(price_from(P[i]))}</b></td></tr>' for i,a,v,w,n,c,f in compare_rows)}
   </tbody></table></div>
 </div></section>
 
 <section class="section dark"><div class="wrap">
-  <div class="sec-head reveal"><div><div class="eyebrow">Why buy direct from Pegasus Depot</div><h2 class="h2">Manufacturer quality. Webshop convenience.</h2></div></div>
+  <div class="sec-head reveal"><div><div class="eyebrow">Why buy from Pegasus Depot</div><h2 class="h2">OEM-grade quality. Webshop convenience.</h2></div></div>
   <div class="usp-grid reveal">
     <div class="usp">{ICON['bolt']}<b>EMC approved, every motor</b><p>Our ventilators carry EMC approval so they never disturb radios, telematics or medical equipment. Test reports available on request.</p></div>
-    <div class="usp">{ICON['box']}<b>From stock, within 24h</b><p>Thousands of units on the shelf in the Netherlands. Order before 15:00 and we ship the same working day across the EU.</p></div>
-    <div class="usp">{ICON['ruler']}<b>Made to fit</b><p>Standard 230 mm, 128 mm and 80 mm cut-outs, roof thickness ranges up to 70 mm, and technical drawings for every product.</p></div>
+    <div class="usp">{ICON['box']}<b>From stock, within 24h</b><p>Thousands of units on the shelf in the Netherlands. Order before 15:00 CET on a working day and it ships the same day, otherwise within 24h.</p></div>
+    <div class="usp">{ICON['ruler']}<b>Made to fit</b><p>Standard 230 mm, 128 mm and 80 mm cut-outs, roof thickness ranges up to 70 mm, and dimensional drawings for the main products.</p></div>
     <div class="usp">{ICON['euro']}<b>Kits that save</b><p>Complete kits save 8 to 12%. Trade accounts get volume pricing and ex-VAT invoicing. No hidden surcharges.</p></div>
   </div>
 </div></section>
 
 <section class="section ivory"><div class="wrap">
-  <div class="sec-head reveal"><div><div class="eyebrow">Customer reviews</div><h2 class="h2">Rated excellent by the people who install it.</h2></div></div>
-  <div class="rev-grid reveal">{''.join(f'<div class="rev"><div class="stars">★★★★★</div><p>“{esc(t)}”</p><small>{esc(n)} · {esc(w)}</small></div>' for t,n,w in reviews)}</div>
+  <div class="sec-head reveal"><div><div class="eyebrow">What installers value</div><h2 class="h2">Three things every workshop asks for.</h2></div></div>
+  <div class="rev-grid reveal">{''.join(f'<div class="rev"><div class="stars">{ICON["check"]}</div><p>{esc(t)}</p><small>{esc(n)}</small></div>' for t,n in reviews)}</div>
 </div></section>
 
 <section class="section white"><div class="wrap">
@@ -409,7 +414,7 @@ def page_index():
     {"q":"12V or 24V?","a":"Cars, vans, campers and trailers towed by them are 12V. Trucks, coaches, buses and most horse trucks on a truck chassis are 24V. Roof hatches and the control unit are 24V; for 12V vehicles we supply a converter."},
     {"q":"Do I need a switch and a speed controller?","a":"Electric roof fans need a 3-way switch to select blow / off / suck. The Speedcontrol is optional but recommended: it lets the fan run quietly at reduced speed and draws no current at zero."},
     {"q":"Can I close the vent in winter?","a":"Yes. Choose a closable interior valve: V12 (manual or electric), Flower Power or the rotating valve. The honeycomb grille is fixed and cannot be closed."},
-    {"q":"How fast do you ship?","a":"Orders placed before 15:00 CET ship the same working day from our warehouse in the Netherlands. Free EU shipping from €150."},
+    {"q":"How fast do you ship?","a":"Orders placed before 15:00 CET ship the same working day from our warehouse in the Netherlands. Free EU shipping from €150 (roof hatches ship at a flat €29 oversize rate)."},
     {"q":"Do you offer trade pricing?","a":"Yes. Bodybuilders, converters, fleets and dealers can request a trade account for volume pricing and ex-VAT invoicing."},
   ])}</div>
 </div></section>
@@ -428,14 +433,14 @@ def page_shop():
 <section class="page-hero" style="min-height:360px"><img class="bg" src="{scene(P['le-mans']['images'][4],1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / <span>Shop</span></div><div class="eyebrow">All products</div><h1 class="h1">The complete range, <em class="serif" style="color:var(--gold-2);font-style:italic;font-weight:400">in stock.</em></h1><p class="lead">{len(PRODUCTS)} products across {len(CATS)} categories. Filter by what you drive and what voltage you run.</p></div></section>
 <section class="section--tight ivory"><div class="wrap shop" data-shop>
   <aside class="filters">
-    <div><h5>Search</h5><input id="shop-q" type="search" placeholder="Name or article number" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff"></div>
+    <div><h5>Search</h5><input id="shop-q" type="search" aria-label="Filter products" placeholder="Name or article number" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff"></div>
     <div><h5>Category</h5>{cat_f}</div>
     <div><h5>Vehicle</h5>{veh_f}</div>
     <div><h5>Power</h5>{volt_f}</div>
-    <button class="btn btn-ghost btn-sm" id="clear-f">Clear filters</button>
+    <div class="filter-actions"><button class="btn btn-ghost btn-sm" id="clear-f">Clear filters</button><button class="btn btn-dark btn-sm mob-filter" id="apply-f">Show results</button></div>
   </aside>
   <div>
-    <div class="shop-top"><div><span id="shop-count" style="font-weight:700"></span> <span class="muted">· prices incl. VAT</span></div><div style="display:flex;gap:10px"><button class="btn btn-ghost btn-sm mob-filter" id="mob-filter">Filters</button><select id="sort"><option value="featured">Sort: Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name A to Z</option></select></div></div>
+    <div class="shop-top"><div><span id="shop-count" style="font-weight:700"></span> <span class="muted">· prices incl. VAT</span></div><div style="display:flex;gap:10px"><button class="btn btn-ghost btn-sm mob-filter" id="mob-filter">Filters</button><select id="sort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name A to Z</option></select></div></div>
     <div class="grid grid-3" id="shop-grid">{''.join(card(p) for p in PRODUCTS)}</div>
   </div>
 </div></section>
@@ -472,11 +477,11 @@ def page_product(p):
     opts_html = ''
     for k in opt_names:
         opts_html += f'<div class="opt-group"><h6>{esc(k)} <span data-opt-label="{esc(k)}"></span></h6><div class="opts" data-opt="{esc(k)}"></div></div>'
-    addon_ids = [a for a in p.get('accessories', []) if a in P and not P[a].get('quote_only')][:4]
+    addon_ids = [a for a in p.get('addons', []) if a in P and not P[a].get('quote_only')][:4]
     addons = ''
     for a in addon_ids:
         ap = P[a]; av = next(v for v in ap['variants'] if v.get('price') is not None)
-        addons += f'<label class="addon"><input type="checkbox" data-sku="{av["sku"]}" data-price="{av["price"]}"><img src="{r}{sq(ap["images"][0],200)}" alt=""><div><b>{esc(ap["short_name"])}</b><span>{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>'
+        addons += f'<label class="addon"><input type="checkbox" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"><img src="{r}{sq(ap["images"][0],200)}" alt=""><div><b>{esc(ap["short_name"])}</b><span>{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>'
     in_bundles = [b for b in BUNDLES if any(it['product'] == p['id'] for it in b['items'])]
     upsell = ''
     if in_bundles:
@@ -507,21 +512,21 @@ def page_product(p):
     h += header(depth)
     h += f'''
 <div class="wrap"><div class="crumbs light-crumbs"><a href="{r}index.html">Home</a> / <a href="{r}shop.html">Shop</a> / <a href="{r}shop.html?cat={c['id']}">{esc(c['name'])}</a> / <span>{esc(p['short_name'])}</span></div></div>
-<section class="wrap pdp" data-pdp="{p['id']}">
+<section class="wrap pdp" data-pdp="{p['id']}" data-imgmap='{json.dumps(p.get("image_by_option", {}))}'>
   <div class="gallery"><div class="gallery-main"><div class="badge-wrap">{badges}</div><img id="gallery-img" src="{r}{gal[0][0]}" alt="{esc(p['name'])}" class="{'scene' if gal[0][1] else ''}"></div><div class="thumbs">{thumbs}</div></div>
   <div class="buy">
     <div class="eyebrow">{esc(c['name'])}</div>
     <h1 class="h1">{esc(p['name'])}</h1>
     <p class="tagline">{esc(p['tagline'])}</p>
-    <div class="rating">★★★★★ <span>4.9 · trusted by bodybuilders across Europe</span></div>
-    <div class="buy-price"><span class="now" id="pdp-price">{money(pf) if pf is not None else 'On request'}</span><span class="was" id="pdp-was">{money(cf) if cf else ''}</span><span class="save" id="pdp-save"></span></div>
+    <div class="rating">{ICON['shield']}<span>Specified by European bodybuilders for 20+ years · EMC test report available</span></div>
+    <div class="buy-price"><span class="now" id="pdp-price">{money(pf) if pf is not None else 'On request'}</span><span class="was" id="pdp-was">{('RRP ' + money(cf)) if cf else ''}</span><span class="save" id="pdp-save"></span></div>
     <div class="vat">{'Price on request, configured per application.' if quote else 'Incl. 21% VAT · ex-VAT for trade accounts · free EU shipping from €150'}</div>
     <div class="sku" id="pdp-sku">Article no. {first['sku']}</div>
     {opts_html}
     <div class="buy-row">{qty_html}{buy_btn}</div>
     {upsell}
     {addons_html}
-    <ul class="buy-meta"><li>{ICON['truck']}<span><b>Ships within 24h</b> from stock in the Netherlands</span></li><li>{ICON['shield']}<span><b>2-year warranty</b> and 30-day returns on unused items</span></li><li>{ICON['chat']}<span><b>Installation advice</b> by phone or email, same day</span></li></ul>
+    <ul class="buy-meta"><li>{ICON['truck']}<span><b>Ships within 24h</b> from stock in the Netherlands</span></li><li>{ICON['shield']}<span><b>2-year warranty</b> and 30-day returns on unused items</span></li><li>{ICON['chat']}<span><b>Installation advice</b> by email, within one working day</span></li></ul>
     <p style="margin-top:18px;font-size:15px;color:var(--text-2);line-height:1.65">{esc(p['summary'])}</p>
   </div>
 </section>
@@ -573,7 +578,7 @@ def page_bundle(b):
     <h6 class="eyebrow" style="margin-top:26px">Configure your kit</h6>
     <div class="bundle-items">{items}</div>
     <div class="b-total"><div><div class="lbl">Kit price incl. VAT</div><div class="sum"><span class="was" id="b-full">{money(full)}</span><span id="b-price">{money(price)}</span></div><div class="saving" id="b-save"></div></div><button class="btn btn-gold btn-lg" id="add-btn">Add kit to cart {ICON['bag']}</button></div>
-    <ul class="buy-meta"><li>{ICON['truck']}<span><b>Ships within 24h</b> as one parcel, from stock in the Netherlands</span></li><li>{ICON['shield']}<span><b>2-year warranty</b> on every component</span></li><li>{ICON['chat']}<span><b>Installation advice</b> included: call or email our engineers</span></li></ul>
+    <ul class="buy-meta"><li>{ICON['truck']}<span><b>Ships within 24h</b> as one parcel, from stock in the Netherlands</span></li><li>{ICON['shield']}<span><b>2-year warranty</b> on every component</span></li><li>{ICON['chat']}<span><b>Installation advice</b> included: email our specialists</span></li></ul>
   </div>
 </section>
 <div class="wrap"><div class="tabs">
@@ -592,7 +597,7 @@ def page_vehicle(v):
     depth = 1; r = rel(depth)
     prods = [P[i] for i in v['products'] if i in P]
     bundles = [B[i] for i in v['bundles'] if i in B]
-    faq_html = ('<section class="section white"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">FAQ</div><h2 class="h2">Questions from ' + esc(v['nav'].lower()) + ' owners.</h2></div></div>' + faq_block(v['faq']) + '</div></section>') if v.get('faq') else ''
+    faq_html = ('<section class="section white"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">FAQ</div><h2 class="h2">Questions about ' + esc(v['nav'].lower()) + '.</h2></div></div>' + faq_block(v['faq']) + '</div></section>') if v.get('faq') else ''
     h = head(f'Ventilation for {v["name"]} · Pegasus Depot', v['intro'], depth, v['hero'], f'vehicles/{v["id"]}.html')
     h += header(depth)
     h += f'''
@@ -607,21 +612,21 @@ def page_vehicle(v):
     h += footer(depth)
     return h
 
-def simple_page(slug, title, desc, body, og=None):
-    h = head(f'{title} · Pegasus Depot', desc, 0, og, slug)
+def simple_page(slug, title, desc, body, og=None, noindex=False):
+    h = head(f'{title} · Pegasus Depot', desc, 0, og, slug, noindex=noindex)
     h += header(0) + body + footer(0)
     return h
 
 def page_about():
     body = f'''
-<section class="page-hero"><img class="bg" src="{scene('assets/media/assembly-line.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / <span>About</span></div><div class="eyebrow">About Pegasus Depot</div><h1 class="h1">Direct from the people who make it.</h1><p class="lead">Pegasus Depot is the direct-to-customer store for a Dutch vehicle ventilation manufacturer with more than twenty years of history, a dealer network in 42 countries and a warehouse full of stock in the Netherlands.</p></div></section>
-<section class="section ivory"><div class="wrap"><div class="split"><div><div class="eyebrow">Our story</div><h2 class="h2" style="margin:12px 0 16px">Built for bodybuilders. Now open to everyone.</h2><p class="lead">For two decades our ventilators, valves, hatches and lights were sold through dealers and fitted by bus builders, ambulance converters, horsebox manufacturers and van outfitters across Europe. Pegasus Depot opens that same catalogue, at the same quality, to every workshop, fleet and owner who wants to buy direct.</p>
-<ul class="checks"><li>{ICON['check']}<div><b>Manufacturer quality</b>Every product comes from the same production line our OEM customers rely on.</div></li><li>{ICON['check']}<div><b>Real stock, real speed</b>Thousands of units on the shelf. Order before 15:00 and it ships today.</div></li><li>{ICON['check']}<div><b>Engineers, not call centres</b>Questions about cut-outs, airflow or voltage are answered by people who design the products.</div></li></ul></div>
+<section class="page-hero"><img class="bg" src="{scene('assets/media/assembly-line.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / <span>About</span></div><div class="eyebrow">About Pegasus Depot</div><h1 class="h1">The ventilation specialist with the stock to prove it.</h1><p class="lead">Pegasus Depot is an independent European retailer of premium vehicle ventilation, roof hatches and interior lighting. We source straight from the OEM production line, hold real stock in our own Dutch warehouse and ship across Europe within 24 hours.</p></div></section>
+<section class="section ivory"><div class="wrap"><div class="split"><div><div class="eyebrow">Our story</div><h2 class="h2" style="margin:12px 0 16px">Built for bodybuilders. Now open to everyone.</h2><p class="lead">The ventilators, valves, hatches and lights in this shop have been fitted for years by bus builders, ambulance converters, horsebox manufacturers and van outfitters across Europe, usually through trade channels only. Pegasus Depot opens that same OEM-grade catalogue to every workshop, fleet and owner who wants to order online, at a fair price, from stock.</p>
+<ul class="checks"><li>{ICON['check']}<div><b>OEM-grade quality</b>Every product comes from the same production line the vehicle builders rely on.</div></li><li>{ICON['check']}<div><b>Real stock, real speed</b>Thousands of units on the shelf. Order before 15:00 CET and it ships the same working day.</div></li><li>{ICON['check']}<div><b>Specialists, not call centres</b>Questions about cut-outs, airflow or voltage are answered by people who know the products inside out.</div></li></ul></div>
 <div class="story-grid"><img src="{scene('assets/media/le-mans-warehouse.webp',1200)}" alt="Le Mans ventilators in the warehouse"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Assembly of rooftop ventilators"><img src="{scene('assets/media/Magazijn-1.webp',800)}" alt="Stock shelves"></div></div></div></section>
-<section class="section dark"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">In numbers</div><h2 class="h2">Small company. Serious footprint.</h2></div></div><div class="hero-stats stats-4"><div class="stat"><b>20+</b><span>years manufacturing vehicle ventilation</span></div><div class="stat"><b>42</b><span>countries served</span></div><div class="stat"><b>{len(PRODUCTS)}</b><span>products, {sum(len(p['variants']) for p in PRODUCTS)} article numbers</span></div><div class="stat"><b>24h</b><span>dispatch from stock</span></div></div></div></section>
+<section class="section dark"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">In numbers</div><h2 class="h2">Small company. Serious footprint.</h2></div></div><div class="hero-stats stats-4"><div class="stat"><b>{len(PRODUCTS)}</b><span>products, {sum(len(p['variants']) for p in PRODUCTS)} article numbers</span></div><div class="stat"><b>{len(BUNDLES)}</b><span>complete kits, pre-matched by specialists</span></div><div class="stat"><b>{len(VEHICLES)}</b><span>vehicle types, from campers to coaches</span></div><div class="stat"><b>24h</b><span>dispatch from stock</span></div></div></div></section>
 <section class="section ivory"><div class="wrap"><div class="story-grid"><img src="{scene('assets/media/magazijn5.webp',1400)}" alt="Warehouse logistics"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Stock shelves"><img src="{scene('assets/media/assembly-line.webp',800)}" alt="Assembly of rooftop ventilators"></div></div></section>
 {newsletter()}'''
-    return simple_page('about.html', 'About us', 'Pegasus Depot is the direct-to-customer store of a Dutch vehicle ventilation manufacturer: 20+ years, 42 countries, stock in the Netherlands.', body, 'assets/media/le-mans-warehouse.webp')
+    return simple_page('about.html', 'About us', 'Pegasus Depot is an independent European retailer of OEM-grade vehicle ventilation, roof hatches and LED lighting, shipped within 24h from our own Dutch stock.', body, 'assets/media/le-mans-warehouse.webp')
 
 def page_trade():
     body = f'''
@@ -636,14 +641,14 @@ def page_contact():
     body = f'''
 <section class="page-hero" style="min-height:340px"><img class="bg" src="{scene('assets/media/Magazijn-1.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / <span>Contact</span></div><div class="eyebrow">Contact</div><h1 class="h1">Talk to an engineer, not a bot.</h1><p class="lead">Cut-out sizes, 12V or 24V, how many fans for a 7-metre body: ask us. We answer within 24 hours on working days, usually much faster.</p></div></section>
 <section class="section ivory"><div class="wrap contact-grid"><div class="info-card"><form class="form" data-demo><div class="form-row"><div class="field"><label>Name</label><input required></div><div class="field"><label>Email</label><input type="email" required></div></div><div class="form-row"><div class="field"><label>Phone</label><input></div><div class="field"><label>Vehicle type</label><select>{''.join(f'<option>{esc(v["name"])}</option>' for v in VEHICLES)}<option>Other</option></select></div></div><div class="field"><label>Message</label><textarea rows="6" placeholder="Tell us about the vehicle, the products you have in mind and any article numbers."></textarea></div><button class="btn btn-gold btn-block">Send message {ICON['arrow']}</button></form></div>
-<div style="display:grid;gap:16px"><div class="info-card"><b>Email</b><span>{esc(BRAND['email'])}</span><b>Phone</b><span>{esc(BRAND['phone'])} · Mon to Fri 08:30 to 17:00 CET</span><b>Warehouse &amp; office</b><span>{esc(BRAND['address'])}</span></div><div class="info-card"><b>Technical documents</b><span>Every product page has a downloadable datasheet and dimensional drawing. EMC test reports are available on request for trade customers.</span></div><div class="info-card"><b>Returns</b><span>Unused items in original packaging can be returned within 30 days. See <a href="shipping-returns.html" style="text-decoration:underline">shipping &amp; returns</a>.</span></div></div></div></section>'''
+<div style="display:grid;gap:16px"><div class="info-card"><b>Email</b><span>{esc(BRAND['email'])} · Mon to Fri 08:30 to 17:00 CET</span>{('<b>Phone</b><span>' + esc(BRAND['phone']) + '</span>') if BRAND.get('phone') else ''}<b>Warehouse</b><span>{esc(BRAND['address'])}</span></div><div class="info-card"><b>Technical documents</b><span>Most product pages carry a dimensional drawing; technical datasheets and EMC test reports are sent on request within one working day.</span></div><div class="info-card"><b>Returns</b><span>Unused items in original packaging can be returned within 30 days. See <a href="shipping-returns.html" style="text-decoration:underline">shipping &amp; returns</a>.</span></div></div></div></section>'''
     return simple_page('contact.html', 'Contact', 'Contact Pegasus Depot for technical advice, quotes and trade accounts.', body)
 
 def page_shipping():
     body = f'''
 <section class="section ivory"><div class="wrap" style="max-width:860px"><div class="crumbs light-crumbs" style="padding:0 0 20px"><a href="index.html">Home</a> / <span>Shipping &amp; returns</span></div><div class="eyebrow">Shipping &amp; returns</div><h1 class="h1" style="margin:12px 0 24px">Fast out, easy back.</h1>
 <h3 class="h3">Shipping</h3><p class="lead" style="margin:10px 0 22px">Orders placed before 15:00 CET on working days ship the same day from our warehouse in the Netherlands. Netherlands and Belgium: next working day. Germany, France, Austria, Denmark: 2 to 3 working days. Rest of EU: 3 to 5 working days. UK, Switzerland, Norway: 4 to 7 working days, duties may apply.</p>
-<table class="spec-table" style="margin-bottom:30px"><tr><th>Netherlands &amp; Belgium</th><td>€6.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Germany, France, Luxembourg, Austria, Denmark</th><td>€9.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Rest of EU</th><td>€14.95 · free from €250</td></tr><tr><th>Roof hatches (oversize)</th><td>€29 flat, pallet shipping quoted for 3+ hatches</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Quoted at checkout</td></tr></table>
+<table class="spec-table" style="margin-bottom:30px"><tr><th>Netherlands &amp; Belgium</th><td>€6.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Germany, France, Luxembourg, Austria, Denmark</th><td>€9.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Rest of EU</th><td>€14.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Roof hatches (oversize)</th><td>€29 per hatch, not included in free shipping; pallet shipping quoted for 3+ hatches</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Quoted at checkout</td></tr></table>
 <h3 class="h3">Returns &amp; warranty</h3><p class="lead" style="margin:10px 0 22px">Unused products in original packaging can be returned within 30 days for a full refund. Products that have been installed or cut to size cannot be returned unless defective. All products carry a 2-year manufacturer warranty against defects in materials and workmanship. Electric motors are EMC approved and tested before dispatch.</p>
 <p class="note">Trade customers: returns and warranty claims are handled through your account contact. Keep the article number and the batch label from the box.</p></div></section>'''
     return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, free EU shipping from €150, 30-day returns and 2-year warranty.', body)
@@ -670,20 +675,20 @@ def page_checkout():
     body = f'''
 <section class="section ivory"><div class="wrap checkout"><div><div class="eyebrow">Checkout</div><h1 class="h1" style="margin:12px 0 8px">Almost there.</h1><p class="muted" style="margin-bottom:26px">Secure checkout · iDEAL, cards, PayPal, Bancontact · Invoice for approved trade accounts</p>
 <form class="form" id="checkout-form"><h3 class="h4">Contact</h3><div class="form-row"><div class="field"><label>Email</label><input type="email" required></div><div class="field"><label>Phone</label><input></div></div>
-<h3 class="h4" style="margin-top:10px">Delivery address</h3><div class="form-row"><div class="field"><label>First name</label><input required></div><div class="field"><label>Last name</label><input required></div></div><div class="field"><label>Company (optional)</label><input></div><div class="field"><label>Address</label><input required></div><div class="form-row"><div class="field"><label>Postcode</label><input required></div><div class="field"><label>City</label><input required></div></div><div class="field"><label>Country</label><select><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Austria</option><option>Denmark</option><option>Luxembourg</option><option>Italy</option><option>Spain</option><option>Sweden</option><option>Ireland</option><option>Poland</option><option>Other EU</option><option>United Kingdom</option><option>Switzerland</option><option>Norway</option></select></div>
+<h3 class="h4" style="margin-top:10px">Delivery address</h3><div class="form-row"><div class="field"><label>First name</label><input required></div><div class="field"><label>Last name</label><input required></div></div><div class="field"><label>Company (optional)</label><input></div><div class="field"><label>Address</label><input required></div><div class="form-row"><div class="field"><label>Postcode</label><input required></div><div class="field"><label>City</label><input required></div></div><div class="field"><label>Country</label><select id="co-country"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Austria</option><option>Denmark</option><option>Luxembourg</option><option>Italy</option><option>Spain</option><option>Sweden</option><option>Ireland</option><option>Poland</option><option>Portugal</option><option>Finland</option><option>Czechia</option><option>Hungary</option><option>Romania</option><option>Greece</option><option>Other EU</option><option>United Kingdom</option><option>Switzerland</option><option>Norway</option></select></div>
 <h3 class="h4" style="margin-top:10px">Business details (optional)</h3><div class="field"><label>EU VAT number for ex-VAT invoicing</label><input placeholder="NL123456789B01"></div>
 <h3 class="h4" style="margin-top:10px">Payment</h3><div class="pill-row"><span class="pill">iDEAL</span><span class="pill">Visa / Mastercard</span><span class="pill">PayPal</span><span class="pill">Bancontact</span><span class="pill">SEPA transfer</span><span class="pill">Invoice (trade)</span></div>
 <button class="btn btn-gold btn-lg btn-block" style="margin-top:18px">Place order {ICON['arrow']}</button><p class="note">Prototype checkout: no payment is taken. The live store will hand over to Shopify Checkout with the same cart.</p></form></div>
-<aside class="summary"><h3 class="h4" style="margin-bottom:14px">Order summary</h3><div id="co-lines"></div><div class="hr" style="margin:16px 0"></div><div class="row" style="display:flex;justify-content:space-between"><span>Subtotal</span><b id="co-sub">€0</b></div><div class="row" style="display:flex;justify-content:space-between;margin-top:6px"><span>Shipping</span><b id="co-ship">–</b></div><div class="row" style="display:flex;justify-content:space-between;margin-top:12px;font-size:20px"><span>Total incl. VAT</span><b id="co-total">€0</b></div><p class="muted" style="font-size:12.5px;margin-top:14px">Ships within 24h · 30-day returns · 2-year warranty</p></aside></div></section>'''
-    return simple_page('checkout.html', 'Checkout', 'Secure checkout.', body)
+<aside class="summary"><h3 class="h4" style="margin-bottom:14px">Order summary</h3><div id="co-lines"></div><div class="hr" style="margin:16px 0"></div><div class="row"><span>Subtotal</span><b id="co-sub">€0</b></div><div class="row"><span>Shipping</span><b id="co-ship">–</b></div><div class="row total"><span>Total incl. VAT</span><b id="co-total">€0</b></div><p class="muted" style="font-size:12.5px;margin-top:14px">Ships within 24h · 30-day returns · 2-year warranty</p></aside></div></section>'''
+    return simple_page('checkout.html', 'Checkout', 'Secure checkout.', body, noindex=True)
 
 def page_thanks():
-    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px">Your order <b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="muted">Questions? {esc(BRAND['email'])} · {esc(BRAND['phone'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
-    return simple_page('thank-you.html', 'Thank you', 'Order confirmation.', body)
+    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px">Your order <b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="muted">Questions? {esc(BRAND['email'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
+    return simple_page('thank-you.html', 'Thank you', 'Order confirmation.', body, noindex=True)
 
 def page_404():
     body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">404</div><h1 class="h1" style="margin:12px 0 14px">That page drove off.</h1><p class="lead" style="margin:0 auto 24px">The page you are looking for does not exist or has moved. Try the shop or search for an article number.</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-gold" href="shop.html">Go to the shop</a><a class="btn btn-ghost" href="index.html">Home</a></div></div></section>'''
-    return simple_page('404.html', 'Page not found', 'Page not found.', body)
+    return simple_page('404.html', 'Page not found', 'Page not found.', body, noindex=True)
 
 # ---------------------------------------------------------------- catalog.js + csv + sitemap
 def write_catalog_js():
@@ -698,6 +703,8 @@ def write_shopify_csv():
     cols = ['Handle', 'Title', 'Body (HTML)', 'Vendor', 'Product Category', 'Type', 'Tags', 'Published', 'Option1 Name', 'Option1 Value', 'Option2 Name', 'Option2 Value', 'Option3 Name', 'Option3 Value', 'Variant SKU', 'Variant Grams', 'Variant Inventory Tracker', 'Variant Inventory Qty', 'Variant Inventory Policy', 'Variant Fulfillment Service', 'Variant Price', 'Variant Compare At Price', 'Variant Requires Shipping', 'Variant Taxable', 'Variant Barcode', 'Image Src', 'Image Position', 'Image Alt Text', 'Gift Card', 'SEO Title', 'SEO Description', 'Variant Weight Unit', 'Status']
     rows = []
     for p in PRODUCTS:
+        if p.get('quote_only'):
+            continue
         body = ''.join(f'<p>{H.escape(x)}</p>' for x in p['description']) + '<h3>Key features</h3><ul>' + ''.join(f'<li>{H.escape(f)}</li>' for f in p['features']) + '</ul><h3>Specifications</h3><table>' + ''.join(f'<tr><th>{H.escape(k)}</th><td>{H.escape(v)}</td></tr>' for k, v in (p.get('specs') or {}).items()) + '</table>'
         opt_names = list((p['variants'][0].get('options') or {}).keys())[:3]
         tags = ','.join([CAT[p['category']]['name']] + [VEH[a]['name'] for a in p.get('applications', []) if a in VEH] + p.get('badges', []))
@@ -718,6 +725,32 @@ def write_shopify_csv():
             rows.append(row)
         for j in range(len(p['variants']), len(imgs)):
             row = {c: '' for c in cols}; row['Handle'] = p['id']; row['Image Src'] = f'{SITE_URL}/{imgs[j]}'; row['Image Position'] = j + 1; row['Image Alt Text'] = p['name']; rows.append(row)
+    import itertools
+    for b in BUNDLES:
+        groups = [(it['variant_group'], it['choices']) for it in b['items'] if it.get('choices')][:3]
+        combos = list(itertools.product(*[g[1] for g in groups])) if groups else [()]
+        body = ''.join(f'<p>{H.escape(x)}</p>' for x in b['description']) + '<h3>Included</h3><ul>' + ''.join(f'<li>{it["qty"]}x {H.escape(P[it["product"]]["name"])}</li>' for it in b['items']) + '</ul>'
+        for i, combo in enumerate(combos):
+            choice = []; ci = 0
+            for it in b['items']:
+                if it.get('choices'):
+                    choice.append(combo[ci]); ci += 1
+                else:
+                    choice.append(it['sku'])
+            full, price = bundle_calc(b, choice)
+            row = {c: '' for c in cols}
+            if i == 0:
+                row.update({'Title': b['name'], 'Body (HTML)': body, 'Vendor': 'Pegasus Depot', 'Type': 'Kit', 'Tags': ','.join(['Kit'] + [VEH[a]['name'] for a in b.get('for', []) if a in VEH]), 'Published': 'TRUE', 'SEO Title': f'{b["name"]} · save {int(b["discount"]*100)}%', 'SEO Description': b['summary'][:320], 'Status': 'active'})
+            row['Handle'] = 'kit-' + b['id']
+            for n, (gname, _) in enumerate(groups):
+                row[f'Option{n+1} Name'] = gname if i == 0 else ''
+                row[f'Option{n+1} Value'] = SKU[combo[n]][1]['label']
+            if not groups:
+                row['Option1 Name'] = 'Title' if i == 0 else ''; row['Option1 Value'] = 'Default Title'
+            row.update({'Variant SKU': 'KIT-' + b['id'].upper() + ('-' + '-'.join(combo) if combo else ''), 'Variant Inventory Tracker': 'shopify', 'Variant Inventory Qty': '10', 'Variant Inventory Policy': 'continue', 'Variant Fulfillment Service': 'manual', 'Variant Price': price, 'Variant Compare At Price': full, 'Variant Requires Shipping': 'TRUE', 'Variant Taxable': 'TRUE', 'Variant Weight Unit': 'kg'})
+            if i == 0:
+                row['Image Src'] = f'{SITE_URL}/{scene(b["scene"], 1400)}'; row['Image Position'] = 1; row['Image Alt Text'] = b['name']
+            rows.append(row)
     with open(ROOT / 'shopify-products.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=cols); w.writeheader(); w.writerows(rows)
     with open(ROOT / 'shopify-bundles.csv', 'w', newline='', encoding='utf-8') as f:
@@ -732,6 +765,18 @@ def write_sitemap(urls):
     (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
     (ROOT / 'CNAME').write_text(BRAND['domain'] + '\n')
 
+_lid = [0]
+def label_ids(html):
+    def f(m):
+        tag = m.group(3)
+        ex = re.search(r'\bid="([^"]+)"', tag)
+        if ex:
+            return f'<label for="{ex.group(1)}">{m.group(1)}</label><{m.group(2)}{tag}'
+        _lid[0] += 1
+        i = f'f{_lid[0]}'
+        return f'<label for="{i}">{m.group(1)}</label><{m.group(2)} id="{i}"{tag}'
+    return re.sub(r'<label>([^<]+)</label><(input|select|textarea)\b([^>]*)', f, html)
+
 # ---------------------------------------------------------------- main
 def main():
     shutil.copy(ROOT / 'src/site.css', ROOT / 'assets/css/site.css')
@@ -740,6 +785,9 @@ def main():
     shutil.copy(ROOT / og, IMG_OUT / 'og-default.webp')
     urls = []
     def w(path, html):
+        html = label_ids(html)
+        if path == '404.html':
+            html = re.sub(r'(href|src)="(?!https?:|mailto:|tel:|data:|#|/)', r'\1="/', html).replace('data-root=""', 'data-root="/"')
         (ROOT / path).write_text(html, encoding='utf-8'); urls.append(path)
     w('index.html', page_index())
     w('shop.html', page_shop())
@@ -749,7 +797,7 @@ def main():
     for v in VEHICLES: w(f'vehicles/{v["id"]}.html', page_vehicle(v))
     w('about.html', page_about()); w('trade.html', page_trade()); w('contact.html', page_contact())
     w('shipping-returns.html', page_shipping()); w('terms.html', page_terms()); w('privacy.html', page_privacy())
-    w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); (ROOT / '404.html').write_text(page_404(), encoding='utf-8')
+    w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); w('404.html', page_404()); urls.remove('404.html')
     write_catalog_js(); write_shopify_csv(); write_sitemap([u for u in urls if u not in ('checkout.html', 'thank-you.html')])
     print(f'Built {len(urls)} pages, {len(PRODUCTS)} products, {len(BUNDLES)} bundles, {len(VEHICLES)} vehicle pages.')
 

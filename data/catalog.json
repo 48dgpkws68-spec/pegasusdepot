@@ -5,12 +5,81 @@
     "tagline": "Vehicle Ventilation & Comfort",
     "domain": "pegasusdepot.com",
     "email": "hello@pegasusdepot.com",
-    "phone": "+31 (0)318 576 744",
-    "address": "The Netherlands (EU warehouse)",
+    "phone": "",
+    "address": "EU warehouse, the Netherlands",
     "currency": "EUR",
     "vat_note": "All prices include 21% VAT. Ex-VAT pricing available for business accounts at checkout.",
     "free_shipping_from": 150,
-    "ships_in": "Ships within 24h from our Dutch warehouse"
+    "ships_in": "Ships within 24h from our Dutch warehouse",
+    "shipping": {
+      "zones": [
+        {
+          "id": "nlbe",
+          "label": "Netherlands & Belgium",
+          "countries": [
+            "Netherlands",
+            "Belgium"
+          ],
+          "price": 6.95,
+          "free_from": 150
+        },
+        {
+          "id": "eu1",
+          "label": "Germany, France, Luxembourg, Austria, Denmark",
+          "countries": [
+            "Germany",
+            "France",
+            "Luxembourg",
+            "Austria",
+            "Denmark"
+          ],
+          "price": 9.95,
+          "free_from": 150
+        },
+        {
+          "id": "eu",
+          "label": "Rest of EU",
+          "countries": [
+            "Italy",
+            "Spain",
+            "Sweden",
+            "Ireland",
+            "Poland",
+            "Portugal",
+            "Finland",
+            "Czechia",
+            "Hungary",
+            "Romania",
+            "Greece",
+            "Slovakia",
+            "Slovenia",
+            "Croatia",
+            "Bulgaria",
+            "Estonia",
+            "Latvia",
+            "Lithuania",
+            "Other EU"
+          ],
+          "price": 14.95,
+          "free_from": 150
+        },
+        {
+          "id": "noneu",
+          "label": "UK, Switzerland, Norway",
+          "countries": [
+            "United Kingdom",
+            "Switzerland",
+            "Norway"
+          ],
+          "price": null,
+          "free_from": null
+        }
+      ],
+      "oversize_categories": [
+        "roof-hatches"
+      ],
+      "oversize_price": 29
+    }
   },
   "categories": [
     {
@@ -165,7 +234,6 @@
         "assets/media/20210709_155303-scaled.jpg"
       ],
       "drawing": "assets/products/02-2200-tekening-scaled.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-08-1.pdf",
       "applications": [
         "commercial-vans",
         "horse-trailers",
@@ -206,7 +274,17 @@
           "q": "How do I mount it?",
           "a": "Cut a 230 mm hole, protect the edge against corrosion, point the arrow on the ring in the driving direction and bond the ring with an MS polymer adhesive or screw it through the eight rim holes. Fit the interior grille or valve before wiring."
         }
-      ]
+      ],
+      "addons": [
+        "switch-fan",
+        "speedcontrol",
+        "v12-valve",
+        "snowfilter"
+      ],
+      "image_by_option": {
+        "Black": 1,
+        "White": 0
+      }
     },
     {
       "id": "le-mans-ll",
@@ -293,7 +371,6 @@
         "assets/products/02-4200-foto.webp"
       ],
       "drawing": "assets/products/02-4200-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-09.pdf",
       "applications": [
         "commercial-vans",
         "animal-transport",
@@ -314,8 +391,14 @@
         },
         {
           "q": "Can I control the speed?",
-          "a": "Yes. Choose the version with integrated speed control unit, or add our separate Speedcontrol 30-3004."
+          "a": "Yes: order the 02-4250 (12V) or 02-4350 (24V) version with the integrated speed control unit. The separate Speedcontrol 30-3004 is designed for the brushed Le Mans and Round ventilators."
         }
+      ],
+      "addons": [
+        "switch-square",
+        "flower-power",
+        "floor-ventilator-129",
+        "snowfilter"
       ]
     },
     {
@@ -413,7 +496,6 @@
         "assets/products/02-0200-foto.webp"
       ],
       "drawing": "assets/products/02-0200-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-07.pdf",
       "applications": [
         "campers",
         "commercial-vans",
@@ -435,6 +517,12 @@
           "q": "Le Mans or Round: which should I pick?",
           "a": "Technically identical (850 m³/h, 80 W). The Le Mans has a lower, more aerodynamic cover; the Round suits classic roofs and tight spaces. Both use a 230 mm opening."
         }
+      ],
+      "addons": [
+        "switch-round",
+        "speedcontrol",
+        "grill-large",
+        "snowfilter"
       ]
     },
     {
@@ -525,7 +613,6 @@
         "assets/media/ingeklapt-scaled.jpg"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-productsheet-02-5000-2.pdf",
       "applications": [
         "campers",
         "commercial-vans",
@@ -542,6 +629,10 @@
           "q": "Does it need a switch?",
           "a": "Yes, a simple on/off or one of our 3-way switches. The Winglet extracts only, so you will use just one position."
         }
+      ],
+      "addons": [
+        "switch-round",
+        "floor-ventilator-80"
       ]
     },
     {
@@ -608,7 +699,6 @@
         "assets/products/02-7100-foto1-scaled.webp"
       ],
       "drawing": "assets/products/02-7100-tekening-scaled.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-10-1.pdf",
       "applications": [
         "dog-transport",
         "horse-trailers",
@@ -624,6 +714,9 @@
           "q": "Does it ventilate when parked?",
           "a": "Only when there is wind. For guaranteed airflow when stationary, choose an electric model such as the Le Mans or Winglet, or combine the Turbo II with a floor ventilator for natural convection."
         }
+      ],
+      "addons": [
+        "floor-ventilator-129"
       ]
     },
     {
@@ -691,7 +784,6 @@
         "assets/media/TURBO-III-3-scaled.jpg"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTSHEET-02-6000-02-6100-zonder-label.pdf",
       "applications": [
         "marine",
         "dog-transport",
@@ -703,7 +795,10 @@
         "floor-ventilator-80",
         "winglet"
       ],
-      "faq": []
+      "faq": [],
+      "addons": [
+        "floor-ventilator-80"
+      ]
     },
     {
       "id": "exhaust-ventilator",
@@ -760,11 +855,9 @@
       ],
       "images": [
         "assets/products/02-1030-foto-scaled.webp",
-        "assets/media/EXHAUST-VENTILATOR-scaled.jpg",
-        "assets/products/02-1030-kopie.webp"
+        "assets/media/EXHAUST-VENTILATOR-scaled.jpg"
       ],
-      "drawing": "assets/media/02-1030-tekening-1-scaled.jpg",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-11.pdf",
+      "drawing": "assets/products/02-1030-kopie.webp",
       "applications": [
         "commercial-vans",
         "dog-transport",
@@ -775,7 +868,12 @@
         "grill-small",
         "floor-ventilator-129"
       ],
-      "faq": []
+      "faq": [],
+      "addons": [
+        "rotary-valve",
+        "grill-small",
+        "floor-ventilator-129"
+      ]
     },
     {
       "id": "v12-valve",
@@ -791,12 +889,13 @@
       "description": [
         "The V12 is the interior valve most customers pair with the Le Mans. It covers the 230 mm roof opening with a clean Ø 290 mm louvre (only 20 mm high) that you can open and close by hand, or electrically from your dashboard with the 12/24V version. It also acts as a finger guard for the fan blades.",
         "Made from high-quality ABS, it is a statement piece rather than just a functional cover. Three colour combinations let it blend into any interior: white, grey or dark grey. Designed for vehicles with a headliner or ceiling.",
-        "Tip: order the electric version together with a Le Mans and a 3-way switch for a fully remote-controlled ventilation system."
+        "Tip: order the electric version together with a Le Mans, a 3-way switch for the fan and a separate on/off switch for the valve, and you have a fully remote-controlled ventilation system."
       ],
       "features": [
         "Ø 290 mm, covers the 230 mm roof opening",
         "Open and close the airflow, adjustable louvres",
         "Only 20 mm high, 0.5 kg",
+        "Electric version is operated with a separate on/off switch (not included)",
         "Manual or electric 12V/24V",
         "High-quality ABS, three colour schemes",
         "Fits Le Mans, Le Mans LL and Round rooftop ventilators"
@@ -878,7 +977,6 @@
         "assets/media/PMH10.jpg"
       ],
       "drawing": "assets/products/35-2400-tekening-scaled.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-19.pdf",
       "applications": [
         "horse-trailers",
         "buses-coaches",
@@ -897,7 +995,15 @@
           "q": "Does it fit the Le Mans?",
           "a": "Yes. The V12 is designed for the 230 mm opening of the Le Mans, Le Mans LL and Round rooftop ventilators."
         }
-      ]
+      ],
+      "addons": [
+        "switch-square"
+      ],
+      "image_by_option": {
+        "Dark grey": 1,
+        "White": 0,
+        "Grey": 0
+      }
     },
     {
       "id": "flower-power",
@@ -1027,7 +1133,6 @@
         "assets/products/35-2910-foto-scaled.webp"
       ],
       "drawing": "assets/products/35-2820-tekening-scaled.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-17.pdf",
       "applications": [
         "horse-trailers",
         "campers",
@@ -1039,7 +1144,12 @@
         "rooftop-round",
         "le-mans-ll"
       ],
-      "faq": []
+      "faq": [],
+      "image_by_option": {
+        "No LED": 0,
+        "LED 12V": 1,
+        "LED 24V": 1
+      }
     },
     {
       "id": "rotating-valve-300",
@@ -1118,7 +1228,6 @@
         "assets/products/35-2200-foto-scaled.webp"
       ],
       "drawing": "assets/products/35-2120-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-18.pdf",
       "applications": [
         "commercial-vans",
         "campers",
@@ -1129,7 +1238,11 @@
         "le-mans",
         "rooftop-round"
       ],
-      "faq": []
+      "faq": [],
+      "image_by_option": {
+        "No": 0,
+        "12/24V light": 1
+      }
     },
     {
       "id": "rotary-valve",
@@ -1171,7 +1284,6 @@
         "assets/products/35-3003-foto.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-21.pdf",
       "applications": [
         "commercial-vans",
         "dog-transport"
@@ -1258,7 +1370,6 @@
         "assets/products/35-4080-foto.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-22.pdf",
       "applications": [
         "marine",
         "horse-trailers",
@@ -1329,7 +1440,6 @@
         "assets/products/35-2610-foto.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-23.pdf",
       "applications": [
         "commercial-vans",
         "dog-transport"
@@ -1399,7 +1509,6 @@
         "assets/products/35-2720-foto-scaled.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-20.pdf",
       "applications": [
         "commercial-vans",
         "ambulance-emergency",
@@ -1456,7 +1565,6 @@
         "assets/products/30-3004-foto.webp"
       ],
       "drawing": "assets/products/30-3004-tekening-scaled.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-12.pdf",
       "applications": [
         "ambulance-emergency",
         "campers",
@@ -1495,7 +1603,8 @@
         "Double changeover (reverses fan direction)",
         "Round built-in model, Ø 20 mm hole",
         "Works with Le Mans, Le Mans LL, Round and Winglet",
-        "Combine with Speedcontrol"
+        "Combine with Speedcontrol",
+        "On extraction-only models (Le Mans LL, Winglet) simply use a single position"
       ],
       "specs": {
         "Type": "3-way rocker switch, on-off-on",
@@ -1517,7 +1626,6 @@
         "assets/products/89-4002-Switch-round-1.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-SWITCHES.pdf",
       "applications": [
         "commercial-vans",
         "campers",
@@ -1550,7 +1658,8 @@
         "Double changeover (reverses fan direction)",
         "Square built-in model",
         "Works with Le Mans, Le Mans LL, Round and Winglet",
-        "Combine with Speedcontrol"
+        "Combine with Speedcontrol",
+        "On extraction-only models (Le Mans LL, Winglet) simply use a single position"
       ],
       "specs": {
         "Type": "3-way rocker switch, on-off-on",
@@ -1572,7 +1681,6 @@
         "assets/products/GC-switch-002-89-4005-NEW.webp"
       ],
       "drawing": "assets/media/GC-switch-002-89-4005-NEW.jpg",
-      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-SWITCHES.pdf",
       "applications": [
         "commercial-vans",
         "campers",
@@ -1606,7 +1714,8 @@
         "25 A at 12V · 15 A at 24V",
         "Double changeover (reverses fan direction)",
         "Rectangular built-in rocker",
-        "Combine with Speedcontrol"
+        "Combine with Speedcontrol",
+        "On extraction-only models (Le Mans LL, Winglet) simply use a single position"
       ],
       "specs": {
         "Type": "3-way rocker switch, on-off-on",
@@ -1628,7 +1737,6 @@
         "assets/products/89-4008-foto.webp"
       ],
       "drawing": "assets/products/89-4008-tekening.webp",
-      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-SWITCHES.pdf",
       "applications": [
         "ambulance-emergency",
         "buses-coaches",
@@ -1685,18 +1793,17 @@
         }
       ],
       "images": [
-        "assets/products/30-6000-foto2-scaled.webp",
-        "assets/products/30-6000-foto1fc.webp"
+        "assets/products/30-6000-foto2-scaled.webp"
       ],
       "drawing": "assets/products/30-6000-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-39.pdf",
       "applications": [
         "buses-coaches",
         "ambulance-emergency"
       ],
       "accessories": [
         "roof-hatch-electric-small",
-        "roof-hatch-electric-large"
+        "roof-hatch-electric-large",
+        "step-converter"
       ],
       "faq": [
         {
@@ -1705,7 +1812,67 @@
         },
         {
           "q": "My vehicle is 12V. Can I use it?",
-          "a": "Yes, with the 89-STEP12-24 converter. Contact us and we add it to your order."
+          "a": "Yes, with our 12V to 24V converter 89-STEP12-24 (sold separately, one per control unit)."
+        }
+      ],
+      "addons": [
+        "step-converter"
+      ]
+    },
+    {
+      "id": "step-converter",
+      "name": "12V to 24V Step-Up Converter 89-STEP12-24",
+      "short_name": "12V to 24V Converter",
+      "category": "controls",
+      "tagline": "Run the 24V hatch system on a 12V vehicle",
+      "badges": [
+        "For electric hatches",
+        "12V vehicles"
+      ],
+      "summary": "Step-up converter that lets the 24V electric roof hatches and the 30-6000 control unit run on a 12V vehicle. Required for every 12V installation of an electric hatch.",
+      "description": [
+        "Our electric roof hatches and the 30-6000 control unit are 24V units. Fit the 89-STEP12-24 converter between the 12V supply and the control unit and the complete hatch system runs on a 12V van, ambulance or horse trailer.",
+        "One converter per hatch system (one control unit with one or two hatches). Supplied with connection instructions; we are happy to advise on wiring."
+      ],
+      "features": [
+        "Converts 12V DC to 24V DC for the hatch system",
+        "One converter per control unit (1 or 2 hatches)",
+        "Required for 12V vehicles with electric roof hatches",
+        "Compact, wired inline with the control unit"
+      ],
+      "specs": {
+        "Input": "12V DC",
+        "Output": "24V DC",
+        "Use": "Electric roof hatches 90-5000-E / 90-6000-E with control unit 30-6000",
+        "Quantity": "1 per control unit"
+      },
+      "variants": [
+        {
+          "sku": "89-STEP12-24",
+          "label": "12V to 24V converter",
+          "options": {},
+          "price": 169,
+          "compare_at": 189
+        }
+      ],
+      "images": [
+        "assets/products/30-6000-foto2-scaled.webp"
+      ],
+      "drawing": null,
+      "applications": [
+        "ambulance-emergency",
+        "horse-trailers",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "control-unit",
+        "roof-hatch-electric-small",
+        "roof-hatch-electric-large"
+      ],
+      "faq": [
+        {
+          "q": "Do I need it?",
+          "a": "Only if your vehicle has a 12V electrical system and you install an electric roof hatch. 24V trucks, coaches and buses do not need it."
         }
       ]
     },
@@ -1750,7 +1917,6 @@
         "assets/products/89-5600-foto.webp"
       ],
       "drawing": "assets/products/89-5600-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-15.pdf",
       "applications": [
         "commercial-vans",
         "dog-transport",
@@ -1806,7 +1972,6 @@
         "assets/products/89-5700-foto.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-productsheet-89-5700-3.pdf",
       "applications": [
         "dog-transport",
         "commercial-vans",
@@ -1856,7 +2021,6 @@
         "assets/products/89-5010-foto2-scaled.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-14.pdf",
       "applications": [
         "horse-trailers",
         "commercial-vans",
@@ -1920,7 +2084,6 @@
         "assets/media/PMH14.jpg"
       ],
       "drawing": "assets/products/90-5000-DG-LUS-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-35.pdf",
       "applications": [
         "buses-coaches",
         "horse-trailers",
@@ -1987,7 +2150,6 @@
         "assets/media/noodhamer.jpg"
       ],
       "drawing": "assets/products/90-6000-DG-LUS-tekening-1.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-36.pdf",
       "applications": [
         "buses-coaches",
         "ambulance-emergency",
@@ -2050,7 +2212,6 @@
         "assets/media/PMH2.jpg"
       ],
       "drawing": "assets/products/90-5000-E-tekening.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-37.pdf",
       "applications": [
         "buses-coaches",
         "ambulance-emergency",
@@ -2058,9 +2219,14 @@
       ],
       "accessories": [
         "control-unit",
-        "roof-hatch-electric-large"
+        "roof-hatch-electric-large",
+        "step-converter"
       ],
-      "faq": []
+      "faq": [],
+      "addons": [
+        "control-unit",
+        "step-converter"
+      ]
     },
     {
       "id": "roof-hatch-electric-large",
@@ -2115,7 +2281,6 @@
         "assets/media/Jozef-1-scaled.webp"
       ],
       "drawing": "assets/media/90-6000-E-tekening.jpg",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-38.pdf",
       "applications": [
         "buses-coaches",
         "ambulance-emergency",
@@ -2123,9 +2288,14 @@
       ],
       "accessories": [
         "control-unit",
-        "roof-hatch-electric-small"
+        "roof-hatch-electric-small",
+        "step-converter"
       ],
-      "faq": []
+      "faq": [],
+      "addons": [
+        "control-unit",
+        "step-converter"
+      ]
     },
     {
       "id": "lighting-round",
@@ -2140,7 +2310,7 @@
       ],
       "summary": "Round Ø 150 mm interior dome light with 24 white and 6 blue LEDs (230 lm). Dual voltage 12/24V, IP67, IK10, 50% dimming through wiring and a blue night-light mode. White or grey housing. Proudly made in the Netherlands.",
       "description": [
-        "The round Dome LED Light is the interior light we fit in horse trucks, ambulances and commercial vehicles that need reliable, glare-free lighting. 24 white LEDs give 230 lm of bright working light at only 2 W, 6 blue LEDs provide a soft night mode that does not disturb animals or patients.",
+        "The round Dome LED Light is the interior light fitted in horse trucks, ambulances and commercial vehicles that need reliable, glare-free lighting. 24 white LEDs give 230 lm of bright working light at only 2 W, 6 blue LEDs provide a soft night mode that does not disturb animals or patients.",
         "Dual voltage 12V/24V, IP67 sealed against dust and water, IK10 impact resistant, and dimmable to 50% through the wiring (black ground, red 100%, white 50%, blue night light). Only 13.5 mm thick and 150 g. Rated for 40,000 hours, -40 to +85 °C. Available in white or grey, and made in the Netherlands."
       ],
       "features": [
@@ -2191,7 +2361,6 @@
         "assets/media/DSC_0841-1-1280x853-1-1.webp"
       ],
       "drawing": "assets/products/92-GC01-tekening-scaled.webp",
-      "pdf": null,
       "applications": [
         "horse-trailers",
         "ambulance-emergency",
@@ -2203,7 +2372,14 @@
         "lighting-rectangle",
         "roof-hatch-manual-small"
       ],
-      "faq": []
+      "faq": [],
+      "addons": [
+        "lighting-rectangle"
+      ],
+      "image_by_option": {
+        "Grey": 1,
+        "White": 0
+      }
     },
     {
       "id": "lighting-rectangle",
@@ -2270,7 +2446,6 @@
         "assets/media/Jozef-scaled.jpg"
       ],
       "drawing": "assets/products/92-GC05-tekening-scaled.webp",
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-25.pdf",
       "applications": [
         "buses-coaches",
         "ambulance-emergency",
@@ -2281,7 +2456,14 @@
         "lighting-round",
         "roof-hatch-manual-large"
       ],
-      "faq": []
+      "faq": [],
+      "addons": [
+        "lighting-round"
+      ],
+      "image_by_option": {
+        "Grey": 0,
+        "White": 1
+      }
     },
     {
       "id": "axial-ventilator",
@@ -2324,7 +2506,6 @@
         "assets/media/03-3010-foto.jpg"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-40-1.pdf",
       "applications": [
         "buses-coaches",
         "commercial-vans"
@@ -2379,7 +2560,6 @@
         "assets/media/04-8015-foto.jpg"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-40-1.pdf",
       "applications": [
         "buses-coaches",
         "ambulance-emergency"
@@ -2432,7 +2612,6 @@
         "assets/products/grid2.webp"
       ],
       "drawing": null,
-      "pdf": "assets/pdf/GC-PRODUCTBROCHURE-06-2013-LR-40-1.pdf",
       "applications": [
         "campers",
         "marine",
@@ -2488,8 +2667,8 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 329,
-          "compare_at": 369
+          "price": 327,
+          "compare_at": null
         },
         {
           "sku": "24-0009",
@@ -2497,8 +2676,8 @@
           "options": {
             "Colour": "White"
           },
-          "price": 329,
-          "compare_at": 369
+          "price": 327,
+          "compare_at": null
         }
       ],
       "images": [
@@ -2508,11 +2687,67 @@
         "assets/media/Project1-1480x1100-1.webp"
       ],
       "drawing": "assets/products/MCU-24.0009-exterior-drawing.webp",
-      "pdf": "assets/pdf/GC-OK2314194-PAGINA-CEILINGFLOW-2.pdf",
       "applications": [],
       "accessories": [
+        "ceilingflow-frame",
         "air-purifier-large",
         "air-purifier-small"
+      ],
+      "faq": [],
+      "addons": [
+        "ceilingflow-frame",
+        "air-purifier-small"
+      ]
+    },
+    {
+      "id": "ceilingflow-frame",
+      "name": "Ceilingflow Frame for Solid Ceilings",
+      "short_name": "Ceilingflow Frame",
+      "category": "indoor-climate",
+      "tagline": "Mount the Ceilingflow on a fixed or industrial ceiling",
+      "badges": [
+        "Accessory"
+      ],
+      "summary": "Surface-mount frame that lets you fit the Ceilingflow ceiling fan where there is no suspended ceiling: concrete, plaster or industrial roof decks. White or black to match the fan.",
+      "description": [
+        "The Ceilingflow is designed to drop into a 600 x 600 suspended-ceiling tile. No suspended ceiling? This frame mounts to any solid ceiling and holds the fan at the correct distance for airflow. Choose white (24-0013) or black (24-0113) to match your Ceilingflow."
+      ],
+      "features": [
+        "For solid, plaster or industrial ceilings",
+        "Matches Ceilingflow 24-0008 (black) / 24-0009 (white)",
+        "Quick mounting with standard fixings"
+      ],
+      "specs": {
+        "Fits": "Ceilingflow 24-0008 / 24-0009",
+        "Colours": "White (24-0013) or Black (24-0113)"
+      },
+      "variants": [
+        {
+          "sku": "24-0013",
+          "label": "White",
+          "options": {
+            "Colour": "White"
+          },
+          "price": 49,
+          "compare_at": null
+        },
+        {
+          "sku": "24-0113",
+          "label": "Black",
+          "options": {
+            "Colour": "Black"
+          },
+          "price": 49,
+          "compare_at": null
+        }
+      ],
+      "images": [
+        "assets/products/plafondventilator-0-scaled.webp"
+      ],
+      "drawing": null,
+      "applications": [],
+      "accessories": [
+        "ceilingflow"
       ],
       "faq": []
     },
@@ -2564,7 +2799,6 @@
         "assets/products/GC125-3.webp"
       ],
       "drawing": "assets/products/Technical-drawing-GC-125-Correct.webp",
-      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-GC125.pdf",
       "applications": [],
       "accessories": [
         "ceilingflow",
@@ -2621,7 +2855,6 @@
         "assets/products/GC600-grijs-2.webp"
       ],
       "drawing": "assets/products/Technical-drawing-GC-600-correct.webp",
-      "pdf": "assets/pdf/GC-OK2415140-DATASHEET-GC600.pdf",
       "applications": [],
       "accessories": [
         "ceilingflow",
