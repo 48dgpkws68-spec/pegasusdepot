@@ -3,7 +3,7 @@
 Reads data/*.json, writes HTML pages, optimised images, catalog.js and Shopify import CSVs.
 Run:  python3 build.py
 """
-import json, os, re, csv, shutil, html as H
+import json, os, re, csv, shutil, base64, html as H
 from pathlib import Path
 from PIL import Image
 
@@ -154,6 +154,15 @@ FAVICON = "data:image/svg+xml," + FAV_SVG.replace('#', '%23').replace('"', "'").
 
 def rel(depth):
     return '../' * depth
+
+PRIVATE = json.load(open(ROOT / 'data/private.json')) if (ROOT / 'data/private.json').exists() else {}
+FORM_TARGET = PRIVATE.get('form_target') or BRAND['email']
+FORM_ENDPOINT_B64 = base64.b64encode(('https://formsubmit.co/' + FORM_TARGET).encode()).decode()
+def form_open(subject, depth=0, cls='form', extra=''):
+    r = rel(depth)
+    return (f'<form class="{cls}" action="#" method="POST" data-fs="{FORM_ENDPOINT_B64}" {extra}>'
+            f'<input type="hidden" name="_subject" value="{esc(subject)}"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false">'
+            f'<input type="hidden" name="_next" value="{SITE_URL}/thank-you.html?form=1"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">')
 
 def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
@@ -316,7 +325,7 @@ def newsletter(depth=0):
     r = rel(depth)
     return f'''<section class="section ivory"><div class="wrap"><div class="band reveal">
   <div><div class="eyebrow">Trade &amp; fleet</div><h2 class="h2" style="margin:12px 0 14px">Bodybuilder, converter or fleet manager?</h2><p class="lead">Open a trade account for volume pricing, ex-VAT invoicing and a dedicated contact who answers within 24 hours.</p></div>
-  <div><form data-demo><input type="email" placeholder="Your work email" required><button class="btn btn-gold">Request trade pricing</button></form><p class="muted" style="font-size:12.5px;margin-top:12px">Or email {esc(BRAND['email'])}. No spam, no newsletters you did not ask for.</p></div>
+  <div>{form_open('Trade pricing request (band)', depth, cls='')}<input type="email" name="email" placeholder="Your work email" required><button class="btn btn-gold">Request trade pricing</button></form><p class="muted" style="font-size:12.5px;margin-top:12px">Or email {esc(BRAND['email'])}. No spam, no newsletters you did not ask for.</p></div>
 </div></div></section>'''
 
 def trust_strip():
@@ -633,14 +642,14 @@ def page_trade():
 <section class="page-hero"><img class="bg" src="{scene('assets/media/IMG_010422.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / <span>Trade</span></div><div class="eyebrow">Trade &amp; fleet accounts</div><h1 class="h1">Volume pricing for the people who fit it for a living.</h1><p class="lead">Bodybuilders, van converters, horsebox manufacturers, ambulance outfitters, fleet workshops and dealers: open a trade account and buy at trade prices, ex-VAT, with a dedicated contact.</p></div></section>
 <section class="section ivory"><div class="wrap contact-grid"><div><div class="eyebrow">What you get</div><h2 class="h2" style="margin:12px 0 18px">Built around your workshop, not our webshop.</h2>
 <ul class="checks"><li>{ICON['check']}<div><b>Tiered volume pricing</b>Discounts from the first 10 units, better at 50 and project pricing above.</div></li><li>{ICON['check']}<div><b>Ex-VAT invoicing and 30-day terms</b>For approved EU businesses with a valid VAT number.</div></li><li>{ICON['check']}<div><b>Project support</b>Drawings, EMC reports, cut-out templates and airflow advice for new vehicle designs.</div></li><li>{ICON['check']}<div><b>Custom colours and OEM options</b>Grilles and valves in your fleet colour, motorless versions, private label on request.</div></li><li>{ICON['check']}<div><b>Call-off stock</b>Reserve quantities for a build programme and call them off as you need them.</div></li></ul></div>
-<div class="info-card"><form class="form" data-demo><div class="form-row"><div class="field"><label>Company</label><input required></div><div class="field"><label>VAT number</label><input></div></div><div class="form-row"><div class="field"><label>Name</label><input required></div><div class="field"><label>Email</label><input type="email" required></div></div><div class="field"><label>What do you build or run?</label><select><option>Van conversions / bodybuilding</option><option>Horseboxes / animal transport</option><option>Buses / coaches</option><option>Ambulances / emergency vehicles</option><option>Campers / leisure</option><option>Marine</option><option>Fleet workshop</option><option>Dealer / reseller</option></select></div><div class="field"><label>Expected annual volume</label><select><option>10 to 50 units</option><option>50 to 250 units</option><option>250+ units</option></select></div><div class="field"><label>Message</label><textarea rows="4" placeholder="Which products, which vehicles, which timeline?"></textarea></div><button class="btn btn-gold btn-block">Request a trade account {ICON['arrow']}</button><p class="note">We reply within one working day. Existing dealers keep their current terms.</p></form></div></div></section>
+<div class="info-card">{form_open('Trade account request')}<div class="form-row"><div class="field"><label>Company</label><input name="company" required></div><div class="field"><label>VAT number</label><input name="vat"></div></div><div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="field"><label>What do you build or run?</label><select name="segment"><option>Van conversions / bodybuilding</option><option>Horseboxes / animal transport</option><option>Buses / coaches</option><option>Ambulances / emergency vehicles</option><option>Campers / leisure</option><option>Marine</option><option>Fleet workshop</option><option>Dealer / reseller</option></select></div><div class="field"><label>Expected annual volume</label><select name="volume"><option>10 to 50 units</option><option>50 to 250 units</option><option>250+ units</option></select></div><div class="field"><label>Message</label><textarea name="message" rows="4" placeholder="Which products, which vehicles, which timeline?"></textarea></div><button class="btn btn-gold btn-block">Request a trade account {ICON['arrow']}</button><p class="note">We reply within one working day. Existing dealers keep their current terms.</p></form></div></div></section>
 {newsletter()}'''
     return simple_page('trade.html', 'Trade & fleet accounts', 'Trade pricing, ex-VAT invoicing and project support for bodybuilders, converters, fleets and dealers.', body)
 
 def page_contact():
     body = f'''
 <section class="page-hero" style="min-height:340px"><img class="bg" src="{scene('assets/media/Magazijn-1.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / <span>Contact</span></div><div class="eyebrow">Contact</div><h1 class="h1">Talk to an engineer, not a bot.</h1><p class="lead">Cut-out sizes, 12V or 24V, how many fans for a 7-metre body: ask us. We answer within 24 hours on working days, usually much faster.</p></div></section>
-<section class="section ivory"><div class="wrap contact-grid"><div class="info-card"><form class="form" data-demo><div class="form-row"><div class="field"><label>Name</label><input required></div><div class="field"><label>Email</label><input type="email" required></div></div><div class="form-row"><div class="field"><label>Phone</label><input></div><div class="field"><label>Vehicle type</label><select>{''.join(f'<option>{esc(v["name"])}</option>' for v in VEHICLES)}<option>Other</option></select></div></div><div class="field"><label>Message</label><textarea rows="6" placeholder="Tell us about the vehicle, the products you have in mind and any article numbers."></textarea></div><button class="btn btn-gold btn-block">Send message {ICON['arrow']}</button></form></div>
+<section class="section ivory"><div class="wrap contact-grid"><div class="info-card">{form_open('Contact form')}<div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="form-row"><div class="field"><label>Phone</label><input name="phone"></div><div class="field"><label>Vehicle type</label><select name="vehicle">{''.join(f'<option>{esc(v["name"])}</option>' for v in VEHICLES)}<option>Other</option></select></div></div><div class="field"><label>Message</label><textarea name="message" rows="6" placeholder="Tell us about the vehicle, the products you have in mind and any article numbers."></textarea></div><button class="btn btn-gold btn-block">Send message {ICON['arrow']}</button></form></div>
 <div style="display:grid;gap:16px"><div class="info-card"><b>Email</b><span>{esc(BRAND['email'])} · Mon to Fri 08:30 to 17:00 CET</span>{('<b>Phone</b><span>' + esc(BRAND['phone']) + '</span>') if BRAND.get('phone') else ''}<b>Warehouse</b><span>{esc(BRAND['address'])}</span></div><div class="info-card"><b>Technical documents</b><span>Most product pages carry a dimensional drawing; technical datasheets and EMC test reports are sent on request within one working day.</span></div><div class="info-card"><b>Returns</b><span>Unused items in original packaging can be returned within 30 days. See <a href="shipping-returns.html" style="text-decoration:underline">shipping &amp; returns</a>.</span></div></div></div></section>'''
     return simple_page('contact.html', 'Contact', 'Contact Pegasus Depot for technical advice, quotes and trade accounts.', body)
 
@@ -683,7 +692,7 @@ def page_checkout():
     return simple_page('checkout.html', 'Checkout', 'Secure checkout.', body, noindex=True)
 
 def page_thanks():
-    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px">Your order <b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="muted">Questions? {esc(BRAND['email'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
+    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow" id="ty-eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px" id="ty-order">Your order <b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="lead" style="margin:0 auto 10px;display:none" id="ty-form">Your message has arrived. A specialist replies within one working day, usually much faster.</p><p class="muted">Questions? {esc(BRAND['email'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
     return simple_page('thank-you.html', 'Thank you', 'Order confirmation.', body, noindex=True)
 
 def page_404():

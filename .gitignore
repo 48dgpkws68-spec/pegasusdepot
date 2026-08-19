@@ -9,3 +9,4 @@ __pycache__/
 assets/pdf/
 docs/
 PRICING.md
+data/private.json

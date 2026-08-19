@@ -304,7 +304,10 @@
       location.href = ROOT + 'thank-you.html?o=' + order.id;
     });
   }
-  const ty = $('#order-id'); if (ty) { const o = new URLSearchParams(location.search).get('o'); ty.textContent = o || 'PD-DEMO'; }
+  const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = 'Message received'; } else { ty.textContent = qp.get('o') || 'PD-DEMO'; } }
+
+  /* ---------- forms: decode endpoint at runtime ---------- */
+  $$('form[data-fs]').forEach(f => { try { f.action = atob(f.dataset.fs); } catch (e) {} f.addEventListener('submit', () => { const b = f.querySelector('button'); if (b) { b.disabled = true; b.textContent = 'Sending…'; } }); });
 
   /* ---------- contact prefill ---------- */
   (function () {
