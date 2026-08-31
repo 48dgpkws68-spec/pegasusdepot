@@ -290,18 +290,30 @@
     apply();
   }
 
-  /* ---------- checkout (prototype) ---------- */
+  /* ---------- checkout (hands the cart to Shopify Checkout) ---------- */
   const cof = $('#checkout-form');
   if (cof) {
     const cc = $('#co-country');
     if (cc) { cc.value = localStorage.getItem('pegasus_country') || 'Netherlands'; cc.addEventListener('change', () => { localStorage.setItem('pegasus_country', cc.value); renderCart(); }); }
+    // A kit maps to one Shopify variant: KIT-<ID> plus the chosen option SKUs, in the same order the CSV import generated them
+    const kitSku = (l) => {
+      const b = bundleById[l.id] || { items: [] };
+      const g = b.items.map((it, i) => it.choices ? (l.skus || [])[i] : null).filter(Boolean).slice(0, 3);
+      return 'KIT-' + l.id.toUpperCase() + (g.length ? '-' + g.join('-') : '');
+    };
     cof.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!cart.length) { toast('Your cart is empty'); return; }
-      const order = { id: 'PD-' + Math.random().toString(36).slice(2, 8).toUpperCase(), lines: cart, total: $('#co-total').textContent };
-      localStorage.setItem('pegasus_last_order', JSON.stringify(order));
-      cart = []; save();
-      location.href = ROOT + 'thank-you.html?o=' + order.id;
+      const country = localStorage.getItem('pegasus_country') || 'Netherlands';
+      if (shipping(subtotal(), country).quote) { location.href = ROOT + 'contact.html'; return; }
+      const S = C.shopify;
+      const parts = [];
+      for (const l of cart) {
+        const id = S && S.variants && S.variants[l.type === 'bundle' ? kitSku(l) : (l.skus || [])[0]];
+        if (!id) { toast('One item needs manual handling. Taking you to our contact page.'); setTimeout(() => { location.href = ROOT + 'contact.html'; }, 1400); return; }
+        parts.push(id + ':' + l.qty);
+      }
+      location.href = S.store + '/cart/' + parts.join(',');
     });
   }
   const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = 'Message received'; } else { ty.textContent = qp.get('o') || 'PD-DEMO'; } }

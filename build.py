@@ -22,6 +22,7 @@ for p in PRODUCTS:
     for v in p['variants']:
         SKU[v['sku']] = (p, v)
 B = {b['id']: b for b in BUNDLES}
+SHOPIFY = json.load(open(ROOT / 'data/shopify-map.json')) if (ROOT / 'data/shopify-map.json').exists() else None
 SITE_URL = 'https://' + BRAND['domain']
 IMG_OUT = ROOT / 'assets/img'
 IMG_OUT.mkdir(parents=True, exist_ok=True)
@@ -29,7 +30,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '4'
+VERSION = '5'
 
 # ---------------------------------------------------------------- images
 _img_cache = {}
@@ -682,12 +683,10 @@ def page_privacy():
 
 def page_checkout():
     body = f'''
-<section class="section ivory"><div class="wrap checkout"><div><div class="eyebrow">Checkout</div><h1 class="h1" style="margin:12px 0 8px">Almost there.</h1><p class="muted" style="margin-bottom:26px">Secure checkout · iDEAL, cards, PayPal, Bancontact · Invoice for approved trade accounts</p>
-<form class="form" id="checkout-form"><h3 class="h4">Contact</h3><div class="form-row"><div class="field"><label>Email</label><input type="email" required></div><div class="field"><label>Phone</label><input></div></div>
-<h3 class="h4" style="margin-top:10px">Delivery address</h3><div class="form-row"><div class="field"><label>First name</label><input required></div><div class="field"><label>Last name</label><input required></div></div><div class="field"><label>Company (optional)</label><input></div><div class="field"><label>Address</label><input required></div><div class="form-row"><div class="field"><label>Postcode</label><input required></div><div class="field"><label>City</label><input required></div></div><div class="field"><label>Country</label><select id="co-country"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Austria</option><option>Denmark</option><option>Luxembourg</option><option>Italy</option><option>Spain</option><option>Sweden</option><option>Ireland</option><option>Poland</option><option>Portugal</option><option>Finland</option><option>Czechia</option><option>Hungary</option><option>Romania</option><option>Greece</option><option>Other EU</option><option>United Kingdom</option><option>Switzerland</option><option>Norway</option></select></div>
-<h3 class="h4" style="margin-top:10px">Business details (optional)</h3><div class="field"><label>EU VAT number for ex-VAT invoicing</label><input placeholder="NL123456789B01"></div>
+<section class="section ivory"><div class="wrap checkout"><div><div class="eyebrow">Checkout</div><h1 class="h1" style="margin:12px 0 8px">Review your order.</h1><p class="muted" style="margin-bottom:26px">One step left. Your address and payment are completed on our secure checkout.</p>
+<form class="form" id="checkout-form"><h3 class="h4">Delivery country</h3><div class="field"><label>Country</label><select id="co-country"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Austria</option><option>Denmark</option><option>Luxembourg</option><option>Italy</option><option>Spain</option><option>Sweden</option><option>Ireland</option><option>Poland</option><option>Portugal</option><option>Finland</option><option>Czechia</option><option>Hungary</option><option>Romania</option><option>Greece</option><option>Other EU</option><option>United Kingdom</option><option>Switzerland</option><option>Norway</option></select></div>
 <h3 class="h4" style="margin-top:10px">Payment</h3><div class="pill-row"><span class="pill">iDEAL</span><span class="pill">Visa / Mastercard</span><span class="pill">PayPal</span><span class="pill">Bancontact</span><span class="pill">SEPA transfer</span><span class="pill">Invoice (trade)</span></div>
-<button class="btn btn-gold btn-lg btn-block" style="margin-top:18px">Place order {ICON['arrow']}</button><p class="note">Prototype checkout: no payment is taken. The live store will hand over to Shopify Checkout with the same cart.</p></form></div>
+<button class="btn btn-gold btn-lg btn-block" style="margin-top:18px">Place order {ICON['arrow']}</button><p class="note">You will be taken to our secure checkout to enter your delivery address and payment. All prices include VAT. For the United Kingdom, Switzerland and Norway we prepare a personal shipping quote first via the contact page.</p></form></div>
 <aside class="summary"><h3 class="h4" style="margin-bottom:14px">Order summary</h3><div id="co-lines"></div><div class="hr" style="margin:16px 0"></div><div class="row"><span>Subtotal</span><b id="co-sub">€0</b></div><div class="row"><span>Shipping</span><b id="co-ship">–</b></div><div class="row total"><span>Total incl. VAT</span><b id="co-total">€0</b></div><p class="muted" style="font-size:12.5px;margin-top:14px">Ships within 24h · 30-day returns · 2-year warranty</p></aside></div></section>'''
     return simple_page('checkout.html', 'Checkout', 'Secure checkout.', body, noindex=True)
 
@@ -705,6 +704,7 @@ def write_catalog_js():
         'brand': BRAND,
         'products': [{**{k: p[k] for k in ['id', 'name', 'short_name', 'category', 'tagline', 'summary', 'variants']}, 'images': [sq(i, 400) for i in p['images'][:1]], 'quote_only': p.get('quote_only', False)} for p in PRODUCTS],
         'bundles': [{**{k: b[k] for k in ['id', 'name', 'tagline', 'summary', 'discount', 'items']}, 'images': [sq(b['images'][0], 400)]} for b in BUNDLES],
+        'shopify': SHOPIFY,
     }
     (ROOT / 'assets/js/catalog.js').write_text('window.CATALOG=' + json.dumps(slim, ensure_ascii=False) + ';')
 
