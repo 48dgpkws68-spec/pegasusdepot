@@ -53,7 +53,9 @@
     $$('.cart-count').forEach(el => el.textContent = count() || '');
     const body = $('#cart-body'); if (!body) return;
     if (!cart.length) {
-      body.innerHTML = '<div class="empty"><b>Your cart is empty</b>Add a rooftop ventilator, a kit or an accessory to get started.<br><br><a class="btn btn-dark btn-sm" href="' + ROOT + 'shop.html">Browse the shop</a></div>';
+      let restore = '';
+      try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines && h.lines.length && Date.now() - h.t < 2 * 3600 * 1000) restore = '<br><br><button class="btn btn-sm" data-restore>Restore previous cart</button>'; } catch (e) {}
+      body.innerHTML = '<div class="empty"><b>Your cart is empty</b>Add a rooftop ventilator, a kit or an accessory to get started.<br><br><a class="btn btn-dark btn-sm" href="' + ROOT + 'shop.html">Browse the shop</a>' + restore + '</div>';
     } else {
       body.innerHTML = cart.map((l, i) => `
         <div class="ci">
@@ -80,12 +82,14 @@
     body.onclick = (e) => {
       const q = e.target.closest('[data-q]'); if (q) { const [i, d] = q.dataset.q.split(':').map(Number); setQty(i, cart[i].qty + d); }
       const r = e.target.closest('[data-rm]'); if (r) { e.preventDefault(); setQty(+r.dataset.rm, 0); }
+      if (e.target.closest('[data-restore]')) { try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines) { cart = h.lines; localStorage.removeItem('pegasus_handoff'); save(); toast('Cart restored'); } } catch (x) {} }
     };
     // checkout page summary
     const sum = $('#co-lines');
     if (sum) {
       sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">Your cart is empty.</p>';
-      $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? 'Quoted after order' : (ship ? money(ship) + (sh.hatches ? ' (incl. hatch oversize)' : '') : 'Free'); $('#co-total').textContent = money(st + ship);
+      $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? 'Quote via contact page' : (ship ? money(ship) + (sh.hatches ? ' (incl. hatch oversize)' : '') : 'Free'); $('#co-total').textContent = money(st + ship);
+      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? 'Request shipping quote' : 'Place order';
     }
   }
   const openCart = () => { $('#drawer')?.classList.add('open'); $('#overlay')?.classList.add('open'); document.body.style.overflow = 'hidden'; };
@@ -305,14 +309,17 @@
       e.preventDefault();
       if (!cart.length) { toast('Your cart is empty'); return; }
       const country = localStorage.getItem('pegasus_country') || 'Netherlands';
-      if (shipping(subtotal(), country).quote) { location.href = ROOT + 'contact.html'; return; }
+      if (shipping(subtotal(), country).quote) { location.href = ROOT + 'contact.html?quote=1'; return; }
       const S = C.shopify;
       const parts = [];
       for (const l of cart) {
         const id = S && S.variants && S.variants[l.type === 'bundle' ? kitSku(l) : (l.skus || [])[0]];
-        if (!id) { toast('One item needs manual handling. Taking you to our contact page.'); setTimeout(() => { location.href = ROOT + 'contact.html'; }, 1400); return; }
+        if (!id) { toast('One item needs manual handling. Taking you to our contact page.'); setTimeout(() => { location.href = ROOT + 'contact.html?quote=1'; }, 1400); return; }
         parts.push(id + ':' + l.qty);
       }
+      // hand the visible cart over to Shopify; keep a 2h backup so an abandoned checkout can be restored
+      localStorage.setItem('pegasus_handoff', JSON.stringify({ t: Date.now(), lines: cart }));
+      cart = []; save();
       location.href = S.store + '/cart/' + parts.join(',');
     });
   }
@@ -327,6 +334,10 @@
     const q = new URLSearchParams(location.search);
     if (q.get('datasheet')) ta.value = 'Please send me the technical datasheet and drawing for article ' + q.get('datasheet') + '.';
     if (q.get('product') && byId[q.get('product')]) ta.value = 'Please send me a quote for: ' + byId[q.get('product')].name + '. Vehicle / application: ';
+    if (q.get('quote') && cart.length) {
+      const country = localStorage.getItem('pegasus_country') || 'my country';
+      ta.value = 'Please quote shipping to ' + country + ' for this order:\n' + cart.map(l => l.qty + ' x ' + l.title + (l.sub ? ' (' + l.sub + ')' : '')).join('\n') + '\nOrder value: ' + money(subtotal()) + ' incl. VAT.\nDelivery address: ';
+    }
   })();
 
   /* ---------- newsletter / contact (demo) ---------- */
