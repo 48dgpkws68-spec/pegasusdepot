@@ -185,8 +185,10 @@
       return match ? { p: ap, v: match } : bySku[i.dataset.sku];
     }
     function syncAddonRow(i) {
-      const { v } = addonVariant(i); const row = i.parentElement;
+      const { p: ap, v } = addonVariant(i); const row = i.parentElement;
       const pick = row.querySelector('.addon-var'); if (pick && pick.value !== v.sku) pick.value = v.sku;
+      const ttl = row.querySelector('.addon-title'); if (ttl && ttl.textContent !== ap.short_name) ttl.textContent = ap.short_name;
+      const im = row.querySelector('img'); if (im && im.dataset.pid !== ap.id && ap.images && ap.images[0]) { im.src = ROOT + ap.images[0]; im.dataset.pid = ap.id; }
       const sub = row.querySelector('.addon-sub'); if (sub) sub.textContent = v.label + ' · ' + v.sku;
       const pr = row.querySelector('.p'); if (pr) pr.textContent = '+ ' + money(v.price);
     }
@@ -197,7 +199,7 @@
       const t = $('#addon-total'); if (t) t.textContent = money(total * q) + (q > 1 ? ' for ' + q + ' sets' : '');
     }
     $$('.addon input').forEach(i => i.addEventListener('change', updateAddons));
-    $$('.addon-var').forEach(s => s.addEventListener('change', () => { s.dataset.user = '1'; const i = s.parentElement.querySelector('input'); i.dataset.sku = s.value; i.checked = true; updateAddons(); }));
+    $$('.addon-var').forEach(s => s.addEventListener('change', () => { const hit = bySku[s.value]; if (!hit) return; s.dataset.user = '1'; const i = s.parentElement.querySelector('input'); i.dataset.sku = hit.v.sku; i.dataset.product = hit.p.id; i.checked = true; updateAddons(); }));
     const add = () => {
       const v = cur(); if (v.price == null) return;
       const q = getQ();

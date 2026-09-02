@@ -490,14 +490,29 @@ def page_product(p):
         opts_html += f'<div class="opt-group"><h6>{esc(k)} <span data-opt-label="{esc(k)}"></span></h6><div class="opts" data-opt="{esc(k)}"></div></div>'
     addon_ids = [a for a in p.get('addons', []) if a in P and not P[a].get('quote_only')][:4]
     addons = ''
+    # add-on groups: an interior valve/grille add-on lets the customer pick ANY interior valve or grille, a switch add-on any switch
+    def addon_group(pid):
+        if P[pid]['category'] == 'interior-valves': return ('interior', 'Interior valve or grille', [x['id'] for x in PRODUCTS if x['category'] == 'interior-valves' and not x.get('quote_only')])
+        if pid.startswith('switch-'): return ('switch', 'Switch', [x['id'] for x in PRODUCTS if x['id'].startswith('switch-') and not x.get('quote_only')])
+        return None
+    seen_groups = set()
     for a in addon_ids:
         ap = P[a]; priced = [v for v in ap['variants'] if v.get('price') is not None]; av = priced[0]
+        grp = addon_group(a)
+        if grp and grp[0] in seen_groups: continue
         uid = f'ad-{ap["id"]}'
-        # add-ons with several variants get an inline picker (colour, voltage, manual/electric) instead of a fixed default
         sel = ''
-        if len(priced) > 1:
+        if grp:
+            seen_groups.add(grp[0])
+            members = [a] + [m for m in grp[2] if m != a]
+            groups_html = ''
+            for m in members:
+                mp = P[m]; mv = [v for v in mp['variants'] if v.get('price') is not None]
+                groups_html += f'<optgroup label="{esc(mp["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in mv) + '</optgroup>'
+            sel = f'<select class="addon-var" data-user="0" aria-label="Choose {esc(grp[1].lower())}">{groups_html}</select>'
+        elif len(priced) > 1:
             sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in priced) + '</select>'
-        addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" alt=""><div><b>{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>{sel}</div>'
+        addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>{sel}</div>'
     in_bundles = [b for b in BUNDLES if any(it['product'] == p['id'] for it in b['items'])]
     upsell = ''
     if in_bundles:
