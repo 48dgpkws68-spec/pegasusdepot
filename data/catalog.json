@@ -676,19 +676,19 @@
       },
       "variants": [
         {
-          "sku": "02-7000",
-          "label": "White",
+          "sku": "02-7100",
+          "label": "Black",
           "options": {
-            "Colour": "White"
+            "Colour": "Black"
           },
           "price": 119,
           "compare_at": 139
         },
         {
-          "sku": "02-7100",
-          "label": "Black",
+          "sku": "02-7000",
+          "label": "White",
           "options": {
-            "Colour": "Black"
+            "Colour": "White"
           },
           "price": 119,
           "compare_at": 139
@@ -717,7 +717,10 @@
       ],
       "addons": [
         "floor-ventilator-129"
-      ]
+      ],
+      "image_by_option": {
+        "Black": 0
+      }
     },
     {
       "id": "turbo-iii",
@@ -1036,6 +1039,16 @@
       },
       "variants": [
         {
+          "sku": "35-2820",
+          "label": "Light grey / Dark grey",
+          "options": {
+            "Light": "No LED",
+            "Colour": "Light grey / Dark grey"
+          },
+          "price": 54.95,
+          "compare_at": 69.95
+        },
+        {
           "sku": "35-2800",
           "label": "White",
           "options": {
@@ -1051,16 +1064,6 @@
           "options": {
             "Light": "No LED",
             "Colour": "Light grey"
-          },
-          "price": 54.95,
-          "compare_at": 69.95
-        },
-        {
-          "sku": "35-2820",
-          "label": "Light grey / Dark grey",
-          "options": {
-            "Light": "No LED",
-            "Colour": "Light grey / Dark grey"
           },
           "price": 54.95,
           "compare_at": 69.95
@@ -1181,6 +1184,16 @@
       },
       "variants": [
         {
+          "sku": "35-2120",
+          "label": "Black",
+          "options": {
+            "Colour": "Black",
+            "Light": "No"
+          },
+          "price": 44.95,
+          "compare_at": 54.95
+        },
+        {
           "sku": "35-2100",
           "label": "Grey",
           "options": {
@@ -1195,16 +1208,6 @@
           "label": "White",
           "options": {
             "Colour": "White",
-            "Light": "No"
-          },
-          "price": 44.95,
-          "compare_at": 54.95
-        },
-        {
-          "sku": "35-2120",
-          "label": "Black",
-          "options": {
-            "Colour": "Black",
             "Light": "No"
           },
           "price": 44.95,
@@ -1410,7 +1413,8 @@
         "Potentiometer": "4k7",
         "Connectors": "6.3 mm flat connectors",
         "Housing": "80 x 60 x 20 mm (30 mm incl. connectors), waterproof",
-        "Range": "0 to 100%"
+        "Range": "0 to 100%",
+        "Systems": "12V and 24V (11 to 30 VDC input)"
       },
       "variants": [
         {
@@ -1470,7 +1474,8 @@
         "Type": "3-way rocker switch, on-off-on",
         "Form": "Round, built-in",
         "Mounting hole": "Ø 20 mm (see datasheet)",
-        "Compatible with": "All Pegasus Depot DC roof fans"
+        "Compatible with": "All Pegasus Depot DC roof fans",
+        "Voltage": "12V / 24V DC"
       },
       "variants": [
         {
@@ -1525,7 +1530,8 @@
         "Type": "3-way rocker switch, on-off-on",
         "Form": "Square, built-in",
         "Mounting": "Rectangular cut-out (see datasheet)",
-        "Compatible with": "All Pegasus Depot DC roof fans"
+        "Compatible with": "All Pegasus Depot DC roof fans",
+        "Voltage": "12V / 24V DC"
       },
       "variants": [
         {
@@ -2218,19 +2224,19 @@
       },
       "variants": [
         {
-          "sku": "92-GC05",
-          "label": "White",
+          "sku": "92-GC06",
+          "label": "Grey",
           "options": {
-            "Colour": "White"
+            "Colour": "Grey"
           },
           "price": 89.95,
           "compare_at": 109
         },
         {
-          "sku": "92-GC06",
-          "label": "Grey",
+          "sku": "92-GC05",
+          "label": "White",
           "options": {
-            "Colour": "Grey"
+            "Colour": "White"
           },
           "price": 89.95,
           "compare_at": 109

@@ -77,7 +77,7 @@
     $('#cart-total').textContent = money(st + ship);
     const bar = $('#ship-bar'); const txt = $('#ship-txt');
     if (bar) { bar.style.width = Math.min(100, st / free * 100) + '%'; }
-    if (txt) { txt.innerHTML = st >= free ? '<b>You have unlocked free EU shipping.</b>' : 'Add <b>' + money(free - st) + '</b> for free EU shipping'; }
+    if (txt) { txt.innerHTML = st >= free ? (sh.hatches ? '<b>Free EU shipping unlocked.</b> Roof hatches carry €' + SHIP.oversize_price + ' oversize each.' : '<b>You have unlocked free EU shipping.</b>') : 'Add <b>' + money(free - st) + '</b> for free EU shipping' + (sh.hatches ? ' (roof hatches carry €' + SHIP.oversize_price + ' oversize each)' : ''); }
     const co = $('#checkout-btn'); if (co) co.classList.toggle('disabled', !cart.length);
     body.onclick = (e) => {
       const q = e.target.closest('[data-q]'); if (q) { const [i, d] = q.dataset.q.split(':').map(Number); setQty(i, cart[i].qty + d); }
@@ -89,7 +89,7 @@
     if (sum) {
       sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">Your cart is empty.</p>';
       $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? 'Quote via contact page' : (ship ? money(ship) + (sh.hatches ? ' (incl. hatch oversize)' : '') : 'Free'); $('#co-total').textContent = money(st + ship);
-      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? 'Request shipping quote' : 'Place order';
+      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? 'Request shipping quote' : 'Continue to secure checkout';
     }
   }
   const openCart = () => { $('#drawer')?.classList.add('open'); $('#overlay')?.classList.add('open'); document.body.style.overflow = 'hidden'; };
@@ -197,6 +197,14 @@
       $$('.addon input').forEach(syncAddonRow);
       $$('.addon input:checked').forEach(i => total += +(addonVariant(i).v.price));
       const t = $('#addon-total'); if (t) t.textContent = money(total * q) + (q > 1 ? ' for ' + q + ' sets' : '');
+      // same parts cheaper as a kit? compare the chosen set with every kit's item list
+      const hint = $('#addon-kit-hint');
+      if (hint) {
+        const chosen = [v.sku].concat($$('.addon input:checked').map(i => addonVariant(i).v.sku)).sort().join('|');
+        const kit = (C.bundles || []).find(b => b.items.length === chosen.split('|').length && b.items.every(it => it.qty === 1) && b.items.map(it => it.sku || (it.choices.find(s => chosen.split('|').includes(s)) || it.choices[0])).sort().join('|') === chosen);
+        if (kit) { const full = kit.items.reduce((s, it) => s + bySku[it.sku || (it.choices.find(x => chosen.split('|').includes(x)) || it.choices[0])].v.price, 0); const kp = Math.floor(full * (1 - kit.discount)); hint.innerHTML = 'Same parts cheaper as a kit: <a href="' + ROOT + 'bundles/' + kit.id + '.html">' + kit.name + '</a> for <b>' + money(kp) + '</b> instead of ' + money(full) + '.'; hint.style.display = ''; }
+        else hint.style.display = 'none';
+      }
     }
     $$('.addon input').forEach(i => i.addEventListener('change', updateAddons));
     $$('.addon-var').forEach(s => s.addEventListener('change', () => { const hit = bySku[s.value]; if (!hit) return; s.dataset.user = '1'; const i = s.parentElement.querySelector('input'); i.dataset.sku = hit.v.sku; i.dataset.product = hit.p.id; i.checked = true; updateAddons(); }));
