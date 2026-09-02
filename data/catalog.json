@@ -397,8 +397,7 @@
       "addons": [
         "switch-square",
         "flower-power",
-        "floor-ventilator-129",
-        "snowfilter"
+        "floor-ventilator-129"
       ]
     },
     {
@@ -1807,12 +1806,12 @@
         "Blocks snow, insects and residual rain",
         "Coarse mesh, minimal airflow loss",
         "860 x 40 x 10 mm",
-        "For Le Mans 02-2200/2300 and Round 02-0200/0300"
+        "For Le Mans 02-2200/2300 and Round 02-0200/0300, not for the Le Mans LL"
       ],
       "specs": {
         "Dimensions": "860 x 40 x 10 mm",
         "Material": "Carbon-infused polymer mesh",
-        "Compatible with": "02-0200/0300, 02-2200/2300, 02-0400/0500, 02-2400/2500"
+        "Compatible with": "Le Mans 02-2200/2300 and Round 02-0200/0300 (not the Le Mans LL)"
       },
       "variants": [
         {
