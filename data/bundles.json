@@ -477,15 +477,15 @@
     {
       "id": "exhaust-ventilator-set",
       "name": "Exhaust Ventilator Set",
-      "tagline": "Venturi roof vent, rotary valve and floor inlet.",
+      "tagline": "Venturi roof vent and floor inlet.",
       "discount": 0.1,
       "badges": [
         "Passive",
         "Save 10%"
       ],
-      "summary": "02-1030 exhaust ventilator + 35-3003 rotary valve + Ø 129 mm floor ventilator. The silent, powerless ventilation system for service vans and dog transport, closable from inside.",
+      "summary": "02-1030 exhaust ventilator + Ø 129 mm floor ventilator. The silent, powerless ventilation system for service vans and dog transport.",
       "description": [
-        "The aerodynamic exhaust ventilator pulls air out while you drive, the rotary valve lets you close it off from inside, and the floor ventilator provides the inlet. Nothing to wire, nothing to maintain, nothing to hear."
+        "The aerodynamic exhaust ventilator pulls air out while you drive and the floor ventilator provides the inlet. Nothing to wire, nothing to maintain, nothing to hear."
       ],
       "items": [
         {
@@ -498,11 +498,6 @@
           "qty": 1
         },
         {
-          "product": "rotary-valve",
-          "sku": "35-3003",
-          "qty": 1
-        },
-        {
           "product": "floor-ventilator-129",
           "sku": "89-5600",
           "qty": 1
@@ -510,7 +505,6 @@
       ],
       "images": [
         "assets/products/02-1030-foto-scaled.webp",
-        "assets/products/35-3003-foto.webp",
         "assets/products/89-5600-foto.webp"
       ],
       "scene": "assets/media/51.webp",
@@ -674,7 +668,7 @@
       ],
       "summary": "Electric 970 x 530 mm emergency exit roof hatch + 30-6000 control unit. EC 2001/85 emergency exit, ECE 43R glass, EMC approved, auto-close on ignition off. The complete 24V system for a coach or city bus.",
       "description": [
-        "The large electric hatch must always be operated with the 30-6000 control unit. This kit pairs them at a bundle price: the EC 2001/85 emergency exit hatch with ECE 43R dark glass dome and the 24V control unit that opens front or rear, shows the dome position and closes automatically when the ignition goes off. 12V vehicle? Ask us to add the 89-STEP12-24 converter."
+        "The large electric hatch must always be operated with the 30-6000 control unit. This kit pairs them at a bundle price: the EC 2001/85 emergency exit hatch with ECE 43R dark glass dome and the 24V control unit that opens front or rear, shows the dome position and closes automatically when the ignition goes off. 12V vehicle? Ask us for the matching 12V to 24V converter."
       ],
       "items": [
         {
@@ -708,7 +702,7 @@
       ],
       "summary": "2x electric 970 x 530 mm emergency exit roof hatch + one 30-6000 control unit that opens and closes both. EC 2001/85, ECE 43R, EMC approved. The standard front-and-rear specification for coaches and city buses.",
       "description": [
-        "Most coaches carry two roof hatches, and one 30-6000 control unit drives both. This kit gives you the complete front-and-rear system: two EC 2001/85 emergency exit hatches with ECE 43R dark glass domes, break-glass hammers, and the single control unit with position display and automatic close on ignition off. 24V; for 12V add one 89-STEP12-24 converter."
+        "Most coaches carry two roof hatches, and one 30-6000 control unit drives both. This kit gives you the complete front-and-rear system: two EC 2001/85 emergency exit hatches with ECE 43R dark glass domes, break-glass hammers, and the single control unit with position display and automatic close on ignition off. 24V; for 12V vehicles we supply a 12V to 24V converter on request."
       ],
       "items": [
         {

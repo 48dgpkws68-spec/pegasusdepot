@@ -83,11 +83,9 @@
         "snowfilter",
         "turbo-ii",
         "switch-fan",
-        "rotary-valve-metal",
         "speedcontrol",
         "control-unit",
-        "flower-power",
-        "step-converter"
+        "flower-power"
       ],
       "bundles": [
         "horse-trailer-climate-kit",
@@ -138,7 +136,6 @@
         "floor-ventilator-80",
         "grill-large",
         "grill-small",
-        "rotary-valve",
         "switch-square",
         "rotating-valve-300",
         "switch-fan",
@@ -201,7 +198,6 @@
         "radial-ventilator",
         "switch-fan",
         "snowfilter",
-        "step-converter",
         "roof-hatch-manual-small"
       ],
       "bundles": [
@@ -218,7 +214,7 @@
         },
         {
           "q": "Do the electric hatches work on 12V?",
-          "a": "They are 24V units. For 12V vehicles add our 12V to 24V converter 89-STEP12-24 (one per control unit)."
+          "a": "They are 24V units. For 12V vehicles we supply a 12V to 24V converter on request (one per control unit)."
         }
       ]
     },
@@ -255,7 +251,6 @@
         "control-unit",
         "snowfilter",
         "grill-large",
-        "step-converter",
         "switch-square"
       ],
       "bundles": [
@@ -328,17 +323,12 @@
         {
           "title": "Lockers & engine room",
           "text": "Turbo III and exhaust ventilators vent compartments passively whenever there is wind."
-        },
-        {
-          "title": "Interior finish",
-          "text": "Polished light-metal rotary valves from Ø 130 to Ø 250 mm for the saloon."
         }
       ],
       "products": [
         "rooftop-round",
         "turbo-iii",
         "winglet",
-        "rotary-valve-metal",
         "roof-hatch-manual-small",
         "lighting-round",
         "auto-ventilator",
@@ -383,8 +373,7 @@
         "turbo-iii",
         "exhaust-ventilator",
         "switch-round",
-        "grill-small",
-        "rotary-valve"
+        "grill-small"
       ],
       "bundles": [
         "dog-transport-kit",

@@ -814,7 +814,7 @@
       "description": [
         "The mechanical exhaust ventilator is the simplest way to keep a commercial vehicle fresh: wind passing over the cover pulls air from the cargo area below. No power, no maintenance, no noise, and it keeps working with a light breeze even when parked.",
         "Thanks to its 50 mm height it works under roof racks, and because it needs no wiring the installation is quick: cut a hole of up to 140 mm, bond with body sealant (never silicone) and fit the interior grille. Combine it with our floor ventilator for a steady supply of fresh air, or pair it with an electric roof fan for forced ventilation when parked.",
-        "Available in white or black. Finish the inside with the 35-3003 rotary valve or the Ø 140 mm ABS grille."
+        "Available in white or black. Finish the inside with the Ø 140 mm ABS grille."
       ],
       "features": [
         "Venturi effect extraction, no power needed",
@@ -822,7 +822,7 @@
         "Low aerodynamic profile: 285 x 185 mm, 50 mm high",
         "ABS, white or black, only 0.5 kg",
         "Roof opening up to 140 mm",
-        "Interior finish: rotary valve 35-3003 or grille 35-26xx"
+        "Interior finish: grille 35-26xx"
       ],
       "specs": {
         "Function": "Suction (venturi)",
@@ -864,13 +864,11 @@
         "animal-transport"
       ],
       "accessories": [
-        "rotary-valve",
         "grill-small",
         "floor-ventilator-129"
       ],
       "faq": [],
       "addons": [
-        "rotary-valve",
         "grill-small",
         "floor-ventilator-129"
       ]
@@ -1243,144 +1241,6 @@
         "No": 0,
         "12/24V light": 1
       }
-    },
-    {
-      "id": "rotary-valve",
-      "name": "Rotary Ventilation Valve 35-3003",
-      "short_name": "Rotary Valve",
-      "category": "interior-valves",
-      "tagline": "The interior finish for the Exhaust Ventilator",
-      "badges": [
-        "For 02-1030"
-      ],
-      "summary": "White plastic rotary valve with open/close mechanism for roof openings up to 160 mm. Designed to complete our venturi Exhaust Ventilator 02-1030.",
-      "description": [
-        "A simple, effective interior finish for the Exhaust Ventilator: turn the knob to open or close the airflow. Fits roof openings up to 160 mm and gives the ceiling a clean white look.",
-        "Use it with the 02-1030 exhaust ventilator (and the older 02-1026 / 02-1027 models) for a complete, closable passive ventilation system."
-      ],
-      "features": [
-        "Open/close rotary mechanism",
-        "Max. roof opening 160 mm",
-        "White plastic",
-        "For exhaust ventilator 02-1030 (also 02-1026 / 02-1027)"
-      ],
-      "specs": {
-        "Max. roof opening": "160 mm",
-        "Construction": "Plastic, white",
-        "Compatible with": "02-1026 / 02-1027 / 02-1030"
-      },
-      "variants": [
-        {
-          "sku": "35-3003",
-          "label": "White",
-          "options": {
-            "Colour": "White"
-          },
-          "price": 29.95,
-          "compare_at": 34.95
-        }
-      ],
-      "images": [
-        "assets/products/35-3003-foto.webp"
-      ],
-      "drawing": null,
-      "applications": [
-        "commercial-vans",
-        "dog-transport"
-      ],
-      "accessories": [
-        "exhaust-ventilator",
-        "grill-small"
-      ],
-      "faq": []
-    },
-    {
-      "id": "rotary-valve-metal",
-      "name": "Polished Light-Metal Rotary Valve",
-      "short_name": "Metal Rotary Valve",
-      "category": "interior-valves",
-      "tagline": "Polished aluminium, five diameters",
-      "badges": [
-        "Premium finish"
-      ],
-      "summary": "A rotating ventilation valve crafted from lightweight polished metal. From Ø 130 mm to Ø 250 mm, for commercial vehicles, horse trucks, boats and public vehicles that deserve a premium interior detail.",
-      "description": [
-        "When plastic is not enough. Our light-metal rotary valve is polished to a mirror finish and rotates to regulate the airflow. A functional necessity turned into a stylish detail for horse trucks, boats and luxury conversions.",
-        "Available in five diameters from Ø 130 mm to Ø 250 mm to suit different roof openings and ventilators."
-      ],
-      "features": [
-        "Lightweight polished metal",
-        "Rotating open/close mechanism",
-        "Five diameters: 130, 160, 180, 200, 250 mm",
-        "Suitable for commercial vehicles, horse trucks, boats and public vehicles"
-      ],
-      "specs": {
-        "Construction": "Light metal, polished",
-        "Diameters": "Ø 130 / 160 / 180 / 200 / 250 mm",
-        "Operation": "Rotating"
-      },
-      "variants": [
-        {
-          "sku": "35-4080",
-          "label": "Ø 130 mm",
-          "options": {
-            "Diameter": "Ø 130 mm"
-          },
-          "price": 49,
-          "compare_at": 59
-        },
-        {
-          "sku": "35-4082",
-          "label": "Ø 160 mm",
-          "options": {
-            "Diameter": "Ø 160 mm"
-          },
-          "price": 59,
-          "compare_at": 69
-        },
-        {
-          "sku": "35-4084",
-          "label": "Ø 180 mm",
-          "options": {
-            "Diameter": "Ø 180 mm"
-          },
-          "price": 69,
-          "compare_at": 79
-        },
-        {
-          "sku": "35-4086",
-          "label": "Ø 200 mm",
-          "options": {
-            "Diameter": "Ø 200 mm"
-          },
-          "price": 79,
-          "compare_at": 89
-        },
-        {
-          "sku": "35-4088",
-          "label": "Ø 250 mm",
-          "options": {
-            "Diameter": "Ø 250 mm"
-          },
-          "price": 99,
-          "compare_at": 115
-        }
-      ],
-      "images": [
-        "assets/products/35-4080-foto.webp"
-      ],
-      "drawing": null,
-      "applications": [
-        "marine",
-        "horse-trailers",
-        "commercial-vans",
-        "buses-coaches"
-      ],
-      "accessories": [
-        "exhaust-ventilator",
-        "le-mans"
-      ],
-      "faq": []
     },
     {
       "id": "grill-small",
@@ -1764,7 +1624,7 @@
       "description": [
         "Always use the 30-6000 with our electric roof hatches. This compact 24V control unit manages one or two hatches: open or close the front and rear side independently, and read the dome position on the green LED display.",
         "Safety and comfort are built in. The unit closes the hatches automatically when the ignition key is turned off, but the hatch can still be opened for ventilation while parked. The display has a current-save function and the push buttons are illuminated with orange LEDs for operation in the dark.",
-        "EMC approved and homologated according to EC 2004/104. For 12V vehicles, use our 12V to 24V converter (89-STEP12-24, on request)."
+        "EMC approved and homologated according to EC 2004/104. For 12V vehicles a 12V to 24V converter is available on request."
       ],
       "features": [
         "Controls 1 or 2 electric roof hatches",
@@ -1777,7 +1637,7 @@
         "96 x 49 x 28 mm, 24V"
       ],
       "specs": {
-        "Voltage": "24V (12V via converter 89-STEP12-24)",
+        "Voltage": "24V (12V via converter, on request)",
         "Controls": "1 or 2 electric roof hatches",
         "Dimensions": "96 x 49 x 28 mm",
         "Approvals": "EMC approved, EC 2004/104",
@@ -1802,8 +1662,7 @@
       ],
       "accessories": [
         "roof-hatch-electric-small",
-        "roof-hatch-electric-large",
-        "step-converter"
+        "roof-hatch-electric-large"
       ],
       "faq": [
         {
@@ -1812,69 +1671,10 @@
         },
         {
           "q": "My vehicle is 12V. Can I use it?",
-          "a": "Yes, with our 12V to 24V converter 89-STEP12-24 (sold separately, one per control unit)."
+          "a": "Yes, with a 12V to 24V converter (available on request, one per control unit)."
         }
       ],
-      "addons": [
-        "step-converter"
-      ]
-    },
-    {
-      "id": "step-converter",
-      "name": "12V to 24V Step-Up Converter 89-STEP12-24",
-      "short_name": "12V to 24V Converter",
-      "category": "controls",
-      "tagline": "Run the 24V hatch system on a 12V vehicle",
-      "badges": [
-        "For electric hatches",
-        "12V vehicles"
-      ],
-      "summary": "Step-up converter that lets the 24V electric roof hatches and the 30-6000 control unit run on a 12V vehicle. Required for every 12V installation of an electric hatch.",
-      "description": [
-        "Our electric roof hatches and the 30-6000 control unit are 24V units. Fit the 89-STEP12-24 converter between the 12V supply and the control unit and the complete hatch system runs on a 12V van, ambulance or horse trailer.",
-        "One converter per hatch system (one control unit with one or two hatches). Supplied with connection instructions; we are happy to advise on wiring."
-      ],
-      "features": [
-        "Converts 12V DC to 24V DC for the hatch system",
-        "One converter per control unit (1 or 2 hatches)",
-        "Required for 12V vehicles with electric roof hatches",
-        "Compact, wired inline with the control unit"
-      ],
-      "specs": {
-        "Input": "12V DC",
-        "Output": "24V DC",
-        "Use": "Electric roof hatches 90-5000-E / 90-6000-E with control unit 30-6000",
-        "Quantity": "1 per control unit"
-      },
-      "variants": [
-        {
-          "sku": "89-STEP12-24",
-          "label": "12V to 24V converter",
-          "options": {},
-          "price": 169,
-          "compare_at": 189
-        }
-      ],
-      "images": [
-        "assets/products/30-6000-foto2-scaled.webp"
-      ],
-      "drawing": null,
-      "applications": [
-        "ambulance-emergency",
-        "horse-trailers",
-        "buses-coaches"
-      ],
-      "accessories": [
-        "control-unit",
-        "roof-hatch-electric-small",
-        "roof-hatch-electric-large"
-      ],
-      "faq": [
-        {
-          "q": "Do I need it?",
-          "a": "Only if your vehicle has a 12V electrical system and you install an electric roof hatch. 24V trucks, coaches and buses do not need it."
-        }
-      ]
+      "addons": []
     },
     {
       "id": "floor-ventilator-129",
@@ -2176,7 +1976,7 @@
       "description": [
         "Elevate the experience with push-button operation. The electric small roof hatch opens front or rear at the touch of the 30-6000 control unit, shows its position on the display and closes automatically when you switch off the ignition.",
         "Dark tinted ECE 43R glass dome, EMC approved, homologated EC 2004/104, high-quality gaskets and a pre-drilled outer frame (640 x 640 mm). Suits roof thicknesses from 30 to 70 mm.",
-        "24V as standard. For 12V vehicles use our 12V to 24V converter (89-STEP12-24). Always combine with the 30-6000 control unit."
+        "24V as standard. For 12V vehicles a 12V to 24V converter is available on request. Always combine with the 30-6000 control unit."
       ],
       "features": [
         "Aperture 530 x 530 mm, electric 24V",
@@ -2185,7 +1985,7 @@
         "Suits roof thickness 30 to 70 mm",
         "High-quality gaskets, pre-drilled outer frame 640 x 640 mm",
         "Use with control unit 30-6000",
-        "12V possible via converter 89-STEP12-24"
+        "12V possible via converter (on request)"
       ],
       "specs": {
         "Aperture": "530 x 530 mm",
@@ -2219,13 +2019,11 @@
       ],
       "accessories": [
         "control-unit",
-        "roof-hatch-electric-large",
-        "step-converter"
+        "roof-hatch-electric-large"
       ],
       "faq": [],
       "addons": [
-        "control-unit",
-        "step-converter"
+        "control-unit"
       ]
     },
     {
@@ -2243,7 +2041,7 @@
       "description": [
         "Our flagship roof hatch redefines safety and comfort for buses, coaches and emergency vehicles. It combines an EC 2001/85 compliant emergency exit with electric operation: open front or rear from the 30-6000 control unit, read the position on the display, and let it close automatically when the ignition goes off.",
         "The standard dark tinted glass dome is homologated ECE 43R and reduces glare and heat. The hatch is EMC approved and homologated EC 2004/104, fits roof thicknesses from 30 to 70 mm, and comes with high-quality gaskets, a pre-drilled outer frame (1080 x 640 mm) and a break-glass hammer.",
-        "24V as standard; 12V vehicles use our 89-STEP12-24 converter. Always combine with the 30-6000 control unit."
+        "24V as standard; for 12V vehicles a converter is available on request. Always combine with the 30-6000 control unit."
       ],
       "features": [
         "Aperture 970 x 530 mm, electric 24V",
@@ -2288,13 +2086,11 @@
       ],
       "accessories": [
         "control-unit",
-        "roof-hatch-electric-small",
-        "step-converter"
+        "roof-hatch-electric-small"
       ],
       "faq": [],
       "addons": [
-        "control-unit",
-        "step-converter"
+        "control-unit"
       ]
     },
     {

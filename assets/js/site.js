@@ -176,18 +176,28 @@
     $('#qty-plus')?.addEventListener('click', () => { qtyI.value = getQ() + 1; updateAddons(); });
     qtyI?.addEventListener('change', () => { getQ(); updateAddons(); });
     function addonVariant(i) {
-      // prefer the add-on variant that matches the chosen colour / voltage of the main product
       const ap = byId[i.dataset.product]; if (!ap) return bySku[i.dataset.sku];
+      // an explicit choice in the add-on picker wins; otherwise follow the colour / voltage of the main product
+      const pick = i.parentElement.querySelector('.addon-var');
+      if (pick && pick.dataset.user === '1' && bySku[pick.value]) return bySku[pick.value];
       const want = cur().options || {};
       const match = ap.variants.find(v => v.price != null && Object.keys(v.options || {}).every(k => !want[k] || v.options[k] === want[k]) && Object.keys(want).some(k => v.options && v.options[k] === want[k]));
       return match ? { p: ap, v: match } : bySku[i.dataset.sku];
     }
+    function syncAddonRow(i) {
+      const { v } = addonVariant(i); const row = i.parentElement;
+      const pick = row.querySelector('.addon-var'); if (pick && pick.value !== v.sku) pick.value = v.sku;
+      const sub = row.querySelector('.addon-sub'); if (sub) sub.textContent = v.label + ' · ' + v.sku;
+      const pr = row.querySelector('.p'); if (pr) pr.textContent = '+ ' + money(v.price);
+    }
     function updateAddons() {
       const v = cur(); const q = qtyI ? getQ() : 1; let total = (v.price || 0);
+      $$('.addon input').forEach(syncAddonRow);
       $$('.addon input:checked').forEach(i => total += +(addonVariant(i).v.price));
       const t = $('#addon-total'); if (t) t.textContent = money(total * q) + (q > 1 ? ' for ' + q + ' sets' : '');
     }
     $$('.addon input').forEach(i => i.addEventListener('change', updateAddons));
+    $$('.addon-var').forEach(s => s.addEventListener('change', () => { s.dataset.user = '1'; const i = s.parentElement.querySelector('input'); i.dataset.sku = s.value; i.checked = true; updateAddons(); }));
     const add = () => {
       const v = cur(); if (v.price == null) return;
       const q = getQ();

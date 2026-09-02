@@ -385,9 +385,13 @@ h1,h2,h3,h4{font-weight:500;line-height:1.08;letter-spacing:-.01em}
 .upsell .up-row span{font-size:13px;color:var(--text-2)}
 .upsell .up-row .btn{margin-left:auto}
 .addons{margin-top:22px;display:grid;gap:8px}
-.addon{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--white);cursor:pointer;transition:.2s}
+.addon{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--white);transition:.2s}
 .addon:hover{border-color:var(--text)}
-.addon input{accent-color:var(--gold-deep);width:16px;height:16px}
+.addon:has(input:checked){border-color:var(--gold-deep);background:var(--gold-soft)}
+.addon input{accent-color:var(--gold-deep);width:16px;height:16px;cursor:pointer}
+.addon-main{display:flex;align-items:center;gap:12px;cursor:pointer;min-width:0}
+.addon-var{grid-column:2;justify-self:start;max-width:100%;font:500 12.5px/1.2 var(--sans);color:var(--text);padding:6px 30px 6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23555' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer}
+.addon-var:focus-visible{outline:2px solid var(--gold-deep);outline-offset:1px}
 .addon img{width:44px;height:44px;object-fit:contain;background:var(--paper);border-radius:8px;padding:3px}
 .addon b{font-size:14px;display:block}
 .addon span{font-size:12.5px;color:var(--text-3)}

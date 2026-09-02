@@ -30,7 +30,8 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '5'
+VERSION = '6'
+RETIRED = {'rotary-valve': 'shop.html?cat=interior-valves', 'rotary-valve-metal': 'shop.html?cat=interior-valves', 'step-converter': 'products/control-unit.html'}
 
 # ---------------------------------------------------------------- images
 _img_cache = {}
@@ -490,8 +491,13 @@ def page_product(p):
     addon_ids = [a for a in p.get('addons', []) if a in P and not P[a].get('quote_only')][:4]
     addons = ''
     for a in addon_ids:
-        ap = P[a]; av = next(v for v in ap['variants'] if v.get('price') is not None)
-        addons += f'<label class="addon"><input type="checkbox" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"><img src="{r}{sq(ap["images"][0],200)}" alt=""><div><b>{esc(ap["short_name"])}</b><span>{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>'
+        ap = P[a]; priced = [v for v in ap['variants'] if v.get('price') is not None]; av = priced[0]
+        uid = f'ad-{ap["id"]}'
+        # add-ons with several variants get an inline picker (colour, voltage, manual/electric) instead of a fixed default
+        sel = ''
+        if len(priced) > 1:
+            sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in priced) + '</select>'
+        addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" alt=""><div><b>{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>{sel}</div>'
     in_bundles = [b for b in BUNDLES if any(it['product'] == p['id'] for it in b['items'])]
     upsell = ''
     if in_bundles:
@@ -807,6 +813,9 @@ def main():
     w('about.html', page_about()); w('trade.html', page_trade()); w('contact.html', page_contact())
     w('shipping-returns.html', page_shipping()); w('terms.html', page_terms()); w('privacy.html', page_privacy())
     w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); w('404.html', page_404()); urls.remove('404.html')
+    # retired product URLs keep a noindex stub that forwards to the nearest live page
+    for old, target in RETIRED.items():
+        (ROOT / 'products' / f'{old}.html').write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pegasus Depot</title><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url=../{target}"><link rel="canonical" href="{SITE_URL}/{target}"></head><body><p>This product is no longer listed. <a href="../{target}">Continue to the shop</a>.</p></body></html>')
     write_catalog_js(); write_shopify_csv(); write_sitemap([u for u in urls if u not in ('checkout.html', 'thank-you.html')])
     print(f'Built {len(urls)} pages, {len(PRODUCTS)} products, {len(BUNDLES)} bundles, {len(VEHICLES)} vehicle pages.')
 
