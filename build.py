@@ -40,7 +40,7 @@ VERSION = '9'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
-SKU_ALIAS = {'92-L01': '92-GC01', '92-L02': '92-GC02', '92-L05': '92-GC05', '92-L06': '92-GC06'}  # public code -> code used in the Shopify import
+SKU_ALIAS = {}  # public code -> Shopify code; empty since the Shopify SKUs were renamed too
 ISO = {'Netherlands': 'NL', 'Belgium': 'BE', 'Germany': 'DE', 'France': 'FR', 'Luxembourg': 'LU', 'Austria': 'AT', 'Denmark': 'DK', 'Italy': 'IT', 'Spain': 'ES', 'Sweden': 'SE', 'Ireland': 'IE', 'Poland': 'PL', 'Portugal': 'PT', 'Finland': 'FI', 'Czechia': 'CZ', 'Hungary': 'HU', 'Romania': 'RO', 'Greece': 'GR', 'Slovakia': 'SK', 'Slovenia': 'SI', 'Croatia': 'HR', 'Bulgaria': 'BG', 'Estonia': 'EE', 'Latvia': 'LV', 'Lithuania': 'LT', 'Malta': 'MT', 'Cyprus': 'CY'}
 def _ship_ld(rate, countries, dmin, dmax):
     return {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": f"{rate:.2f}", "currency": "EUR"}, "shippingDestination": [{"@type": "DefinedRegion", "addressCountry": ISO[x]} for x in countries if x in ISO], "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": dmin, "maxValue": dmax, "unitCode": "DAY"}}}
