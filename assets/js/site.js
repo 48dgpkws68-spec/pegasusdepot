@@ -190,13 +190,24 @@
       const match = ap.variants.find(v => v.price != null && Object.keys(v.options || {}).every(k => !want[k] || v.options[k] === want[k]) && Object.keys(want).some(k => v.options && v.options[k] === want[k]));
       return match ? { p: ap, v: match } : bySku[i.dataset.sku];
     }
+    // picture of a specific variant when the product maps options to images, else the main photo
+    function imgFor(ap, v) { const map = ap.image_by_option || {}; const hit = Object.values(v.options || {}).find(x => map[x] != null); return hit != null && ap.images[map[hit]] ? ap.images[map[hit]] : (ap.images[0] || ''); }
+    function renderPick(row, ap, v) {
+      const tiles = row.querySelector('.addon-tiles'); const vars = row.querySelector('.addon-vars'); if (!tiles || !vars) return;
+      $$('.tile', tiles).forEach(t => t.classList.toggle('on', t.dataset.pid === ap.id));
+      const priced = ap.variants.filter(x => x.price != null);
+      const key = ap.id + '|' + v.sku; if (vars.dataset.key === key) return; vars.dataset.key = key;
+      vars.innerHTML = priced.length > 1 ? priced.map(x => { const col = (x.options || {}).Colour; const map = ap.image_by_option || {}; const hasImg = Object.values(x.options || {}).some(o => map[o] != null); return `<button type="button" class="opt vchip${x.sku === v.sku ? ' on' : ''}" data-sku="${x.sku}">${hasImg ? `<img src="${ROOT + imgFor(ap, x)}" alt="">` : col ? `<i class="sw" style="background:${swatch(col)}"></i>` : ''}${x.label} <small>${money(x.price)}</small></button>`; }).join('') : '';
+    }
     function syncAddonRow(i) {
       const { p: ap, v } = addonVariant(i); const row = i.parentElement;
       const pick = row.querySelector('.addon-var'); if (pick && pick.value !== v.sku) pick.value = v.sku;
-      const ttl = row.querySelector('.addon-title'); if (ttl && ttl.textContent !== ap.short_name) ttl.textContent = ap.short_name;
-      const im = row.querySelector('img'); if (im && im.dataset.pid !== ap.id && ap.images && ap.images[0]) { im.src = ROOT + ap.images[0]; im.dataset.pid = ap.id; }
-      const sub = row.querySelector('.addon-sub'); if (sub) sub.textContent = v.label + ' · ' + v.sku;
+      const grp = row.classList.contains('addon-group');
+      const ttl = row.querySelector('.addon-title'); if (ttl && !grp && ttl.textContent !== ap.short_name) ttl.textContent = ap.short_name;
+      const im = row.querySelector('.addon-main img'); const want = imgFor(ap, v); if (im && want && im.dataset.src !== want) { im.src = ROOT + want; im.dataset.src = want; im.dataset.pid = ap.id; }
+      const sub = row.querySelector('.addon-sub'); if (sub) sub.textContent = (grp ? ap.short_name + (v.label !== ap.short_name ? ' · ' + v.label : '') : v.label) + ' · ' + v.sku;
       const pr = row.querySelector('.p'); if (pr) pr.textContent = '+ ' + money(v.price);
+      renderPick(row, ap, v);
     }
     function updateAddons() {
       const v = cur(); const q = qtyI ? getQ() : 1; let total = (v.price || 0);
@@ -213,12 +224,17 @@
       }
     }
     $$('.addon input').forEach(i => i.addEventListener('change', updateAddons));
-    $$('.addon-var').forEach(s => s.addEventListener('change', () => { const hit = bySku[s.value]; if (!hit) return; s.dataset.user = '1'; const i = s.parentElement.querySelector('input'); i.dataset.sku = hit.v.sku; i.dataset.product = hit.p.id; i.checked = true; updateAddons(); }));
+    const chooseAddon = (row, sku) => { const s = row.querySelector('.addon-var'); const hit = bySku[sku]; if (!s || !hit) return; s.value = sku; s.dataset.user = '1'; const i = row.querySelector('input'); i.dataset.sku = hit.v.sku; i.dataset.product = hit.p.id; i.checked = true; updateAddons(); };
+    $$('.addon-var').forEach(s => s.addEventListener('change', () => chooseAddon(s.parentElement, s.value)));
+    $$('.addon').forEach(row => row.addEventListener('click', (e) => {
+      const t = e.target.closest('.tile'); if (t) { const tp = byId[t.dataset.pid]; const first = tp && tp.variants.find(x => x.price != null); if (first) chooseAddon(row, first.sku); return; }
+      const ch = e.target.closest('.vchip'); if (ch) chooseAddon(row, ch.dataset.sku);
+    }));
     const add = () => {
       const v = cur(); if (v.price == null) return;
       const q = getQ();
       addLine({ type: 'product', id: p.id, skus: [v.sku], title: p.name, sub: v.label + ' · ' + v.sku, price: v.price, qty: q, image: p.images[0] });
-      $$('.addon input:checked').forEach(i => { const { p: ap, v: av } = addonVariant(i); const aq = ap.id === 'control-unit' && p.category === 'roof-hatches' ? Math.ceil(q / 2) : q; addLine({ type: 'product', id: ap.id, skus: [av.sku], title: ap.name, sub: av.label + ' · ' + av.sku, price: av.price, qty: aq, image: ap.images[0] }); i.checked = false; });
+      $$('.addon input:checked').forEach(i => { const { p: ap, v: av } = addonVariant(i); const aq = ap.id === 'control-unit' && p.category === 'roof-hatches' ? Math.ceil(q / 2) : q; addLine({ type: 'product', id: ap.id, skus: [av.sku], title: ap.name, sub: av.label + ' · ' + av.sku, price: av.price, qty: aq, image: imgFor(ap, av) }); i.checked = false; });
       updateAddons();
     };
     $('#add-btn')?.addEventListener('click', add);

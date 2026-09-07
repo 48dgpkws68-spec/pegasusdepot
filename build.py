@@ -36,7 +36,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '9'
+VERSION = '11'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
@@ -561,12 +561,13 @@ def page_product(p):
     opts_html = ''
     for k in opt_names:
         opts_html += f'<div class="opt-group"><h6>{esc(k)} <span data-opt-label="{esc(k)}"></span></h6><div class="opts" data-opt="{esc(k)}"></div></div>'
-    addon_ids = [a for a in p.get('addons', []) if a in P and not P[a].get('quote_only')][:4]
+    addon_ids = [a for a in p.get('addons', []) if a in P and not P[a].get('quote_only')][:6]
     addons = ''
-    # add-on groups: an interior valve/grille add-on lets the customer pick ANY interior valve or grille, a switch add-on any switch
+    # add-on groups: one row per group with picture tiles for every product in it, then variant chips (rendered by site.js)
     def addon_group(pid):
-        if P[pid]['category'] == 'interior-valves': return ('interior', 'Interior valve or grille', [x['id'] for x in PRODUCTS if x['category'] == 'interior-valves' and not x.get('quote_only')])
-        if pid.startswith('switch-'): return ('switch', 'Switch', [x['id'] for x in PRODUCTS if x['id'].startswith('switch-') and not x.get('quote_only')])
+        if P[pid]['category'] == 'interior-valves': return ('interior', 'Interior valve or grille', 'Choose your interior finish', [x['id'] for x in PRODUCTS if x['category'] == 'interior-valves' and not x.get('quote_only')])
+        if pid.startswith('switch-'): return ('switch', 'Switch', 'Choose your switch', [x['id'] for x in PRODUCTS if x['id'].startswith('switch-') and not x.get('quote_only')])
+        if pid.startswith('floor-ventilator-'): return ('floor', 'Floor inlet', 'Choose your floor inlet', [x['id'] for x in PRODUCTS if x['id'].startswith('floor-ventilator-') and not x.get('quote_only')])
         return None
     seen_groups = set()
     for a in addon_ids:
@@ -574,18 +575,21 @@ def page_product(p):
         grp = addon_group(a)
         if grp and grp[0] in seen_groups: continue
         uid = f'ad-{ap["id"]}'
-        sel = ''
+        checked = ' checked' if ap['id'] == 'control-unit' and p['id'].startswith('roof-hatch-electric') else ''
         if grp:
             seen_groups.add(grp[0])
-            members = [a] + [m for m in grp[2] if m != a]
-            groups_html = ''
+            members = [a] + [m for m in grp[3] if m != a]
+            groups_html = ''; tiles = ''
             for m in members:
                 mp = P[m]; mv = [v for v in mp['variants'] if v.get('price') is not None]
                 groups_html += f'<optgroup label="{esc(mp["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in mv) + '</optgroup>'
-            sel = f'<select class="addon-var" data-user="0" aria-label="Choose {esc(grp[1].lower())}">{groups_html}</select>'
-        elif len(priced) > 1:
-            sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in priced) + '</select>'
-        addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{" checked" if ap["id"] == "control-unit" and p["id"].startswith("roof-hatch-electric") else ""}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>{sel}</div>'
+                tiles += f'<button type="button" class="tile{" on" if m == a else ""}" data-pid="{m}"><img src="{r}{sq(mp["images"][0],200)}" alt=""><span>{esc(mp["short_name"])}</span><em>{"from " if len(mv) > 1 else ""}{money(min(v["price"] for v in mv))}</em></button>'
+            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(grp[1])}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label><div class="addon-pick"><div class="addon-cap">{esc(grp[2])} · {len(members)} products</div><div class="addon-tiles">{tiles}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
+        else:
+            sel = ''
+            if len(priced) > 1:
+                sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in priced) + '</select>'
+            addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>{sel}</div>'
     in_bundles = [b for b in BUNDLES if any(it['product'] == p['id'] for it in b['items'])]
     upsell = ''
     if in_bundles:
@@ -805,7 +809,7 @@ def page_404():
 def write_catalog_js():
     slim = {
         'brand': BRAND,
-        'products': [{**{k: p[k] for k in ['id', 'name', 'short_name', 'category', 'tagline', 'summary', 'variants']}, 'images': [sq(i, 400) for i in p['images'][:1]], 'quote_only': p.get('quote_only', False)} for p in PRODUCTS],
+        'products': [{**{k: p[k] for k in ['id', 'name', 'short_name', 'category', 'tagline', 'summary', 'variants']}, 'images': [sq(i, 400) for i in p['images']], 'image_by_option': p.get('image_by_option') or {}, 'quote_only': p.get('quote_only', False)} for p in PRODUCTS],
         'bundles': [{**{k: b[k] for k in ['id', 'name', 'tagline', 'summary', 'discount', 'items']}, 'images': [sq(b['images'][0], 400)]} for b in BUNDLES],
         'shopify': ({**SHOPIFY, 'variants': {**SHOPIFY['variants'], **{new: SHOPIFY['variants'][old] for new, old in SKU_ALIAS.items() if old in SHOPIFY['variants']}}, 'alias': SKU_ALIAS} if SHOPIFY else None),
     }

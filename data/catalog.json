@@ -279,7 +279,8 @@
         "switch-fan",
         "speedcontrol",
         "v12-valve",
-        "snowfilter"
+        "snowfilter",
+        "floor-ventilator-129"
       ],
       "image_by_option": {
         "Black": 1,
@@ -521,7 +522,8 @@
         "switch-round",
         "speedcontrol",
         "grill-large",
-        "snowfilter"
+        "snowfilter",
+        "floor-ventilator-129"
       ]
     },
     {
