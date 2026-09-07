@@ -242,13 +242,13 @@
     {
       "id": "le-mans-ll-silent-kit",
       "name": "Le Mans LL Long-Life Extraction Kit",
-      "tagline": "Brushless fan with speed control, switch and design valve.",
+      "tagline": "Brushless fan with speed control and design valve.",
       "discount": 0.1,
       "badges": [
         "Brushless",
         "Save 10%"
       ],
-      "summary": "Le Mans LL with integrated speed control unit + square 3-way switch + Flower Power closable valve. Long-life extraction for damp loading areas, animal transport and coaches.",
+      "summary": "Le Mans LL with integrated speed control unit + square + Flower Power closable valve. Long-life extraction for damp loading areas, animal transport and coaches.",
       "description": [
         "The brushless Le Mans LL runs for years without maintenance and draws only 34 W. With the integrated speed control unit you set exactly the extraction you need. The Flower Power valve closes the ceiling off in style."
       ],
@@ -260,11 +260,6 @@
             "02-4250",
             "02-4350"
           ],
-          "qty": 1
-        },
-        {
-          "product": "switch-square",
-          "sku": "89-4005",
           "qty": 1
         },
         {

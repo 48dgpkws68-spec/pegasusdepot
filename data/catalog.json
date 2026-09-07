@@ -302,7 +302,7 @@
       "description": [
         "The Le Mans LL takes the proven Le Mans shape and fits it with a brushless motor. The result: a ventilator that runs for years without servicing, draws only 34 W and is available with an integrated speed control unit.",
         "The LL is an extraction-only ventilator, which is exactly what most loading areas, animal compartments and coach toilets need: a constant, healthy discharge of humid or contaminated air. Pair it with a floor ventilator for a complete airflow loop.",
-        "Order the 12V or 24V version, with or without built-in speed control. A 3-way switch and interior valve are available separately. Saw template included."
+        "Order the 12V or 24V version, with or without built-in speed control. An interior valve is available separately. Saw template included."
       ],
       "features": [
         "Brushless motor, maintenance-free",
@@ -379,11 +379,9 @@
         "horse-trailers"
       ],
       "accessories": [
-        "switch-fan",
         "flower-power",
         "v12-valve",
-        "floor-ventilator-129",
-        "switch-round"
+        "floor-ventilator-129"
       ],
       "faq": [
         {
@@ -396,7 +394,6 @@
         }
       ],
       "addons": [
-        "switch-square",
         "flower-power",
         "floor-ventilator-129"
       ]
