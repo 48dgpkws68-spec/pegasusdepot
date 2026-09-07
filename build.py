@@ -36,7 +36,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '7'
+VERSION = '8'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 RETIRED = {'rotary-valve': 'shop.html?cat=interior-valves', 'rotary-valve-metal': 'shop.html?cat=interior-valves', 'step-converter': 'products/control-unit.html'}
@@ -82,6 +82,46 @@ def sq(path, maxpx=900):
 def scene(path, maxpx=1800):
     return opt(path, maxpx, 80)
 SCENE_KEYS = ['vehicle', 'ventilator-1', 'ventilator-2', 'ventilator-3', '2021', 'PMH', 'Jozef', 'DSC', 'Ceilingflow-at', 'Project1', 'krismar', 'Horse', 'SANY', 'mercedes', 'vanhool', 'Transfer', 'c294', '/51.', 'IMG_', 'b1b68', 'Magazijn', 'magazijn', 'assembly', 'group-photo', 'building', 'le-mans-warehouse', 'MAN-LE4', 'Splash', 'Residence', 'VDL', 'bus-me', 'School', 'kdv']
+OG_OUT = ROOT / 'assets/og'
+OG_OUT.mkdir(parents=True, exist_ok=True)
+_og_cache = {}
+def og_jpg(path):
+    """1200x630 JPEG for social previews: photos are cover-cropped, product cut-outs sit centred on ivory."""
+    if path in _og_cache:
+        return _og_cache[path]
+    src = ROOT / path
+    stem = re.sub(r'[^A-Za-z0-9_-]+', '-', Path(path).stem).strip('-').lower()
+    dst = OG_OUT / f'{stem}.jpg'; rel = f'assets/og/{stem}.jpg'
+    if not src.exists():
+        _og_cache[path] = rel if dst.exists() else 'assets/og/og-default.jpg'; return _og_cache[path]
+    if not dst.exists() or dst.stat().st_mtime < src.stat().st_mtime:
+        im = Image.open(src).convert('RGB'); W, H = 1200, 630
+        if is_scene(path) or 'og-default' in path:
+            s = max(W / im.width, H / im.height); im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+            x, y = (im.width - W) // 2, (im.height - H) // 2; im = im.crop((x, y, x + W, y + H))
+        else:
+            canvas = Image.new('RGB', (W, H), (246, 244, 239)); s = min((W - 160) / im.width, (H - 120) / im.height)
+            im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS); canvas.paste(im, ((W - im.width) // 2, (H - im.height) // 2)); im = canvas
+        im.save(dst, 'JPEG', quality=86, optimize=True, progressive=True)
+    _og_cache[path] = rel; return rel
+
+_dim_cache = {}
+def add_img_dims(html, page_path):
+    """Give every local <img> its intrinsic width/height so the layout does not jump while images load."""
+    base = Path(page_path).parent
+    def fix(m):
+        tag = m.group(0)
+        if 'width=' in tag or 'height=' in tag: return tag
+        s = re.search(r'\ssrc="([^"]+)"', tag)
+        if not s or s.group(1).startswith(('http', 'data:')): return tag
+        rel = s.group(1).lstrip('/') if s.group(1).startswith('/') else os.path.normpath(str(base / s.group(1)))
+        if rel not in _dim_cache:
+            try: _dim_cache[rel] = Image.open(ROOT / rel).size
+            except Exception: _dim_cache[rel] = None
+        d = _dim_cache[rel]
+        return tag[:-1] + f' width="{d[0]}" height="{d[1]}">' if d else tag
+    return re.sub(r'<img\s[^>]*>', fix, html)
+
 def is_scene(path):
     return any(k in path for k in SCENE_KEYS)
 
@@ -188,7 +228,7 @@ def product_ld(p):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
     return ''.join(jsonld(x) for x in ld)
 
-ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/assets/img/og-default.webp", "email": BRAND['email'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
+ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/icon-512.png", "email": BRAND['email'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
 
 # ---------------------------------------------------------------- layout
 def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, preload=None):
@@ -196,7 +236,7 @@ def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, pre
     if len(desc) > 158:
         cut = desc[:155]; k = max(cut.rfind('. '), cut.rfind('.'))
         desc = cut[:k + 1] if k > 60 else cut.rsplit(' ', 1)[0] + '…'
-    og = scene(og_image) if og_image else 'assets/img/og-default.webp'
+    og = og_jpg(og_image or 'assets/img/og-default.webp')
     extra = ('<meta name="robots" content="noindex,nofollow">' if noindex else '') + (f'<link rel="preload" as="image" href="{r}{preload}" fetchpriority="high">' if preload else '')
     return f'''<!DOCTYPE html>
 <html lang="en" data-root="{r}">
@@ -206,9 +246,9 @@ def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, pre
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE_URL}/{canonical or ''}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{SITE_URL}/{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{SITE_URL}/{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}
 <meta name="theme-color" content="#0B0C0E">
-<link rel="icon" href="{FAVICON}">
+<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="{r}assets/css/site.css?v={VERSION}">
@@ -491,10 +531,11 @@ def page_product(p):
     gal = []
     for img in p['images']:
         sc = is_scene(img)
-        gal.append((scene(img, 1400) if sc else sq(img, 1400), sc))
+        gal.append((scene(img, 1400) if sc else sq(img, 1400), sc, scene(img, 240) if sc else sq(img, 240)))
     if p.get('drawing'):
-        gal.append((opt(p['drawing'], 1400), False))
-    thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{src}" alt="" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc) in enumerate(gal))
+        gal.append((opt(p['drawing'], 1400), False, opt(p['drawing'], 240)))
+    thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{small}" alt="" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc, small) in enumerate(gal))
+    gal = [(src, sc) for src, sc, _ in gal]
     badges = ''.join(f'<span class="badge {"gold" if b in ("Bestseller","New") else ""}">{esc(b)}</span>' for b in p.get('badges', []))
     opts_html = ''
     for k in opt_names:
@@ -603,8 +644,9 @@ def page_bundle(b):
         opts = '<div class="b-opts"></div>' if it.get('choices') else f'<div class="qtyb">{esc(v["label"])}</div>'
         vg = f'<span class="qtyb">{esc(it.get("variant_group",""))}</span>' if it.get('variant_group') else ''
         items += f'<div class="b-item" data-bitem="{i}"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{it["qty"]}× {esc(p["name"])}</b>{vg}{opts}<a class="link" style="font-size:12px;margin-top:8px" href="{r}products/{p["id"]}.html">Product details {ICON["arrow"]}</a></div><div class="b-price"></div></div>'
-    gal = [(scene(b['scene'], 1400), True)] + [(sq(i, 1200), False) for i in b['images']]
-    thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{src}" alt="" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc) in enumerate(gal))
+    gal = [(scene(b['scene'], 1400), True, scene(b['scene'], 240))] + [(sq(i, 1200), False, sq(i, 240)) for i in b['images']]
+    thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{small}" alt="" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc, small) in enumerate(gal))
+    gal = [(src, sc) for src, sc, _ in gal]
     included = ''.join(f'<li>{ICON["check"]}<div><b>{it["qty"]}× {esc(P[it["product"]]["name"])}</b>{esc(P[it["product"]]["tagline"])}</div></li>' for it in b['items'])
     vehicles = [VEH[a] for a in b.get('for', []) if a in VEH]
     other = sorted([x for x in BUNDLES if x['id'] != b['id'] and set(x.get('for', [])) & set(b.get('for', []))], key=lambda x: -len(set(x.get('for', [])) & set(b.get('for', []))))[:3] or [x for x in BUNDLES if x['id'] != b['id']][:3]
@@ -830,7 +872,7 @@ def main():
     shutil.copy(ROOT / og, IMG_OUT / 'og-default.webp')
     urls = []
     def w(path, html):
-        html = label_ids(html)
+        html = add_img_dims(label_ids(html), path)
         if path == '404.html':
             html = re.sub(r'(href|src)="(?!https?:|mailto:|tel:|data:|#|/)', r'\1="/', html).replace('data-root=""', 'data-root="/"')
         (ROOT / path).write_text(html, encoding='utf-8'); urls.append(path)
