@@ -1005,7 +1005,12 @@
         "Dark grey": 1,
         "White": 0,
         "Grey": 0
-      }
+      },
+      "fits": [
+        "le-mans",
+        "le-mans-ll",
+        "rooftop-round"
+      ]
     },
     {
       "id": "flower-power",
@@ -1151,7 +1156,12 @@
         "No LED": 0,
         "LED 12V": 1,
         "LED 24V": 1
-      }
+      },
+      "fits": [
+        "le-mans",
+        "le-mans-ll",
+        "rooftop-round"
+      ]
     },
     {
       "id": "rotating-valve-300",
@@ -1244,7 +1254,12 @@
       "image_by_option": {
         "No": 0,
         "12/24V light": 1
-      }
+      },
+      "fits": [
+        "le-mans",
+        "le-mans-ll",
+        "rooftop-round"
+      ]
     },
     {
       "id": "grill-small",
@@ -1311,7 +1326,10 @@
       "accessories": [
         "exhaust-ventilator"
       ],
-      "faq": []
+      "faq": [],
+      "fits": [
+        "exhaust-ventilator"
+      ]
     },
     {
       "id": "grill-large",
@@ -1382,7 +1400,11 @@
         "le-mans",
         "rooftop-round"
       ],
-      "faq": []
+      "faq": [],
+      "fits": [
+        "le-mans",
+        "rooftop-round"
+      ]
     },
     {
       "id": "speedcontrol",

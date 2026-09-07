@@ -36,7 +36,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '11'
+VERSION = '12'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
@@ -565,7 +565,7 @@ def page_product(p):
     addons = ''
     # add-on groups: one row per group with picture tiles for every product in it, then variant chips (rendered by site.js)
     def addon_group(pid):
-        if P[pid]['category'] == 'interior-valves': return ('interior', 'Interior valve or grille', 'Choose your interior finish', [x['id'] for x in PRODUCTS if x['category'] == 'interior-valves' and not x.get('quote_only')])
+        if P[pid]['category'] == 'interior-valves': return ('interior', 'Interior valve or grille', 'Choose your interior finish', [x['id'] for x in PRODUCTS if x['category'] == 'interior-valves' and not x.get('quote_only') and (p['id'] in x.get('fits', []) or x['id'] == pid)])
         if pid.startswith('switch-'): return ('switch', 'Switch', 'Choose your switch', [x['id'] for x in PRODUCTS if x['id'].startswith('switch-') and not x.get('quote_only')])
         if pid.startswith('floor-ventilator-'): return ('floor', 'Floor inlet', 'Choose your floor inlet', [x['id'] for x in PRODUCTS if x['id'].startswith('floor-ventilator-') and not x.get('quote_only')])
         return None
@@ -580,11 +580,13 @@ def page_product(p):
             seen_groups.add(grp[0])
             members = [a] + [m for m in grp[3] if m != a]
             groups_html = ''; tiles = ''
+            title = grp[1] if len(members) > 1 else ap['short_name']
+            caption = f'{grp[2]} · {len(members)} products' if len(members) > 1 else 'Choose your colour or version'
             for m in members:
                 mp = P[m]; mv = [v for v in mp['variants'] if v.get('price') is not None]
                 groups_html += f'<optgroup label="{esc(mp["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in mv) + '</optgroup>'
                 tiles += f'<button type="button" class="tile{" on" if m == a else ""}" data-pid="{m}"><img src="{r}{sq(mp["images"][0],200)}" alt=""><span>{esc(mp["short_name"])}</span><em>{"from " if len(mv) > 1 else ""}{money(min(v["price"] for v in mv))}</em></button>'
-            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(grp[1])}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label><div class="addon-pick"><div class="addon-cap">{esc(grp[2])} · {len(members)} products</div><div class="addon-tiles">{tiles}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
+            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(title)}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label><div class="addon-pick"><div class="addon-cap">{esc(caption)}</div><div class="addon-tiles">{tiles if len(members) > 1 else ""}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
         else:
             sel = ''
             if len(priced) > 1:

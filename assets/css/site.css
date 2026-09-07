@@ -576,3 +576,5 @@ h1,h2,h3,h4{font-weight:500;line-height:1.08;letter-spacing:-.01em}
 .addon .p{white-space:nowrap}
 .addon-main>div{min-width:0}
 .addon-sub{overflow-wrap:anywhere}
+
+.addon-tiles:empty{display:none}
