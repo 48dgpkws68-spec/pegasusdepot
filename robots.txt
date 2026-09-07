@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /build.py
+Disallow: /src/
+Disallow: /data/
+Disallow: /checkout.html
+Disallow: /thank-you.html
 Sitemap: https://pegasusdepot.com/sitemap.xml

@@ -146,7 +146,7 @@
       "summary": "The most popular electric roof fan for ambulances, horse trucks, buses and commercial vehicles. 850 m³/h of suction or blowing power under a streamlined cover, available in 12V and 24V, white or black.",
       "description": [
         "The Le Mans is where style meets raw airflow. A sleek, low-profile cover (only 64 mm above the roof, so it sits happily next to solar panels) hides a motor that moves 850 m³/h in either direction: suck hot, humid or contaminated air out, or blow fresh air in. It is the ventilator that bodybuilders across Europe specify when a vehicle simply has to stay fresh.",
-        "Choose 12V for vans, campers and passenger vehicles, or 24V for trucks, coaches and buses. Both versions are EMC approved, so they will not interfere with your vehicle electronics. Prefer a passive solution? The motorless version uses the same 230 mm roof cut-out and can be upgraded to electric later.",
+        "Choose 12V for vans, campers and passenger vehicles, or 24V for trucks, coaches and buses. Both versions are EMC approved, so they are tested not to interfere with your vehicle electronics. Prefer a passive solution? The motorless version uses the same 230 mm roof cut-out and can be upgraded to electric later.",
         "Finish the installation with a 3-way switch (blow / off / suck), an optional speed controller and one of our interior valves or grilles. Everything fits the same 230 mm opening."
       ],
       "features": [
@@ -1841,7 +1841,7 @@
     {
       "id": "roof-hatch-manual-small",
       "name": "Roof Hatch Manual 530 x 530",
-      "short_name": "Roof Hatch Manual S",
+      "short_name": "Roof Hatch Manual 530",
       "category": "roof-hatches",
       "tagline": "ECE 43R glass dome, manual operation",
       "badges": [
@@ -1905,7 +1905,7 @@
     {
       "id": "roof-hatch-manual-large",
       "name": "Roof Hatch Manual 970 x 530 Emergency Exit",
-      "short_name": "Roof Hatch Manual L",
+      "short_name": "Roof Hatch Manual 970",
       "category": "roof-hatches",
       "tagline": "Emergency exit hatch, EC 2001/85 compliant",
       "badges": [
@@ -1969,7 +1969,7 @@
     {
       "id": "roof-hatch-electric-small",
       "name": "Roof Hatch Electric 530 x 530",
-      "short_name": "Roof Hatch Electric S",
+      "short_name": "Roof Hatch Electric 530",
       "category": "roof-hatches",
       "tagline": "Push-button comfort, ECE 43R dome",
       "badges": [
@@ -2034,7 +2034,7 @@
     {
       "id": "roof-hatch-electric-large",
       "name": "Roof Hatch Electric 970 x 530 Emergency Exit",
-      "short_name": "Roof Hatch Electric L",
+      "short_name": "Roof Hatch Electric 970",
       "category": "roof-hatches",
       "tagline": "The flagship hatch for buses and coaches",
       "badges": [
@@ -2133,12 +2133,12 @@
         "Dimensions": "Ø 150 mm x 13.5 mm, 150 g",
         "Dimming": "50% via wiring",
         "Night light": "Blue",
-        "Colours": "White (92-GC01) or Grey (92-GC02)",
+        "Colours": "White (92-L01) or Grey (92-L02)",
         "Origin": "Made in the Netherlands"
       },
       "variants": [
         {
-          "sku": "92-GC01",
+          "sku": "92-L01",
           "label": "White",
           "options": {
             "Colour": "White"
@@ -2147,7 +2147,7 @@
           "compare_at": 69.95
         },
         {
-          "sku": "92-GC02",
+          "sku": "92-L02",
           "label": "Grey",
           "options": {
             "Colour": "Grey"
@@ -2218,12 +2218,12 @@
         "Light colour": "± 5000 K",
         "Dimming": "50% via wiring",
         "Dimensions": "350 x 140 mm, 13.6 mm thick",
-        "Colours": "White (92-GC05) or Grey (92-GC06)",
+        "Colours": "White (92-L05) or Grey (92-L06)",
         "Origin": "Made in the Netherlands"
       },
       "variants": [
         {
-          "sku": "92-GC06",
+          "sku": "92-L06",
           "label": "Grey",
           "options": {
             "Colour": "Grey"
@@ -2232,7 +2232,7 @@
           "compare_at": 109
         },
         {
-          "sku": "92-GC05",
+          "sku": "92-L05",
           "label": "White",
           "options": {
             "Colour": "White"

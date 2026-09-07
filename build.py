@@ -36,9 +36,20 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '8'
+VERSION = '9'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
+PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
+SKU_ALIAS = {'92-L01': '92-GC01', '92-L02': '92-GC02', '92-L05': '92-GC05', '92-L06': '92-GC06'}  # public code -> code used in the Shopify import
+ISO = {'Netherlands': 'NL', 'Belgium': 'BE', 'Germany': 'DE', 'France': 'FR', 'Luxembourg': 'LU', 'Austria': 'AT', 'Denmark': 'DK', 'Italy': 'IT', 'Spain': 'ES', 'Sweden': 'SE', 'Ireland': 'IE', 'Poland': 'PL', 'Portugal': 'PT', 'Finland': 'FI', 'Czechia': 'CZ', 'Hungary': 'HU', 'Romania': 'RO', 'Greece': 'GR', 'Slovakia': 'SK', 'Slovenia': 'SI', 'Croatia': 'HR', 'Bulgaria': 'BG', 'Estonia': 'EE', 'Latvia': 'LV', 'Lithuania': 'LT', 'Malta': 'MT', 'Cyprus': 'CY'}
+def _ship_ld(rate, countries, dmin, dmax):
+    return {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": f"{rate:.2f}", "currency": "EUR"}, "shippingDestination": [{"@type": "DefinedRegion", "addressCountry": ISO[x]} for x in countries if x in ISO], "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": dmin, "maxValue": dmax, "unitCode": "DAY"}}}
+_zones = [z for z in BRAND['shipping']['zones'] if z.get('price') is not None]
+_days = {'nlbe': (1, 2), 'eu1': (2, 3), 'eu': (3, 5)}
+SHIPPING_LD = [_ship_ld(z['price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
+OVERSIZE_LD = [_ship_ld(BRAND['shipping']['oversize_price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
+RETURN_LD = {"@type": "MerchantReturnPolicy", "applicableCountry": [ISO[x] for z in _zones for x in z['countries'] if x in ISO], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 30, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"}
+ANALYTICS_HTML = ''
 RETIRED = {'rotary-valve': 'shop.html?cat=interior-valves', 'rotary-valve-metal': 'shop.html?cat=interior-valves', 'step-converter': 'products/control-unit.html'}
 
 # ---------------------------------------------------------------- images
@@ -51,7 +62,7 @@ def opt(path, maxpx=1100, quality=82):
     if key in _img_cache:
         return _img_cache[key]
     src = ROOT / path
-    stem = re.sub(r'[^A-Za-z0-9_-]+', '-', Path(path).stem).strip('-').lower()
+    stem = re.sub(r'[^A-Za-z0-9_-]+', '-', Path(path).stem).strip('-').lower().replace('gc', 'pd')
     name = f'{stem}-{maxpx}.webp'
     dst = IMG_OUT / name
     rel = f'assets/img/{name}'
@@ -90,7 +101,7 @@ def og_jpg(path):
     if path in _og_cache:
         return _og_cache[path]
     src = ROOT / path
-    stem = re.sub(r'[^A-Za-z0-9_-]+', '-', Path(path).stem).strip('-').lower()
+    stem = re.sub(r'[^A-Za-z0-9_-]+', '-', Path(path).stem).strip('-').lower().replace('gc', 'pd')
     dst = OG_OUT / f'{stem}.jpg'; rel = f'assets/og/{stem}.jpg'
     if not src.exists():
         _og_cache[path] = rel if dst.exists() else 'assets/og/og-default.jpg'; return _og_cache[path]
@@ -121,6 +132,10 @@ def add_img_dims(html, page_path):
         d = _dim_cache[rel]
         return tag[:-1] + f' width="{d[0]}" height="{d[1]}">' if d else tag
     return re.sub(r'<img\s[^>]*>', fix, html)
+
+def nb(t):
+    i = t.rstrip().rfind(' ')
+    return t if i < 0 else t[:i] + '&nbsp;' + t[i + 1:]
 
 def is_scene(path):
     return any(k in path for k in SCENE_KEYS)
@@ -167,6 +182,8 @@ def voltages(p):
                 vs.add('12V'); vs.add('24V')
     for sp in (p.get('specs') or {}).values():
         if '12V' in sp and '24V' in sp: vs.update(['12V', '24V'])
+    if p['category'] == 'roof-hatches': vs = {'24V'} if 'electric' in p['id'] else {'No power'}
+    if p['id'] == 'control-unit': vs = {'24V'}
     if not vs and p['category'] in ('rooftop-ventilators', 'floor-ventilation', 'interior-valves'):
         vs.add('No power')
     return sorted(vs)
@@ -206,6 +223,7 @@ def rel(depth):
     return '../' * depth
 
 PRIVATE = json.load(open(ROOT / 'data/private.json')) if (ROOT / 'data/private.json').exists() else {}
+ANALYTICS_HTML = PRIVATE.get('analytics_html', '')
 FORM_TARGET = PRIVATE.get('form_target') or BRAND['email']
 FORM_ENDPOINT_B64 = base64.b64encode(('https://formsubmit.co/' + FORM_TARGET).encode()).decode()
 def form_open(subject, depth=0, cls='form', extra=''):
@@ -220,10 +238,13 @@ def jsonld(obj):
 def product_ld(p):
     offers = [{"@type": "Offer", "sku": v['sku'], "name": v['label'], "price": f"{v['price']:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": f"{SITE_URL}/products/{p['id']}.html", "shippingDetails": {"@type": "OfferShippingDetails", "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "NL"}}} for v in p['variants'] if v.get('price') is not None]
     d = {"@context": "https://schema.org", "@type": "Product", "name": p['name'], "sku": p['variants'][0]['sku'], "description": p['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{sq(p['images'][0], 1400)}"], "category": CAT[p['category']]['name'], "url": f"{SITE_URL}/products/{p['id']}.html"}
+    for o in offers:
+        o['shippingDetails'] = OVERSIZE_LD if p['category'] in BRAND['shipping'].get('oversize_categories', []) else SHIPPING_LD
+        o['hasMerchantReturnPolicy'] = RETURN_LD
     if offers:
         prices = [float(o['price']) for o in offers]
         d["offers"] = {"@type": "AggregateOffer", "lowPrice": f"{min(prices):.2f}", "highPrice": f"{max(prices):.2f}", "priceCurrency": "EUR", "offerCount": len(offers), "offers": offers}
-    ld = [d, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}, {"@type": "ListItem", "position": 2, "name": "Shop", "item": SITE_URL + "/shop.html"}, {"@type": "ListItem", "position": 3, "name": CAT[p['category']]['name'], "item": f"{SITE_URL}/shop.html?cat={p['category']}"}, {"@type": "ListItem", "position": 4, "name": p['name']}]}]
+    ld = ([d] if offers else []) + [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}, {"@type": "ListItem", "position": 2, "name": "Shop", "item": SITE_URL + "/shop.html"}, {"@type": "ListItem", "position": 3, "name": CAT[p['category']]['name'], "item": f"{SITE_URL}/shop.html?cat={p['category']}"}, {"@type": "ListItem", "position": 4, "name": p['name']}]}]
     if p.get('faq'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
     return ''.join(jsonld(x) for x in ld)
@@ -231,7 +252,7 @@ def product_ld(p):
 ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/icon-512.png", "email": BRAND['email'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
 
 # ---------------------------------------------------------------- layout
-def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, preload=None):
+def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, preload=None, og_type='website', extra_meta=''):
     r = rel(depth)
     if len(desc) > 158:
         cut = desc[:155]; k = max(cut.rfind('. '), cut.rfind('.'))
@@ -246,9 +267,9 @@ def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, pre
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE_URL}/{canonical or ''}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{SITE_URL}/{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="{og_type}"><meta property="og:url" content="{SITE_URL}/{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}{extra_meta}
 <meta name="theme-color" content="#0B0C0E">
-<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">{ANALYTICS_HTML}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="{r}assets/css/site.css?v={VERSION}">
@@ -309,7 +330,7 @@ def header(depth=0):
   <div class="ship-bar"><span id="ship-txt"></span><div class="bar"><i id="ship-bar"></i></div></div>
   <div class="drawer-body" id="cart-body"></div>
   <div class="drawer-foot"><div class="row"><span>Subtotal</span><span id="cart-sub">€0</span></div><div class="row"><span id="cart-ship-lbl">Shipping (NL)</span><span id="cart-ship">–</span></div><div class="row total"><span>Total incl. VAT</span><span id="cart-total">€0</span></div>
-  <a class="btn btn-gold btn-block" id="checkout-btn" href="{r}checkout.html" style="margin-top:14px">Secure checkout {ICON['arrow']}</a><p class="muted" style="font-size:12px;text-align:center;margin-top:10px">Shipping shown for the Netherlands; other countries at checkout. Roof hatches €29 oversize.</p><p class="muted" style="font-size:12px;text-align:center;margin-top:6px">Visa · Mastercard · Bancontact · Klarna · PayPal · Apple Pay</p></div>
+  <a class="btn btn-gold btn-block" id="checkout-btn" href="{r}checkout.html" style="margin-top:14px">Secure checkout {ICON['arrow']}</a><p class="muted" style="font-size:12px;text-align:center;margin-top:10px"><span id="drawer-note">Shipping shown for the Netherlands; change your country at checkout.</span> Orders with roof hatches carry a flat €{BRAND['shipping']['oversize_price']} oversize fee.</p><p class="muted" style="font-size:12px;text-align:center;margin-top:6px">{PAYMENT_METHODS}</p></div>
 </aside>
 <div class="toast" id="toast">{ICON['check']}<span></span></div>
 '''
@@ -328,7 +349,7 @@ def footer(depth=0):
     <div><h5>Why Pegasus Depot</h5><p>✓ OEM-grade products<br>✓ EMC approved motors<br>✓ Ships within 24h from NL<br>✓ 2-year warranty<br>✓ Trade pricing for fleets and bodybuilders</p>
       <div class="pay" style="margin-top:16px"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>BANCONTACT</span><span>KLARNA</span><span>PAYPAL</span></div></div>
   </div>
-  <div class="footer-bottom"><span>© 2026 Pegasus Depot · {esc(BRAND['domain'])} · All prices incl. 21% VAT</span><span>Pegasus Depot is an independent online retailer. Product names and article numbers refer to the original manufacturer's specifications.</span></div>
+  <div class="footer-bottom"><span>© 2026 Pegasus Depot · {esc(BRAND['domain'])} · All prices incl. 21% VAT</span><span>Pegasus Depot is an independent online retailer for vehicle ventilation and comfort.</span></div>
 </div></footer>
 <script src="{r}assets/js/catalog.js?v={VERSION}"></script>
 <script src="{r}assets/js/site.js?v={VERSION}"></script>
@@ -457,7 +478,7 @@ def page_index():
 <section class="section dark"><div class="wrap">
   <div class="sec-head reveal"><div><div class="eyebrow">Why buy from Pegasus Depot</div><h2 class="h2">OEM-grade quality. Webshop convenience.</h2></div></div>
   <div class="usp-grid reveal">
-    <div class="usp">{ICON['bolt']}<b>EMC approved, every motor</b><p>Our ventilators carry EMC approval so they never disturb radios, telematics or medical equipment. Test reports available on request.</p></div>
+    <div class="usp">{ICON['bolt']}<b>EMC approved, every motor</b><p>Our ventilators carry EMC approval so they are designed not to interfere with radios, telematics or medical equipment. Test reports available on request.</p></div>
     <div class="usp">{ICON['box']}<b>From stock, within 24h</b><p>Thousands of units on the shelf in the Netherlands. Order before 15:00 CET on a working day and it ships the same day, otherwise within 24h.</p></div>
     <div class="usp">{ICON['ruler']}<b>Made to fit</b><p>Standard 230 mm, 128 mm and 80 mm cut-outs, roof thickness ranges up to 70 mm, and dimensional drawings for the main products.</p></div>
     <div class="usp">{ICON['euro']}<b>Kits that save</b><p>Complete kits save 8 to 12%. Trade accounts get volume pricing and ex-VAT invoicing. No hidden surcharges.</p></div>
@@ -592,9 +613,13 @@ def page_product(p):
     qty_html = '' if quote else '<div class="qty"><button id="qty-minus" aria-label="Less">−</button><input id="qty" value="1" inputmode="numeric"><button id="qty-plus" aria-label="More">+</button></div>'
     sticky_btn = f'<a class="btn btn-gold" href="{r}contact.html">Request a quote</a>' if quote else '<button class="btn btn-gold" id="sticky-add">Add to cart</button>'
     oversize = p['category'] in BRAND['shipping'].get('oversize_categories', [])
-    vat_txt = 'Incl. 21% VAT · ex-VAT for trade accounts · +€' + str(BRAND['shipping']['oversize_price']) + ' oversize shipping per hatch, not included in free shipping' if oversize else 'Incl. 21% VAT · ex-VAT for trade accounts · free EU shipping from €150'
+    vat_txt = 'Incl. 21% VAT · ex-VAT for trade accounts · +€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'Incl. 21% VAT · ex-VAT for trade accounts · free EU shipping from €150'
     rating_txt = 'Specified by European bodybuilders for 20+ years · ' + ('EMC test report available' if 'EMC' in json.dumps(p) else ('Dimensional drawing on this page' if p.get('drawing') else '2-year warranty'))
-    h = head(f'{p["name"]} · Pegasus Depot', p['summary'], depth, p['images'][0], f'products/{p["id"]}.html')
+    if 'New' in p.get('badges', []): rating_txt = 'New in the range · 2-year warranty · 30-day returns'
+    elif p['category'] == 'indoor-climate': rating_txt = 'Indoor climate · 2-year warranty · 30-day returns'
+    _pv = [v for v in p['variants'] if v.get('price') is not None]
+    _pm = (f'<meta property="product:price:amount" content="{_pv[0]["price"]:.2f}"><meta property="product:price:currency" content="EUR">' if _pv else '') + f'<meta property="og:image:alt" content="{esc(p["name"])}">'
+    h = head(f'{p["name"]} · Pegasus Depot', p['summary'], depth, p['images'][0], f'products/{p["id"]}.html', og_type='product', extra_meta=_pm)
     h += product_ld(p)
     h += header(depth)
     h += f'''
@@ -625,7 +650,7 @@ def page_product(p):
   <div class="tab-panel" id="t-dl"><div class="dl">{dls}</div>{drawing_html}</div>
   {faq_tab}
 </div></div>
-<section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Complete the system</div><h2 class="h2">Goes well with the {esc(p['short_name'])}.</h2></div><a class="link" href="{r}shop.html">Shop all {ICON['arrow']}</a></div><div class="grid">{''.join(card(x, depth) for x in related)}</div></div></section>
+<section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Complete the system</div><h2 class="h2">Goes well with the <span style="white-space:nowrap">{esc(p['short_name'])}.</span></h2></div><a class="link" href="{r}shop.html">Shop all {ICON['arrow']}</a></div><div class="grid">{''.join(card(x, depth) for x in related)}</div></div></section>
 {kits_html}
 {newsletter(depth)}
 <div class="sticky-buy"><div class="price" id="sticky-price">{money(pf) if pf is not None else 'Quote'}</div>{sticky_btn}</div>
@@ -651,7 +676,7 @@ def page_bundle(b):
     vehicles = [VEH[a] for a in b.get('for', []) if a in VEH]
     other = sorted([x for x in BUNDLES if x['id'] != b['id'] and set(x.get('for', [])) & set(b.get('for', []))], key=lambda x: -len(set(x.get('for', [])) & set(b.get('for', []))))[:3] or [x for x in BUNDLES if x['id'] != b['id']][:3]
     ideal = ('<div class="pill-row" style="margin-top:10px"><span class="muted" style="font-size:13px;align-self:center">Ideal for:</span>' + ''.join(f'<a class="pill" href="{r}vehicles/{v["id"]}.html">{esc(v["nav"])}</a>' for v in vehicles) + '</div>') if vehicles else ''
-    h = head(f'{b["name"]} · save {int(b["discount"]*100)}% · Pegasus Depot', b['summary'], depth, b['scene'], f'bundles/{b["id"]}.html')
+    h = head(f'{b["name"]} · save {int(b["discount"]*100)}% · Pegasus Depot', b['summary'], depth, b['scene'], f'bundles/{b["id"]}.html', og_type='product', extra_meta=f'<meta property="product:price:amount" content="{bundle_calc(b)[1]:.2f}"><meta property="product:price:currency" content="EUR"><meta property="og:image:alt" content="{esc(b["name"])}">')
     h += jsonld({"@context": "https://schema.org", "@type": "Product", "name": b['name'], "description": b['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{scene(b['scene'], 1400)}"], "url": f"{SITE_URL}/bundles/{b['id']}.html", "offers": {"@type": "Offer", "price": f"{price:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": f"{SITE_URL}/bundles/{b['id']}.html"}})
     h += header(depth)
     h += f'''
@@ -689,7 +714,7 @@ def page_vehicle(v):
     h = head(f'Ventilation for {v["name"]} · Pegasus Depot', v['intro'], depth, v['hero'], f'vehicles/{v["id"]}.html')
     h += header(depth)
     h += f'''
-<section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{esc(v['headline'])}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#kits">Recommended kits {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
+<section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{nb(esc(v['headline']))}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#kits">Recommended kits {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
 <section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">The challenge</div><h2 class="h2">What goes wrong without proper airflow.</h2></div></div>
 <div class="pain-grid">{''.join(f'<div class="pain"><div class="num">0{i+1}</div><b>{esc(x["title"])}</b><p>{esc(x["text"])}</p></div>' for i,x in enumerate(v['pains']))}</div></div></section>
 <section class="section dark-2" id="kits"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Recommended kits</div><h2 class="h2">Pre-matched for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}bundles.html">All kits {ICON['arrow']}</a></div><div class="grid grid-3">{''.join(bundle_card(b, depth) for b in bundles)}</div></div></section>
@@ -720,8 +745,8 @@ def page_trade():
     body = f'''
 <section class="page-hero"><img class="bg" src="{scene('assets/media/IMG_010422.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Trade</span></div><div class="eyebrow">Trade &amp; fleet accounts</div><h1 class="h1">Volume pricing for the people who fit it for a living.</h1><p class="lead">Bodybuilders, van converters, horsebox manufacturers, ambulance outfitters, fleet workshops and dealers: open a trade account and buy at trade prices, ex-VAT, with a dedicated contact.</p></div></section>
 <section class="section ivory"><div class="wrap contact-grid"><div><div class="eyebrow">What you get</div><h2 class="h2" style="margin:12px 0 18px">Built around your workshop, not our webshop.</h2>
-<ul class="checks"><li>{ICON['check']}<div><b>Tiered volume pricing</b>Discounts from the first 10 units, better at 50 and project pricing above.</div></li><li>{ICON['check']}<div><b>Ex-VAT invoicing and 30-day terms</b>For approved EU businesses with a valid VAT number.</div></li><li>{ICON['check']}<div><b>Project support</b>Drawings, EMC reports, cut-out templates and airflow advice for new vehicle designs.</div></li><li>{ICON['check']}<div><b>Custom colours and OEM options</b>Grilles and valves in your fleet colour, motorless versions, private label on request.</div></li><li>{ICON['check']}<div><b>Call-off stock</b>Reserve quantities for a build programme and call them off as you need them.</div></li></ul></div>
-<div class="info-card">{form_open('Trade account request')}<div class="form-row"><div class="field"><label>Company</label><input name="company" required></div><div class="field"><label>VAT number</label><input name="vat"></div></div><div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="field"><label>What do you build or run?</label><select name="segment"><option>Van conversions / bodybuilding</option><option>Horseboxes / animal transport</option><option>Buses / coaches</option><option>Ambulances / emergency vehicles</option><option>Campers / leisure</option><option>Marine</option><option>Fleet workshop</option><option>Dealer / reseller</option></select></div><div class="field"><label>Expected annual volume</label><select name="volume"><option>10 to 50 units</option><option>50 to 250 units</option><option>250+ units</option></select></div><div class="field"><label>Message</label><textarea name="message" rows="4" placeholder="Which products, which vehicles, which timeline?"></textarea></div><button class="btn btn-gold btn-block">Request a trade account {ICON['arrow']}</button><p class="note">We reply within one working day. Existing dealers keep their current terms.</p></form></div></div></section>
+<ul class="checks"><li>{ICON['check']}<div><b>Tiered volume pricing</b>Discounts from the first 10 units, better at 50 and project pricing above.</div></li><li>{ICON['check']}<div><b>Ex-VAT invoicing and 30-day terms</b>For approved EU businesses with a valid VAT number.</div></li><li>{ICON['check']}<div><b>Project support</b>Drawings, EMC reports, cut-out templates and airflow advice for new vehicle designs.</div></li><li>{ICON['check']}<div><b>Custom colours and OEM options</b>Grilles and valves in your fleet colour and motorless versions, available on request for larger programmes.</div></li><li>{ICON['check']}<div><b>Call-off stock</b>Reserve quantities for a build programme and call them off as you need them.</div></li></ul></div>
+<div class="info-card">{form_open('Trade account request')}<div class="form-row"><div class="field"><label>Company</label><input name="company" required></div><div class="field"><label>VAT number</label><input name="vat"></div></div><div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="field"><label>What do you build or run?</label><select name="segment"><option>Van conversions / bodybuilding</option><option>Horseboxes / animal transport</option><option>Buses / coaches</option><option>Ambulances / emergency vehicles</option><option>Campers / leisure</option><option>Marine</option><option>Fleet workshop</option><option>Dealer / reseller</option></select></div><div class="field"><label>Expected annual volume</label><select name="volume"><option>10 to 50 units</option><option>50 to 250 units</option><option>250+ units</option></select></div><div class="field"><label>Message</label><textarea name="message" rows="4" placeholder="Which products, which vehicles, which timeline?"></textarea></div><button class="btn btn-gold btn-block">Request a trade account {ICON['arrow']}</button><p class="note">We reply within one working day.</p></form></div></div></section>
 {newsletter()}'''
     return simple_page('trade.html', 'Trade & fleet accounts', 'Trade pricing, ex-VAT invoicing and project support for bodybuilders, converters, fleets and dealers.', body)
 
@@ -736,7 +761,7 @@ def page_shipping():
     body = f'''
 <section class="section ivory"><div class="wrap" style="max-width:860px"><div class="crumbs light-crumbs" style="padding:0 0 20px"><a href="/">Home</a> / <span>Shipping &amp; returns</span></div><div class="eyebrow">Shipping &amp; returns</div><h1 class="h1" style="margin:12px 0 24px">Fast out, easy back.</h1>
 <h3 class="h3">Shipping</h3><p class="lead" style="margin:10px 0 22px">Orders placed before 15:00 CET on working days ship the same day from our warehouse in the Netherlands. Netherlands and Belgium: next working day. Germany, France, Austria, Denmark: 2 to 3 working days. Rest of EU: 3 to 5 working days. UK, Switzerland, Norway: 4 to 7 working days, duties may apply.</p>
-<table class="spec-table" style="margin-bottom:30px"><tr><th>Netherlands &amp; Belgium</th><td>€6.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Germany, France, Luxembourg, Austria, Denmark</th><td>€9.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Rest of EU</th><td>€14.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Roof hatches (oversize)</th><td>€29 per hatch, not included in free shipping; pallet shipping quoted for 3+ hatches</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
+<table class="spec-table" style="margin-bottom:30px"><tr><th>Netherlands &amp; Belgium</th><td>€6.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Germany, France, Luxembourg, Austria, Denmark</th><td>€9.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Rest of EU</th><td>€14.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate and not included in free shipping · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
 <h3 class="h3">Returns &amp; warranty</h3><p class="lead" style="margin:10px 0 22px">Unused products in original packaging can be returned within 30 days for a full refund. Products that have been installed or cut to size cannot be returned unless defective. All products carry a 2-year manufacturer warranty against defects in materials and workmanship. Electric motors are EMC approved and tested before dispatch.</p>
 <p class="note">Trade customers: returns and warranty claims are handled through your account contact. Keep the article number and the batch label from the box.</p></div></section>'''
     return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, free EU shipping from €150, 30-day returns and 2-year warranty.', body)
@@ -746,7 +771,7 @@ def page_terms():
 <p class="lead" style="margin-bottom:18px">These terms apply to all orders placed on pegasusdepot.com. By placing an order you agree to them.</p>
 <h3 class="h3">Prices and payment</h3><p class="lead" style="margin:8px 0 18px">All prices are in euro and include 21% Dutch VAT unless stated otherwise. Trade accounts are invoiced ex-VAT where a valid EU VAT number is provided. Payment by credit or debit card (Visa, Mastercard, American Express), Bancontact, Klarna, PayPal, Apple Pay or Google Pay; approved trade accounts may pay on 30-day terms.</p>
 <h3 class="h3">Delivery</h3><p class="lead" style="margin:8px 0 18px">Delivery times are estimates. Risk passes to you on delivery. Check the parcel on receipt and report transport damage within 48 hours.</p>
-<h3 class="h3">Warranty</h3><p class="lead" style="margin:8px 0 18px">Two years against defects in materials and workmanship from the date of delivery. Excluded: wear, incorrect installation, incorrect voltage, mechanical damage and modifications. Warranty is repair or replacement at our discretion.</p>
+<h3 class="h3">Right of withdrawal</h3><p class="lead" style="margin:8px 0 18px">Consumers in the EU may cancel an order within 14 days of delivery without giving a reason. Tell us by e-mail or through the contact form within that period and return the goods within 14 days of your notice; we refund the order including standard delivery within 14 days of receiving the goods (or proof of dispatch). Return shipping is at your cost unless the item is faulty. Items that show installation marks or are no longer complete may be refunded at a reduced value. Consumer disputes can also be submitted to the EU online dispute resolution platform at ec.europa.eu/consumers/odr.</p><h3 class="h3">Warranty</h3><p class="lead" style="margin:8px 0 18px">Two years against defects in materials and workmanship from the date of delivery. Excluded: wear, incorrect installation, incorrect voltage, mechanical damage and modifications. Warranty is repair or replacement at our discretion. This does not affect your statutory rights under EU consumer law.</p>
 <h3 class="h3">Specifications</h3><p class="lead" style="margin:8px 0 18px">Technical data is taken from the manufacturer's datasheets and may be updated without notice. Always check the current drawing before cutting a roof.</p>
 <h3 class="h3">Governing law</h3><p class="lead" style="margin:8px 0 18px">Dutch law applies. Disputes are submitted to the competent court in the Netherlands.</p></div></section>'''
     return simple_page('terms.html', 'Terms & warranty', 'Terms of sale and warranty conditions of Pegasus Depot.', body)
@@ -756,7 +781,7 @@ def page_privacy():
 <p class="lead" style="margin-bottom:18px">We only collect the data needed to process your order, answer your questions and, if you opt in, send you occasional product updates. We never sell your data.</p>
 <h3 class="h3">What we store</h3><p class="lead" style="margin:8px 0 18px">Name, company, address, email, phone, order history and, for trade accounts, VAT number. Payment details are processed by our payment provider and never stored on our servers.</p>
 <h3 class="h3">Cookies</h3><p class="lead" style="margin:8px 0 18px">Your cart is stored in your browser's local storage. We use privacy-friendly analytics without cross-site tracking.</p>
-<h3 class="h3">Your rights</h3><p class="lead" style="margin:8px 0 18px">You can request, correct or delete your data at any time by emailing hello@pegasusdepot.com.</p></div></section>'''
+<h3 class="h3">Who processes your data</h3><p class="lead" style="margin:8px 0 18px">Orders and payments are handled by Shopify (Shopify International Ltd., Ireland) on our behalf; the contact and trade forms are delivered through FormSubmit. Both act as processors and only receive the data needed to complete your order or answer your message. Carriers receive your name, address and phone number for delivery.</p><h3 class="h3">Your rights</h3><p class="lead" style="margin:8px 0 18px">You can request, correct or delete your data at any time by emailing hello@pegasusdepot.com.</p></div></section>'''
     return simple_page('privacy.html', 'Privacy', 'Privacy policy of Pegasus Depot.', body)
 
 def page_checkout():
@@ -769,7 +794,7 @@ def page_checkout():
     return simple_page('checkout.html', 'Checkout', 'Secure checkout.', body, noindex=True)
 
 def page_thanks():
-    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow" id="ty-eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px" id="ty-order">Your order <b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="lead" style="margin:0 auto 10px;display:none" id="ty-form">Your message has arrived. A specialist replies within one working day, usually much faster.</p><p class="muted">Questions? {esc(BRAND['email'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
+    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow" id="ty-eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px" id="ty-order">Your order<b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="lead" style="margin:0 auto 10px;display:none" id="ty-form">Your message has arrived. A specialist replies within one working day, usually much faster.</p><p class="muted">Questions? {esc(BRAND['email'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
     return simple_page('thank-you.html', 'Thank you', 'Order confirmation.', body, noindex=True)
 
 def page_404():
@@ -782,7 +807,7 @@ def write_catalog_js():
         'brand': BRAND,
         'products': [{**{k: p[k] for k in ['id', 'name', 'short_name', 'category', 'tagline', 'summary', 'variants']}, 'images': [sq(i, 400) for i in p['images'][:1]], 'quote_only': p.get('quote_only', False)} for p in PRODUCTS],
         'bundles': [{**{k: b[k] for k in ['id', 'name', 'tagline', 'summary', 'discount', 'items']}, 'images': [sq(b['images'][0], 400)]} for b in BUNDLES],
-        'shopify': SHOPIFY,
+        'shopify': ({**SHOPIFY, 'variants': {**SHOPIFY['variants'], **{new: SHOPIFY['variants'][old] for new, old in SKU_ALIAS.items() if old in SHOPIFY['variants']}}, 'alias': SKU_ALIAS} if SHOPIFY else None),
     }
     (ROOT / 'assets/js/catalog.js').write_text('window.CATALOG=' + json.dumps(slim, ensure_ascii=False) + ';')
 
@@ -838,18 +863,28 @@ def write_shopify_csv():
             if i == 0:
                 row['Image Src'] = f'{SITE_URL}/{scene(b["scene"], 1400)}'; row['Image Position'] = 1; row['Image Alt Text'] = b['name']
             rows.append(row)
-    with open(ROOT / 'shopify-products.csv', 'w', newline='', encoding='utf-8') as f:
+    (ROOT / 'exports').mkdir(exist_ok=True)
+    with open(ROOT / 'exports/shopify-products.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=cols); w.writeheader(); w.writerows(rows)
-    with open(ROOT / 'shopify-bundles.csv', 'w', newline='', encoding='utf-8') as f:
+    with open(ROOT / 'exports/shopify-bundles.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.writer(f); w.writerow(['Bundle handle', 'Bundle title', 'Discount', 'Component product', 'Component SKU options', 'Qty', 'Bundle price (default options)', 'Compare at'])
         for b in BUNDLES:
             full, price = bundle_calc(b)
             for it in b['items']:
                 w.writerow([b['id'], b['name'], f'{int(b["discount"]*100)}%', P[it['product']]['name'], it.get('sku') or ' | '.join(it['choices']), it['qty'], price, full])
 
+def lastmod(u):
+    import subprocess
+    try:
+        if subprocess.run(['git', 'status', '--porcelain', '--', u], cwd=ROOT, capture_output=True, text=True).stdout.strip(): return BUILD_DATE
+        d = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', u], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        return d or BUILD_DATE
+    except Exception:
+        return BUILD_DATE
+
 def write_sitemap(urls):
-    (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE_URL}/{"" if u == "index.html" else u}</loc><lastmod>{BUILD_DATE}</lastmod></url>\n' for u in urls) + '</urlset>\n')
-    (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n')
+    (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE_URL}/{"" if u == "index.html" else u}</loc><lastmod>{lastmod(u)}</lastmod></url>\n' for u in urls) + '</urlset>\n')
+    (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /build.py\nDisallow: /src/\nDisallow: /data/\nDisallow: /checkout.html\nDisallow: /thank-you.html\nSitemap: {SITE_URL}/sitemap.xml\n')
     (ROOT / 'CNAME').write_text(BRAND['domain'] + '\n')
 
 _lid = [0]

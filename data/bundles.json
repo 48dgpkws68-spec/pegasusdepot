@@ -241,7 +241,7 @@
     },
     {
       "id": "le-mans-ll-silent-kit",
-      "name": "Le Mans LL Silent Extraction Kit",
+      "name": "Le Mans LL Long-Life Extraction Kit",
       "tagline": "Brushless fan with speed control, switch and design valve.",
       "discount": 0.1,
       "badges": [
@@ -569,8 +569,8 @@
           "product": "lighting-round",
           "variant_group": "Light colour",
           "choices": [
-            "92-GC01",
-            "92-GC02"
+            "92-L01",
+            "92-L02"
           ],
           "qty": 2
         }
@@ -641,8 +641,8 @@
           "product": "lighting-rectangle",
           "variant_group": "Light colour",
           "choices": [
-            "92-GC05",
-            "92-GC06"
+            "92-L05",
+            "92-L06"
           ],
           "qty": 1
         }

@@ -45,7 +45,7 @@
     if (zone.price == null) return { price: 0, quote: true, short };
     let base = (zone.free_from != null && st >= zone.free_from) || st === 0 ? 0 : zone.price;
     const hatches = cart.reduce((n, l) => n + ((l.type === 'product' && (byId[l.id] || {}).category && SHIP.oversize_categories.includes(byId[l.id].category)) ? l.qty : 0) + ((l.type === 'bundle' && (bundleById[l.id] || { items: [] }).items.some(it => SHIP.oversize_categories.includes((byId[it.product] || {}).category))) ? l.qty * (bundleById[l.id].items.filter(it => SHIP.oversize_categories.includes((byId[it.product] || {}).category)).reduce((a, it) => a + it.qty, 0)) : 0), 0);
-    return { price: base + hatches * SHIP.oversize_price, quote: false, short, hatches };
+    return { price: base + (hatches ? SHIP.oversize_price : 0), quote: false, short, hatches };
   }
   const count = () => cart.reduce((s, l) => s + l.qty, 0);
 
@@ -77,7 +77,9 @@
     $('#cart-total').textContent = money(st + ship);
     const bar = $('#ship-bar'); const txt = $('#ship-txt');
     if (bar) { bar.style.width = Math.min(100, st / free * 100) + '%'; }
-    if (txt) { txt.innerHTML = st >= free ? (sh.hatches ? '<b>Free EU shipping unlocked.</b> Roof hatches carry €' + SHIP.oversize_price + ' oversize each.' : '<b>You have unlocked free EU shipping.</b>') : 'Add <b>' + money(free - st) + '</b> for free EU shipping' + (sh.hatches ? ' (roof hatches carry €' + SHIP.oversize_price + ' oversize each)' : ''); }
+    if (txt) { txt.innerHTML = sh.quote ? 'Shipping to the UK, Switzerland and Norway is quoted before you order.' : st >= free ? (sh.hatches ? '<b>Free EU shipping unlocked.</b> Orders with roof hatches carry a flat €' + SHIP.oversize_price + ' oversize fee.' : '<b>You have unlocked free EU shipping.</b>') : 'Add <b>' + money(free - st) + '</b> for free EU shipping' + (sh.hatches ? ' (plus a flat €' + SHIP.oversize_price + ' oversize fee for roof hatches)' : ''); }
+    if (bar) bar.parentElement.style.display = sh.quote ? 'none' : '';
+    const dn = $('#drawer-note'); if (dn) dn.textContent = 'Shipping calculated for ' + country + '; change your country at checkout.';
     const co = $('#checkout-btn'); if (co) co.classList.toggle('disabled', !cart.length);
     body.onclick = (e) => {
       const q = e.target.closest('[data-q]'); if (q) { const [i, d] = q.dataset.q.split(':').map(Number); setQty(i, cart[i].qty + d); }
@@ -89,7 +91,9 @@
     if (sum) {
       sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">Your cart is empty.</p>';
       $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? 'Quote via contact page' : (ship ? money(ship) + (sh.hatches ? ' (incl. hatch oversize)' : '') : 'Free'); $('#co-total').textContent = money(st + ship);
-      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? 'Request shipping quote' : 'Continue to secure checkout';
+      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? 'Request shipping quote' : (sh.hatches >= 3 ? 'Request pallet quote' : 'Continue to secure checkout');
+      const cob = $('#co-btn'); if (cob) cob.classList.toggle('disabled', !cart.length);
+      if (!cart.length) $('#co-ship').textContent = '–';
     }
   }
   const openCart = () => { $('#drawer')?.classList.add('open'); $('#overlay')?.classList.add('open'); document.body.style.overflow = 'hidden'; };
@@ -117,15 +121,17 @@
   const si = $('#search-input');
   if (si) {
     const res = $('#search-res');
-    const idx = C.products.map(p => ({ p, txt: (p.name + ' ' + p.tagline + ' ' + p.summary + ' ' + p.variants.map(v => v.sku).join(' ') + ' ' + p.category).toLowerCase() }))
-      .concat((C.bundles || []).map(b => ({ b, txt: (b.name + ' ' + b.tagline + ' ' + b.summary).toLowerCase() })));
+    const norm = (t) => t.toLowerCase().replace(/[\s-]+/g, '');
+    const idx = C.products.map(p => ({ p, txt: (p.name + ' ' + p.tagline + ' ' + p.summary + ' ' + p.variants.map(v => v.sku).join(' ') + ' ' + p.category).toLowerCase(), n: norm(p.name + ' ' + p.variants.map(v => v.sku).join(' ')) }))
+      .concat((C.bundles || []).map(b => ({ b, txt: (b.name + ' kit bundle ' + b.tagline + ' ' + b.summary).toLowerCase(), n: norm(b.name + ' kit') })));
     si.addEventListener('input', () => {
       const q = si.value.trim().toLowerCase();
       if (!q) { res.innerHTML = ''; return; }
-      const hits = idx.filter(x => q.split(/\s+/).every(w => x.txt.includes(w))).slice(0, 8);
+      const all = idx.filter(x => q.split(/\s+/).every(w => x.txt.includes(w)) || x.n.includes(norm(q)));
+      const hits = all.slice(0, 8);
       res.innerHTML = hits.map(x => x.p
         ? `<a href="${ROOT}products/${x.p.id}.html"><img src="${ROOT + x.p.images[0]}" alt=""><div><b>${x.p.name}</b><span>${x.p.tagline}</span></div></a>`
-        : `<a href="${ROOT}bundles/${x.b.id}.html"><img src="${ROOT + x.b.images[0]}" alt=""><div><b>${x.b.name} <em class="gold">· Kit</em></b><span>${x.b.tagline}</span></div></a>`).join('') || '<p class="muted">No results. Try "Le Mans", "12V", "hatch" or an article number.</p>';
+        : `<a href="${ROOT}bundles/${x.b.id}.html"><img src="${ROOT + x.b.images[0]}" alt=""><div><b>${x.b.name} <em class="gold">· Kit</em></b><span>${x.b.tagline}</span></div></a>`).join('') + (all.length > 8 ? `<a class="search-more" href="${ROOT}shop.html?q=${encodeURIComponent(si.value.trim())}">See all ${all.length} results</a>` : '') || '<p class="muted">No results. Try "Le Mans", "12V", "hatch" or an article number.</p>';
     });
   }
 
@@ -212,7 +218,7 @@
       const v = cur(); if (v.price == null) return;
       const q = getQ();
       addLine({ type: 'product', id: p.id, skus: [v.sku], title: p.name, sub: v.label + ' · ' + v.sku, price: v.price, qty: q, image: p.images[0] });
-      $$('.addon input:checked').forEach(i => { const { p: ap, v: av } = addonVariant(i); addLine({ type: 'product', id: ap.id, skus: [av.sku], title: ap.name, sub: av.label + ' · ' + av.sku, price: av.price, qty: q, image: ap.images[0] }); i.checked = false; });
+      $$('.addon input:checked').forEach(i => { const { p: ap, v: av } = addonVariant(i); const aq = ap.id === 'control-unit' && p.category === 'roof-hatches' ? Math.ceil(q / 2) : q; addLine({ type: 'product', id: ap.id, skus: [av.sku], title: ap.name, sub: av.label + ' · ' + av.sku, price: av.price, qty: aq, image: ap.images[0] }); i.checked = false; });
       updateAddons();
     };
     $('#add-btn')?.addEventListener('click', add);
@@ -323,17 +329,20 @@
     const kitSku = (l) => {
       const b = bundleById[l.id] || { items: [] };
       const g = b.items.map((it, i) => it.choices ? (l.skus || [])[i] : null).filter(Boolean).slice(0, 3);
-      return 'KIT-' + l.id.toUpperCase() + (g.length ? '-' + g.join('-') : '');
+      const S0 = C.shopify; const real0 = (sku) => (S0 && S0.alias && S0.alias[sku]) || sku;
+      return 'KIT-' + l.id.toUpperCase() + (g.length ? '-' + g.map(real0).join('-') : '');
     };
     cof.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!cart.length) { toast('Your cart is empty'); return; }
       const country = localStorage.getItem('pegasus_country') || 'Netherlands';
-      if (shipping(subtotal(), country).quote) { location.href = ROOT + 'contact.html?quote=1'; return; }
+      const shq = shipping(subtotal(), country);
+      if (shq.quote || shq.hatches >= 3) { location.href = ROOT + 'contact.html?quote=1'; return; }
       const S = C.shopify;
+      const real = (sku) => (S && S.alias && S.alias[sku]) || sku;
       const parts = [];
       for (const l of cart) {
-        const id = S && S.variants && S.variants[l.type === 'bundle' ? kitSku(l) : (l.skus || [])[0]];
+        const id = S && S.variants && S.variants[l.type === 'bundle' ? kitSku(l) : real((l.skus || [])[0])];
         if (!id) { toast('One item needs manual handling. Taking you to our contact page.'); setTimeout(() => { location.href = ROOT + 'contact.html?quote=1'; }, 1400); return; }
         parts.push(id + ':' + l.qty);
       }
@@ -343,7 +352,7 @@
       location.href = S.store + '/cart/' + parts.join(',');
     });
   }
-  const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = 'Message received'; } else { ty.textContent = qp.get('o') || 'PD-DEMO'; } }
+  const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = 'Message received'; } else { ty.textContent = qp.get('o') ? ' ' + qp.get('o') : ''; } }
 
   /* ---------- forms: decode endpoint at runtime ---------- */
   $$('form[data-fs]').forEach(f => { try { f.action = atob(f.dataset.fs); } catch (e) {} f.addEventListener('submit', () => { const b = f.querySelector('button'); if (b) { b.disabled = true; b.textContent = 'Sending…'; } }); });
