@@ -578,3 +578,19 @@ h1,h2,h3,h4{font-weight:500;line-height:1.08;letter-spacing:-.01em}
 .addon-sub{overflow-wrap:anywhere}
 
 .addon-tiles:empty{display:none}
+
+/* guides / blog */
+.post-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;align-items:start}
+.post{max-width:72ch}
+.post-body p{font-size:17px;line-height:1.7;color:var(--text-2);margin:0 0 16px}
+.post-body ul{padding-left:20px;margin:0 0 16px;list-style:disc}
+.post-body li{font-size:16.5px;line-height:1.65;color:var(--text-2);margin-bottom:6px}
+.post-body a{color:var(--gold-deep);font-weight:600;border-bottom:1px solid rgba(156,123,62,.35)}
+.post-body a:hover{border-bottom-color:var(--gold-deep)}
+.post-aside{position:sticky;top:96px}
+.post-aside .row{display:block;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
+.card--post .thumb{aspect-ratio:16/10}
+.card--post .thumb img{width:100%;height:100%;object-fit:cover}
+.card--post h3{font-family:var(--serif);font-size:24px;margin:8px 0 8px;font-weight:500}
+.card--post .cat{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+@media(max-width:900px){.post-grid{grid-template-columns:1fr}.post-aside{position:static}}

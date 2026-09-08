@@ -1,0 +1,59 @@
+{
+  "slug": "12v-or-24v-which-voltage-does-your-vehicle-use",
+  "title": "12V or 24V: Which Voltage Does Your Vehicle Use?",
+  "meta": "Does your van, camper, coach or horsebox run on 12V or 24V? How to check in minutes, why it matters for ventilators and roof hatches, and converters.",
+  "excerpt": "Fitting a ventilator or roof hatch to the wrong voltage is the most common ordering mistake we see. A few minutes with the handbook or a multimeter saves a lot of trouble.",
+  "keywords": [
+    "12V or 24V",
+    "vehicle voltage",
+    "24V roof hatch",
+    "12V rooftop ventilator",
+    "voltage converter"
+  ],
+  "vehicle": "general",
+  "read_min": 5,
+  "sections": [
+    {
+      "h2": "Why the voltage question comes first",
+      "html": "<p>Before you choose a rooftop ventilator, a roof hatch or a speed controller, there is one question we always ask: does the vehicle run on 12 V or 24 V? It sounds basic, yet it is the single most common cause of returned parts and puzzled phone calls. A 12 V fan wired to a 24 V system will run far too fast, get hot and fail early. A 24 V fan on 12 V will barely turn, if it turns at all.</p><p>The good news is that the answer is usually easy to find, and most of the products we stock are available for either system. This guide walks through the typical voltages by vehicle type, three ways to check for certain, and what to do when the product you want does not match the system you have.</p>"
+    },
+    {
+      "h2": "Vans and campers: almost always 12 V",
+      "html": "<p>Light commercial vans, panel van conversions, motorhomes built on van or light-truck chassis and most car-derived vehicles use a 12 V electrical system. This applies to the popular European base vehicles that campers are built on, and to the small and medium vans used by tradespeople, couriers and dog transport companies.</p><p>Campers and motorhomes often have two 12 V circuits: the starter battery for the engine, and a leisure or habitation battery for the living area. Both are 12 V, but you should wire ventilation to the leisure side so a fan left running overnight can never leave you unable to start the engine in the morning. A rooftop ventilator such as the <a href='products/le-mans.html'>Le Mans</a> is a natural fit here, and a <a href='products/speedcontrol.html'>speed controller</a> lets you turn it right down for quiet overnight running.</p><p>One caution: some larger motorhomes and horseboxes are built on heavy-truck chassis, and those chassis are frequently 24 V even though the living or horse area has been fitted out at 12 V. As a rule of thumb, if the vehicle weighs more than 7.5 tonnes, do not assume anything. Check.</p>"
+    },
+    {
+      "h2": "Trucks, coaches and heavy chassis: usually 24 V",
+      "html": "<p>Heavy goods vehicles, buses, coaches, larger ambulances built on truck chassis, and most livestock lorries and professional horseboxes above 7.5 tonnes run on 24 V. The higher voltage means lower current for the same power, which suits long cable runs, big starter motors and the many accessories a coach carries.</p><p>This is also why bus and coach equipment is designed around 24 V. Our electric <a href='products/roof-hatch-electric-large.html'>roof hatches</a> and the <a href='products/control-unit.html'>hatch control unit</a> are 24 V products, because they were developed for the coach and bus market where 24 V is the norm. If you want to fit one of these hatches to a 12 V vehicle, keep reading, because there is a straightforward solution.</p><p>Some coaches and specialist vehicles carry a 12 V sub-circuit for passenger sockets, radios and telematics. That does not make the vehicle a 12 V vehicle. Always identify the main system voltage first, then decide which circuit you will actually connect to.</p>"
+    },
+    {
+      "h2": "Three ways to check for certain",
+      "html": "<p>Never rely on a guess or on what a previous owner told you. Any of these methods will give you a clear answer in a few minutes.</p><ul><li>Look at the batteries. A single 12 V battery, or several 12 V batteries wired in parallel (positive to positive, negative to negative), means a 12 V system. Two 12 V batteries wired in series (the positive of one connected to the negative of the other) means 24 V. Many trucks also have a label on the battery box.</li><li>Check the bulbs and fuses. Headlamp and interior bulbs are usually marked 12 V or 24 V on the base. Relays under the dashboard carry a voltage marking too.</li><li>Use a multimeter. Set it to DC volts and measure across the main battery terminals with the engine off. Around 12.5 to 12.8 V means a healthy 12 V system. Around 25 to 26 V means 24 V. With the engine running the reading rises to roughly 14 V or 28 V respectively, which is simply the alternator charging.</li></ul><p>If you are fitting equipment for a customer and cannot inspect the vehicle yourself, ask them for a photo of the battery compartment. It removes all doubt and takes them thirty seconds.</p>"
+    },
+    {
+      "h2": "Matching the product to the system",
+      "html": "<p>Most of our rooftop ventilators and other powered products are offered in both voltages, so the main job is to select the right variant when you order. The wiring, the mounting and the roof cut-out are identical between the two; only the motor differs. If you are unsure at checkout, choose nothing and send us a message via the <a href='contact.html'>contact page</a>. We would rather answer a quick question than swap a part.</p><p>Roof hatches and their control unit are the exception, as they are 24 V only. For a 12 V vehicle we can supply a voltage converter on request. A converter steps 12 V up to a stable 24 V for the hatch circuit only, so the rest of the vehicle stays exactly as it was. Tell us the vehicle and the number of hatches you plan to fit and we will advise the right converter rating.</p><p>The same converter approach works the other way round if you have a 24 V truck chassis and a favourite 12 V accessory. As a rule of thumb, always size a converter with some headroom above the rated current of the equipment, especially for anything with a motor, because motors draw more at start-up than while running.</p>"
+    },
+    {
+      "h2": "A few wiring habits that avoid trouble",
+      "html": "<p>Whatever the voltage, a fan or hatch is only as reliable as the circuit it hangs on. Fuse every new circuit close to the battery, use cable sized for the current and the run length, and keep earths short and clean. On a 12 V vehicle the currents are higher for the same power, so cable size matters more than people expect on a long run to the roof.</p><p>Label the circuit at the fuse box. When the vehicle changes hands or goes to a workshop, a clear label saying 'roof ventilator, 12 V leisure circuit' saves the next person from guessing. If the vehicle is used commercially, for example a <a href='vehicles/buses-coaches.html'>coach</a> or an ambulance, keep a note of the voltage and the fuse ratings with the vehicle documents.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I run a 12 V rooftop ventilator on a 24 V truck?",
+      "a": "Not directly. The motor would overspeed and fail. Order the 24 V version of the ventilator, or if you already own a 12 V unit, use a properly rated 24 V to 12 V converter for that circuit."
+    },
+    {
+      "q": "Are electric roof hatches available in 12 V?",
+      "a": "The electric hatches and their control unit are 24 V products. For a 12 V vehicle we supply a voltage converter on request, sized for the number of hatches you are fitting."
+    },
+    {
+      "q": "My motorhome is on a truck chassis. Which voltage do I have?",
+      "a": "Possibly both. The chassis may be 24 V while the habitation area was built at 12 V. Check the batteries in the living area separately from the starter batteries before ordering."
+    },
+    {
+      "q": "Does the roof cut-out or mounting change between 12 V and 24 V versions?",
+      "a": "No. The housing, seal and cut-out are the same. Only the motor and its rating differ, so you can decide on the voltage at the last moment."
+    }
+  ]
+}

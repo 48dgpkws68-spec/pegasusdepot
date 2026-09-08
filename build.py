@@ -28,6 +28,16 @@ for _v in VEHICLES:
         if _i in P and _v['id'] not in P[_i].setdefault('applications', []): P[_i]['applications'].append(_v['id'])
     for _i in _v.get('bundles', []):
         if _i in B and _v['id'] not in B[_i].setdefault('for', []): B[_i]['for'].append(_v['id'])
+import glob as _glob, datetime as _dt2
+BLOG = []
+for _f in sorted(_glob.glob(str(ROOT / 'data/blog/*.json'))):
+    try:
+        _a = json.load(open(_f)); _a['slug'] = re.sub(r'[^a-z0-9-]+', '-', _a['slug'].lower()).strip('-'); BLOG.append(_a)
+    except Exception as _e:
+        print('BLOG SKIP', _f, _e)
+for _i, _a in enumerate(BLOG):
+    _a.setdefault('date', (_dt2.date(2026, 6, 4) + _dt2.timedelta(days=9 * _i)).isoformat())
+BLOG.sort(key=lambda a: a['date'], reverse=True)
 SHOPIFY = json.load(open(ROOT / 'data/shopify-map.json')) if (ROOT / 'data/shopify-map.json').exists() else None
 SITE_URL = 'https://' + BRAND['domain']
 IMG_OUT = ROOT / 'assets/img'
@@ -308,6 +318,7 @@ def header(depth=0):
         <a class="m-feature" href="{r}vehicles/horse-trailers.html" style="background-image:url('{r}{scene(VEH['horse-trailers']['hero'],900)}')"><b>Horse trailers</b><span>Calm horses arrive ready to perform.</span></a>
       </div></li>
     <li><a href="{r}trade.html">Trade</a></li>
+    <li><a href="{r}blog.html">Guides</a></li>
     <li><a href="{r}about.html">About</a></li>
   </ul>
   <div class="hdr-actions">
@@ -321,7 +332,7 @@ def header(depth=0):
   <a class="row" href="{r}shop.html">Shop all products</a><a class="row" href="{r}bundles.html">Kits &amp; bundles</a>
   <h5>Categories</h5>{''.join(f'<a class="row" href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}
   <h5>By vehicle</h5>{''.join(f'<a class="row" href="{r}vehicles/{v["id"]}.html">{esc(v["name"])}</a>' for v in VEHICLES)}
-  <h5>Company</h5><a class="row" href="{r}trade.html">Trade &amp; fleet accounts</a><a class="row" href="{r}about.html">About Pegasus Depot</a><a class="row" href="{r}contact.html">Contact</a><a class="row" href="{r}shipping-returns.html">Shipping &amp; returns</a>
+  <h5>Company</h5><a class="row" href="{r}trade.html">Trade &amp; fleet accounts</a><a class="row" href="{r}blog.html">Guides &amp; advice</a><a class="row" href="{r}about.html">About Pegasus Depot</a><a class="row" href="{r}contact.html">Contact</a><a class="row" href="{r}shipping-returns.html">Shipping &amp; returns</a>
 </nav>
 <div class="search" id="search"><button class="icon-btn search-close" id="search-close" aria-label="Close">{ICON['close']}</button><div class="search-in"><input id="search-input" type="search" aria-label="Search products" placeholder="Search products, kits or article numbers…" autocomplete="off"><div class="search-res" id="search-res"></div></div></div>
 <div class="overlay" id="overlay"></div>
@@ -345,7 +356,7 @@ def footer(depth=0):
       <p style="margin-top:14px;color:var(--text-inv)">{esc(BRAND['email'])}<br>{(esc(BRAND['phone']) + '<br>') if BRAND.get('phone') else ''}{esc(BRAND['address'])}</p></div>
     <div><h5>Shop</h5>{''.join(f'<a href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}<a href="{r}bundles.html">Kits &amp; bundles</a></div>
     <div><h5>By vehicle</h5>{''.join(f'<a href="{r}vehicles/{v["id"]}.html">{esc(v["nav"])}</a>' for v in VEHICLES)}</div>
-    <div><h5>Company</h5><a href="{r}about.html">About us</a><a href="{r}trade.html">Trade &amp; fleet accounts</a><a href="{r}contact.html">Contact</a><a href="{r}shipping-returns.html">Shipping &amp; returns</a><a href="{r}terms.html">Terms &amp; warranty</a><a href="{r}privacy.html">Privacy</a></div>
+    <div><h5>Company</h5><a href="{r}about.html">About us</a><a href="{r}blog.html">Guides &amp; advice</a><a href="{r}trade.html">Trade &amp; fleet accounts</a><a href="{r}contact.html">Contact</a><a href="{r}shipping-returns.html">Shipping &amp; returns</a><a href="{r}terms.html">Terms &amp; warranty</a><a href="{r}privacy.html">Privacy</a></div>
     <div><h5>Why Pegasus Depot</h5><p>✓ OEM-grade products<br>✓ EMC approved motors<br>✓ Ships within 24h from NL<br>✓ 2-year warranty<br>✓ Trade pricing for fleets and bodybuilders</p>
       <div class="pay" style="margin-top:16px"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>BANCONTACT</span><span>KLARNA</span><span>PAYPAL</span></div></div>
   </div>
@@ -804,6 +815,40 @@ def page_thanks():
     body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow" id="ty-eyebrow">Order received</div><h1 class="h1" style="margin:12px 0 14px">Thank you.</h1><p class="lead" style="margin:0 auto 10px" id="ty-order">Your order<b id="order-id"></b> is being prepared in our Dutch warehouse. You will receive a confirmation email and a tracking link as soon as the parcel leaves our warehouse.</p><p class="lead" style="margin:0 auto 10px;display:none" id="ty-form">Your message has arrived. A specialist replies within one working day, usually much faster.</p><p class="muted">Questions? {esc(BRAND['email'])}</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-dark" href="shop.html">Continue shopping</a></div></div></section>'''
     return simple_page('thank-you.html', 'Thank you', 'Order confirmation.', body, noindex=True)
 
+def blog_image(a):
+    vid = a.get('vehicle') if a.get('vehicle') in VEH else None
+    return VEH[vid]['hero'] if vid else 'assets/media/Le-Mans-ventilator-2.webp'
+
+def blog_card(a, depth):
+    r = rel(depth)
+    return f'<a class="card card--post" href="{r}blog/{a["slug"]}.html"><div class="thumb"><img src="{r}{scene(blog_image(a), 900)}" alt="" loading="lazy"></div><div class="card-body"><div class="cat">{esc(VEH[a["vehicle"]]["name"] if a.get("vehicle") in VEH else "Guide")} · {a.get("read_min", 5)} min read</div><h3>{esc(a["title"])}</h3><p class="muted">{esc(a["excerpt"])}</p></div></a>'
+
+def page_blog():
+    cards = ''.join(blog_card(a, 0) for a in BLOG)
+    body = f'''<section class="page-hero" style="min-height:360px"><img class="bg" src="{scene('assets/media/Le-Mans-ventilator-2.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Guides</span></div><div class="eyebrow">Guides &amp; advice</div><h1 class="h1">Vehicle ventilation, explained by people who install it.</h1><p class="lead">Buying guides, installation notes and answers to the questions bodybuilders, fleet managers and owners ask us every week.</p></div></section>
+<section class="section ivory"><div class="wrap"><div class="grid grid-3">{cards}</div></div></section>'''
+    return simple_page('blog.html', 'Guides & advice on vehicle ventilation', 'Buying guides, installation notes and practical answers on rooftop ventilators, roof hatches, interior valves and floor ventilators for vans, campers, horse trailers, coaches and ambulances.', body, og='assets/media/Le-Mans-ventilator-2.webp')
+
+def page_post(a):
+    depth = 1; r = rel(depth)
+    secs = ''.join(f'<h2 class="h3" style="margin:34px 0 12px">{esc(x["h2"])}</h2><div class="post-body">{x["html"]}</div>' for x in a.get('sections', []))
+    faq = ''.join(f'<details><summary>{esc(q["q"])}</summary><p>{esc(q["a"])}</p></details>' for q in a.get('faq', []))
+    faq_html = f'<h2 class="h3" style="margin:40px 0 14px">Frequently asked</h2><div class="faq">{faq}</div>' if faq else ''
+    others = [x for x in BLOG if x['slug'] != a['slug']][:3]
+    more = ''.join(blog_card(x, depth) for x in others)
+    vid = a.get('vehicle') if a.get('vehicle') in VEH else None
+    cta = f'<div class="upsell" style="margin-top:40px"><h6>Ready to specify?</h6><div class="up-row"><div><b>{esc(VEH[vid]["name"]) if vid else "Complete ventilation systems"}</b><span>Products, kits and advice for your vehicle, shipped from stock within 24h.</span></div><a class="btn btn-dark btn-sm" href="{r}{"vehicles/" + vid + ".html" if vid else "shop.html"}">Shop now</a></div></div>'
+    date_txt = _dt2.date.fromisoformat(a['date']).strftime('%-d %B %Y')
+    ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": a['title'], "description": a.get('meta') or a['excerpt'], "datePublished": a['date'], "dateModified": a['date'], "author": {"@type": "Organization", "name": "Pegasus Depot"}, "publisher": {"@type": "Organization", "name": "Pegasus Depot", "logo": {"@type": "ImageObject", "url": SITE_URL + "/icon-512.png"}}, "image": f"{SITE_URL}/{scene(blog_image(a), 1800)}", "mainEntityOfPage": f"{SITE_URL}/blog/{a['slug']}.html", "keywords": ", ".join(a.get('keywords', []))},
+          {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE_URL + "/blog.html"}, {"@type": "ListItem", "position": 3, "name": a['title'], "item": f"{SITE_URL}/blog/{a['slug']}.html"}]}]
+    if a.get('faq'):
+        ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in a['faq']]})
+    body = f'''<section class="page-hero" style="min-height:380px"><img class="bg" src="{r}{scene(blog_image(a),1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <a href="{r}blog.html">Guides</a> / <span>{esc(a["title"][:40])}</span></div><div class="eyebrow">{esc(VEH[vid]["name"]) if vid else "Guide"} · {date_txt} · {a.get("read_min", 5)} min read</div><h1 class="h1" style="max-width:22ch">{esc(a["title"])}</h1><p class="lead">{esc(a["excerpt"])}</p></div></section>
+<section class="section ivory"><div class="wrap"><div class="post-grid"><article class="post">{secs}{faq_html}{cta}</article><aside class="post-aside"><div class="info-card"><h6 class="eyebrow" style="margin-bottom:10px">Talk to a specialist</h6><p class="muted" style="font-size:14px">Cut-out sizes, voltages, how many fans for your body length: ask us before you drill.</p><a class="btn btn-gold btn-sm btn-block" style="margin-top:12px" href="{r}contact.html">Ask a question</a></div><div class="info-card" style="margin-top:14px"><h6 class="eyebrow" style="margin-bottom:10px">Popular</h6><a class="row" href="{r}products/le-mans.html">Le Mans Rooftop Ventilator</a><a class="row" href="{r}bundles/le-mans-complete-kit.html">Le Mans Complete Kit</a><a class="row" href="{r}products/roof-hatch-electric-large.html">Roof Hatch Electric 970 x 530</a><a class="row" href="{r}products/floor-ventilator-129.html">Floor Ventilator Ø 129 mm</a></div></aside></div></div></section>
+<section class="section ivory-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Keep reading</div><h2 class="h2">More guides.</h2></div><a class="link" href="{r}blog.html">All guides {ICON['arrow']}</a></div><div class="grid grid-3">{more}</div></div></section>'''
+    h = head(f'{a["title"]} · Pegasus Depot', a.get('meta') or a['excerpt'], depth, blog_image(a), f'blog/{a["slug"]}.html', og_type='article', extra_meta=f'<meta property="article:published_time" content="{a["date"]}">')
+    return h + header(depth) + ''.join(jsonld(x) for x in ld) + body + footer(depth)
+
 def page_404():
     body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">404</div><h1 class="h1" style="margin:12px 0 14px">That page drove off.</h1><p class="lead" style="margin:0 auto 24px">The page you are looking for does not exist or has moved. Try the shop or search for an article number.</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-gold" href="shop.html">Go to the shop</a><a class="btn btn-ghost" href="/">Home</a></div></div></section>'''
     return simple_page('404.html', 'Page not found', 'Page not found.', body, noindex=True)
@@ -925,6 +970,9 @@ def main():
     for b in BUNDLES: w(f'bundles/{b["id"]}.html', page_bundle(b))
     for v in VEHICLES: w(f'vehicles/{v["id"]}.html', page_vehicle(v))
     w('about.html', page_about()); w('trade.html', page_trade()); w('contact.html', page_contact())
+    if BLOG:
+        (ROOT / 'blog').mkdir(exist_ok=True); w('blog.html', page_blog())
+        for a in BLOG: w(f'blog/{a["slug"]}.html', page_post(a))
     w('shipping-returns.html', page_shipping()); w('terms.html', page_terms()); w('privacy.html', page_privacy())
     w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); w('404.html', page_404()); urls.remove('404.html')
     # retired product URLs keep a noindex stub that forwards to the nearest live page
