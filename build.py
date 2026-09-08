@@ -36,7 +36,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '12'
+VERSION = '13'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
@@ -566,7 +566,7 @@ def page_product(p):
     # add-on groups: one row per group with picture tiles for every product in it, then variant chips (rendered by site.js)
     def addon_group(pid):
         if P[pid]['category'] == 'interior-valves': return ('interior', 'Interior valve or grille', 'Choose your interior finish', [x['id'] for x in PRODUCTS if x['category'] == 'interior-valves' and not x.get('quote_only') and (p['id'] in x.get('fits', []) or x['id'] == pid)])
-        if pid.startswith('switch-'): return ('switch', 'Switch', 'Choose your switch', [x['id'] for x in PRODUCTS if x['id'].startswith('switch-') and not x.get('quote_only')])
+        if pid.startswith('switch-'): return ('switch', 'Switch', 'Choose your switch', [x['id'] for x in PRODUCTS if x['id'].startswith('switch-') and not x.get('quote_only') and (p['id'] in x.get('fits', []) or x['id'] == pid)])
         if pid.startswith('floor-ventilator-'): return ('floor', 'Floor inlet', 'Choose your floor inlet', [x['id'] for x in PRODUCTS if x['id'].startswith('floor-ventilator-') and not x.get('quote_only')])
         return None
     seen_groups = set()
@@ -574,6 +574,7 @@ def page_product(p):
         ap = P[a]; priced = [v for v in ap['variants'] if v.get('price') is not None]; av = priced[0]
         grp = addon_group(a)
         if grp and grp[0] in seen_groups: continue
+        if grp and len([a] + [m for m in grp[3] if m != a]) == 1 and len(priced) == 1: seen_groups.add(grp[0]); grp = None
         uid = f'ad-{ap["id"]}'
         checked = ' checked' if ap['id'] == 'control-unit' and p['id'].startswith('roof-hatch-electric') else ''
         if grp:
@@ -738,12 +739,12 @@ def simple_page(slug, title, desc, body, og=None, noindex=False):
 
 def page_about():
     body = f'''
-<section class="page-hero"><img class="bg" src="{scene('assets/media/assembly-line.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>About</span></div><div class="eyebrow">About Pegasus Depot</div><h1 class="h1">The ventilation specialist with the stock to prove it.</h1><p class="lead">Pegasus Depot is an independent European retailer of premium vehicle ventilation, roof hatches and interior lighting. We source straight from the OEM production line, hold real stock in our own Dutch warehouse and ship across Europe within 24 hours.</p></div></section>
+<section class="page-hero"><img class="bg" src="{scene('assets/media/magazijn-6.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>About</span></div><div class="eyebrow">About Pegasus Depot</div><h1 class="h1">The ventilation specialist with the stock to prove it.</h1><p class="lead">Pegasus Depot is an independent European retailer of premium vehicle ventilation, roof hatches and interior lighting. We source straight from the OEM production line, hold real stock in our own Dutch warehouse and ship across Europe within 24 hours.</p></div></section>
 <section class="section ivory"><div class="wrap"><div class="split"><div><div class="eyebrow">Our story</div><h2 class="h2" style="margin:12px 0 16px">Built for bodybuilders. Now open to everyone.</h2><p class="lead">The ventilators, valves, hatches and lights in this shop have been fitted for years by bus builders, ambulance converters, horsebox manufacturers and van outfitters across Europe, usually through trade channels only. Pegasus Depot opens that same OEM-grade catalogue to every workshop, fleet and owner who wants to order online, at a fair price, from stock.</p>
 <ul class="checks"><li>{ICON['check']}<div><b>OEM-grade quality</b>Every product comes from the same production line the vehicle builders rely on.</div></li><li>{ICON['check']}<div><b>Real stock, real speed</b>Thousands of units on the shelf. Order before 15:00 CET and it ships the same working day.</div></li><li>{ICON['check']}<div><b>Specialists, not call centres</b>Questions about cut-outs, airflow or voltage are answered by people who know the products inside out.</div></li></ul></div>
-<div class="story-grid"><img src="{scene('assets/media/le-mans-warehouse.webp',1200)}" alt="Le Mans ventilators in the warehouse"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Assembly of rooftop ventilators"><img src="{scene('assets/media/Magazijn-1.webp',800)}" alt="Stock shelves"></div></div></div></section>
+<div class="story-grid"><img src="{scene('assets/media/Le-Mans-ventilator-2.webp',1200)}" alt="Le Mans ventilators in the warehouse"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Assembly of rooftop ventilators"><img src="{scene('assets/media/Magazijn-1.webp',800)}" alt="Stock shelves"></div></div></div></section>
 <section class="section dark"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">In numbers</div><h2 class="h2">Small company. Serious footprint.</h2></div></div><div class="hero-stats stats-4"><div class="stat"><b>{len(PRODUCTS)}</b><span>products, {sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)} article numbers</span></div><div class="stat"><b>{len(BUNDLES)}</b><span>complete kits, pre-matched by specialists</span></div><div class="stat"><b>{len(VEHICLES)}</b><span>vehicle types, from campers to coaches</span></div><div class="stat"><b>24h</b><span>dispatch from stock</span></div></div></div></section>
-<section class="section ivory"><div class="wrap"><div class="story-grid"><img src="{scene('assets/media/magazijn5.webp',1400)}" alt="Warehouse logistics"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Stock shelves"><img src="{scene('assets/media/assembly-line.webp',800)}" alt="Assembly of rooftop ventilators"></div></div></section>
+<section class="section ivory"><div class="wrap"><div class="story-grid"><img src="{scene('assets/media/IMG_010422.webp',1400)}" alt="Warehouse logistics"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Stock shelves"><img src="{scene('assets/media/assembly-line.webp',800)}" alt="Assembly of rooftop ventilators"></div></div></section>
 {newsletter()}'''
     return simple_page('about.html', 'About us', 'Pegasus Depot is an independent European retailer of OEM-grade vehicle ventilation, roof hatches and LED lighting, shipped within 24h from our own Dutch stock.', body, 'assets/media/le-mans-warehouse.webp')
 

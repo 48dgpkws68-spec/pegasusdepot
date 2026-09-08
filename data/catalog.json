@@ -280,7 +280,8 @@
         "speedcontrol",
         "v12-valve",
         "snowfilter",
-        "floor-ventilator-129"
+        "floor-ventilator-129",
+        "seal-foam"
       ],
       "image_by_option": {
         "Black": 1,
@@ -520,7 +521,8 @@
         "speedcontrol",
         "grill-large",
         "snowfilter",
-        "floor-ventilator-129"
+        "floor-ventilator-129",
+        "seal-foam"
       ]
     },
     {
@@ -629,7 +631,7 @@
         }
       ],
       "addons": [
-        "switch-round",
+        "switch-rocker",
         "floor-ventilator-80"
       ]
     },
@@ -1522,7 +1524,12 @@
         "rooftop-round",
         "speedcontrol"
       ],
-      "faq": []
+      "faq": [],
+      "fits": [
+        "le-mans",
+        "rooftop-round",
+        "v12-valve"
+      ]
     },
     {
       "id": "switch-square",
@@ -1577,7 +1584,12 @@
         "rooftop-round",
         "speedcontrol"
       ],
-      "faq": []
+      "faq": [],
+      "fits": [
+        "le-mans",
+        "rooftop-round",
+        "v12-valve"
+      ]
     },
     {
       "id": "switch-fan",
@@ -1634,7 +1646,12 @@
         "speedcontrol",
         "v12-valve"
       ],
-      "faq": []
+      "faq": [],
+      "fits": [
+        "le-mans",
+        "rooftop-round",
+        "v12-valve"
+      ]
     },
     {
       "id": "control-unit",
@@ -2683,6 +2700,165 @@
         "air-purifier-small"
       ],
       "faq": []
+    },
+    {
+      "id": "switch-rocker",
+      "name": "On/Off Rocker Switch for the Winglet",
+      "short_name": "Rocker Switch",
+      "category": "controls",
+      "tagline": "The one switch that fits the Winglet mini fan",
+      "summary": "Compact black rocker switch with 0 / I marking, the on/off control for the Winglet mini roof fan. Snap-in panel mount, rated 6 A at 250 V AC and 10 A at 125 V AC, CE marked.",
+      "description": [
+        "The Winglet draws only a few watts, so it does not need a 3-way switch or a speed controller. This compact rocker switch is the matching on/off control: snap it into a panel cut-out, connect the two spade terminals and the fan is ready.",
+        "The switch is the only switch that fits the Winglet system; the 3-way switches in our range are made for the Le Mans and Round ventilators."
+      ],
+      "features": [
+        "On/off rocker with 0 / I marking",
+        "Snap-in panel mounting, no screws",
+        "Rated 6 A at 250 V AC and 10 A at 125 V AC",
+        "CE marked, T85/55 temperature rating",
+        "Two spade terminals for quick wiring"
+      ],
+      "specs": {
+        "Type": "Rocker switch, on/off",
+        "Rating": "6 A / 250 V AC, 10 A / 125 V AC",
+        "Temperature rating": "T85/55",
+        "Mounting": "Snap-in panel mount",
+        "Colour": "Black",
+        "Compatible with": "Winglet mini roof fan"
+      },
+      "variants": [
+        {
+          "sku": "PD-SW-ROCKER",
+          "label": "On/off rocker switch",
+          "price": 12.5,
+          "options": {}
+        }
+      ],
+      "images": [
+        "assets/products/switch-rocker.webp"
+      ],
+      "badges": [
+        "For Winglet"
+      ],
+      "applications": [
+        "commercial-vans",
+        "dog-transport",
+        "campers"
+      ],
+      "accessories": [
+        "winglet"
+      ],
+      "fits": [
+        "winglet"
+      ]
+    },
+    {
+      "id": "seal-foam",
+      "name": "Super Seal Roof Filler Foam",
+      "short_name": "Super Seal Foam",
+      "category": "rooftop-ventilators",
+      "tagline": "Seals a Le Mans or Round fan on an uneven roof",
+      "summary": "Compressible black foam strip that fills the gap between the fan base and a corrugated or uneven roof. Fitted under the Le Mans or Round rooftop ventilator it keeps rain and dust out where a flat gasket cannot.",
+      "description": [
+        "Bus and coach roofs are rarely flat: corrugations, roof ribs and panel joints leave gaps under the base of a rooftop ventilator. The Super Seal foam strip follows every contour, compresses when the fan is tightened down and closes the gap completely, so rain, dust and draughts stay outside.",
+        "Cut the strip to length, lay it in the base of the Le Mans or Round ventilator before mounting and tighten the fan as usual. The foam recovers its shape, so the seal stays tight when the body flexes on the road."
+      ],
+      "features": [
+        "Fills gaps on corrugated and uneven roofs",
+        "Keeps rain, dust and draughts out",
+        "Compresses under the fan base and recovers its shape",
+        "Cut to length with a knife",
+        "For the Le Mans and Round rooftop ventilators"
+      ],
+      "specs": {
+        "Material": "Flexible open-cell foam strip",
+        "Colour": "Black",
+        "Fitting": "Under the base of the ventilator, cut to length",
+        "Compatible with": "Le Mans and Round rooftop ventilators (230 mm cut-out)"
+      },
+      "variants": [
+        {
+          "sku": "PD-SEAL-FOAM",
+          "label": "Super Seal foam strip",
+          "price": 12.5,
+          "options": {}
+        }
+      ],
+      "images": [
+        "assets/products/seal-foam-1.webp",
+        "assets/products/seal-foam-2.webp",
+        "assets/products/seal-foam-3.webp",
+        "assets/products/seal-foam-4.webp"
+      ],
+      "badges": [
+        "Mounting accessory",
+        "For uneven roofs"
+      ],
+      "applications": [
+        "buses-coaches",
+        "commercial-vans",
+        "horse-trailers"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round"
+      ],
+      "fits": [
+        "le-mans",
+        "rooftop-round"
+      ]
+    },
+    {
+      "id": "rock-light",
+      "name": "LED Rock Light",
+      "short_name": "Rock Light",
+      "category": "lighting",
+      "tagline": "Compact sealed LED spot for interiors, lockers and undersides",
+      "summary": "Small oval LED light with nine bright SMD LEDs in a sealed black housing with two mounting eyes and a fixed cable. Fits anywhere a robust, low-profile light is needed: cargo areas, lockers, steps, wheel arches.",
+      "description": [
+        "The rock light is the compact answer to dark corners: a sealed housing the size of a matchbox, two mounting eyes and a fixed cable. Nine SMD LEDs behind a clear lens give a bright, even spread of light, and the low profile means it can be bolted almost anywhere.",
+        "Use it inside a van or trailer for cargo areas, tool lockers and steps, or outside on the underside and wheel arches. Wire it to a switch or to the courtesy-light circuit and it simply works."
+      ],
+      "features": [
+        "Nine SMD LEDs behind a clear lens",
+        "Sealed low-profile housing with two mounting eyes",
+        "Fixed cable, wires straight into the vehicle circuit",
+        "For cargo areas, lockers, steps and undersides",
+        "Sold per piece"
+      ],
+      "specs": {
+        "LEDs": "9 SMD",
+        "Housing": "Black, oval, two mounting eyes",
+        "Connection": "Fixed cable",
+        "Voltage": "12V DC",
+        "Use": "Interior and exterior"
+      },
+      "variants": [
+        {
+          "sku": "PD-ROCK-LIGHT",
+          "label": "LED rock light, single",
+          "price": 25,
+          "options": {}
+        }
+      ],
+      "images": [
+        "assets/products/rock-light.webp"
+      ],
+      "badges": [
+        "Sealed",
+        "Low profile"
+      ],
+      "applications": [
+        "dog-transport",
+        "horse-trailers",
+        "campers",
+        "commercial-vans"
+      ],
+      "accessories": [
+        "lighting-round",
+        "lighting-rectangle"
+      ]
     }
   ]
 }

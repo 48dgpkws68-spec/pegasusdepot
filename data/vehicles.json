@@ -85,7 +85,8 @@
         "switch-fan",
         "speedcontrol",
         "control-unit",
-        "flower-power"
+        "flower-power",
+        "rock-light"
       ],
       "bundles": [
         "horse-trailer-climate-kit",
@@ -198,7 +199,8 @@
         "radial-ventilator",
         "switch-fan",
         "snowfilter",
-        "roof-hatch-manual-small"
+        "roof-hatch-manual-small",
+        "seal-foam"
       ],
       "bundles": [
         "coach-hatch-kit",
@@ -373,7 +375,8 @@
         "turbo-iii",
         "exhaust-ventilator",
         "switch-round",
-        "grill-small"
+        "grill-small",
+        "rock-light"
       ],
       "bundles": [
         "dog-transport-kit",
