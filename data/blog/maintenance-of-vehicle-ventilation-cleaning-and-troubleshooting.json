@@ -1,0 +1,64 @@
+{
+  "slug": "maintenance-of-vehicle-ventilation-cleaning-and-troubleshooting",
+  "title": "Vehicle Ventilation Maintenance: Cleaning and Troubleshooting",
+  "meta": "Maintaining vehicle ventilation: cleaning grilles and valves, checking roof seals, tracing fuse and switch faults, and when a fan motor needs replacing.",
+  "excerpt": "A practical maintenance routine for rooftop ventilators, grilles and valves, with a fault-finding order for fuses, switches and controllers, and a straight answer on when a motor is worth replacing.",
+  "keywords": [
+    "roof ventilator maintenance",
+    "clean ventilation grille",
+    "roof fan not working",
+    "fan motor replacement",
+    "roof seal leak",
+    "vehicle ventilation troubleshooting"
+  ],
+  "vehicle": "general",
+  "read_min": 6,
+  "sections": [
+    {
+      "h2": "A little maintenance goes a long way",
+      "html": "<p>A rooftop ventilator is one of the least demanding pieces of kit on a vehicle. It has one moving part, no filters to change in most set-ups, and lives out of the way on the roof. That is exactly why it gets forgotten. A fan that has run without a glance for five years will still usually work, but it will move less air than it did, be noisier, and be more likely to let water in at the seal.</p><p>The routine below is what a body builder would do at an annual service. None of it needs special tools, and most of it takes less than an hour. Do it in spring before the hot season and again in autumn before the wet one, and the ventilation will keep doing its job for a very long time.</p>"
+    },
+    {
+      "h2": "Cleaning grilles and valves",
+      "html": "<p>Start inside. Dust, cobwebs, straw and hair collect on the inside <a href='products/grill-large.html'>grille</a> or valve face, and a clogged grille cuts airflow more than most people expect. Most grilles and valves lift out or unscrew from the ceiling; a closable valve like the V12 has a centre plate that comes out for access.</p><p>Wash the grille or valve face in warm water with a little washing-up liquid. Avoid solvent cleaners on plastic parts; they can craze the surface and dull the colour. On a horse trailer or livestock body, expect a film of dust bonded on with moisture, and give it a soak rather than scrubbing it with anything abrasive.</p><p>With the grille off, look up into the fan housing. Wipe the impeller blades with a damp cloth; a build-up of dirt on one side of an impeller puts it out of balance, which is the most common cause of a fan that has become noisier over time. Check that the impeller turns freely by hand with the power off.</p>"
+    },
+    {
+      "h2": "Checking the roof seal",
+      "html": "<p>Now go up top. The joint between the ventilator base and the roof is the one place on the whole installation that can do real damage if it fails, because water getting past it runs into the roof lining and the insulation, where it stays out of sight until the ceiling stains.</p><p>Clean the cowl and the area around the base, then look closely at the sealant bead all the way round. You are looking for cracks, lifting edges, or sealant that has gone hard and pulled away from the roof skin. Press gently along the base flange; any movement means the fixings have loosened or the sealant has let go.</p><p>A small crack can be cleaned out and topped up with a compatible sealant. A bead that has failed along a whole edge is better removed completely and re-laid; sealing over old, failed sealant rarely lasts. While you are there, make sure the gaps in the cowl are clear so that rain thrown off the fan can escape rather than pooling.</p>"
+    },
+    {
+      "h2": "Fuse and switch faults",
+      "html": "<p>When a fan stops, the motor is the last thing to suspect, not the first. Work through the electrical side in order, from the supply towards the fan.</p><ul><li>Fuse. Find the fuse for the ventilator circuit and check it visually and with a meter. A fuse that blows again immediately on replacement points to a short or a seized motor; do not simply fit a bigger fuse.</li><li>Switch. A <a href='products/switch-fan.html'>fan switch</a> lives in a damp, dusty environment and is worked thousands of times. Check for voltage in and out of the switch with it on. No output with a good input means the switch has failed, and it is an easy swap.</li><li>Speed controller. If you have a <a href='products/speedcontrol.html'>speed controller</a>, check whether the fan runs with the controller turned fully up. A fan that runs at full speed but not at low speed usually has a controller fault rather than a motor fault.</li><li>Connections. Follow the wiring to the fan. Vibration loosens crimp terminals over the years, and a green, corroded connector above a damp roof lining is a classic. Clean, re-crimp and protect.</li><li>Earth. A poor earth gives a fan that runs slowly, intermittently or only when the vehicle is warm. Check the earth point is clean and tight.</li></ul><p>Only after all that should you look at the motor itself. A motor that hums but does not turn, with the impeller free by hand, or a motor that turns but is very hot after a short run, is one that has reached the end of its life.</p>"
+    },
+    {
+      "h2": "When to replace a motor, and when to replace the fan",
+      "html": "<p>Fan motors do wear out. Brushed motors, the traditional type in most rooftop ventilators, have brushes that wear down over years of use and bearings that eventually dry out. The signs are a fan that is slower than it was, a grinding or squealing noise that is not just a dirty impeller, or a motor that keeps warming the housing after a short run.</p><p>The decision then is whether to replace the motor or the whole ventilator. As a rule of thumb, if the housing, cowl and seal are sound and the fan is a current model, a replacement motor is the economical fix. If the housing is brittle or discoloured from years of sun, the cowl has been cracked, or the fan is an old design, replacing the whole unit is usually the better use of money, because you get a fresh seal and a fresh housing at the same time.</p><p>This is also the moment to think about upgrading. A tired brushed fan can be replaced with a <a href='products/le-mans.html'>Le Mans</a> in the same 230 mm cut-out, or with the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>, which has no brushes to wear and runs quieter and more economically. For a vehicle that spends nights with the fan running, the brushless option is the one most fitters would now recommend.</p>"
+    },
+    {
+      "h2": "Wind-driven and passive ventilators",
+      "html": "<p>Wind-driven units like the Turbo II and passive venturi extractors have no motor and need even less attention, but they are not maintenance-free. A wind-driven head must spin freely; a bearing that has dried out or a head clogged with dust will stall in light wind. A quick spin by hand at each service tells you what you need to know. If it rasps or stops dead, the bearing wants attention.</p><p>Passive venturi extractors simply need the airway kept clear. Leaves, birds' nests and, on a livestock body, dust and straw are the usual culprits. Check from above and below, and make sure the internal grille has not been blocked by something stored against the ceiling.</p>"
+    },
+    {
+      "h2": "A maintenance calendar",
+      "html": "<p>As a rule of thumb, this is the rhythm that keeps a ventilation system out of trouble.</p><ul><li>Every trip: glance at the cowl for damage and listen for a change in fan note.</li><li>Monthly in heavy use (livestock, horses, dogs): clean the inside grille or valve face.</li><li>Every six months: full clean of grille, valve and impeller; check the fan turns freely by hand; clear floor inlets.</li><li>Every year: inspect the roof seal and fixings; check fuse, switch and connections; test all speeds; fit or remove the snow filter with the season.</li><li>When something changes: a new noise, a slower fan, a damp patch on the ceiling. Do not wait for the service; investigate straight away.</li></ul><p>Replacement grilles, valves, switches, controllers and complete ventilators are held in stock in the Netherlands and are listed in the shop. If you are not sure whether a fault is the motor or the wiring, describe the symptoms through the <a href='contact.html'>contact page</a>; a few details about what the fan does and does not do usually pins it down without a workshop visit.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How often should I clean a roof ventilator?",
+      "a": "For a camper or commercial van, a proper clean of the grille, valve and impeller twice a year is plenty, with a quick wipe of the grille whenever it looks dusty. Horse, livestock and dog vehicles need the inside grille cleaned monthly in season, because dust and hair build up far faster."
+    },
+    {
+      "q": "My fan hums but does not turn. Is the motor finished?",
+      "a": "Not necessarily. Switch off, take the grille out and turn the impeller by hand. If it is stiff or stuck, clear whatever is jamming it and check the bearing. If it spins freely and the motor still only hums with power on, the motor has most likely failed and needs replacing."
+    },
+    {
+      "q": "Can I reseal a roof ventilator without taking it off the roof?",
+      "a": "A small crack in the sealant bead can be cleaned out and topped up in place. If the bead has failed along a whole edge, or the base moves when you press it, lift the unit, clean both surfaces back to bare and re-bed it. Sealing over a failed bead rarely lasts a season."
+    },
+    {
+      "q": "Is it worth replacing a worn brushed motor with a brushless Le Mans LL?",
+      "a": "If the fan runs for long periods, especially overnight, usually yes. A brushless motor has no brushes to wear, runs quieter at low speed and draws less from the battery. If the fan is only used for short bursts, a like-for-like motor is the cheaper fix."
+    }
+  ]
+}

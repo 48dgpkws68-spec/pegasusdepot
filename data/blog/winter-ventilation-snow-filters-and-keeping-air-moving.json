@@ -1,0 +1,59 @@
+{
+  "slug": "winter-ventilation-snow-filters-and-keeping-air-moving",
+  "title": "Winter Ventilation: Snow Filters and Keeping Air Moving",
+  "meta": "Keep a roof ventilator working through winter: snow filter strips, ice on the cowl, condensation control and why a fan on low speed beats a shut vehicle.",
+  "excerpt": "Shutting a vehicle up for winter is how you get wet bedding and a dripping roof. How the snow filter, a closable valve and a fan on low speed keep the air moving through the cold months.",
+  "keywords": [
+    "winter ventilation",
+    "snow filter roof fan",
+    "camper condensation",
+    "horse trailer winter ventilation",
+    "roof ventilator ice"
+  ],
+  "vehicle": "general",
+  "read_min": 5,
+  "sections": [
+    {
+      "h2": "Why ventilation matters more in winter, not less",
+      "html": "<p>The instinct in cold weather is to shut everything and keep the warmth in. In a vehicle that is exactly the wrong move. Two people sleeping in a camper breathe out a surprising amount of water overnight, a gas hob adds more, and a horse in a trailer produces heat and moisture the whole journey. With the windows shut, that water has nowhere to go except onto the coldest surfaces: the windows, the roof lining, the inside of the metal skin.</p><p>The result is the familiar winter damp: wet bedding, a musty smell, drips from the roof, and in a horse trailer a sweating animal that then chills when the ramp goes down. Moving air out through the roof and bringing dry air in low down is what stops it, in winter just as in summer. The fan simply runs slower.</p>"
+    },
+    {
+      "h2": "Snow, spray and the roof cowl",
+      "html": "<p>The practical problem with a roof ventilator in winter is what comes in with the air. Driving snow, drifting powder blown across a car park, and the fine spray thrown up on a wet motorway all reach the cowl of a rooftop fan. In summer, a little rain is thrown off by the shape of the cowl. Fine, dry snow is different: it is light enough to be drawn in on the airflow, and it melts inside.</p><p>The <a href='products/snowfilter.html'>snow filter</a> is the answer. It is a strip of filter material made for the rooftop ventilator range, fitted in the airway where it catches snow and spray before they reach the interior while still letting air pass. It is not a sealed filter; the aim is to stop what is heavy enough to settle, not to make the fan airtight.</p><p>Fit it in autumn, before the first snow, and take it out again in spring. It slightly reduces the free airflow, which is no problem in winter when you are running the fan gently, but there is no reason to leave it in through summer when you want every cubic metre the fan can move.</p>"
+    },
+    {
+      "h2": "Ice on the ventilator",
+      "html": "<p>Ice is a different matter from snow. Freezing rain and overnight frost can glaze the cowl of a roof fan and, in the worst cases, freeze the impeller to the housing. A wind-driven Turbo II or Turbo III relies on the head turning freely, so a glazed unit simply stops until it thaws.</p><p>Never force a frozen fan, whether by hand or by switching a motor on and hoping. A powered fan trying to start against a frozen impeller draws a heavy current and can blow a fuse or, if you keep trying, overheat the motor. Let the vehicle warm through first. Once the interior has been heated for a while, the fan housing usually frees itself from the inside out.</p><p>A closable valve inside helps here. Shutting the V12 valve when the vehicle is parked in freezing weather keeps warm interior air from rising into the fan housing, where it would condense and freeze on the cold impeller. Open it again once you are moving or heating.</p>"
+    },
+    {
+      "h2": "Condensation: the winter enemy",
+      "html": "<p>Condensation forms when warm, moist air meets a surface colder than its dew point. In a vehicle in winter, that is every window and every uninsulated metal panel. The cure is not more heat on its own; a hot, wet interior condenses just as readily as a cool one. The cure is to reduce the moisture in the air, and the cheapest way to do that is to swap it for dry outside air.</p><p>Cold winter air is dry, even when it feels raw. Bring it in low through a <a href='products/floor-ventilator-129.html'>floor ventilator</a>, let it warm as it rises through the living space, and it will pick up moisture on the way before the roof fan takes it out. That low-to-high sweep is worth far more than any tub of dehumidifier crystals.</p><p>In a horse trailer the same principle protects the animal. A steady, gentle change of air removes the moisture the horse breathes out and sweats off, so the coat stays drier and the trailer does not drip. On a long winter journey, that is the difference between a horse that unloads warm and dry and one that unloads damp and shivering.</p>"
+    },
+    {
+      "h2": "Run the fan low, and keep it running",
+      "html": "<p>The habit that makes the biggest difference in winter is running the fan slowly and continuously, rather than blasting it on full for ten minutes and then shutting it off. A fan on its lowest setting draws very little from the battery, makes very little noise, and keeps air moving through the night without a cold draught.</p><p>This is where speed control earns its place. A <a href='products/speedcontrol.html'>speed controller</a> lets you set a Le Mans to a trickle for an overnight stop and turn it up for cooking or after a wet dog comes in. The brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>, moving 515 to 565 m³/h at 34 W, is particularly well suited to this, because it is quiet and economical at the low end where a winter fan lives most of the time.</p><p>As a rule of thumb, if you can feel a draught, the fan is running faster than it needs to for condensation control. Back it off until the air movement is just perceptible at the inlet and leave it there.</p>"
+    },
+    {
+      "h2": "A winter checklist",
+      "html": "<p>Pinned to the workshop wall, the winter routine looks like this.</p><ul><li>Fit the snow filter before the first cold snap, and check it after any snowy trip.</li><li>Clear snow off the cowl before setting off; a heaped cowl blocks the airway.</li><li>Do not force a frozen fan. Warm the vehicle, then try.</li><li>Shut closable valves when parked in freezing weather; open them when heating or moving.</li><li>Keep at least one floor inlet clear of mud, salt and ice so the fan has something to breathe.</li><li>Run the fan low and continuously rather than high in bursts.</li><li>Check the battery voltage if you run the fan overnight for several nights; a small fan is cheap to run, but not free.</li></ul><p>For campers overwintering or heading to the mountains, the <a href='vehicles/campers.html'>camper page</a> covers the full set-up. Horse owners hauling through the winter season will find the same thinking on the <a href='vehicles/horse-trailers.html'>horse trailer page</a>.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Should I remove or cover the roof fan for winter?",
+      "a": "No. Covering the fan is how you end up with condensation and a damp interior. Fit the snow filter, keep a closable valve shut while parked in hard frost, and run the fan on low when the vehicle is in use. The ventilator is built to live on the roof all year."
+    },
+    {
+      "q": "Does the snow filter stop rain as well?",
+      "a": "It catches spray and driven rain along with snow, which is why some owners leave it in through a wet autumn. It is not a seal, though; the cowl and the fan itself are what keep ordinary rain out, and the filter is there for what the cowl alone cannot stop."
+    },
+    {
+      "q": "Can I leave the fan running all night in winter?",
+      "a": "Yes, and it is the best way to wake up to a dry interior. On the lowest setting, especially with a brushless Le Mans LL, the draw on the leisure battery is small. Check the battery if you are doing it night after night without driving or hooking up."
+    },
+    {
+      "q": "Why is the inside of my camper still wet with the heater on?",
+      "a": "Heat alone does not remove moisture; it just moves it around until it finds a cold surface. You need to exchange the wet inside air for dry outside air. A floor inlet and a roof fan on low, running continuously, will do more than turning the heater up."
+    }
+  ]
+}

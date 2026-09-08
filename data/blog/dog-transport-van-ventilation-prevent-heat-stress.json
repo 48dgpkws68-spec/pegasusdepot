@@ -1,0 +1,63 @@
+{
+  "slug": "dog-transport-van-ventilation-prevent-heat-stress",
+  "title": "Dog Transport Van Ventilation: Prevent Heat Stress",
+  "meta": "How heat builds up in a dog transport van and how to stop it: wind-driven versus powered roof ventilators, floor inlets and sizing for K9 crates.",
+  "excerpt": "A dog in a crate in a parked van is at the mercy of the air around it. Here is how heat and humidity build up, and how a wind-driven or powered roof ventilator with a floor inlet keeps working dogs safe.",
+  "keywords": [
+    "dog transport van ventilation",
+    "K9 van ventilation",
+    "dog van roof fan",
+    "heat stress dogs in van",
+    "dog van cooling"
+  ],
+  "vehicle": "dog-transport",
+  "read_min": 6,
+  "sections": [
+    {
+      "h2": "Dogs overheat faster than you think",
+      "html": "<p>A dog cannot sweat the way we do. It sheds heat mainly by panting, which works well in cool, dry, moving air and works poorly in a warm, humid, still box. Put two or three dogs in crates in the back of a van, each one panting into the same air, and the back of that van becomes humid within minutes. The dogs then pant harder, produce more moisture and more heat, and the loop tightens.</p><p>The dogs that suffer first are the ones you might least expect: fit working dogs that have just come off a shift or a training session, thick-coated breeds, older dogs and flat-faced breeds. The signs of trouble, heavy panting, drooling, a dog that will not settle or one that goes quiet and flat, come on quickly and are easy to miss from the driving seat. Ventilation is the first line of defence, and it has to be designed in, not hoped for.</p>"
+    },
+    {
+      "h2": "How heat builds up in a parked van",
+      "html": "<p>A van body is a metal box with a large flat roof pointing at the sky. Even on a mild day the roof skin gets hot in direct sun, and that heat radiates straight down into the load area. With the vehicle parked, no air moves through the standard vents, so the temperature inside climbs well above the outside air, and the dark colours popular for K9 fleets make it worse.</p><p>The dangerous moment is the ordinary one: the handler steps away to a briefing, a search, a shop; the sun comes round; and the van sits with the doors shut. A moving van is far easier to keep comfortable than a parked one, and that distinction drives the whole choice of ventilation. If a dog will ever wait in the van with the engine off, the ventilation has to work with the engine off.</p><p>Two other points worth knowing. Insulating the roof and walls slows the heat coming in, but it also slows heat leaving, so an insulated van without powered ventilation can stay hot long into the evening. And ventilation is not air conditioning; a fan cannot cool below the outside temperature, it can only stop the inside getting hotter than outside and keep humid air moving.</p>"
+    },
+    {
+      "h2": "Wind-driven versus powered: Turbo II or Le Mans?",
+      "html": "<p>A wind-driven ventilator such as the <a href='products/turbo-ii.html'>Turbo II</a> spins on the airflow over the roof and extracts air continuously while the van is moving. It needs no wiring, no switch and no battery, it sits in a 128 mm cut-out, and there is nothing to go wrong. For a van that carries dogs on the move and is always unloaded on arrival it is a sound, simple choice, and a Turbo II or two above the crate area will clear the panting moisture from a long motorway run.</p><p>What a wind-driven unit cannot do is move air when the van is stopped and the wind is calm, which is exactly the parked-in-the-sun scenario above. For that you need a powered fan on the roof, and for a K9 van we generally point to the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>. It draws around 34 W while moving 515 to 565 m³/h, which on a typical dog van body means a full change of air every couple of minutes and, because of the low draw, the ability to run for hours from a leisure battery while the handler is away.</p><p>Many professional fleets fit both: a powered LL over the crates for parked use, and a wind-driven Turbo II further back as a free second extractor on the road. The combination costs little more than the powered unit alone and covers both situations.</p>"
+    },
+    {
+      "h2": "Floor ventilators: bring the cool air in low",
+      "html": "<p>Every extractor needs an inlet, and where that inlet is makes a real difference to a dog in a crate. Air that enters at floor level is the coolest air available, it passes through the crates where the dogs are lying, and it carries their exhaled moisture up to the roof extractor. Air that enters high simply short-circuits across the ceiling and leaves the dogs sitting in their own warm pocket.</p><p>The <a href='products/floor-ventilator-129.html'>129 mm floor ventilator</a> fits through the floor and draws air from beneath the van, where it is shaded and moving. On smaller vans, or where the floor is congested with tanks and cable runs, the 80 mm version does the same job in less space. One low inlet per crate row, sited so the incoming air passes the crates rather than the wheel arch, is a good rule of thumb.</p><p>Fit the inlets with a mesh fine enough to keep road debris out, and think about where the van will be parked. An inlet directly beside the exhaust of a neighbouring vehicle in a yard is not where you want fresh air coming from.</p>"
+    },
+    {
+      "h2": "Sizing for a K9 van: how many dogs, how many fans?",
+      "html": "<p>Start with the volume of the load area and the number of dogs. A single-dog small van is a small volume and a compact fan can keep it fresh: the <a href='products/winglet.html'>Winglet mini ventilator</a> moves 65 m³/h through an 80 mm hole and is a good fit for an individual crate compartment or a divided body where each dog has its own cell. As the number of dogs rises, so does the heat and humidity, and a full-size roof unit becomes the sensible choice.</p><p>As a rule of thumb, for a van carrying more than two dogs, or any van used for waiting rather than just transporting, fit one full-size powered extractor over the crate area plus a low inlet per crate row, and add a wind-driven unit if the van does long road miles. Where dogs travel in individual compartments, one small ventilator per compartment gives every dog its own airflow and stops one hot, stressed dog warming its neighbours.</p><p>Fit a speed controller so the fan can run quietly on a cool day and hard on a hot one. Dogs notice noise, and a big fan roaring all day is its own kind of stress.</p>"
+    },
+    {
+      "h2": "Running when parked: battery, alarms and common sense",
+      "html": "<p>A powered ventilator that runs while the van is parked draws on the battery, so wire it to a leisure battery rather than the starter battery, and size that battery for the longest wait you expect. The low draw of the brushless LL is what makes an all-day standby realistic. A simple temperature alarm in the load area that alerts the handler is a sensible addition on any van used by working dogs.</p><p>And a word of plain honesty: no ventilation system makes it safe to leave a dog in a van in full sun on a hot day for long periods. Ventilation buys time and removes humidity, it does not create cold. Park in shade, leave the fan running, check the dogs at regular intervals, and treat the ventilation as part of a routine rather than a substitute for one.</p>"
+    },
+    {
+      "h2": "Fitting on a dog van",
+      "html": "<p>The full-size roof units need a 230 mm cut-out, the Turbo II 128 mm, the Turbo III and Winglet 80 mm. On a dog van the extractor should sit over the crates, not over the empty aisle, and the inlets low and forward of them so the air path runs through the dogs' space. Keep the wiring where it cannot be chewed, use a solid interior grille, and seal every roof cut carefully; a K9 van is hosed out more often than most.</p><p>If you would rather have the parts chosen for you, our <a href='bundles/dog-transport-kit.html'>dog transport kit</a> brings the matching parts together for a typical working-dog van, and the <a href='vehicles/dog-transport.html'>dog transport guide</a> walks through the layouts we see from police, security and working-dog fleets. We are an independent European specialist retailer holding our own stock in the Netherlands, and we are happy to talk through a specific van before you cut a single hole.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is a wind-driven ventilator enough for a dog van?",
+      "a": "Only if the van is never parked with dogs inside. A wind-driven unit such as the Turbo II works well on the move and needs no power, but it does nothing at a standstill in calm air. For any van where dogs wait, fit a powered extractor and use the wind-driven unit as a second vent."
+    },
+    {
+      "q": "How long will a powered fan run from a leisure battery?",
+      "a": "The brushless Le Mans LL draws around 34 W, which is under 3 A on a 12 V system, so a healthy leisure battery gives many hours of running. Size the battery for the longest wait you expect, and fit a low-voltage cut-off so the fan cannot flatten it completely."
+    },
+    {
+      "q": "Can a roof fan cool the van below the outside temperature?",
+      "a": "No. Ventilation replaces hot, humid inside air with outside air and stops the van heating up beyond that. It removes the humidity that makes panting ineffective, which is a real gain, but on a genuinely hot day you still need shade, regular checks and, for long waits, air conditioning."
+    },
+    {
+      "q": "Do I need a floor inlet if I have a roof extractor?",
+      "a": "Yes, for dogs in crates. Without a low inlet the replacement air leaks in high and passes over the dogs' heads, and the crates stay warm. A floor ventilator brings cooler air in from under the van and through the crates on its way to the extractor."
+    }
+  ]
+}

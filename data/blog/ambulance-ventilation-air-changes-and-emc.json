@@ -1,0 +1,63 @@
+{
+  "slug": "ambulance-ventilation-air-changes-and-emc",
+  "title": "Ambulance Ventilation: Air Changes and EMC Explained",
+  "meta": "Ambulance ventilation explained: air changes per hour as a rule of thumb, extract and supply layouts, EMC and brushless motors, and switches a crew can use.",
+  "excerpt": "In an ambulance the ventilation system is clinical equipment, not a comfort extra. This guide covers air changes per hour, the airflow path, why the motor's EMC behaviour matters, and controls a crew can use with gloves on.",
+  "keywords": [
+    "ambulance ventilation",
+    "patient compartment ventilation",
+    "air changes per hour ambulance",
+    "EMC ventilator motor",
+    "emergency vehicle roof fan"
+  ],
+  "vehicle": "ambulance-emergency",
+  "read_min": 7,
+  "sections": [
+    {
+      "h2": "Clean air for two people who cannot open a window",
+      "html": "<p>An ambulance is one of the few vehicles where the people in the back have no control over their surroundings. The patient is lying down, often frightened, sometimes struggling to breathe. The crew are working over them in a space full of equipment that gives off heat. Nobody can wind down a window, and the doors stay shut for privacy, for noise and for safety on the move.</p><p>That makes the ventilation system a piece of clinical equipment rather than a comfort extra. It has to remove the heat from bodies and electronics, dilute whatever is in the air, from exhaust drawn in at a roadside to disinfectant vapour after a clean-down, and it has to do so quietly, predictably and without upsetting the medical kit around it. In our experience, converters who treat it that way end up with a compartment that crews actually like working in.</p><p>This article covers the three questions we are asked most by ambulance and emergency vehicle builders: how much air, how to move it, and why the motor's electromagnetic behaviour matters as much as its airflow.</p>"
+    },
+    {
+      "h2": "Air changes per hour: the rule of thumb",
+      "html": "<p>Ventilation for a patient compartment is usually discussed in air changes per hour, the number of times the full volume of the compartment is replaced. Work out the volume of your compartment, length times width times height of the finished interior, then divide the ventilator's airflow by it. A typical van-based ambulance patient compartment is a small space, often in the region of 8 to 10 m³ once the cabinets are in.</p><p>As a rule of thumb, an ambulance patient compartment should be able to refresh its air many times an hour with the vehicle stationary, and the figure converters work to is considerably higher than for a camper or a passenger bus. The exact requirement comes from the specification your vehicle is built to, so check that document rather than taking a number from a blog, ours included. What we can say is that you want a ventilator with a great deal of headroom, so that the required rate is reached at a moderate, quiet speed rather than flat out.</p><p>The <a href='products/le-mans.html'>Le Mans rooftop ventilator</a> at 850 m³/h gives that headroom. On a 10 m³ compartment it is capable of a full air change well over once a minute at full speed, which means the everyday running speed can be a fraction of that, with the reserve there for a clean-down or a summer standby. Where quiet continuous running on the vehicle battery is the priority, the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a> delivers 515 to 565 m³/h at around 34 W and is our usual recommendation for long shifts on standby.</p>"
+    },
+    {
+      "h2": "Extract, supply, or both: designing the air path",
+      "html": "<p>A single extractor in the roof pulls air out, and the replacement air arrives wherever the body leaks: door seals, cable glands, the bulkhead. In an ambulance that is not good enough, because the replacement air may be exhaust from the vehicle in front, or from the ambulance itself idling at a scene. A designed inlet gives you control over where the fresh air comes from.</p><p>The layout we see most often, and the one we would build ourselves, uses a roof extractor towards the rear of the compartment and a supply point forward, either a second roof unit set to blow or a low inlet such as a floor ventilator with a filter. Air moves front to rear, past the crew and over the patient, and out. Keep the direct draught off the patient's face and out of the working zone at the head of the stretcher, and do not mount the extractor directly above the stretcher where it would pull air across the patient's airway.</p><p>Positive pressure, running a supply fan slightly harder than the extractor, is worth considering for vehicles that spend time at roadside incidents. A slight overpressure keeps fumes and dust from seeping in through the seals while the doors are closed. A reversing switch on the roof units gives the converter that option without a second product.</p>"
+    },
+    {
+      "h2": "EMC: why the motor matters as much as the airflow",
+      "html": "<p>An ambulance carries monitors, a defibrillator, infusion pumps, radios and data terminals, all of them sensitive to electrical noise and all of them expected to work while the fan runs. A cheap brushed motor is a small radio transmitter: the brushes arc as they pass the commutator and the resulting interference travels along the wiring and through the air. In a domestic van that is a crackle on the radio. In an ambulance it can be a false alarm on a monitor or a dropout on a radio call.</p><p>Electromagnetic compatibility, EMC, is the discipline of making sure equipment neither emits interference that disturbs its neighbours nor is disturbed by them. That is the reason to look for a properly suppressed motor rather than the cheapest fan on the shelf, and it is why we point ambulance converters at the brushless Le Mans LL, which does away with the mechanical brushes altogether; that is a large part of why it is so quiet and so well behaved electrically. If your build file needs supporting documentation, ask us and we will tell you exactly what is available for the model you are fitting.</p><p>Two practical notes from converters. First, route the ventilator supply separately from monitor and radio looms, and earth the housing to the body. Second, fit a proper speed controller rather than an improvised resistor, because crude controllers can themselves add noise to the supply.</p>"
+    },
+    {
+      "h2": "Switches, speed control and the crew's hands",
+      "html": "<p>A ventilation system a crew cannot operate without thinking is one they will not operate at all. The controls need to be where the attendant sits, marked clearly, and simple enough to use with gloves on and a patient in front of you. That normally means a dedicated <a href='products/switch-fan.html'>fan switch</a> with an unambiguous on and off, and a <a href='products/speedcontrol.html'>speed controller</a> for the day-to-day setting, wired so the fan comes back at its last setting when the vehicle is restarted.</p><p>Consider the housing of the switches too. Ambulance interiors are wiped down with disinfectant many times a week, and flush, sealed switch panels are far easier to keep clean than open toggles. If the vehicle has a central control panel, the ventilator can usually be driven from it, but we would still argue for a manual override the crew can reach without looking away from the patient.</p>"
+    },
+    {
+      "h2": "Roof hatches: emergency exit and ventilation in one",
+      "html": "<p>Many ambulance specifications call for an emergency exit in the roof, and a large hatch does double duty as a serious ventilation opening at a standstill. The <a href='products/roof-hatch-electric-large.html'>electric 970 x 530 mm roof hatch</a> opens at the touch of a button, is operated from its own control unit, and offers a full-size escape route. Combined with a powered extractor it gives the crew the option of a large flood of fresh air after a clean-down or on a hot standby, then a closed, controlled compartment on the road.</p><p>The hatch is glazed with ECE 43R glass. For builders who prefer manual operation on smaller vehicles, the manual 530 x 530 mm hatch is the usual choice.</p>"
+    },
+    {
+      "h2": "Fitting and hygiene notes",
+      "html": "<p>The full-size roof units need a 230 mm cut-out, placed between roof ribs and clear of the lighting, aerials and any roof-mounted beacon bar. Seal the cut edge and the frame properly; an ambulance roof is washed hard and often. Inside, choose a grille that can be removed for cleaning without tools, because dust and lint collect on any extractor, and an interior that is cleaned to clinical standards needs the ventilation to be cleanable too.</p><p>For winter operation, a snow filter beneath the hood stops driven snow reaching the motor during a long standby in a blizzard, which is not a rare event for an emergency vehicle. And if the whole thing is new to you, our <a href='vehicles/ambulance-emergency.html'>ambulance and emergency vehicle guide</a> sets out the common layouts, or send us your drawing. As an independent European specialist retailer with our own stock in the Netherlands, we supply converters across Europe and are used to working to a build schedule.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How many air changes per hour does an ambulance need?",
+      "a": "The figure comes from the specification your vehicle is built to, and it is considerably higher than for a camper or a bus. Rather than quoting a number, we suggest working out your compartment volume, checking the required rate in your specification, and choosing a ventilator that reaches it at a moderate speed so you have reserve for hot days and clean-downs."
+    },
+    {
+      "q": "Can a rooftop ventilator interfere with medical equipment?",
+      "a": "A poorly suppressed brushed motor can. That is why we steer ambulance converters towards properly suppressed motors and, above all, the brushless Le Mans LL, which has no brushes to arc in the first place. Route the fan wiring away from monitor and radio looms and use a proper speed controller rather than an improvised one."
+    },
+    {
+      "q": "Should the ventilation run when the engine is off?",
+      "a": "Yes. An ambulance spends a large part of its life on standby or at a scene with the engine off and the doors shut. Wire the ventilator to the auxiliary battery and choose a low-draw unit such as the brushless Le Mans LL so it can run for a full shift without flattening anything."
+    },
+    {
+      "q": "Extract or supply for the patient compartment?",
+      "a": "Both, ideally. An extractor towards the rear removes heat and vapour; a supply point forward, or a filtered low inlet, controls where the fresh air comes from. Running the supply slightly harder gives a gentle overpressure that keeps fumes out at a roadside."
+    }
+  ]
+}
