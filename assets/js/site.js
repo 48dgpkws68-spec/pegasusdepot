@@ -19,6 +19,8 @@
   if (!C) return;
   const ROOT = document.documentElement.getAttribute('data-root') || '';
   const money = (n) => '€' + (Math.round(n * 100) / 100).toLocaleString('en-IE', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  const exn = (n) => Math.round(n / 1.21 * 100) / 100;
+  const exv = (v) => v.price_ex != null ? v.price_ex : exn(v.price);
   const byId = {}; C.products.forEach(p => byId[p.id] = p);
   const bySku = {}; C.products.forEach(p => p.variants.forEach(v => bySku[v.sku] = { p, v }));
   const bundleById = {}; (C.bundles || []).forEach(b => bundleById[b.id] = b);
@@ -155,10 +157,11 @@
       });
       const v = cur();
       $('#pdp-sku').textContent = 'Article no. ' + v.sku;
-      $('#pdp-price').textContent = v.price == null ? 'Quote' : money(v.price);
+      $('#pdp-price').textContent = v.price == null ? 'Quote' : money(exv(v));
+      const pin = $('#pdp-incl'); if (pin && v.price != null) pin.textContent = money(v.price);
       const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? 'RRP ' + money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
       const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = Math.round((1 - v.price / v.compare_at) * 100) + '% below RRP'; sv.style.display = ''; } else sv.style.display = 'none'; }
-      const sp = $('#sticky-price'); if (sp) sp.textContent = v.price == null ? 'Quote' : money(v.price);
+      const sp = $('#sticky-price'); if (sp) sp.innerHTML = v.price == null ? 'Quote' : money(exv(v)) + '<small> ex VAT</small>';
       // gallery follows the chosen option when the product maps options to images
       try { const map = JSON.parse(pdp.dataset.imgmap || '{}'); const hit = Object.keys(map).find(k => Object.values(sel).includes(k)); if (hit != null) { const th = $$('.thumbs button')[map[hit]]; if (th && !th.classList.contains('on')) th.click(); } } catch (e) {}
       updateAddons();
@@ -197,7 +200,7 @@
       $$('.tile', tiles).forEach(t => t.classList.toggle('on', t.dataset.pid === ap.id));
       const priced = ap.variants.filter(x => x.price != null);
       const key = ap.id + '|' + v.sku; if (vars.dataset.key === key) return; vars.dataset.key = key;
-      vars.innerHTML = priced.length > 1 ? priced.map(x => { const col = (x.options || {}).Colour; const map = ap.image_by_option || {}; const hasImg = Object.values(x.options || {}).some(o => map[o] != null); return `<button type="button" class="opt vchip${x.sku === v.sku ? ' on' : ''}" data-sku="${x.sku}">${hasImg ? `<img src="${ROOT + imgFor(ap, x)}" alt="">` : col ? `<i class="sw" style="background:${swatch(col)}"></i>` : ''}${x.label} <small>${money(x.price)}</small></button>`; }).join('') : '';
+      vars.innerHTML = priced.length > 1 ? priced.map(x => { const col = (x.options || {}).Colour; const map = ap.image_by_option || {}; const hasImg = Object.values(x.options || {}).some(o => map[o] != null); return `<button type="button" class="opt vchip${x.sku === v.sku ? ' on' : ''}" data-sku="${x.sku}">${hasImg ? `<img src="${ROOT + imgFor(ap, x)}" alt="">` : col ? `<i class="sw" style="background:${swatch(col)}"></i>` : ''}${x.label} <small>${money(exv(x))}</small></button>`; }).join('') : '';
     }
     function syncAddonRow(i) {
       const { p: ap, v } = addonVariant(i); const row = i.parentElement;
@@ -206,20 +209,20 @@
       const ttl = row.querySelector('.addon-title'); if (ttl && !grp && ttl.textContent !== ap.short_name) ttl.textContent = ap.short_name;
       const im = row.querySelector('.addon-main img'); const want = imgFor(ap, v); if (im && want && im.dataset.src !== want) { im.src = ROOT + want; im.dataset.src = want; im.dataset.pid = ap.id; }
       const sub = row.querySelector('.addon-sub'); if (sub) sub.textContent = (grp ? ap.short_name + (v.label !== ap.short_name ? ' · ' + v.label : '') : v.label) + ' · ' + v.sku;
-      const pr = row.querySelector('.p'); if (pr) pr.textContent = '+ ' + money(v.price);
+      const pr = row.querySelector('.p'); if (pr) pr.textContent = '+ ' + money(exv(v));
       renderPick(row, ap, v);
     }
     function updateAddons() {
       const v = cur(); const q = qtyI ? getQ() : 1; let total = (v.price || 0);
       $$('.addon input').forEach(syncAddonRow);
       $$('.addon input:checked').forEach(i => total += +(addonVariant(i).v.price));
-      const t = $('#addon-total'); if (t) t.textContent = money(total * q) + (q > 1 ? ' for ' + q + ' sets' : '');
+      const t = $('#addon-total'); if (t) t.innerHTML = money(exn(total * q)) + ' <small>(' + money(total * q) + ' incl.)</small>' + (q > 1 ? ' for ' + q + ' sets' : '');
       // same parts cheaper as a kit? compare the chosen set with every kit's item list
       const hint = $('#addon-kit-hint');
       if (hint) {
         const chosen = [v.sku].concat($$('.addon input:checked').map(i => addonVariant(i).v.sku)).sort().join('|');
         const kit = (C.bundles || []).find(b => b.items.length === chosen.split('|').length && b.items.every(it => it.qty === 1) && b.items.map(it => it.sku || (it.choices.find(s => chosen.split('|').includes(s)) || it.choices[0])).sort().join('|') === chosen);
-        if (kit) { const full = kit.items.reduce((s, it) => s + bySku[it.sku || (it.choices.find(x => chosen.split('|').includes(x)) || it.choices[0])].v.price, 0); const kp = Math.floor(full * (1 - kit.discount)); hint.innerHTML = 'Same parts cheaper as a kit: <a href="' + ROOT + 'bundles/' + kit.id + '.html">' + kit.name + '</a> for <b>' + money(kp) + '</b> instead of ' + money(full) + '.'; hint.style.display = ''; }
+        if (kit) { const full = kit.items.reduce((s, it) => s + bySku[it.sku || (it.choices.find(x => chosen.split('|').includes(x)) || it.choices[0])].v.price, 0); const kp = Math.floor(full * (1 - kit.discount)); hint.innerHTML = 'Same parts cheaper as a kit: <a href="' + ROOT + 'bundles/' + kit.id + '.html">' + kit.name + '</a> for <b>' + money(exn(kp)) + ' ex VAT</b> instead of ' + money(exn(full)) + '.'; hint.style.display = ''; }
         else hint.style.display = 'none';
       }
     }
@@ -268,13 +271,13 @@
       b.items.forEach((it, i) => {
         const { p, v } = bySku[choice[i]];
         const row = $(`[data-bitem="${i}"]`);
-        row.querySelector('.b-price').innerHTML = money(v.price * it.qty) + `<small>${it.qty > 1 ? it.qty + ' × ' : ''}${v.sku}</small>`;
+        row.querySelector('.b-price').innerHTML = money(exv(v) * it.qty) + `<small>${it.qty > 1 ? it.qty + ' × ' : ''}${v.sku}</small>`;
         const opts = row.querySelector('.b-opts');
         if (opts) opts.innerHTML = it.choices.map(s => `<button class="opt ${s === choice[i] ? 'on' : ''}" data-i="${i}" data-sku="${s}">${bySku[s].v.label}</button>`).join('');
       });
       const { full, price } = calc();
-      $('#b-full').textContent = money(full); $('#b-price').textContent = money(price); $('#b-save').textContent = 'You save ' + money(full - price) + ' (' + Math.round(b.discount * 100) + '%)';
-      const sp = $('#sticky-price'); if (sp) sp.textContent = money(price);
+      $('#b-full').textContent = money(exn(full)); $('#b-price').textContent = money(exn(price)); $('#b-save').textContent = 'You save ' + money(exn(full) - exn(price)) + ' ex VAT (' + Math.round(b.discount * 100) + '%)'; const bi = $('#b-incl'); if (bi) bi.textContent = money(price) + ' incl. 21% VAT';
+      const sp = $('#sticky-price'); if (sp) sp.innerHTML = money(exn(price)) + '<small> ex VAT</small>';
     }
     bb.addEventListener('click', (e) => { const o = e.target.closest('.opt[data-i]'); if (!o) return; choice[+o.dataset.i] = o.dataset.sku; render(); });
     const add = () => {

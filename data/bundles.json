@@ -267,8 +267,7 @@
           "variant_group": "Valve colour",
           "choices": [
             "35-2800",
-            "35-2810",
-            "35-2820"
+            "35-2810"
           ],
           "qty": 1
         }
@@ -325,8 +324,7 @@
           "variant_group": "LED valve colour",
           "choices": [
             "35-2900",
-            "35-2910",
-            "35-2920"
+            "35-2910"
           ],
           "qty": 1
         }

@@ -182,8 +182,9 @@
             "Voltage": "12V",
             "Colour": "White"
           },
-          "price": 149,
-          "compare_at": 185
+          "price": 127.05,
+          "compare_at": 185,
+          "price_ex": 105.0
         },
         {
           "sku": "02-2200-ZW",
@@ -192,8 +193,9 @@
             "Voltage": "12V",
             "Colour": "Black"
           },
-          "price": 149,
-          "compare_at": 185
+          "price": 127.05,
+          "compare_at": 185,
+          "price_ex": 105.0
         },
         {
           "sku": "02-2300",
@@ -202,8 +204,9 @@
             "Voltage": "24V",
             "Colour": "White"
           },
-          "price": 149,
-          "compare_at": 185
+          "price": 127.05,
+          "compare_at": 185,
+          "price_ex": 105.0
         },
         {
           "sku": "02-2300-ZW",
@@ -212,8 +215,9 @@
             "Voltage": "24V",
             "Colour": "Black"
           },
-          "price": 149,
-          "compare_at": 185
+          "price": 127.05,
+          "compare_at": 185,
+          "price_ex": 105.0
         },
         {
           "sku": "02-2900",
@@ -222,8 +226,9 @@
             "Voltage": "Motorless",
             "Colour": "White"
           },
-          "price": 95,
-          "compare_at": 115
+          "price": 66.55,
+          "compare_at": 115,
+          "price_ex": 55.0
         }
       ],
       "images": [
@@ -335,8 +340,9 @@
             "Voltage": "12V",
             "Speed control": "Without"
           },
-          "price": 259,
-          "compare_at": 299
+          "price": 187.55,
+          "compare_at": 299,
+          "price_ex": 155.0
         },
         {
           "sku": "02-4250",
@@ -345,8 +351,9 @@
             "Voltage": "12V",
             "Speed control": "Integrated"
           },
-          "price": 299,
-          "compare_at": 345
+          "price": 199.65,
+          "compare_at": 345,
+          "price_ex": 165.0
         },
         {
           "sku": "02-4300",
@@ -355,8 +362,9 @@
             "Voltage": "24V",
             "Speed control": "Without"
           },
-          "price": 259,
-          "compare_at": 299
+          "price": 187.55,
+          "compare_at": 299,
+          "price_ex": 155.0
         },
         {
           "sku": "02-4350",
@@ -365,8 +373,9 @@
             "Voltage": "24V",
             "Speed control": "Integrated"
           },
-          "price": 299,
-          "compare_at": 345
+          "price": 199.65,
+          "compare_at": 345,
+          "price_ex": 165.0
         }
       ],
       "images": [
@@ -446,8 +455,9 @@
             "Voltage": "12V",
             "Colour": "White"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 127.05,
+          "compare_at": 159,
+          "price_ex": 105.0
         },
         {
           "sku": "02-0200-ZW",
@@ -456,8 +466,9 @@
             "Voltage": "12V",
             "Colour": "Black"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 127.05,
+          "compare_at": 159,
+          "price_ex": 105.0
         },
         {
           "sku": "02-0300",
@@ -466,8 +477,9 @@
             "Voltage": "24V",
             "Colour": "White"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 127.05,
+          "compare_at": 159,
+          "price_ex": 105.0
         },
         {
           "sku": "02-0300-ZW",
@@ -476,8 +488,9 @@
             "Voltage": "24V",
             "Colour": "Black"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 127.05,
+          "compare_at": 159,
+          "price_ex": 105.0
         },
         {
           "sku": "02-0900",
@@ -486,8 +499,9 @@
             "Voltage": "Motorless",
             "Colour": "White"
           },
-          "price": 85,
-          "compare_at": 99
+          "price": 72.6,
+          "compare_at": 99,
+          "price_ex": 60.0
         }
       ],
       "images": [
@@ -572,8 +586,9 @@
             "Voltage": "12V",
             "Colour": "White"
           },
-          "price": 159,
-          "compare_at": 179
+          "price": 102.85,
+          "compare_at": 179,
+          "price_ex": 85.0
         },
         {
           "sku": "02-5100",
@@ -582,8 +597,9 @@
             "Voltage": "12V",
             "Colour": "Black"
           },
-          "price": 159,
-          "compare_at": 179
+          "price": 102.85,
+          "compare_at": 179,
+          "price_ex": 85.0
         },
         {
           "sku": "02-5500",
@@ -593,7 +609,8 @@
             "Colour": "White"
           },
           "price": 89,
-          "compare_at": 99
+          "compare_at": 99,
+          "price_ex": 73.55
         },
         {
           "sku": "02-5600",
@@ -603,7 +620,8 @@
             "Colour": "Black"
           },
           "price": 89,
-          "compare_at": 99
+          "compare_at": 99,
+          "price_ex": 73.55
         }
       ],
       "images": [
@@ -681,8 +699,9 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 119,
-          "compare_at": 139
+          "price": 108.9,
+          "compare_at": 139,
+          "price_ex": 90.0
         },
         {
           "sku": "02-7000",
@@ -690,8 +709,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 119,
-          "compare_at": 139
+          "price": 108.9,
+          "compare_at": 139,
+          "price_ex": 90.0
         }
       ],
       "images": [
@@ -768,8 +788,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 115,
-          "compare_at": 135
+          "price": 96.8,
+          "compare_at": 135,
+          "price_ex": 80.0
         },
         {
           "sku": "02-6100",
@@ -777,8 +798,9 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 115,
-          "compare_at": 135
+          "price": 96.8,
+          "compare_at": 135,
+          "price_ex": 80.0
         }
       ],
       "images": [
@@ -843,8 +865,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 54.95,
-          "compare_at": 64.95
+          "price": 66.55,
+          "compare_at": null,
+          "price_ex": 55.0
         },
         {
           "sku": "02-1030-ZW",
@@ -852,8 +875,9 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 54.95,
-          "compare_at": 64.95
+          "price": 66.55,
+          "compare_at": null,
+          "price_ex": 55.0
         }
       ],
       "images": [
@@ -918,8 +942,9 @@
             "Operation": "Manual",
             "Colour": "White"
           },
-          "price": 54.95,
-          "compare_at": 69.95
+          "price": 42.35,
+          "compare_at": 69.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2410",
@@ -928,8 +953,9 @@
             "Operation": "Manual",
             "Colour": "Grey"
           },
-          "price": 54.95,
-          "compare_at": 69.95
+          "price": 42.35,
+          "compare_at": 69.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2440",
@@ -938,8 +964,9 @@
             "Operation": "Manual",
             "Colour": "Dark grey"
           },
-          "price": 54.95,
-          "compare_at": 69.95
+          "price": 42.35,
+          "compare_at": 69.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2500",
@@ -948,8 +975,9 @@
             "Operation": "Electric 12/24V",
             "Colour": "White"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 48.4,
+          "compare_at": 159,
+          "price_ex": 40.0
         },
         {
           "sku": "35-2510",
@@ -958,8 +986,9 @@
             "Operation": "Electric 12/24V",
             "Colour": "Grey"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 48.4,
+          "compare_at": 159,
+          "price_ex": 40.0
         },
         {
           "sku": "35-2540",
@@ -968,8 +997,9 @@
             "Operation": "Electric 12/24V",
             "Colour": "Dark grey"
           },
-          "price": 139,
-          "compare_at": 159
+          "price": 48.4,
+          "compare_at": 159,
+          "price_ex": 40.0
         }
       ],
       "images": [
@@ -1044,24 +1074,15 @@
       },
       "variants": [
         {
-          "sku": "35-2820",
-          "label": "Light grey / Dark grey",
-          "options": {
-            "Light": "No LED",
-            "Colour": "Light grey / Dark grey"
-          },
-          "price": 54.95,
-          "compare_at": 69.95
-        },
-        {
           "sku": "35-2800",
           "label": "White",
           "options": {
             "Light": "No LED",
             "Colour": "White"
           },
-          "price": 54.95,
-          "compare_at": 69.95
+          "price": 42.35,
+          "compare_at": 69.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2810",
@@ -1070,8 +1091,9 @@
             "Light": "No LED",
             "Colour": "Light grey"
           },
-          "price": 54.95,
-          "compare_at": 69.95
+          "price": 42.35,
+          "compare_at": 69.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2900",
@@ -1080,8 +1102,9 @@
             "Light": "LED 12V",
             "Colour": "White"
           },
-          "price": 109,
-          "compare_at": 129
+          "price": 84.7,
+          "compare_at": 129,
+          "price_ex": 70.0
         },
         {
           "sku": "35-2905",
@@ -1090,8 +1113,9 @@
             "Light": "LED 24V",
             "Colour": "White"
           },
-          "price": 109,
-          "compare_at": 129
+          "price": 84.7,
+          "compare_at": 129,
+          "price_ex": 70.0
         },
         {
           "sku": "35-2910",
@@ -1100,8 +1124,9 @@
             "Light": "LED 12V",
             "Colour": "Light grey"
           },
-          "price": 109,
-          "compare_at": 129
+          "price": 84.7,
+          "compare_at": 129,
+          "price_ex": 70.0
         },
         {
           "sku": "35-2915",
@@ -1110,28 +1135,9 @@
             "Light": "LED 24V",
             "Colour": "Light grey"
           },
-          "price": 109,
-          "compare_at": 129
-        },
-        {
-          "sku": "35-2920",
-          "label": "LED 12V · Light grey / Dark grey",
-          "options": {
-            "Light": "LED 12V",
-            "Colour": "Light grey / Dark grey"
-          },
-          "price": 109,
-          "compare_at": 129
-        },
-        {
-          "sku": "35-2925",
-          "label": "LED 24V · Light grey / Dark grey",
-          "options": {
-            "Light": "LED 24V",
-            "Colour": "Light grey / Dark grey"
-          },
-          "price": 109,
-          "compare_at": 129
+          "price": 84.7,
+          "compare_at": 129,
+          "price_ex": 70.0
         }
       ],
       "images": [
@@ -1200,8 +1206,9 @@
             "Colour": "Black",
             "Light": "No"
           },
-          "price": 44.95,
-          "compare_at": 54.95
+          "price": 42.35,
+          "compare_at": 54.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2100",
@@ -1210,8 +1217,9 @@
             "Colour": "Grey",
             "Light": "No"
           },
-          "price": 44.95,
-          "compare_at": 54.95
+          "price": 42.35,
+          "compare_at": 54.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2110",
@@ -1220,8 +1228,9 @@
             "Colour": "White",
             "Light": "No"
           },
-          "price": 44.95,
-          "compare_at": 54.95
+          "price": 42.35,
+          "compare_at": 54.95,
+          "price_ex": 35.0
         },
         {
           "sku": "35-2200",
@@ -1230,8 +1239,9 @@
             "Colour": "White",
             "Light": "12/24V light"
           },
-          "price": 84.95,
-          "compare_at": 99
+          "price": 72.6,
+          "compare_at": 99,
+          "price_ex": 60.0
         }
       ],
       "images": [
@@ -1292,8 +1302,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 19.95,
-          "compare_at": 24.95
+          "price": 18.15,
+          "compare_at": 24.95,
+          "price_ex": 15.0
         },
         {
           "sku": "35-2610",
@@ -1301,8 +1312,9 @@
           "options": {
             "Colour": "Light grey"
           },
-          "price": 19.95,
-          "compare_at": 24.95
+          "price": 18.15,
+          "compare_at": 24.95,
+          "price_ex": 15.0
         },
         {
           "sku": "35-2620",
@@ -1310,8 +1322,9 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 19.95,
-          "compare_at": 24.95
+          "price": 18.15,
+          "compare_at": 24.95,
+          "price_ex": 15.0
         }
       ],
       "images": [
@@ -1364,8 +1377,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 27.5,
-          "compare_at": 32.5
+          "price": 24.2,
+          "compare_at": 32.5,
+          "price_ex": 20.0
         },
         {
           "sku": "35-2710",
@@ -1373,8 +1387,9 @@
           "options": {
             "Colour": "Light grey"
           },
-          "price": 27.5,
-          "compare_at": 32.5
+          "price": 24.2,
+          "compare_at": 32.5,
+          "price_ex": 20.0
         },
         {
           "sku": "35-2720",
@@ -1382,8 +1397,9 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 27.5,
-          "compare_at": 32.5
+          "price": 24.2,
+          "compare_at": 32.5,
+          "price_ex": 20.0
         }
       ],
       "images": [
@@ -1443,8 +1459,9 @@
           "sku": "30-3004",
           "label": "Speedcontrol",
           "options": {},
-          "price": 84.95,
-          "compare_at": 99
+          "price": 90.75,
+          "compare_at": 99,
+          "price_ex": 75.0
         }
       ],
       "images": [
@@ -1504,8 +1521,9 @@
           "sku": "89-4002",
           "label": "Round",
           "options": {},
-          "price": 14.95,
-          "compare_at": 17.95
+          "price": 12.1,
+          "compare_at": 17.95,
+          "price_ex": 10.0
         }
       ],
       "images": [
@@ -1565,8 +1583,9 @@
           "sku": "89-4005",
           "label": "Square",
           "options": {},
-          "price": 12.95,
-          "compare_at": 14.95
+          "price": 12.1,
+          "compare_at": 14.95,
+          "price_ex": 10.0
         }
       ],
       "images": [
@@ -1627,8 +1646,9 @@
           "sku": "89-4008",
           "label": "Fan Switch",
           "options": {},
-          "price": 19.95,
-          "compare_at": 24.95
+          "price": 14.52,
+          "compare_at": 24.95,
+          "price_ex": 12.0
         }
       ],
       "images": [
@@ -1691,8 +1711,9 @@
           "sku": "30-6000",
           "label": "Control Unit 24V",
           "options": {},
-          "price": 189,
-          "compare_at": 219
+          "price": 211.75,
+          "compare_at": 219,
+          "price_ex": 175.0
         }
       ],
       "images": [
@@ -1752,8 +1773,9 @@
           "sku": "89-5600",
           "label": "Ø 129 mm",
           "options": {},
-          "price": 64.95,
-          "compare_at": 74.95
+          "price": 60.5,
+          "compare_at": 74.95,
+          "price_ex": 50.0
         }
       ],
       "images": [
@@ -1807,8 +1829,9 @@
           "sku": "89-5700",
           "label": "Ø 80 mm",
           "options": {},
-          "price": 57.5,
-          "compare_at": 67.5
+          "price": 54.45,
+          "compare_at": 67.5,
+          "price_ex": 45.0
         }
       ],
       "images": [
@@ -1856,8 +1879,9 @@
           "sku": "89-5011",
           "label": "860 x 40 x 10 mm",
           "options": {},
-          "price": 12.95,
-          "compare_at": 16.95
+          "price": 9.68,
+          "compare_at": 16.95,
+          "price_ex": 8.0
         }
       ],
       "images": [
@@ -1917,8 +1941,9 @@
           "sku": "90-5000-DG-LUS",
           "label": "Manual 530 x 530",
           "options": {},
-          "price": 349,
-          "compare_at": 389
+          "price": 320.65,
+          "compare_at": 389,
+          "price_ex": 265.0
         }
       ],
       "images": [
@@ -1983,8 +2008,9 @@
           "sku": "90-6000-DG-LUS",
           "label": "Manual 970 x 530",
           "options": {},
-          "price": 419,
-          "compare_at": 469
+          "price": 356.95,
+          "compare_at": 469,
+          "price_ex": 295.0
         }
       ],
       "images": [
@@ -2045,8 +2071,9 @@
           "sku": "90-5000-E",
           "label": "Electric 530 x 530",
           "options": {},
-          "price": 949,
-          "compare_at": 1059
+          "price": 623.15,
+          "compare_at": 1059,
+          "price_ex": 515.0
         }
       ],
       "images": [
@@ -2112,8 +2139,9 @@
           "sku": "90-6000-E",
           "label": "Electric 970 x 530",
           "options": {},
-          "price": 985,
-          "compare_at": 1095
+          "price": 659.45,
+          "compare_at": 1095,
+          "price_ex": 545.0
         }
       ],
       "images": [
@@ -2181,8 +2209,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 59.95,
-          "compare_at": 69.95
+          "price": 48.4,
+          "compare_at": 69.95,
+          "price_ex": 40.0
         },
         {
           "sku": "92-L02",
@@ -2190,8 +2219,9 @@
           "options": {
             "Colour": "Grey"
           },
-          "price": 59.95,
-          "compare_at": 69.95
+          "price": 48.4,
+          "compare_at": 69.95,
+          "price_ex": 40.0
         }
       ],
       "images": [
@@ -2266,8 +2296,9 @@
           "options": {
             "Colour": "Grey"
           },
-          "price": 89.95,
-          "compare_at": 109
+          "price": 78.65,
+          "compare_at": 109,
+          "price_ex": 65.0
         },
         {
           "sku": "92-L05",
@@ -2275,8 +2306,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 89.95,
-          "compare_at": 109
+          "price": 78.65,
+          "compare_at": 109,
+          "price_ex": 65.0
         }
       ],
       "images": [
@@ -2507,7 +2539,8 @@
             "Colour": "Black"
           },
           "price": 327,
-          "compare_at": null
+          "compare_at": null,
+          "price_ex": 270.25
         },
         {
           "sku": "24-0009",
@@ -2516,7 +2549,8 @@
             "Colour": "White"
           },
           "price": 327,
-          "compare_at": null
+          "compare_at": null,
+          "price_ex": 270.25
         }
       ],
       "images": [
@@ -2568,7 +2602,8 @@
             "Colour": "White"
           },
           "price": 49,
-          "compare_at": null
+          "compare_at": null,
+          "price_ex": 40.5
         },
         {
           "sku": "24-0113",
@@ -2577,7 +2612,8 @@
             "Colour": "Black"
           },
           "price": 49,
-          "compare_at": null
+          "compare_at": null,
+          "price_ex": 40.5
         }
       ],
       "images": [
@@ -2631,7 +2667,8 @@
           "label": "Small",
           "options": {},
           "price": 149,
-          "compare_at": 179
+          "compare_at": 179,
+          "price_ex": 123.14
         }
       ],
       "images": [
@@ -2687,7 +2724,8 @@
           "label": "Large",
           "options": {},
           "price": 449,
-          "compare_at": 499
+          "compare_at": 499,
+          "price_ex": 371.07
         }
       ],
       "images": [
@@ -2731,8 +2769,9 @@
         {
           "sku": "PD-SW-ROCKER",
           "label": "On/off rocker switch",
-          "price": 12.5,
-          "options": {}
+          "price": 15.12,
+          "options": {},
+          "price_ex": 12.5
         }
       ],
       "images": [
@@ -2779,10 +2818,11 @@
       },
       "variants": [
         {
-          "sku": "PD-SEAL-FOAM",
+          "sku": "V-2322",
           "label": "Super Seal foam strip",
-          "price": 12.5,
-          "options": {}
+          "price": 30.25,
+          "options": {},
+          "price_ex": 25.0
         }
       ],
       "images": [
@@ -2836,10 +2876,11 @@
       },
       "variants": [
         {
-          "sku": "PD-ROCK-LIGHT",
+          "sku": "92-5500",
           "label": "LED rock light, single",
-          "price": 25,
-          "options": {}
+          "price": 24.2,
+          "options": {},
+          "price_ex": 20.0
         }
       ],
       "images": [

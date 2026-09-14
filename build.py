@@ -46,7 +46,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '13'
+VERSION = '14'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
@@ -60,7 +60,7 @@ SHIPPING_LD = [_ship_ld(z['price'], z['countries'], *_days.get(z['id'], (3, 5)))
 OVERSIZE_LD = [_ship_ld(BRAND['shipping']['oversize_price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
 RETURN_LD = {"@type": "MerchantReturnPolicy", "applicableCountry": [ISO[x] for z in _zones for x in z['countries'] if x in ISO], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 30, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"}
 ANALYTICS_HTML = ''
-RETIRED = {'rotary-valve': 'shop.html?cat=interior-valves', 'rotary-valve-metal': 'shop.html?cat=interior-valves', 'step-converter': 'products/control-unit.html'}
+RETIRED = {'__bundles__': 'shop.html', 'rotary-valve': 'shop.html?cat=interior-valves', 'rotary-valve-metal': 'shop.html?cat=interior-valves', 'step-converter': 'products/control-unit.html'}
 
 # ---------------------------------------------------------------- images
 _img_cache = {}
@@ -151,6 +151,17 @@ def is_scene(path):
     return any(k in path for k in SCENE_KEYS)
 
 # ---------------------------------------------------------------- helpers
+VAT = 1.21
+def ex_of(n):
+    return round(n / VAT, 2)
+def ex_price(v):
+    if v.get('price') is None: return None
+    return v['price_ex'] if v.get('price_ex') is not None else ex_of(v['price'])
+def pr2(incl, ex=None, cls='pr'):
+    """price block: ex VAT prominent, incl. VAT alongside"""
+    ex = ex if ex is not None else ex_of(incl)
+    return f'<span class="{cls}"><b>{money(ex)}</b><small>ex VAT</small><em>{money(incl)} incl.</em></span>'
+
 def money(n):
     if n is None: return 'Quote'
     s = f'{n:,.2f}'
@@ -158,6 +169,10 @@ def money(n):
     return '€' + s
 
 def esc(s): return H.escape(str(s), quote=True)
+
+def ex_from(p):
+    pf = price_from(p)
+    return next((ex_price(v) for v in p['variants'] if v.get('price') == pf), None)
 
 def price_from(p):
     """Default (first priced) variant price."""
@@ -296,7 +311,7 @@ def header(depth=0):
     hero_b = [b for b in BUNDLES if b.get('hero')][:4]
     bundle_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>{esc(b["tagline"])}</span></div></a>' for b in hero_b)
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
-    best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>{money(price_from(p))}</span></div></a>' for p in best)
+    best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>{money(ex_of(price_from(p)))}</span></div></a>' for p in best)
     return f'''
 <div class="announce"><span>Free EU shipping from €{BRAND["free_shipping_from"]}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
 <header class="header"><div class="wrap header-in">
@@ -306,12 +321,7 @@ def header(depth=0):
       <div class="mega mega--wide">
         <div><h5>By category</h5>{cat_items}</div>
         <div><h5>Bestsellers</h5>{best_items}<h5 style="margin-top:16px">Popular kits</h5>{kit_items}</div>
-        <a class="m-feature" href="{r}products/le-mans.html" style="background-image:url('{r}{scene(P['le-mans']['images'][2],900)}')"><b>Le Mans 850 m³/h</b><span>The roof fan Europe's bodybuilders specify. From {money(price_from(P['le-mans']))}.</span></a>
-      </div></li>
-    <li><a href="{r}bundles.html">Kits &amp; Bundles {ICON['chev']}</a>
-      <div class="mega mega--cols">
-        <div><h5>Complete kits, save up to 12%</h5>{bundle_items}<a class="link" style="margin:12px 10px 0" href="{r}bundles.html">All {len(BUNDLES)} kits {ICON['arrow']}</a></div>
-        <a class="m-feature" href="{r}bundles/le-mans-complete-kit.html" style="background-image:url('{r}{scene(B['le-mans-complete-kit']['scene'],900)}')"><b>Le Mans Complete Kit</b><span>Fan + switch + V12 valve. One hole, one afternoon.</span></a>
+        <a class="m-feature" href="{r}products/le-mans.html" style="background-image:url('{r}{scene(P['le-mans']['images'][2],900)}')"><b>Le Mans 850 m³/h</b><span>The roof fan Europe's bodybuilders specify. From {money(ex_of(price_from(P['le-mans'])))}.</span></a>
       </div></li>
     <li><a href="{r}vehicles/commercial-vans.html">Shop by vehicle {ICON['chev']}</a>
       <div class="mega mega--cols"><div>{veh_items}</div>
@@ -329,7 +339,7 @@ def header(depth=0):
 </div></header>
 <nav class="mnav" id="mnav" aria-label="Mobile">
   <div class="top"><a class="logo" href="/">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a><button class="icon-btn" id="mnav-close" aria-label="Close">{ICON['close']}</button></div>
-  <a class="row" href="{r}shop.html">Shop all products</a><a class="row" href="{r}bundles.html">Kits &amp; bundles</a>
+  <a class="row" href="{r}shop.html">Shop all products</a>
   <h5>Categories</h5>{''.join(f'<a class="row" href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}
   <h5>By vehicle</h5>{''.join(f'<a class="row" href="{r}vehicles/{v["id"]}.html">{esc(v["name"])}</a>' for v in VEHICLES)}
   <h5>Company</h5><a class="row" href="{r}trade.html">Trade &amp; fleet accounts</a><a class="row" href="{r}blog.html">Guides &amp; advice</a><a class="row" href="{r}about.html">About Pegasus Depot</a><a class="row" href="{r}contact.html">Contact</a><a class="row" href="{r}shipping-returns.html">Shipping &amp; returns</a>
@@ -354,13 +364,13 @@ def footer(depth=0):
     <div><a class="logo" href="/">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
       <p style="margin-top:16px;max-width:34ch">Independent specialist in premium ventilation, roof hatches and interior lighting for vehicles that work harder. Dutch engineered products, shipped across Europe from our own stock.</p>
       <p style="margin-top:14px;color:var(--text-inv)">{esc(BRAND['email'])}<br>{(esc(BRAND['phone']) + '<br>') if BRAND.get('phone') else ''}{esc(BRAND['address'])}</p></div>
-    <div><h5>Shop</h5>{''.join(f'<a href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}<a href="{r}bundles.html">Kits &amp; bundles</a></div>
+    <div><h5>Shop</h5>{''.join(f'<a href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}</div>
     <div><h5>By vehicle</h5>{''.join(f'<a href="{r}vehicles/{v["id"]}.html">{esc(v["nav"])}</a>' for v in VEHICLES)}</div>
     <div><h5>Company</h5><a href="{r}about.html">About us</a><a href="{r}blog.html">Guides &amp; advice</a><a href="{r}trade.html">Trade &amp; fleet accounts</a><a href="{r}contact.html">Contact</a><a href="{r}shipping-returns.html">Shipping &amp; returns</a><a href="{r}terms.html">Terms &amp; warranty</a><a href="{r}privacy.html">Privacy</a></div>
     <div><h5>Why Pegasus Depot</h5><p>✓ OEM-grade products<br>✓ EMC approved motors<br>✓ Ships within 24h from NL<br>✓ 2-year warranty<br>✓ Trade pricing for fleets and bodybuilders</p>
       <div class="pay" style="margin-top:16px"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>BANCONTACT</span><span>KLARNA</span><span>PAYPAL</span></div></div>
   </div>
-  <div class="footer-bottom"><span>© 2026 Pegasus Depot · {esc(BRAND['domain'])} · All prices incl. 21% VAT</span><span>Pegasus Depot is an independent online retailer for vehicle ventilation and comfort.</span></div>
+  <div class="footer-bottom"><span>© 2026 Pegasus Depot · {esc(BRAND['domain'])} · Prices ex VAT, incl. 21% VAT shown alongside</span><span>Pegasus Depot is an independent online retailer for vehicle ventilation and comfort.</span></div>
 </div></footer>
 <script src="{r}assets/js/catalog.js?v={VERSION}"></script>
 <script src="{r}assets/js/site.js?v={VERSION}"></script>
@@ -376,7 +386,7 @@ def card(p, depth=0, dark=False):
     first = next((v for v in p['variants'] if v.get('price') is not None), p['variants'][0])
     prices = sorted(set(v['price'] for v in p['variants'] if v.get('price') is not None))
     multi = len([v for v in p['variants'] if v.get('price') is not None]) > 1
-    pr = (money(pf) if pf is not None else 'On request') + (f'<small>{len(p["variants"])} options</small>' if multi else '')
+    pr = (pr2(pf, ex_from(p)) if pf is not None else 'On request') + (f'<small>{len(p["variants"])} options</small>' if multi else '')
     was = f'<span class="was" title="Recommended retail price">RRP {money(cf)}</span>' if cf and pf and cf > pf else ''
     add = (f'<a class="add" href="{r}products/{p["id"]}.html" aria-label="Choose options">{ICON["arrow"]}</a>' if multi or p.get('quote_only')
            else f'<button class="add" data-add-sku="{first["sku"]}" data-product="{p["id"]}" aria-label="Add to cart">{ICON["plus"]}</button>')
@@ -395,7 +405,7 @@ def bundle_card(b, depth=0):
   <div class="bundle-media"><div class="stack">{imgs}</div><div class="plus">{''.join(f'<span>{esc(x)}</span>' for x in parts[:4])}{'<span>…</span>' if len(parts)>4 else ''}</div></div>
   <div class="bundle-body"><div class="pill-row">{''.join(f'<span class="save-pill">{esc(x)}</span>' for x in b.get('badges',[])[:2])}</div>
   <h3 class="card-title"><a href="{r}bundles/{b['id']}.html">{esc(b['name'])}</a></h3><p class="card-sub">{esc(b['tagline'])}</p>
-  <div class="card-foot"><div class="price"><span class="was">{money(full)}</span>{money(price)}<small>incl. VAT</small></div><a class="btn btn-gold btn-sm" href="{r}bundles/{b['id']}.html">Build kit {ICON['arrow']}</a></div></div>
+  <div class="card-foot"><div class="price"><span class="was">{money(ex_of(full))}</span>{money(ex_of(price))}<small>ex VAT</small><em class="incl">{money(price)} incl.</em></div><a class="btn btn-gold btn-sm" href="{r}bundles/{b['id']}.html">Build kit {ICON['arrow']}</a></div></div>
 </article>'''
 
 def vehicle_tile(v, depth=0):
@@ -447,7 +457,7 @@ def page_index():
   <div><div class="eyebrow">Dutch engineered · EMC approved · Ships in 24h</div>
     <h1 class="h-display">Engineered airflow for vehicles that <em>work harder.</em></h1>
     <p class="lead">Rooftop ventilators, closable valves, roof hatches and LED lighting for vans, campers, horse trailers, coaches and ambulances. OEM-grade parts, in stock, shipped within 24h, backed by specialists who know the products.</p>
-    <div class="hero-cta"><a class="btn btn-gold btn-lg" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a><a class="btn btn-ghost btn-lg" href="bundles.html">Build a complete kit</a></div></div>
+    <div class="hero-cta"><a class="btn btn-gold btn-lg" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a><a class="btn btn-ghost btn-lg" href="shop.html">Build a complete kit</a></div></div>
   <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>{len(BUNDLES)}</b><span>complete kits, pre-matched and up to 12% cheaper</span></div><div class="stat"><b>{sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)}</b><span>article numbers, all EMC approved where it matters</span></div></div>
 </div></section>
 {trust_strip()}
@@ -463,7 +473,7 @@ def page_index():
 </div></section>
 
 <section class="section dark-2"><div class="wrap">
-  <div class="sec-head reveal"><div><div class="eyebrow">Kits &amp; bundles</div><h2 class="h2">One hole. One box. Everything inside.</h2><p class="lead">We pre-match fan, switch, valve and filter so nothing is missing on installation day. Kits save 8 to 12% versus buying the parts separately.</p></div><a class="link" href="bundles.html">All {len(BUNDLES)} kits {ICON['arrow']}</a></div>
+  <div class="sec-head reveal"><div><div class="eyebrow">Kits &amp; bundles</div><h2 class="h2">One hole. One box. Everything inside.</h2><p class="lead">We pre-match fan, switch, valve and filter so nothing is missing on installation day. Kits save 8 to 12% versus buying the parts separately.</p></div><a class="link" href="shop.html">All {len(BUNDLES)} kits {ICON['arrow']}</a></div>
   <div class="grid grid-3 reveal">{''.join(bundle_card(b) for b in hero_bundles[:3])}</div>
 </div></section>
 
@@ -482,7 +492,7 @@ def page_index():
 <section class="section white"><div class="wrap">
   <div class="sec-head reveal"><div><div class="eyebrow">Which roof fan?</div><h2 class="h2">Seven ventilators, one honest comparison.</h2></div><a class="link" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a></div>
   <div class="table-wrap reveal"><table class="compare"><thead><tr><th>Model</th><th></th><th>Airflow</th><th>Voltage</th><th>Power</th><th>Noise</th><th>Roof cut-out</th><th>Function</th><th>Price</th></tr></thead><tbody>
-  {''.join(f'<tr><td><a href="products/{i}.html">{esc(P[i]["short_name"])}</a></td><td><img src="{sq(P[i]["images"][0],200)}" alt=""></td><td>{a}</td><td>{v}</td><td>{w}</td><td>{n}</td><td>{c}</td><td>{f}</td><td><b>{money(price_from(P[i]))}</b></td></tr>' for i,a,v,w,n,c,f in compare_rows)}
+  {''.join(f'<tr><td><a href="products/{i}.html">{esc(P[i]["short_name"])}</a></td><td><img src="{sq(P[i]["images"][0],200)}" alt=""></td><td>{a}</td><td>{v}</td><td>{w}</td><td>{n}</td><td>{c}</td><td>{f}</td><td><b>{money(ex_of(price_from(P[i])))}</b></td></tr>' for i,a,v,w,n,c,f in compare_rows)}
   </tbody></table></div>
 </div></section>
 
@@ -534,7 +544,7 @@ def page_shop():
     <div class="filter-actions"><button class="btn btn-ghost btn-sm" id="clear-f">Clear filters</button><button class="btn btn-dark btn-sm mob-filter" id="apply-f">Show results</button></div>
   </aside>
   <div>
-    <div class="shop-top"><div><span id="shop-count" style="font-weight:700"></span> <span class="muted">· prices incl. VAT</span></div><div style="display:flex;gap:10px"><button class="btn btn-ghost btn-sm mob-filter" id="mob-filter">Filters</button><select id="sort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name A to Z</option></select></div></div>
+    <div class="shop-top"><div><span id="shop-count" style="font-weight:700"></span> <span class="muted">· prices ex VAT, incl. VAT alongside</span></div><div style="display:flex;gap:10px"><button class="btn btn-ghost btn-sm mob-filter" id="mob-filter">Filters</button><select id="sort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name A to Z</option></select></div></div>
     <div class="grid grid-3" id="shop-grid">{''.join(card(p) for p in PRODUCTS)}</div>
   </div>
 </div></section>
@@ -596,21 +606,21 @@ def page_product(p):
             caption = f'{grp[2]} · {len(members)} products' if len(members) > 1 else 'Choose your colour or version'
             for m in members:
                 mp = P[m]; mv = [v for v in mp['variants'] if v.get('price') is not None]
-                groups_html += f'<optgroup label="{esc(mp["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in mv) + '</optgroup>'
-                tiles += f'<button type="button" class="tile{" on" if m == a else ""}" data-pid="{m}"><img src="{r}{sq(mp["images"][0],200)}" alt=""><span>{esc(mp["short_name"])}</span><em>{"from " if len(mv) > 1 else ""}{money(min(v["price"] for v in mv))}</em></button>'
-            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(title)}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label><div class="addon-pick"><div class="addon-cap">{esc(caption)}</div><div class="addon-tiles">{tiles if len(members) > 1 else ""}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
+                groups_html += f'<optgroup label="{esc(mp["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(ex_price(v))} ex VAT</option>' for v in mv) + '</optgroup>'
+                tiles += f'<button type="button" class="tile{" on" if m == a else ""}" data-pid="{m}"><img src="{r}{sq(mp["images"][0],200)}" alt=""><span>{esc(mp["short_name"])}</span><em>{"from " if len(mv) > 1 else ""}{money(min(ex_price(v) for v in mv))} ex VAT</em></button>'
+            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(title)}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(ex_price(av))}</span></label><div class="addon-pick"><div class="addon-cap">{esc(caption)}</div><div class="addon-tiles">{tiles if len(members) > 1 else ""}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
         else:
             sel = ''
             if len(priced) > 1:
-                sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(v["price"])}</option>' for v in priced) + '</select>'
-            addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(av["price"])}</span></label>{sel}</div>'
+                sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(ex_price(v))} ex VAT</option>' for v in priced) + '</select>'
+            addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(ex_price(av))}</span></label>{sel}</div>'
     in_bundles = [b for b in BUNDLES if any(it['product'] == p['id'] for it in b['items'])]
     upsell = ''
     if in_bundles:
         b = in_bundles[0]; full, price = bundle_calc(b)
-        upsell = f'<div class="upsell"><h6>Complete the set and save {int(b["discount"]*100)}%</h6><div class="up-row"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>{esc(b["tagline"])} <b style="display:inline;color:var(--gold-deep)">{money(price)}</b> <s class="muted">{money(full)}</s></span></div><a class="btn btn-dark btn-sm" href="{r}bundles/{b["id"]}.html">View kit</a></div></div>'
+        upsell = f'<div class="upsell"><h6>Complete the set and save {int(b["discount"]*100)}%</h6><div class="up-row"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>{esc(b["tagline"])} <b style="display:inline;color:var(--gold-deep)">{money(ex_of(price))} ex VAT</b> <s class="muted">{money(ex_of(full))}</s> <span class="muted">({money(price)} incl.)</span></span></div><a class="btn btn-dark btn-sm" href="{r}bundles/{b["id"]}.html">View kit</a></div></div>'
     specs = ''.join(f'<tr><th>{esc(k)}</th><td>{esc(v)}</td></tr>' for k, v in (p.get('specs') or {}).items())
-    variants_table = '<table class="spec-table"><thead><tr><th>Article no.</th><th>Variant</th><th>Price incl. VAT</th></tr></thead><tbody>' + ''.join(f'<tr><td style="font-weight:700;color:var(--text)">{v["sku"]}</td><td>{esc(v["label"])}</td><td>{money(v["price"]) if v.get("price") is not None else "On request"}</td></tr>' for v in p['variants']) + '</tbody></table>'
+    variants_table = '<table class="spec-table"><thead><tr><th>Article no.</th><th>Variant</th><th>Price ex VAT</th><th>Incl. 21% VAT</th></tr></thead><tbody>' + ''.join(f'<tr><td style="font-weight:700;color:var(--text)">{v["sku"]}</td><td>{esc(v["label"])}</td><td>{money(ex_price(v)) if v.get("price") is not None else "On request"}</td><td>{money(v["price"]) if v.get("price") is not None else ""}</td></tr>' for v in p['variants']) + '</tbody></table>'
     dls = ''
     dls += f'<a href="{r}contact.html?datasheet={first["sku"]}">{ICON["doc"]} Request technical datasheet (PDF)</a>'
     if p.get('drawing'): dls += f'<a href="{r}{opt(p["drawing"],2000)}" target="_blank" rel="noopener">{ICON["ruler"]} Dimensional drawing</a>'
@@ -623,7 +633,7 @@ def page_product(p):
     buy_btn = (f'<a class="btn btn-gold btn-lg" href="{r}contact.html?product={p["id"]}">Request a quote {ICON["arrow"]}</a>' if quote
                else f'<button class="btn btn-gold btn-lg" id="add-btn">Add to cart {ICON["bag"]}</button>')
     required_note = '<p style="font-size:12.5px;color:var(--text-2);padding:2px">Required: the 30-6000 control unit (one unit drives two hatches). Ticked above, remove it if you already have one.</p>' if p['id'].startswith('roof-hatch-electric') else ''
-    addons_html = f'<div class="addons"><h6 class="eyebrow" style="margin-bottom:4px">Frequently added</h6>{addons}<div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-2);padding:4px 2px"><span>Total with selected add-ons</span><b id="addon-total"></b></div><div id="addon-kit-hint" style="font-size:12.5px;color:var(--text-2);padding:2px;display:none"></div>{required_note}</div>' if addons and not quote else ''
+    addons_html = f'<div class="addons"><h6 class="eyebrow" style="margin-bottom:4px">Frequently added</h6>{addons}<div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-2);padding:4px 2px"><span>Total with selected add-ons (ex VAT)</span><b id="addon-total"></b></div><div id="addon-kit-hint" style="font-size:12.5px;color:var(--text-2);padding:2px;display:none"></div>{required_note}</div>' if addons and not quote else ''
     drawing_html = f'<div class="drawing-box"><img src="{r}{opt(p["drawing"],1400)}" alt="Dimensional drawing {esc(p["name"])}" loading="lazy"></div>' if p.get('drawing') else ''
     faq_tab_btn = '<button data-tab="t-faq">FAQ</button>' if p.get('faq') else ''
     faq_tab = f'<div class="tab-panel" id="t-faq">{faq_block(p["faq"])}</div>' if p.get('faq') else ''
@@ -631,7 +641,8 @@ def page_product(p):
     qty_html = '' if quote else '<div class="qty"><button id="qty-minus" aria-label="Less">−</button><input id="qty" value="1" inputmode="numeric"><button id="qty-plus" aria-label="More">+</button></div>'
     sticky_btn = f'<a class="btn btn-gold" href="{r}contact.html">Request a quote</a>' if quote else '<button class="btn btn-gold" id="sticky-add">Add to cart</button>'
     oversize = p['category'] in BRAND['shipping'].get('oversize_categories', [])
-    vat_txt = 'Incl. 21% VAT · ex-VAT for trade accounts · +€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'Incl. 21% VAT · ex-VAT for trade accounts · free EU shipping from €150'
+    _pf0 = price_from(p)
+    vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'free EU shipping from €150 · ex-VAT invoicing for trade accounts')
     rating_txt = 'Specified by European bodybuilders for 20+ years · ' + ('EMC test report available' if 'EMC' in json.dumps(p) else ('Dimensional drawing on this page' if p.get('drawing') else '2-year warranty'))
     if 'New' in p.get('badges', []): rating_txt = 'New in the range · 2-year warranty · 30-day returns'
     elif p['category'] == 'indoor-climate': rating_txt = 'Indoor climate · 2-year warranty · 30-day returns'
@@ -649,7 +660,7 @@ def page_product(p):
     <h1 class="h1">{esc(p['name'])}</h1>
     <p class="tagline">{esc(p['tagline'])}</p>
     <div class="rating">{ICON['shield']}<span>{rating_txt}</span></div>
-    <div class="buy-price"><span class="now" id="pdp-price">{money(pf) if pf is not None else 'On request'}</span><span class="was" id="pdp-was">{('RRP ' + money(cf)) if cf else ''}</span><span class="save" id="pdp-save"></span></div>
+    <div class="buy-price"><span class="now" id="pdp-price">{money(ex_from(p)) if pf is not None else 'On request'}</span><span class="ex-lbl">{"ex VAT" if pf is not None else ""}</span><span class="was" id="pdp-was">{('RRP ' + money(cf)) if cf else ''}</span><span class="save" id="pdp-save"></span></div>
     <div class="vat">{'Price on request, configured per application.' if quote else vat_txt}</div>
     <div class="sku" id="pdp-sku">Article no. {first['sku']}</div>
     {opts_html}
@@ -671,7 +682,7 @@ def page_product(p):
 <section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Complete the system</div><h2 class="h2">Goes well with the <span style="white-space:nowrap">{esc(p['short_name'])}.</span></h2></div><a class="link" href="{r}shop.html">Shop all {ICON['arrow']}</a></div><div class="grid">{''.join(card(x, depth) for x in related)}</div></div></section>
 {kits_html}
 {newsletter(depth)}
-<div class="sticky-buy"><div class="price" id="sticky-price">{money(pf) if pf is not None else 'Quote'}</div>{sticky_btn}</div>
+<div class="sticky-buy"><div class="price" id="sticky-price">{money(ex_from(p)) if pf is not None else 'Quote'}<small> ex VAT</small></div>{sticky_btn}</div>
 '''
     h += footer(depth)
     return h
@@ -698,7 +709,7 @@ def page_bundle(b):
     h += jsonld({"@context": "https://schema.org", "@type": "Product", "name": b['name'], "description": b['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{scene(b['scene'], 1400)}"], "url": f"{SITE_URL}/bundles/{b['id']}.html", "offers": {"@type": "Offer", "price": f"{price:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": f"{SITE_URL}/bundles/{b['id']}.html"}})
     h += header(depth)
     h += f'''
-<div class="wrap"><div class="crumbs light-crumbs"><a href="/">Home</a> / <a href="{r}bundles.html">Kits &amp; bundles</a> / <span>{esc(b['name'])}</span></div></div>
+<div class="wrap"><div class="crumbs light-crumbs"><a href="/">Home</a> /  / <span>{esc(b['name'])}</span></div></div>
 <section class="wrap pdp" data-bundle="{b['id']}">
   <div class="gallery"><div class="gallery-main"><div class="badge-wrap">{''.join(f'<span class="badge gold">{esc(x)}</span>' for x in b.get('badges',[]))}</div><img id="gallery-img" class="scene" src="{r}{gal[0][0]}" alt="{esc(b['name'])}"></div><div class="thumbs">{thumbs}</div></div>
   <div class="buy">
@@ -708,7 +719,7 @@ def page_bundle(b):
     <p style="margin-top:16px;font-size:15.5px;color:var(--text-2);line-height:1.65">{esc(b['summary'])}</p>
     <h6 class="eyebrow" style="margin-top:26px">Configure your kit</h6>
     <div class="bundle-items">{items}</div>
-    <div class="b-total"><div><div class="lbl">Kit price incl. VAT</div><div class="sum"><span class="was" id="b-full">{money(full)}</span><span id="b-price">{money(price)}</span></div><div class="saving" id="b-save"></div></div><button class="btn btn-gold btn-lg" id="add-btn">Add kit to cart {ICON['bag']}</button></div>
+    <div class="b-total"><div><div class="lbl">Kit price ex VAT</div><div class="sum"><span class="was" id="b-full">{money(ex_of(full))}</span><span id="b-price">{money(ex_of(price))}</span></div><div class="lbl" id="b-incl">{money(price)} incl. 21% VAT</div><div class="saving" id="b-save"></div></div><button class="btn btn-gold btn-lg" id="add-btn">Add kit to cart {ICON['bag']}</button></div>
     <ul class="buy-meta"><li>{ICON['truck']}<span><b>Ships within 24h</b> as one parcel, from stock in the Netherlands</span></li><li>{ICON['shield']}<span><b>2-year warranty</b> on every component</span></li><li>{ICON['chat']}<span><b>Installation advice</b> included: email our specialists</span></li></ul>
   </div>
 </section>
@@ -717,9 +728,9 @@ def page_bundle(b):
   <div class="tab-panel on" id="t-desc">{''.join(f'<p>{esc(x)}</p>' for x in b['description'])}{ideal}</div>
   <div class="tab-panel" id="t-inc"><ul class="checks">{included}</ul></div>
 </div></div>
-<section class="section dark-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">More kits</div><h2 class="h2">Other kits for the same job.</h2></div><a class="link" href="{r}bundles.html">All kits {ICON['arrow']}</a></div><div class="grid grid-3">{''.join(bundle_card(x, depth) for x in other)}</div></div></section>
+<section class="section dark-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">More kits</div><h2 class="h2">Other kits for the same job.</h2></div><a class="link" href="{r}shop.html">All kits {ICON['arrow']}</a></div><div class="grid grid-3">{''.join(bundle_card(x, depth) for x in other)}</div></div></section>
 {newsletter(depth)}
-<div class="sticky-buy"><div class="price" id="sticky-price">{money(price)}</div><button class="btn btn-gold" id="sticky-add">Add kit to cart</button></div>
+<div class="sticky-buy"><div class="price" id="sticky-price">{money(ex_of(price))}<small> ex VAT</small></div><button class="btn btn-gold" id="sticky-add">Add kit to cart</button></div>
 '''
     h += footer(depth)
     return h
@@ -735,7 +746,7 @@ def page_vehicle(v):
 <section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{nb(esc(v['headline']))}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#kits">Recommended kits {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
 <section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">The challenge</div><h2 class="h2">What goes wrong without proper airflow.</h2></div></div>
 <div class="pain-grid">{''.join(f'<div class="pain"><div class="num">0{i+1}</div><b>{esc(x["title"])}</b><p>{esc(x["text"])}</p></div>' for i,x in enumerate(v['pains']))}</div></div></section>
-<section class="section dark-2" id="kits"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Recommended kits</div><h2 class="h2">Pre-matched for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}bundles.html">All kits {ICON['arrow']}</a></div><div class="grid grid-3">{''.join(bundle_card(b, depth) for b in bundles)}</div></div></section>
+<section class="section dark-2" id="kits"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Recommended kits</div><h2 class="h2">Pre-matched for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}shop.html">All kits {ICON['arrow']}</a></div><div class="grid grid-3">{''.join(bundle_card(b, depth) for b in bundles)}</div></div></section>
 <section class="section ivory" id="products"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Products</div><h2 class="h2">Everything we recommend for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}shop.html?veh={v['id']}">Filter the shop {ICON['arrow']}</a></div><div class="grid">{''.join(card(p, depth) for p in prods)}</div></div></section>
 {faq_html}
 <section class="section ivory-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Other vehicles</div><h2 class="h2">Also built for.</h2></div></div><div class="veh-grid">{''.join(vehicle_tile(x, depth) for x in VEHICLES if x['id']!=v['id'])}</div></div></section>
@@ -787,7 +798,7 @@ def page_shipping():
 def page_terms():
     body = '''<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="eyebrow">Terms &amp; warranty</div><h1 class="h1" style="margin:12px 0 24px">Terms of sale</h1>
 <p class="lead" style="margin-bottom:18px">These terms apply to all orders placed on pegasusdepot.com. By placing an order you agree to them.</p>
-<h3 class="h3">Prices and payment</h3><p class="lead" style="margin:8px 0 18px">All prices are in euro and include 21% Dutch VAT unless stated otherwise. Trade accounts are invoiced ex-VAT where a valid EU VAT number is provided. Payment by credit or debit card (Visa, Mastercard, American Express), Bancontact, Klarna, PayPal, Apple Pay or Google Pay; approved trade accounts may pay on 30-day terms.</p>
+<h3 class="h3">Prices and payment</h3><p class="lead" style="margin:8px 0 18px">All prices are in euro and shown ex VAT with the price including 21% Dutch VAT alongside; the checkout charges the price including VAT. Trade accounts with a valid EU VAT number can be invoiced ex VAT. Payment by credit or debit card (Visa, Mastercard, American Express), Bancontact, Klarna, PayPal, Apple Pay or Google Pay; approved trade accounts may pay on 30-day terms.</p>
 <h3 class="h3">Delivery</h3><p class="lead" style="margin:8px 0 18px">Delivery times are estimates. Risk passes to you on delivery. Check the parcel on receipt and report transport damage within 48 hours.</p>
 <h3 class="h3">Right of withdrawal</h3><p class="lead" style="margin:8px 0 18px">Consumers in the EU may cancel an order within 14 days of delivery without giving a reason. Tell us by e-mail or through the contact form within that period and return the goods within 14 days of your notice; we refund the order including standard delivery within 14 days of receiving the goods (or proof of dispatch). Return shipping is at your cost unless the item is faulty. Items that show installation marks or are no longer complete may be refunded at a reduced value. Consumer disputes can also be submitted to the EU online dispute resolution platform at ec.europa.eu/consumers/odr.</p><h3 class="h3">Warranty</h3><p class="lead" style="margin:8px 0 18px">Two years against defects in materials and workmanship from the date of delivery. Excluded: wear, incorrect installation, incorrect voltage, mechanical damage and modifications. Warranty is repair or replacement at our discretion. This does not affect your statutory rights under EU consumer law.</p>
 <h3 class="h3">Specifications</h3><p class="lead" style="margin:8px 0 18px">Technical data is taken from the manufacturer's datasheets and may be updated without notice. Always check the current drawing before cutting a roof.</p>
@@ -965,7 +976,6 @@ def main():
         (ROOT / path).write_text(html, encoding='utf-8'); urls.append(path)
     w('index.html', page_index())
     w('shop.html', page_shop())
-    w('bundles.html', page_bundles())
     for p in PRODUCTS: w(f'products/{p["id"]}.html', page_product(p))
     for b in BUNDLES: w(f'bundles/{b["id"]}.html', page_bundle(b))
     for v in VEHICLES: w(f'vehicles/{v["id"]}.html', page_vehicle(v))
@@ -977,7 +987,8 @@ def main():
     w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); w('404.html', page_404()); urls.remove('404.html')
     # retired product URLs keep a noindex stub that forwards to the nearest live page
     for old, target in RETIRED.items():
-        (ROOT / 'products' / f'{old}.html').write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pegasus Depot</title><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url=../{target}"><link rel="canonical" href="{SITE_URL}/{target}"></head><body><p>This product is no longer listed. <a href="../{target}">Continue to the shop</a>.</p></body></html>')
+        pre = '' if old == '__bundles__' else '../'
+        (ROOT / ('bundles.html' if old == '__bundles__' else f'products/{old}.html')).write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pegasus Depot</title><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url={pre}{target}"><link rel="canonical" href="{SITE_URL}/{target}"></head><body><p>This product is no longer listed. <a href="{pre}{target}">Continue to the shop</a>.</p></body></html>')
     write_catalog_js(); write_shopify_csv(); write_sitemap([u for u in urls if u not in ('checkout.html', 'thank-you.html')])
     print(f'Built {len(urls)} pages, {len(PRODUCTS)} products, {len(BUNDLES)} bundles, {len(VEHICLES)} vehicle pages.')
 
