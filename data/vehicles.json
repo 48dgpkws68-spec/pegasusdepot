@@ -33,7 +33,8 @@
         "le-mans",
         "floor-ventilator-80",
         "v12-valve",
-        "roof-hatch-manual-small"
+        "roof-hatch-manual-small",
+        "reading-light"
       ],
       "bundles": [
         "round-camper-kit",
@@ -86,7 +87,9 @@
         "speedcontrol",
         "control-unit",
         "flower-power",
-        "rock-light"
+        "rock-light",
+        "floor-ventilator-rvs",
+        "reading-light"
       ],
       "bundles": [
         "horse-trailer-climate-kit",

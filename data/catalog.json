@@ -2900,6 +2900,120 @@
         "lighting-round",
         "lighting-rectangle"
       ]
+    },
+    {
+      "id": "floor-ventilator-rvs",
+      "name": "Stainless Steel Floor Ventilator",
+      "short_name": "Floor Vent Stainless",
+      "category": "floor-ventilation",
+      "tagline": "The stainless floor inlet for hose-down floors and heavy use",
+      "summary": "Stainless steel floor ventilator with slotted top plate and louvred body, in Ø 83 mm and Ø 129 mm. The inlet for roof-fan extraction where plastic is not tough enough: horse trucks, livestock floors and hose-down loading areas.",
+      "description": [
+        "A roof fan needs an inlet. On floors that see hooves, forklifts and a pressure washer, that inlet should be stainless: the top plate takes the load, the louvred body keeps splashes and road spray out while the air comes in.",
+        "Choose Ø 83 mm for smaller bodies and Ø 129 mm for the same airflow as our PC/ABS floor ventilator. Both drop into a round floor cut-out and are fixed with three screws through the top plate."
+      ],
+      "features": [
+        "Stainless steel top plate and body",
+        "Louvred sides keep road spray out",
+        "Ø 83 mm or Ø 129 mm floor cut-out",
+        "Three-screw fixing through the top plate",
+        "For horse trucks, livestock and hose-down floors"
+      ],
+      "specs": {
+        "Material": "Stainless steel",
+        "Cut-out": "Ø 83 mm or Ø 129 mm",
+        "Fixing": "Three screws through the top plate",
+        "Use": "Floor inlet for roof-fan extraction"
+      },
+      "variants": [
+        {
+          "sku": "89-5500",
+          "label": "Ø 129 mm",
+          "price_ex": 85.0,
+          "price": 102.85,
+          "options": {
+            "Diameter": "Ø 129 mm"
+          }
+        },
+        {
+          "sku": "89-5400",
+          "label": "Ø 83 mm",
+          "price_ex": 75.0,
+          "price": 90.75,
+          "options": {
+            "Diameter": "Ø 83 mm"
+          }
+        }
+      ],
+      "images": [
+        "assets/products/floor-ventilator-rvs.webp"
+      ],
+      "badges": [
+        "Stainless steel",
+        "Hose-down proof"
+      ],
+      "applications": [
+        "horse-trailers",
+        "livestock",
+        "commercial-vans"
+      ],
+      "accessories": [
+        "le-mans",
+        "rooftop-round",
+        "floor-ventilator-129"
+      ]
+    },
+    {
+      "id": "reading-light",
+      "name": "LED Reading Light with Switch",
+      "short_name": "Reading Light",
+      "category": "lighting",
+      "tagline": "Surface-mounted LED spot with its own on/off switch",
+      "summary": "Compact white LED reading light with a rotating lens head and a rocker switch on the housing. Surface-mounted, so no recess is needed: ideal above a bunk, a workbench or a cab seat.",
+      "description": [
+        "A focused LED spot you switch on and off at the light itself. The lens head rotates so the beam lands where you want it, and the switch sits in the housing, so there is no separate switch to wire into the panel.",
+        "Screw the base to any flat surface and connect the two wires; the light draws only a few watts, which makes it ideal for bunks in horse trucks and campers, workbenches in service vans and reading in a cab."
+      ],
+      "features": [
+        "LED spot with rotating lens head",
+        "On/off rocker switch on the housing",
+        "Surface-mounted, no recess needed",
+        "White housing, black lens ring",
+        "Low power draw"
+      ],
+      "specs": {
+        "Light source": "LED spot",
+        "Switch": "Rocker switch on the housing",
+        "Mounting": "Surface mount, two screws",
+        "Colour": "White with black ring",
+        "Voltage": "12V DC"
+      },
+      "variants": [
+        {
+          "sku": "92-4500",
+          "label": "LED reading light, white",
+          "price_ex": 45.0,
+          "price": 54.45,
+          "options": {}
+        }
+      ],
+      "images": [
+        "assets/products/reading-light.webp"
+      ],
+      "badges": [
+        "Switch on the light",
+        "Surface mount"
+      ],
+      "applications": [
+        "campers",
+        "horse-trailers",
+        "commercial-vans",
+        "buses-coaches"
+      ],
+      "accessories": [
+        "lighting-round",
+        "rock-light"
+      ]
     }
   ]
 }
