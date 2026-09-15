@@ -57,7 +57,7 @@
     if (!cart.length) {
       let restore = '';
       try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines && h.lines.length && Date.now() - h.t < 2 * 3600 * 1000) restore = '<br><br><button class="btn btn-sm" data-restore>Restore previous cart</button>'; } catch (e) {}
-      body.innerHTML = '<div class="empty"><b>Your cart is empty</b>Add a rooftop ventilator, a kit or an accessory to get started.<br><br><a class="btn btn-dark btn-sm" href="' + ROOT + 'shop.html">Browse the shop</a>' + restore + '</div>';
+      body.innerHTML = '<div class="empty"><b>Your cart is empty</b>Add a rooftop ventilator, an interior valve or an accessory to get started.<br><br><a class="btn btn-dark btn-sm" href="' + ROOT + 'shop.html">Browse the shop</a>' + restore + '</div>';
     } else {
       body.innerHTML = cart.map((l, i) => `
         <div class="ci">

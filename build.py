@@ -22,6 +22,8 @@ for p in PRODUCTS:
     for v in p['variants']:
         SKU[v['sku']] = (p, v)
 B = {b['id']: b for b in BUNDLES}
+KIT_REDIRECTS = {b['id']: f"products/{b['items'][0]['product']}.html" for b in BUNDLES}
+BUNDLES = []; B = {}
 # vehicle pages and product/kit applicability are kept in sync in both directions
 for _v in VEHICLES:
     for _i in _v.get('products', []):
@@ -46,7 +48,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '14'
+VERSION = '15'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
@@ -320,7 +322,7 @@ def header(depth=0):
     <li><a href="{r}shop.html">Shop {ICON['chev']}</a>
       <div class="mega mega--wide">
         <div><h5>By category</h5>{cat_items}</div>
-        <div><h5>Bestsellers</h5>{best_items}<h5 style="margin-top:16px">Popular kits</h5>{kit_items}</div>
+        <div><h5>Bestsellers</h5>{best_items}</div>
         <a class="m-feature" href="{r}products/le-mans.html" style="background-image:url('{r}{scene(P['le-mans']['images'][2],900)}')"><b>Le Mans 850 m³/h</b><span>The roof fan Europe's bodybuilders specify. From {money(ex_of(price_from(P['le-mans'])))}.</span></a>
       </div></li>
     <li><a href="{r}vehicles/commercial-vans.html">Shop by vehicle {ICON['chev']}</a>
@@ -344,7 +346,7 @@ def header(depth=0):
   <h5>By vehicle</h5>{''.join(f'<a class="row" href="{r}vehicles/{v["id"]}.html">{esc(v["name"])}</a>' for v in VEHICLES)}
   <h5>Company</h5><a class="row" href="{r}trade.html">Trade &amp; fleet accounts</a><a class="row" href="{r}blog.html">Guides &amp; advice</a><a class="row" href="{r}about.html">About Pegasus Depot</a><a class="row" href="{r}contact.html">Contact</a><a class="row" href="{r}shipping-returns.html">Shipping &amp; returns</a>
 </nav>
-<div class="search" id="search"><button class="icon-btn search-close" id="search-close" aria-label="Close">{ICON['close']}</button><div class="search-in"><input id="search-input" type="search" aria-label="Search products" placeholder="Search products, kits or article numbers…" autocomplete="off"><div class="search-res" id="search-res"></div></div></div>
+<div class="search" id="search"><button class="icon-btn search-close" id="search-close" aria-label="Close">{ICON['close']}</button><div class="search-in"><input id="search-input" type="search" aria-label="Search products" placeholder="Search products or article numbers…" autocomplete="off"><div class="search-res" id="search-res"></div></div></div>
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer" aria-label="Cart">
   <div class="drawer-head"><b>Your cart</b><button class="icon-btn" data-close-cart aria-label="Close" style="color:var(--text)">{ICON['close']}</button></div>
@@ -427,7 +429,7 @@ def trust_strip():
     return f'''<div class="trust"><div class="wrap trust-in">
   <div class="trust-item">{ICON['truck']}<div><b>Ships within 24h</b><span>From our Dutch warehouse, across the EU</span></div></div>
   <div class="trust-item">{ICON['shield']}<div><b>EMC approved motors</b><span>No interference with vehicle electronics</span></div></div>
-  <div class="trust-item">{ICON['box']}<div><b>Complete kits</b><span>Fan, switch, valve and filter in one box</span></div></div>
+  <div class="trust-item">{ICON['box']}<div><b>Configure on the page</b><span>Switch, valve and floor inlet added in one click</span></div></div>
   <div class="trust-item">{ICON['chat']}<div><b>Specialist advice</b><span>Real answers on cut-outs, voltage and airflow, within 24h</span></div></div>
 </div></div>'''
 
@@ -438,7 +440,7 @@ def page_index():
     hero_bundles = [b for b in BUNDLES if b.get('hero')]
     reviews = [
         ('Same-day dispatch from real stock, so the vehicle leaves the workshop on the day you promised.', 'Stock and speed'),
-        ('Kits that arrive complete: fan, switch, valve and filter in one box, matched to the same cut-out.', 'Nothing missing on installation day'),
+        ('Everything that fits, added on the product page: switch, valve and floor inlet, matched to the same cut-out.', 'Nothing missing on installation day'),
         ('Specialists who answer technical questions with drawings and EMC reports, not with a chatbot.', 'Real technical support'),
     ]
     compare_rows = [('le-mans', '850 m³/h', '12V / 24V', '80 W', '52 dB(A)', 'Ø 230 mm', 'Blow &amp; suck'),
@@ -457,8 +459,8 @@ def page_index():
   <div><div class="eyebrow">Dutch engineered · EMC approved · Ships in 24h</div>
     <h1 class="h-display">Engineered airflow for vehicles that <em>work harder.</em></h1>
     <p class="lead">Rooftop ventilators, closable valves, roof hatches and LED lighting for vans, campers, horse trailers, coaches and ambulances. OEM-grade parts, in stock, shipped within 24h, backed by specialists who know the products.</p>
-    <div class="hero-cta"><a class="btn btn-gold btn-lg" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a><a class="btn btn-ghost btn-lg" href="shop.html">Build a complete kit</a></div></div>
-  <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>{len(BUNDLES)}</b><span>complete kits, pre-matched and up to 12% cheaper</span></div><div class="stat"><b>{sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)}</b><span>article numbers, all EMC approved where it matters</span></div></div>
+    <div class="hero-cta"><a class="btn btn-gold btn-lg" href="shop.html?cat=rooftop-ventilators">Shop rooftop ventilators {ICON['arrow']}</a><a class="btn btn-ghost btn-lg" href="#configure">How configuring works</a></div></div>
+  <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>3</b><span>add-on groups on every fan page: switch, valve, floor inlet</span></div><div class="stat"><b>{sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)}</b><span>article numbers, all EMC approved where it matters</span></div></div>
 </div></section>
 {trust_strip()}
 
@@ -472,16 +474,16 @@ def page_index():
   <div class="grid reveal">{''.join(card(P[i]) for i in best_ids)}</div>
 </div></section>
 
-<section class="section dark-2"><div class="wrap">
-  <div class="sec-head reveal"><div><div class="eyebrow">Kits &amp; bundles</div><h2 class="h2">One hole. One box. Everything inside.</h2><p class="lead">We pre-match fan, switch, valve and filter so nothing is missing on installation day. Kits save 8 to 12% versus buying the parts separately.</p></div><a class="link" href="shop.html">All {len(BUNDLES)} kits {ICON['arrow']}</a></div>
-  <div class="grid grid-3 reveal">{''.join(bundle_card(b) for b in hero_bundles[:3])}</div>
+<section class="section dark-2" id="configure"><div class="wrap">
+  <div class="sec-head reveal"><div><div class="eyebrow">How it works</div><h2 class="h2">One product page. Everything that goes with it.</h2><p class="lead" style="margin-top:12px">No bundles to compare: pick your ventilator, then add the switch, the interior valve and the floor inlet right under the Add to cart button, each with a photo and its price.</p></div><a class="link" href="products/le-mans.html">Try it on the Le Mans {ICON['arrow']}</a></div>
+  <div class="pain-grid reveal"><div class="pain"><div class="num">01</div><b>Choose the fan</b><p>Voltage and colour on the product page; the price updates as you go.</p></div><div class="pain"><div class="num">02</div><b>Add what goes with it</b><p>Frequently added shows only parts that fit: switch, interior valve or grille, floor inlet, each with a picture.</p></div><div class="pain"><div class="num">03</div><b>Pick colour or version</b><p>Tap a tile, choose the colour or version, done. Everything lands in one order and ships from stock within 24h.</p></div></div>
 </div></section>
 
 <section class="section ivory-2"><div class="wrap">
   <div class="split reveal"><div class="media"><img src="{scene(P['le-mans']['images'][3],1400)}" alt="Le Mans rooftop ventilator installed on a van roof" loading="lazy"><span class="tag">Le Mans · 850 m³/h</span></div>
   <div><div class="eyebrow">The Le Mans system</div><h2 class="h2" style="margin:12px 0 16px">The roof fan that became the standard.</h2><p class="lead">Ambulance converters, horsebox builders and bus manufacturers specify the Le Mans for one reason: it moves 850 m³/h in either direction, year after year, without drama. Build it into a complete system in four steps.</p>
   <ul class="checks"><li>{ICON['check']}<div><b>1. Choose your fan</b>12V or 24V, white or black, or motorless.</div></li><li>{ICON['check']}<div><b>2. Add a switch</b>Round, square or illuminated with ventilation symbol: blow / off / suck.</div></li><li>{ICON['check']}<div><b>3. Finish the ceiling</b>V12 closable valve (manual or electric), Flower Power LED valve or honeycomb grille.</div></li><li>{ICON['check']}<div><b>4. Control and protect</b>Speedcontrol for silent nights, snow filter and a floor vent for a full airflow loop.</div></li></ul>
-  <div class="hero-cta"><a class="btn btn-dark" href="bundles/le-mans-complete-kit.html">Le Mans Complete Kit {ICON['arrow']}</a><a class="btn btn-ghost" href="products/le-mans.html">Le Mans product page</a></div></div></div>
+  <div class="hero-cta"><a class="btn btn-dark" href="products/le-mans.html">Configure your Le Mans {ICON['arrow']}</a><a class="btn btn-ghost" href="shop.html?cat=rooftop-ventilators">All rooftop ventilators</a></div></div></div>
 </div></section>
 
 <section class="section ivory"><div class="wrap">
@@ -502,7 +504,7 @@ def page_index():
     <div class="usp">{ICON['bolt']}<b>EMC approved, every motor</b><p>Our ventilators carry EMC approval so they are designed not to interfere with radios, telematics or medical equipment. Test reports available on request.</p></div>
     <div class="usp">{ICON['box']}<b>From stock, within 24h</b><p>Thousands of units on the shelf in the Netherlands. Order before 15:00 CET on a working day and it ships the same day, otherwise within 24h.</p></div>
     <div class="usp">{ICON['ruler']}<b>Made to fit</b><p>Standard 230 mm, 128 mm and 80 mm cut-outs, roof thickness ranges up to 70 mm, and dimensional drawings for the main products.</p></div>
-    <div class="usp">{ICON['euro']}<b>Kits that save</b><p>Complete kits save 8 to 12%. Trade accounts get volume pricing and ex-VAT invoicing. No hidden surcharges.</p></div>
+    <div class="usp">{ICON['euro']}<b>Configure it your way</b><p>Add the switch, interior valve and floor inlet on the product page, with photos and prices alongside. Trade accounts get volume pricing and ex-VAT invoicing. No hidden surcharges.</p></div>
   </div>
 </div></section>
 
@@ -743,10 +745,9 @@ def page_vehicle(v):
     h = head(f'Ventilation for {v["name"]} · Pegasus Depot', v['intro'], depth, v['hero'], f'vehicles/{v["id"]}.html')
     h += header(depth)
     h += f'''
-<section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{nb(esc(v['headline']))}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#kits">Recommended kits {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
+<section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{nb(esc(v['headline']))}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#products">Recommended products {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
 <section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">The challenge</div><h2 class="h2">What goes wrong without proper airflow.</h2></div></div>
 <div class="pain-grid">{''.join(f'<div class="pain"><div class="num">0{i+1}</div><b>{esc(x["title"])}</b><p>{esc(x["text"])}</p></div>' for i,x in enumerate(v['pains']))}</div></div></section>
-<section class="section dark-2" id="kits"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Recommended kits</div><h2 class="h2">Pre-matched for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}shop.html">All kits {ICON['arrow']}</a></div><div class="grid grid-3">{''.join(bundle_card(b, depth) for b in bundles)}</div></div></section>
 <section class="section ivory" id="products"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Products</div><h2 class="h2">Everything we recommend for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}shop.html?veh={v['id']}">Filter the shop {ICON['arrow']}</a></div><div class="grid">{''.join(card(p, depth) for p in prods)}</div></div></section>
 {faq_html}
 <section class="section ivory-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Other vehicles</div><h2 class="h2">Also built for.</h2></div></div><div class="veh-grid">{''.join(vehicle_tile(x, depth) for x in VEHICLES if x['id']!=v['id'])}</div></div></section>
@@ -765,7 +766,7 @@ def page_about():
 <section class="section ivory"><div class="wrap"><div class="split"><div><div class="eyebrow">Our story</div><h2 class="h2" style="margin:12px 0 16px">Built for bodybuilders. Now open to everyone.</h2><p class="lead">The ventilators, valves, hatches and lights in this shop have been fitted for years by bus builders, ambulance converters, horsebox manufacturers and van outfitters across Europe, usually through trade channels only. Pegasus Depot opens that same OEM-grade catalogue to every workshop, fleet and owner who wants to order online, at a fair price, from stock.</p>
 <ul class="checks"><li>{ICON['check']}<div><b>OEM-grade quality</b>Every product comes from the same production line the vehicle builders rely on.</div></li><li>{ICON['check']}<div><b>Real stock, real speed</b>Thousands of units on the shelf. Order before 15:00 CET and it ships the same working day.</div></li><li>{ICON['check']}<div><b>Specialists, not call centres</b>Questions about cut-outs, airflow or voltage are answered by people who know the products inside out.</div></li></ul></div>
 <div class="story-grid"><img src="{scene('assets/media/Le-Mans-ventilator-2.webp',1200)}" alt="Le Mans ventilators in the warehouse"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Assembly of rooftop ventilators"><img src="{scene('assets/media/Magazijn-1.webp',800)}" alt="Stock shelves"></div></div></div></section>
-<section class="section dark"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">In numbers</div><h2 class="h2">Small company. Serious footprint.</h2></div></div><div class="hero-stats stats-4"><div class="stat"><b>{len(PRODUCTS)}</b><span>products, {sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)} article numbers</span></div><div class="stat"><b>{len(BUNDLES)}</b><span>complete kits, pre-matched by specialists</span></div><div class="stat"><b>{len(VEHICLES)}</b><span>vehicle types, from campers to coaches</span></div><div class="stat"><b>24h</b><span>dispatch from stock</span></div></div></div></section>
+<section class="section dark"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">In numbers</div><h2 class="h2">Small company. Serious footprint.</h2></div></div><div class="hero-stats stats-4"><div class="stat"><b>{len(PRODUCTS)}</b><span>products, {sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)} article numbers</span></div><div class="stat"><b>3</b><span>add-on groups on every fan page: switch, valve, floor inlet</span></div><div class="stat"><b>{len(VEHICLES)}</b><span>vehicle types, from campers to coaches</span></div><div class="stat"><b>24h</b><span>dispatch from stock</span></div></div></div></section>
 <section class="section ivory"><div class="wrap"><div class="story-grid"><img src="{scene('assets/media/IMG_010422.webp',1400)}" alt="Warehouse logistics"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Stock shelves"><img src="{scene('assets/media/assembly-line.webp',800)}" alt="Assembly of rooftop ventilators"></div></div></section>
 {newsletter()}'''
     return simple_page('about.html', 'About us', 'Pegasus Depot is an independent European retailer of OEM-grade vehicle ventilation, roof hatches and LED lighting, shipped within 24h from our own Dutch stock.', body, 'assets/media/le-mans-warehouse.webp')
@@ -855,7 +856,7 @@ def page_post(a):
     if a.get('faq'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in a['faq']]})
     body = f'''<section class="page-hero" style="min-height:380px"><img class="bg" src="{r}{scene(blog_image(a),1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <a href="{r}blog.html">Guides</a> / <span>{esc(a["title"][:40])}</span></div><div class="eyebrow">{esc(VEH[vid]["name"]) if vid else "Guide"} · {date_txt} · {a.get("read_min", 5)} min read</div><h1 class="h1" style="max-width:22ch">{esc(a["title"])}</h1><p class="lead">{esc(a["excerpt"])}</p></div></section>
-<section class="section ivory"><div class="wrap"><div class="post-grid"><article class="post">{secs}{faq_html}{cta}</article><aside class="post-aside"><div class="info-card"><h6 class="eyebrow" style="margin-bottom:10px">Talk to a specialist</h6><p class="muted" style="font-size:14px">Cut-out sizes, voltages, how many fans for your body length: ask us before you drill.</p><a class="btn btn-gold btn-sm btn-block" style="margin-top:12px" href="{r}contact.html">Ask a question</a></div><div class="info-card" style="margin-top:14px"><h6 class="eyebrow" style="margin-bottom:10px">Popular</h6><a class="row" href="{r}products/le-mans.html">Le Mans Rooftop Ventilator</a><a class="row" href="{r}bundles/le-mans-complete-kit.html">Le Mans Complete Kit</a><a class="row" href="{r}products/roof-hatch-electric-large.html">Roof Hatch Electric 970 x 530</a><a class="row" href="{r}products/floor-ventilator-129.html">Floor Ventilator Ø 129 mm</a></div></aside></div></div></section>
+<section class="section ivory"><div class="wrap"><div class="post-grid"><article class="post">{secs}{faq_html}{cta}</article><aside class="post-aside"><div class="info-card"><h6 class="eyebrow" style="margin-bottom:10px">Talk to a specialist</h6><p class="muted" style="font-size:14px">Cut-out sizes, voltages, how many fans for your body length: ask us before you drill.</p><a class="btn btn-gold btn-sm btn-block" style="margin-top:12px" href="{r}contact.html">Ask a question</a></div><div class="info-card" style="margin-top:14px"><h6 class="eyebrow" style="margin-bottom:10px">Popular</h6><a class="row" href="{r}products/le-mans.html">Le Mans Rooftop Ventilator</a><a class="row" href="{r}products/le-mans-ll.html">Le Mans LL Brushless</a><a class="row" href="{r}products/roof-hatch-electric-large.html">Roof Hatch Electric 970 x 530</a><a class="row" href="{r}products/floor-ventilator-129.html">Floor Ventilator Ø 129 mm</a></div></aside></div></div></section>
 <section class="section ivory-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Keep reading</div><h2 class="h2">More guides.</h2></div><a class="link" href="{r}blog.html">All guides {ICON['arrow']}</a></div><div class="grid grid-3">{more}</div></div></section>'''
     h = head(f'{a["title"]} · Pegasus Depot', a.get('meta') or a['excerpt'], depth, blog_image(a), f'blog/{a["slug"]}.html', og_type='article', extra_meta=f'<meta property="article:published_time" content="{a["date"]}">')
     return h + header(depth) + ''.join(jsonld(x) for x in ld) + body + footer(depth)
@@ -986,9 +987,10 @@ def main():
     w('shipping-returns.html', page_shipping()); w('terms.html', page_terms()); w('privacy.html', page_privacy())
     w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); w('404.html', page_404()); urls.remove('404.html')
     # retired product URLs keep a noindex stub that forwards to the nearest live page
-    for old, target in RETIRED.items():
+    (ROOT / 'bundles').mkdir(exist_ok=True)
+    for old, target in list(RETIRED.items()) + [('bundles/' + k, t) for k, t in KIT_REDIRECTS.items()]:
         pre = '' if old == '__bundles__' else '../'
-        (ROOT / ('bundles.html' if old == '__bundles__' else f'products/{old}.html')).write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pegasus Depot</title><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url={pre}{target}"><link rel="canonical" href="{SITE_URL}/{target}"></head><body><p>This product is no longer listed. <a href="{pre}{target}">Continue to the shop</a>.</p></body></html>')
+        (ROOT / ('bundles.html' if old == '__bundles__' else (old + '.html' if old.startswith('bundles/') else f'products/{old}.html'))).write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pegasus Depot</title><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url={pre}{target}"><link rel="canonical" href="{SITE_URL}/{target}"></head><body><p>This product is no longer listed. <a href="{pre}{target}">Continue to the shop</a>.</p></body></html>')
     write_catalog_js(); write_shopify_csv(); write_sitemap([u for u in urls if u not in ('checkout.html', 'thank-you.html')])
     print(f'Built {len(urls)} pages, {len(PRODUCTS)} products, {len(BUNDLES)} bundles, {len(VEHICLES)} vehicle pages.')
 
