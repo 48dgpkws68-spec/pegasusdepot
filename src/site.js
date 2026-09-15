@@ -408,7 +408,7 @@
       // hand the visible cart over to Shopify; keep a 2h backup so an abandoned checkout can be restored
       localStorage.setItem('pegasus_handoff', JSON.stringify({ t: Date.now(), lines: cart }));
       cart = []; save();
-      location.href = S.store + '/cart/' + parts.join(',');
+      location.href = S.store + (NL ? '/nl' : '') + '/cart/' + parts.join(',');  // Dutch pages open the nl-nl checkout
     });
   }
   const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = t('Message received'); } else { ty.textContent = qp.get('o') ? ' ' + qp.get('o') : ''; } }
