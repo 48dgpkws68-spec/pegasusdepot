@@ -487,7 +487,7 @@ def card(p, depth=0, dark=False):
     prices = sorted(set(v['price'] for v in p['variants'] if v.get('price') is not None))
     multi = len([v for v in p['variants'] if v.get('price') is not None]) > 1
     pr = (pr2(pf, ex_from(p)) if pf is not None else 'On request') + (f'<small>{len(p["variants"])} options</small>' if multi else '')
-    was = f'<span class="was" title="Recommended retail price">RRP {money(cf)}</span>' if cf and pf and cf > pf else ''
+    was = f'<span class="was">Retail price {money(cf)}</span>' if cf and pf and cf > pf else ''
     add = (f'<a class="add" href="{r}products/{p["id"]}.html" aria-label="Choose options">{ICON["arrow"]}</a>' if multi or p.get('quote_only')
            else f'<button class="add" data-add-sku="{first["sku"]}" data-product="{p["id"]}" aria-label="Add to cart">{ICON["plus"]}</button>')
     return f'''<article class="card {'card--dark' if dark else ''}" data-card data-cat="{p['category']}" data-veh="{','.join(p.get('applications',[]))}" data-volt="{','.join(voltages(p))}" data-price="{pf or 99999}" data-name="{esc(p['name'])}" data-order="{PRODUCTS.index(p)}" data-txt="{esc((p['name']+' '+p['tagline']+' '+' '.join(v['sku'] for v in p['variants'])).lower())}">
@@ -760,7 +760,7 @@ def page_product(p):
     <h1 class="h1">{esc(p['name'])}</h1>
     <p class="tagline">{esc(p['tagline'])}</p>
     <div class="rating">{ICON['shield']}<span>{rating_txt}</span></div>
-    <div class="buy-price"><span class="now" id="pdp-price">{money(ex_from(p)) if pf is not None else 'On request'}</span><span class="ex-lbl">{"ex VAT" if pf is not None else ""}</span><span class="was" id="pdp-was">{('RRP ' + money(cf)) if cf else ''}</span><span class="save" id="pdp-save"></span></div>
+    <div class="buy-price"><span class="now" id="pdp-price">{money(ex_from(p)) if pf is not None else 'On request'}</span><span class="ex-lbl">{"ex VAT" if pf is not None else ""}</span><span class="was" id="pdp-was">{('Retail price ' + money(cf)) if cf else ''}</span><span class="save" id="pdp-save"></span></div>
     <div class="vat">{'Price on request, configured per application.' if quote else vat_txt}</div>
     <div class="sku" id="pdp-sku">Article no. {first['sku']}</div>
     {opts_html}

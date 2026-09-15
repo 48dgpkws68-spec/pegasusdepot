@@ -4,7 +4,6 @@
 "from {p} ex VAT": "vanaf {p} excl. btw",
 "{p} incl.": "{p} incl.",
 "Recommended retail price": "Adviesprijs",
-"RRP {p}": "Adviesprijs {p}",
 "Add to cart": "In winkelwagen",
 "Shop": "Shop",
 "Choose options": "Kies opties",
@@ -438,5 +437,6 @@
 "EU warehouse, the Netherlands": "EU-magazijn, Nederland",
 "Horse trailers": "Paardentrailers",
 "Calm horses arrive ready to perform.": "Rustige paarden komen fit aan.",
-"Switch to Dutch": "Overschakelen naar Nederlands"
+"Switch to Dutch": "Overschakelen naar Nederlands",
+"Retail price {p}": "Adviesprijs {p}"
 }

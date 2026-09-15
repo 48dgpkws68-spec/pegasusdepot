@@ -48,7 +48,7 @@
     'Shipping calculated for': 'Verzending berekend voor', '; change your country at checkout.': '; kies je land bij het afrekenen.', 'Your cart is empty.': 'Je winkelwagen is leeg.',
     'Quote via contact page': 'Offerte via contactpagina', '(incl. hatch oversize)': '(incl. toeslag dakluik)', 'Request shipping quote': 'Verzendofferte aanvragen', 'Request pallet quote': 'Palletofferte aanvragen', 'Continue to secure checkout': 'Doorgaan naar veilig afrekenen',
     'Cart restored': 'Winkelwagen hersteld', 'See all': 'Bekijk alle', 'results': 'resultaten', 'No results. Try "Le Mans", "12V", "hatch" or an article number.': 'Geen resultaten. Probeer "Le Mans", "12V", "dakluik" of een artikelnummer.',
-    'Article no.': 'Artikelnr.', 'Quote': 'Offerte', 'RRP': 'Adviesprijs', 'below RRP': 'onder adviesprijs', 'ex VAT': 'excl. btw', 'incl.': 'incl.', 'for': 'voor', 'sets': 'sets',
+    'Article no.': 'Artikelnr.', 'Quote': 'Offerte', 'Retail price': 'Adviesprijs', 'below retail price': 'onder adviesprijs', 'ex VAT': 'excl. btw', 'incl.': 'incl.', 'for': 'voor', 'sets': 'sets',
     'Not available with the current selection; selecting it switches the other option': 'Niet beschikbaar bij de huidige keuze; als je dit kiest wisselt de andere optie mee',
     'product': 'product', 'products': 'producten', 'Show': 'Toon', 'No products match these filters': 'Geen producten voldoen aan deze filters', 'Try fewer filters or search by article number.': 'Probeer minder filters of zoek op artikelnummer.',
     'One item needs manual handling. Taking you to our contact page.': 'Eén artikel vraagt handmatige afhandeling. We brengen je naar de contactpagina.', 'Message received': 'Bericht ontvangen', 'Sending…': 'Versturen…',
@@ -199,8 +199,8 @@
       $('#pdp-sku').textContent = t('Article no.') + ' ' + v.sku;
       $('#pdp-price').textContent = v.price == null ? t('Quote') : money(exv(v));
       const pin = $('#pdp-incl'); if (pin && v.price != null) pin.textContent = money(v.price);
-      const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? t('RRP') + ' ' + money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
-      const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = Math.round((1 - v.price / v.compare_at) * 100) + '% ' + t('below RRP'); sv.style.display = ''; } else sv.style.display = 'none'; }
+      const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? t('Retail price') + ' ' + money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
+      const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = Math.round((1 - v.price / v.compare_at) * 100) + '% ' + t('below retail price'); sv.style.display = ''; } else sv.style.display = 'none'; }
       const sp = $('#sticky-price'); if (sp) sp.innerHTML = v.price == null ? t('Quote') : money(exv(v)) + '<small> ' + t('ex VAT') + '</small>';
       // gallery follows the chosen option when the product maps options to images
       try { const map = JSON.parse(pdp.dataset.imgmap || '{}'); const hit = Object.keys(map).find(k => Object.values(sel).includes(k)); if (hit != null) { const th = $$('.thumbs button')[map[hit]]; if (th && !th.classList.contains('on')) th.click(); } } catch (e) {}
