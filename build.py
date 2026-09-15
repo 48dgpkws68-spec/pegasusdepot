@@ -151,7 +151,7 @@ ISO = {'Netherlands': 'NL', 'Belgium': 'BE', 'Germany': 'DE', 'France': 'FR', 'L
 def _ship_ld(rate, countries, dmin, dmax):
     return {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": f"{rate:.2f}", "currency": "EUR"}, "shippingDestination": [{"@type": "DefinedRegion", "addressCountry": ISO[x]} for x in countries if x in ISO], "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"}, "transitTime": {"@type": "QuantitativeValue", "minValue": dmin, "maxValue": dmax, "unitCode": "DAY"}}}
 _zones = [z for z in BRAND['shipping']['zones'] if z.get('price') is not None]
-_days = {'nlbe': (1, 2), 'eu1': (2, 3), 'eu': (3, 5)}
+_days = {'nl': (1, 2), 'be': (1, 2), 'eu1': (2, 3), 'eu': (3, 5)}
 SHIPPING_LD = [_ship_ld(z['price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
 OVERSIZE_LD = [_ship_ld(BRAND['shipping']['oversize_price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
 RETURN_LD = {"@type": "MerchantReturnPolicy", "applicableCountry": [ISO[x] for z in _zones for x in z['countries'] if x in ISO], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 30, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"}
@@ -337,6 +337,9 @@ ICON = {
  'ruler': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m3 17 14-14 4 4L7 21z"/><path d="m13 7 2 2M10 10l2 2M7 13l2 2"/></svg>',
 }
 
+from PIL import Image as _I
+_lw, _lh = _I.open(ROOT / 'assets/img/pegasus-logo-200.webp').size
+LOGO_IMG = f'<img class="logo-img" src="/assets/img/pegasus-logo-200.webp" alt="" width="{_lw}" height="{_lh}">'
 LOGO_SVG = '''<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="23" stroke="url(#pg)" stroke-width="1.4"/><path d="M14 33c2.5-9 8-14 20-15-3 3.5-7 5-9.5 5.5 2 0 5-.5 7.5-2-2 3.5-5.5 5-8.5 5.2 1.5.3 4 .2 6-.8-2.5 3.6-6.3 4.6-9 4.2 1.2.6 2.7.9 4 .8-3 2.6-7 2.8-10.5 2.1z" fill="url(#pg)"/><path d="M14 33l-1.5 3.2" stroke="url(#pg)" stroke-width="1.6" stroke-linecap="round"/></svg>'''
 FAV_SVG = LOGO_SVG.replace('aria-hidden="true">', 'aria-hidden="true"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3C990"/><stop offset=".55" stop-color="#C9A96A"/><stop offset="1" stop-color="#9C7B3E"/></linearGradient></defs>', 1)
 FAVICON = "data:image/svg+xml," + FAV_SVG.replace('#', '%23').replace('"', "'").replace('<', '%3C').replace('>', '%3E')
@@ -410,9 +413,9 @@ def header(depth=0):
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
     best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>{money(ex_of(price_from(p)))}</span></div></a>' for p in best)
     return f'''
-<div class="announce"><a class="lang-hint" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands? Bekijk deze site in het Nederlands' if LANG == 'en' else 'English? View this site in English'}</a><span>Free EU shipping from €{BRAND["free_shipping_from"]}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
+<div class="announce"><a class="lang-hint" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands? Bekijk deze site in het Nederlands' if LANG == 'en' else 'English? View this site in English'}</a><span>Free EU shipping from {money(BRAND['free_shipping_from'])}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
 <header class="header"><div class="wrap header-in">
-  <a class="logo" href="/{PREFIX}" aria-label="Pegasus Depot home">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
+  <a class="logo" href="/{PREFIX}" aria-label="Pegasus Depot home">{LOGO_IMG}<span>PEGASUS<small>DEPOT</small></span></a>
   <ul class="nav">
     <li><a href="{r}shop.html">Shop {ICON['chev']}</a>
       <div class="mega mega--wide">
@@ -436,7 +439,7 @@ def header(depth=0):
   </div>
 </div></header>
 <nav class="mnav" id="mnav" aria-label="Mobile">
-  <div class="top"><a class="logo" href="/{PREFIX}">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a><button class="icon-btn" id="mnav-close" aria-label="Close">{ICON['close']}</button></div>
+  <div class="top"><a class="logo" href="/{PREFIX}">{LOGO_IMG}<span>PEGASUS<small>DEPOT</small></span></a><button class="icon-btn" id="mnav-close" aria-label="Close">{ICON['close']}</button></div>
   <a class="row lang-row" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands: bekijk de site in het Nederlands' if LANG == 'en' else 'English: view the site in English'}</a>
   <a class="row" href="{r}shop.html">Shop all products</a>
   <h5>Categories</h5>{''.join(f'<a class="row" href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}
@@ -461,7 +464,7 @@ def footer(depth=0):
     return f'''
 <footer class="footer"><div class="wrap">
   <div class="footer-grid">
-    <div><a class="logo" href="/{PREFIX}">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
+    <div><a class="logo" href="/{PREFIX}">{LOGO_IMG}<span>PEGASUS<small>DEPOT</small></span></a>
       <p style="margin-top:16px;max-width:34ch">Independent specialist in premium ventilation, roof hatches and interior lighting for vehicles that work harder. Dutch engineered products, shipped across Europe from our own stock.</p>
       <p style="margin-top:14px;color:var(--text-inv)">{esc(BRAND['email'])}<br>{(esc(BRAND['phone']) + '<br>') if BRAND.get('phone') else ''}{esc(BRAND['address'])}</p></div>
     <div><h5>Shop</h5>{''.join(f'<a href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}</div>
@@ -618,7 +621,7 @@ def page_index():
     {"q":"12V or 24V?","a":"Cars, vans, campers and trailers towed by them are 12V. Trucks, coaches, buses and most horse trucks on a truck chassis are 24V. Roof hatches and the control unit are 24V; for 12V vehicles we supply a converter."},
     {"q":"Do I need a switch and a speed controller?","a":"Electric roof fans need a 3-way switch to select blow / off / suck. The Speedcontrol is optional but recommended: it lets the fan run quietly at reduced speed and draws no current at zero."},
     {"q":"Can I close the vent in winter?","a":"Yes. Choose a closable interior valve: V12 (manual or electric), Flower Power or the rotating valve. The honeycomb grille is fixed and cannot be closed."},
-    {"q":"How fast do you ship?","a":"Orders placed before 15:00 CET ship the same working day from our warehouse in the Netherlands. Free EU shipping from €150 (roof hatches ship at a flat €29 oversize rate)."},
+    {"q":"How fast do you ship?","a":"Orders placed before 15:00 CET ship the same working day from our warehouse in the Netherlands. Free EU shipping from €499.99 (roof hatches ship at a flat €29 oversize rate)."},
     {"q":"Do you offer trade pricing?","a":"Yes. Bodybuilders, converters, fleets and dealers can request a trade account for volume pricing and ex-VAT invoicing."},
   ])}</div>
 </div></section>
@@ -742,7 +745,7 @@ def page_product(p):
     sticky_btn = f'<a class="btn btn-gold" href="{r}contact.html">Request a quote</a>' if quote else '<button class="btn btn-gold" id="sticky-add">Add to cart</button>'
     oversize = p['category'] in BRAND['shipping'].get('oversize_categories', [])
     _pf0 = price_from(p)
-    vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'free EU shipping from €150 · ex-VAT invoicing for trade accounts')
+    vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'free EU shipping from €499.99 · ex-VAT invoicing for trade accounts')
     rating_txt = 'Specified by European bodybuilders for 20+ years · ' + ('EMC test report available' if 'EMC' in json.dumps(p) else ('Dimensional drawing on this page' if p.get('drawing') else '2-year warranty'))
     if 'New' in p.get('badges', []) or 'Nieuw' in p.get('badges', []): rating_txt = 'New in the range · 2-year warranty · 30-day returns'
     elif p['category'] == 'indoor-climate': rating_txt = 'Indoor climate · 2-year warranty · 30-day returns'
@@ -889,10 +892,10 @@ def page_shipping():
     body = f'''
 <section class="section ivory"><div class="wrap" style="max-width:860px"><div class="crumbs light-crumbs" style="padding:0 0 20px"><a href="/{PREFIX}">Home</a> / <span>Shipping &amp; returns</span></div><div class="eyebrow">Shipping &amp; returns</div><h1 class="h1" style="margin:12px 0 24px">Fast out, easy back.</h1>
 <h3 class="h3">Shipping</h3><p class="lead" style="margin:10px 0 22px">Orders placed before 15:00 CET on working days ship the same day from our warehouse in the Netherlands. Netherlands and Belgium: next working day. Germany, France, Austria, Denmark: 2 to 3 working days. Rest of EU: 3 to 5 working days. UK, Switzerland, Norway: 4 to 7 working days, duties may apply.</p>
-<table class="spec-table" style="margin-bottom:30px"><tr><th>Netherlands &amp; Belgium</th><td>€6.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Germany, France, Luxembourg, Austria, Denmark</th><td>€9.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Rest of EU</th><td>€14.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate and not included in free shipping · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
+<table class="spec-table" style="margin-bottom:30px">{''.join(f"<tr><th>{esc(z['label'])}</th><td>{money(z['price'])} · free from {money(z['free_from'])}</td></tr>" for z in BRAND['shipping']['zones'] if z.get('price') is not None)}<tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate and not included in free shipping · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
 <h3 class="h3">Returns &amp; warranty</h3><p class="lead" style="margin:10px 0 22px">Unused products in original packaging can be returned within 30 days for a full refund. Products that have been installed or cut to size cannot be returned unless defective. All products carry a 2-year manufacturer warranty against defects in materials and workmanship. Electric motors are EMC approved and tested before dispatch.</p>
 <p class="note">Trade customers: returns and warranty claims are handled through your account contact. Keep the article number and the batch label from the box.</p></div></section>'''
-    return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, free EU shipping from €150, 30-day returns and 2-year warranty.', body)
+    return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, free EU shipping from €499.99, 30-day returns and 2-year warranty.', body)
 
 def page_terms():
     body = '''<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="eyebrow">Terms &amp; warranty</div><h1 class="h1" style="margin:12px 0 24px">Terms of sale</h1>
