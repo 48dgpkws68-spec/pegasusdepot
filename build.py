@@ -34,13 +34,107 @@ import glob as _glob, datetime as _dt2
 BLOG = []
 for _f in sorted(_glob.glob(str(ROOT / 'data/blog/*.json'))):
     try:
-        _a = json.load(open(_f)); _a['slug'] = re.sub(r'[^a-z0-9-]+', '-', _a['slug'].lower()).strip('-'); BLOG.append(_a)
+        _a = json.load(open(_f)); _a['slug'] = re.sub(r'[^a-z0-9-]+', '-', _a['slug'].lower()).strip('-'); _a['_file'] = _f; BLOG.append(_a)
     except Exception as _e:
         print('BLOG SKIP', _f, _e)
 for _i, _a in enumerate(BLOG):
     _a.setdefault('date', (_dt2.date(2026, 6, 4) + _dt2.timedelta(days=9 * _i)).isoformat())
 BLOG.sort(key=lambda a: a['date'], reverse=True)
 SHOPIFY = json.load(open(ROOT / 'data/shopify-map.json')) if (ROOT / 'data/shopify-map.json').exists() else None
+
+# ---------------------------------------------------------------- i18n
+# The site is built twice: English at the root, Dutch under nl/. The Dutch build translates the data
+# (data/nl/*.json overlays), the UI strings (data/i18n/nl.json, matched per text node / attribute) and the
+# option names and values (OPT_NL). Everything else (ids, SKUs, images, prices) is shared.
+LANG = 'en'
+PREFIX = ''            # 'nl/' for the Dutch build: output folder and URL prefix
+SLUG_NL = {}           # english blog slug -> dutch blog slug
+SLUG_EN = {}
+OPT_NL = {'Colour': 'Kleur', 'Voltage': 'Spanning', 'Diameter': 'Diameter', 'Light': 'Verlichting', 'Operation': 'Bediening', 'Speed control': 'Toerenregeling',
+          'White': 'Wit', 'Black': 'Zwart', 'Grey': 'Grijs', 'Light grey': 'Lichtgrijs', 'Dark grey': 'Donkergrijs', 'Motorless': 'Motorloos', 'Manual': 'Handbediend',
+          'Electric 12/24V': 'Elektrisch 12/24V', 'Integrated': 'Ingebouwd', 'No': 'Nee', 'Without': 'Zonder', 'No LED': 'Zonder LED', 'LED 12V': 'LED 12V', 'LED 24V': 'LED 24V', '12/24V light': '12/24V verlichting',
+          'Large': 'Groot', 'Small': 'Klein', 'Configured on request': 'Samengesteld op aanvraag', 'Control Unit 24V': 'Bedieningsunit 24V', 'with speed control unit': 'met toerenregelaar', 'LED reading light, white': 'LED-leeslamp, wit', 'LED rock light, single': 'LED rock light, per stuk', 'Electric 970 x 530': 'Elektrisch 970 x 530', 'Electric 530 x 530': 'Elektrisch 530 x 530', 'Manual 970 x 530': 'Handbediend 970 x 530', 'Manual 530 x 530': 'Handbediend 530 x 530', 'with light 12/24V': 'met verlichting 12/24V', 'Super Seal foam strip': 'Super Seal schuimstrip', 'Fan Switch': 'Ventilatorschakelaar', 'On/off rocker switch': 'Aan/uit wipschakelaar', 'Round': 'Rond', 'Square': 'Vierkant'}
+UI_NL = json.load(open(ROOT / 'data/i18n/nl.json')) if (ROOT / 'data/i18n/nl.json').exists() else {}
+_ui_exact = {k: v for k, v in UI_NL.items() if '{' not in k}
+_ui_pat = [(re.compile('^' + re.sub(r'\\\{(\w+)\\\}', r'(?P<\1>.+?)', re.escape(k)) + '$', re.S), v) for k, v in sorted(UI_NL.items(), key=lambda kv: -len(re.sub(r'\{\w+\}', '', kv[0]))) if '{' in k]
+UNTRANSLATED = {}
+def tr(s):
+    """Translate one UI string (already unescaped). Returns the input when no translation exists."""
+    if LANG != 'nl': return s
+    t = s.strip()
+    if not t or not re.search(r'[A-Za-z]{2}', t): return s
+    lead = s[:len(s) - len(s.lstrip())]; trail = s[len(s.rstrip()):]
+    if t in _ui_exact: return lead + _ui_exact[t] + trail
+    for rx, tpl in _ui_pat:
+        m = rx.match(t)
+        if m:
+            try: return lead + tpl.format(**m.groupdict()) + trail
+            except Exception: pass
+    UNTRANSLATED[t] = UNTRANSLATED.get(t, 0) + 1
+    return s
+_ATTRS = ('alt', 'aria-label', 'placeholder', 'title', 'content')
+def translate_html(html):
+    """Dutch build: translate every text node and the human-readable attributes; scripts and styles are left alone."""
+    if LANG != 'nl': return html
+    out = []
+    for part in re.split(r'(<script\b[\s\S]*?</script>|<style\b[\s\S]*?</style>|<[^>]+>)', html):
+        if not part: continue
+        if part.startswith('<'):
+            if part.startswith(('<script', '<style', '<!')) or part.startswith('<meta property="og:url') or part.startswith('<link'):
+                out.append(part); continue
+            def fa(m):
+                if m.group(1) == 'content' and 'name="description"' not in part and 'og:title' not in part and 'og:description' not in part and 'twitter:' not in part: return m.group(0)
+                return f'{m.group(1)}="{esc(tr(H.unescape(m.group(2))))}"'
+            out.append(re.sub(r'\b(' + '|'.join(_ATTRS) + r')="([^"]*)"', fa, part))
+        else:
+            out.append(esc(tr(H.unescape(part))).replace('&#x27;', "'").replace('&quot;', '"') if part.strip() else part)
+    return ''.join(out)
+
+def apply_nl():
+    """Switch the module data to Dutch in place (called after the English build)."""
+    global LANG, PREFIX, BLOG
+    LANG = 'nl'; PREFIX = 'nl/'
+    ov = {'categories': [], 'products': []}
+    for f in ('catalog-part1.json', 'catalog-part2.json', 'catalog.json'):
+        fp = ROOT / 'data/nl' / f
+        if fp.exists() and f != 'catalog.json' or (f == 'catalog.json' and not ov['products'] and fp.exists()):
+            d = json.load(open(fp)); ov['categories'] += d.get('categories', []); ov['products'] += d.get('products', [])
+    for c in ov['categories']:
+        if c['id'] in CAT: CAT[c['id']].update({k: v for k, v in c.items() if k != 'id'})
+    for x in ov['products']:
+        if x['id'] in P: P[x['id']].update({k: v for k, v in x.items() if k != 'id'})
+    for p in PRODUCTS:
+        for v in p['variants']:
+            if v.get('options'):
+                v['options'] = {OPT_NL.get(k, k): OPT_NL.get(val, val) for k, val in v['options'].items()}
+            v['label'] = ' · '.join(OPT_NL.get(x, x) for x in v['label'].split(' · '))
+        if p.get('image_by_option'): p['image_by_option'] = {OPT_NL.get(k, k): v for k, v in p['image_by_option'].items()}
+    vf = ROOT / 'data/nl/vehicles.json'
+    if vf.exists():
+        for x in json.load(open(vf))['vehicles']:
+            if x['id'] in VEH: VEH[x['id']].update({k: v for k, v in x.items() if k != 'id'})
+    nl_blog = []
+    for a in BLOG:
+        fp = ROOT / 'data/nl/blog' / Path(a['_file']).name
+        if not fp.exists(): continue
+        try: b = json.load(open(fp))
+        except Exception as e: print('NL BLOG SKIP', fp, e); continue
+        b['slug'] = re.sub(r'[^a-z0-9-]+', '-', b['slug'].lower()).strip('-'); b['date'] = a['date']; b['_file'] = a['_file']
+        SLUG_NL[a['slug']] = b['slug']; SLUG_EN[b['slug']] = a['slug']; nl_blog.append(b)
+    BLOG = nl_blog
+    BLOG.sort(key=lambda a: a['date'], reverse=True)
+
+def alt_url(path):
+    """Absolute URL of the same page in the other language (path relative to the site root, without prefix)."""
+    if path.startswith('blog/') and path != 'blog/':
+        slug = path[5:-5]
+        slug = (SLUG_NL if LANG == 'en' else SLUG_EN).get(slug, slug); path = f'blog/{slug}.html'
+    if path == 'index.html': path = ''
+    return f'{SITE_URL}/nl/{path}' if LANG == 'en' else f'{SITE_URL}/{path}'
+NL_MONTHS = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december']
+def fmt_date(iso):
+    d = _dt2.date.fromisoformat(iso)
+    return f'{d.day} {NL_MONTHS[d.month - 1]} {d.year}' if LANG == 'nl' else d.strftime('%-d %B %Y')
 SITE_URL = 'https://' + BRAND['domain']
 IMG_OUT = ROOT / 'assets/img'
 IMG_OUT.mkdir(parents=True, exist_ok=True)
@@ -48,7 +142,7 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/js').mkdir(parents=True, exist_ok=True)
 for d in ['products', 'bundles', 'vehicles']:
     (ROOT / d).mkdir(exist_ok=True)
-VERSION = '15'
+VERSION = '16'
 import datetime as _dt
 BUILD_DATE = _dt.date.today().isoformat()
 PAYMENT_METHODS = 'Visa · Mastercard · American Express · Bancontact · Klarna · PayPal · Apple Pay · Google Pay'
@@ -165,9 +259,10 @@ def pr2(incl, ex=None, cls='pr'):
     return f'<span class="{cls}"><b>{money(ex)}</b><small>ex VAT</small><em>{money(incl)} incl.</em></span>'
 
 def money(n):
-    if n is None: return 'Quote'
+    if n is None: return 'Offerte' if LANG == 'nl' else 'Quote'
     s = f'{n:,.2f}'
     if s.endswith('.00'): s = s[:-3]
+    if LANG == 'nl': s = s.replace(',', '\x00').replace('.', ',').replace('\x00', '.')
     return '€' + s
 
 def esc(s): return H.escape(str(s), quote=True)
@@ -201,10 +296,10 @@ def voltages(p):
     vs = set()
     for v in p['variants']:
         for k, val in (v.get('options') or {}).items():
-            if k.lower() == 'voltage':
+            if k.lower() in ('voltage', 'spanning'):
                 if '12' in val: vs.add('12V')
                 if '24' in val: vs.add('24V')
-                if 'Motorless' in val: vs.add('Motorless')
+                if 'Motorl' in val: vs.add('Motorless')
             if k in ('Operation', 'Light', 'LED version') and ('12' in val):
                 vs.add('12V'); vs.add('24V')
     for sp in (p.get('specs') or {}).values():
@@ -221,7 +316,7 @@ def colours(p):
         c = (v.get('options') or {}).get('Colour')
         if c and c not in cols: cols.append(c)
     return cols
-SWATCH = {'white': '#FFFFFF', 'black': '#111111', 'grey': '#9A9A9A', 'light grey': '#CFCFCF', 'dark grey': '#55585C', 'light grey / dark grey': 'linear-gradient(90deg,#CFCFCF 50%,#55585C 50%)'}
+SWATCH = {'white': '#FFFFFF', 'black': '#111111', 'grey': '#9A9A9A', 'light grey': '#CFCFCF', 'dark grey': '#55585C', 'light grey / dark grey': 'linear-gradient(90deg,#CFCFCF 50%,#55585C 50%)', 'wit': '#FFFFFF', 'zwart': '#111111', 'grijs': '#9A9A9A', 'lichtgrijs': '#CFCFCF', 'donkergrijs': '#55585C'}
 
 ICON = {
  'arrow': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>',
@@ -257,7 +352,7 @@ def form_open(subject, depth=0, cls='form', extra=''):
     r = rel(depth)
     return (f'<form class="{cls}" action="#" method="POST" data-fs="{FORM_ENDPOINT_B64}" {extra}>'
             f'<input type="hidden" name="_subject" value="{esc(subject)}"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false">'
-            f'<input type="hidden" name="_next" value="{SITE_URL}/thank-you.html?form=1"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">')
+            f'<input type="hidden" name="_next" value="{SITE_URL}/{PREFIX}thank-you.html?form=1"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">')
 
 def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
@@ -271,7 +366,7 @@ def product_ld(p):
     if offers:
         prices = [float(o['price']) for o in offers]
         d["offers"] = {"@type": "AggregateOffer", "lowPrice": f"{min(prices):.2f}", "highPrice": f"{max(prices):.2f}", "priceCurrency": "EUR", "offerCount": len(offers), "offers": offers}
-    ld = ([d] if offers else []) + [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}, {"@type": "ListItem", "position": 2, "name": "Shop", "item": SITE_URL + "/shop.html"}, {"@type": "ListItem", "position": 3, "name": CAT[p['category']]['name'], "item": f"{SITE_URL}/shop.html?cat={p['category']}"}, {"@type": "ListItem", "position": 4, "name": p['name']}]}]
+    ld = ([d] if offers else []) + [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/" + PREFIX}, {"@type": "ListItem", "position": 2, "name": "Shop", "item": SITE_URL + "/shop.html"}, {"@type": "ListItem", "position": 3, "name": CAT[p['category']]['name'], "item": f"{SITE_URL}/shop.html?cat={p['category']}"}, {"@type": "ListItem", "position": 4, "name": p['name']}]}]
     if p.get('faq'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
     return ''.join(jsonld(x) for x in ld)
@@ -287,14 +382,14 @@ def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, pre
     og = og_jpg(og_image or 'assets/img/og-default.webp')
     extra = ('<meta name="robots" content="noindex,nofollow">' if noindex else '') + (f'<link rel="preload" as="image" href="{r}{preload}" fetchpriority="high">' if preload else '')
     return f'''<!DOCTYPE html>
-<html lang="en" data-root="{r}">
+<html lang="{LANG}" data-root="{'/' if PREFIX else r}" data-pages="{r}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<link rel="canonical" href="{SITE_URL}/{canonical or ''}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="{og_type}"><meta property="og:url" content="{SITE_URL}/{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}{extra_meta}
+<link rel="canonical" href="{SITE_URL}/{PREFIX}{canonical or ''}">__HREFLANG__
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="{og_type}"><meta property="og:url" content="{SITE_URL}/{PREFIX}{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}{extra_meta}
 <meta name="theme-color" content="#0B0C0E">
 <link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">{ANALYTICS_HTML}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -315,9 +410,9 @@ def header(depth=0):
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
     best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>{money(ex_of(price_from(p)))}</span></div></a>' for p in best)
     return f'''
-<div class="announce"><span>Free EU shipping from €{BRAND["free_shipping_from"]}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
+<div class="announce"><a class="lang-hint" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands? Bekijk deze site in het Nederlands' if LANG == 'en' else 'English? View this site in English'}</a><span>Free EU shipping from €{BRAND["free_shipping_from"]}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
 <header class="header"><div class="wrap header-in">
-  <a class="logo" href="/" aria-label="Pegasus Depot home">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
+  <a class="logo" href="/{PREFIX}" aria-label="Pegasus Depot home">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
   <ul class="nav">
     <li><a href="{r}shop.html">Shop {ICON['chev']}</a>
       <div class="mega mega--wide">
@@ -334,13 +429,15 @@ def header(depth=0):
     <li><a href="{r}about.html">About</a></li>
   </ul>
   <div class="hdr-actions">
+    <div class="lang" role="group" aria-label="Language / Taal" title="{'Switch to Dutch' if LANG == 'en' else 'Overschakelen naar Engels'}">{'<span class="on" lang="en">EN</span><a href="__ALT_URL__" hreflang="nl" lang="nl" data-lang="nl">NL</a>' if LANG == 'en' else '<a href="__ALT_URL__" hreflang="en" lang="en" data-lang="en">EN</a><span class="on" lang="nl">NL</span>'}</div>
     <a href="#" class="icon-btn" data-open-search aria-label="Search">{ICON['search']}</a>
     <a href="#" class="icon-btn" data-open-cart aria-label="Cart">{ICON['bag']}<span class="cart-count"></span></a>
     <button class="icon-btn burger" id="burger" aria-label="Menu">{ICON['menu']}</button>
   </div>
 </div></header>
 <nav class="mnav" id="mnav" aria-label="Mobile">
-  <div class="top"><a class="logo" href="/">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a><button class="icon-btn" id="mnav-close" aria-label="Close">{ICON['close']}</button></div>
+  <div class="top"><a class="logo" href="/{PREFIX}">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a><button class="icon-btn" id="mnav-close" aria-label="Close">{ICON['close']}</button></div>
+  <a class="row lang-row" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands: bekijk de site in het Nederlands' if LANG == 'en' else 'English: view the site in English'}</a>
   <a class="row" href="{r}shop.html">Shop all products</a>
   <h5>Categories</h5>{''.join(f'<a class="row" href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}
   <h5>By vehicle</h5>{''.join(f'<a class="row" href="{r}vehicles/{v["id"]}.html">{esc(v["name"])}</a>' for v in VEHICLES)}
@@ -348,6 +445,7 @@ def header(depth=0):
 </nav>
 <div class="search" id="search"><button class="icon-btn search-close" id="search-close" aria-label="Close">{ICON['close']}</button><div class="search-in"><input id="search-input" type="search" aria-label="Search products" placeholder="Search products or article numbers…" autocomplete="off"><div class="search-res" id="search-res"></div></div></div>
 <div class="overlay" id="overlay"></div>
+<div class="lang-bar" id="lang-bar" hidden data-alt="__ALT_URL__"></div>
 <aside class="drawer" id="drawer" aria-label="Cart">
   <div class="drawer-head"><b>Your cart</b><button class="icon-btn" data-close-cart aria-label="Close" style="color:var(--text)">{ICON['close']}</button></div>
   <div class="ship-bar"><span id="ship-txt"></span><div class="bar"><i id="ship-bar"></i></div></div>
@@ -363,7 +461,7 @@ def footer(depth=0):
     return f'''
 <footer class="footer"><div class="wrap">
   <div class="footer-grid">
-    <div><a class="logo" href="/">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
+    <div><a class="logo" href="/{PREFIX}">{LOGO_SVG}<span>PEGASUS<small>DEPOT</small></span></a>
       <p style="margin-top:16px;max-width:34ch">Independent specialist in premium ventilation, roof hatches and interior lighting for vehicles that work harder. Dutch engineered products, shipped across Europe from our own stock.</p>
       <p style="margin-top:14px;color:var(--text-inv)">{esc(BRAND['email'])}<br>{(esc(BRAND['phone']) + '<br>') if BRAND.get('phone') else ''}{esc(BRAND['address'])}</p></div>
     <div><h5>Shop</h5>{''.join(f'<a href="{r}shop.html?cat={c["id"]}">{esc(c["name"])}</a>' for c in CATS)}</div>
@@ -382,7 +480,7 @@ def footer(depth=0):
 def card(p, depth=0, dark=False):
     r = rel(depth)
     pf = price_from(p); cf = compare_from(p)
-    badges = ''.join(f'<span class="badge {"gold" if b in ("Bestseller","Most popular","New") else ""}">{esc(b)}</span>' for b in p.get('badges', [])[:2])
+    badges = ''.join(f'<span class="badge {"gold" if b in ("Bestseller","Most popular","New","Populairst","Nieuw") else ""}">{esc(b)}</span>' for b in p.get('badges', [])[:2])
     cols = colours(p)
     sw = ''.join(f'<i class="swatch" style="background:{SWATCH.get(c.lower(),"#ddd")}" title="{esc(c)}"></i>' for c in cols[:4])
     first = next((v for v in p['variants'] if v.get('price') is not None), p['variants'][0])
@@ -536,7 +634,7 @@ def page_shop():
     veh_f = ''.join(f'<label><input type="checkbox" data-f="veh:{v["id"]}"> {esc(v["nav"])}</label>' for v in VEHICLES)
     volt_f = ''.join(f'<label><input type="checkbox" data-f="volt:{x}"> {x}</label>' for x in ['12V', '24V', 'Motorless', 'No power'])
     h += f'''
-<section class="page-hero" style="min-height:360px"><img class="bg" src="{scene(P['le-mans']['images'][4],1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop</span></div><div class="eyebrow">All products</div><h1 class="h1">The complete range, <em class="serif" style="color:var(--gold-2);font-style:italic;font-weight:400">in stock.</em></h1><p class="lead">{len(PRODUCTS)} products across {len(CATS)} categories. Filter by what you drive and what voltage you run.</p></div></section>
+<section class="page-hero" style="min-height:360px"><img class="bg" src="{scene(P['le-mans']['images'][4],1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Shop</span></div><div class="eyebrow">All products</div><h1 class="h1">The complete range, <em class="serif" style="color:var(--gold-2);font-style:italic;font-weight:400">in stock.</em></h1><p class="lead">{len(PRODUCTS)} products across {len(CATS)} categories. Filter by what you drive and what voltage you run.</p></div></section>
 <section class="section--tight ivory"><div class="wrap shop" data-shop>
   <aside class="filters">
     <div><h5>Search</h5><input id="shop-q" type="search" aria-label="Filter products" placeholder="Name or article number" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff"></div>
@@ -558,7 +656,7 @@ def page_bundles():
     h = head('Kits & bundles · save up to 12% · Pegasus Depot', 'Complete ventilation kits: roof fan + switch + valve + filter, pre-matched and discounted. For vans, campers, horse trailers, buses and ambulances.', 0, B['le-mans-complete-kit']['scene'], 'bundles.html')
     h += header(0)
     h += f'''
-<section class="page-hero"><img class="bg" src="{scene(B['le-mans-complete-kit']['scene'],1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Kits &amp; bundles</span></div><div class="eyebrow">Kits &amp; bundles</div><h1 class="h1">Everything in one box, <em class="serif" style="color:var(--gold-2);font-style:italic;font-weight:400">8 to 12% cheaper.</em></h1><p class="lead">We pre-match fan, switch, valve, filter and floor vent so nothing is missing when the hole saw comes out. Choose your voltage and colours on each kit page.</p></div></section>
+<section class="page-hero"><img class="bg" src="{scene(B['le-mans-complete-kit']['scene'],1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Kits &amp; bundles</span></div><div class="eyebrow">Kits &amp; bundles</div><h1 class="h1">Everything in one box, <em class="serif" style="color:var(--gold-2);font-style:italic;font-weight:400">8 to 12% cheaper.</em></h1><p class="lead">We pre-match fan, switch, valve, filter and floor vent so nothing is missing when the hole saw comes out. Choose your voltage and colours on each kit page.</p></div></section>
 <section class="section dark-2"><div class="wrap"><div class="grid grid-3">{''.join(bundle_card(b) for b in BUNDLES)}</div></div></section>
 <section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">How kits work</div><h2 class="h2">Pick the kit, pick the options, done.</h2></div></div>
 <div class="pain-grid"><div class="pain"><div class="num">01</div><b>Pre-matched by engineers</b><p>Every kit combines parts that share the same cut-out, voltage and connectors. No surprises on the roof.</p></div><div class="pain"><div class="num">02</div><b>Choose colour and voltage</b><p>Select 12V or 24V, white or black covers and the interior valve colour on the kit page. The price updates live.</p></div><div class="pain"><div class="num">03</div><b>One parcel, one invoice</b><p>Ships within 24h as a single consignment. Trade customers get the bundle price on top of their account terms.</p></div></div></div></section>
@@ -580,7 +678,7 @@ def page_product(p):
         gal.append((opt(p['drawing'], 1400), False, opt(p['drawing'], 240)))
     thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{small}" alt="" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc, small) in enumerate(gal))
     gal = [(src, sc) for src, sc, _ in gal]
-    badges = ''.join(f'<span class="badge {"gold" if b in ("Bestseller","New") else ""}">{esc(b)}</span>' for b in p.get('badges', []))
+    badges = ''.join(f'<span class="badge {"gold" if b in ("Bestseller","New","Nieuw") else ""}">{esc(b)}</span>' for b in p.get('badges', []))
     opts_html = ''
     for k in opt_names:
         opts_html += f'<div class="opt-group"><h6>{esc(k)} <span data-opt-label="{esc(k)}"></span></h6><div class="opts" data-opt="{esc(k)}"></div></div>'
@@ -646,7 +744,7 @@ def page_product(p):
     _pf0 = price_from(p)
     vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'free EU shipping from €150 · ex-VAT invoicing for trade accounts')
     rating_txt = 'Specified by European bodybuilders for 20+ years · ' + ('EMC test report available' if 'EMC' in json.dumps(p) else ('Dimensional drawing on this page' if p.get('drawing') else '2-year warranty'))
-    if 'New' in p.get('badges', []): rating_txt = 'New in the range · 2-year warranty · 30-day returns'
+    if 'New' in p.get('badges', []) or 'Nieuw' in p.get('badges', []): rating_txt = 'New in the range · 2-year warranty · 30-day returns'
     elif p['category'] == 'indoor-climate': rating_txt = 'Indoor climate · 2-year warranty · 30-day returns'
     _pv = [v for v in p['variants'] if v.get('price') is not None]
     _pm = (f'<meta property="product:price:amount" content="{_pv[0]["price"]:.2f}"><meta property="product:price:currency" content="EUR">' if _pv else '') + f'<meta property="og:image:alt" content="{esc(p["name"])}">'
@@ -654,7 +752,7 @@ def page_product(p):
     h += product_ld(p)
     h += header(depth)
     h += f'''
-<div class="wrap"><div class="crumbs light-crumbs"><a href="/">Home</a> / <a href="{r}shop.html">Shop</a> / <a href="{r}shop.html?cat={c['id']}">{esc(c['name'])}</a> / <span>{esc(p['short_name'])}</span></div></div>
+<div class="wrap"><div class="crumbs light-crumbs"><a href="/{PREFIX}">Home</a> / <a href="{r}shop.html">Shop</a> / <a href="{r}shop.html?cat={c['id']}">{esc(c['name'])}</a> / <span>{esc(p['short_name'])}</span></div></div>
 <section class="wrap pdp" data-pdp="{p['id']}" data-imgmap='{json.dumps(p.get("image_by_option", {}))}'>
   <div class="gallery"><div class="gallery-main"><div class="badge-wrap">{badges}</div><img id="gallery-img" src="{r}{gal[0][0]}" alt="{esc(p['name'])}" class="{'scene' if gal[0][1] else ''}"></div><div class="thumbs">{thumbs}</div></div>
   <div class="buy">
@@ -711,7 +809,7 @@ def page_bundle(b):
     h += jsonld({"@context": "https://schema.org", "@type": "Product", "name": b['name'], "description": b['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{scene(b['scene'], 1400)}"], "url": f"{SITE_URL}/bundles/{b['id']}.html", "offers": {"@type": "Offer", "price": f"{price:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": f"{SITE_URL}/bundles/{b['id']}.html"}})
     h += header(depth)
     h += f'''
-<div class="wrap"><div class="crumbs light-crumbs"><a href="/">Home</a> /  / <span>{esc(b['name'])}</span></div></div>
+<div class="wrap"><div class="crumbs light-crumbs"><a href="/{PREFIX}">Home</a> /  / <span>{esc(b['name'])}</span></div></div>
 <section class="wrap pdp" data-bundle="{b['id']}">
   <div class="gallery"><div class="gallery-main"><div class="badge-wrap">{''.join(f'<span class="badge gold">{esc(x)}</span>' for x in b.get('badges',[]))}</div><img id="gallery-img" class="scene" src="{r}{gal[0][0]}" alt="{esc(b['name'])}"></div><div class="thumbs">{thumbs}</div></div>
   <div class="buy">
@@ -745,7 +843,7 @@ def page_vehicle(v):
     h = head(f'Ventilation for {v["name"]} · Pegasus Depot', v['intro'], depth, v['hero'], f'vehicles/{v["id"]}.html')
     h += header(depth)
     h += f'''
-<section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{nb(esc(v['headline']))}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#products">Recommended products {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
+<section class="page-hero"><img class="bg" src="{r}{scene(v['hero'],1800)}" alt="{esc(v['name'])}"><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Shop by vehicle</span> / <span>{esc(v['name'])}</span></div><div class="eyebrow">{esc(v['eyebrow'])}</div><h1 class="h1">{nb(esc(v['headline']))}</h1><p class="lead">{esc(v['intro'])}</p><div class="hero-cta"><a class="btn btn-gold" href="#products">Recommended products {ICON['arrow']}</a><a class="btn btn-ghost" href="#products">All products for {esc(v['nav'].lower())}</a></div></div></section>
 <section class="section ivory"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">The challenge</div><h2 class="h2">What goes wrong without proper airflow.</h2></div></div>
 <div class="pain-grid">{''.join(f'<div class="pain"><div class="num">0{i+1}</div><b>{esc(x["title"])}</b><p>{esc(x["text"])}</p></div>' for i,x in enumerate(v['pains']))}</div></div></section>
 <section class="section ivory" id="products"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Products</div><h2 class="h2">Everything we recommend for {esc(v['nav'].lower())}.</h2></div><a class="link" href="{r}shop.html?veh={v['id']}">Filter the shop {ICON['arrow']}</a></div><div class="grid">{''.join(card(p, depth) for p in prods)}</div></div></section>
@@ -762,7 +860,7 @@ def simple_page(slug, title, desc, body, og=None, noindex=False):
 
 def page_about():
     body = f'''
-<section class="page-hero"><img class="bg" src="{scene('assets/media/magazijn-6.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>About</span></div><div class="eyebrow">About Pegasus Depot</div><h1 class="h1">The ventilation specialist with the stock to prove it.</h1><p class="lead">Pegasus Depot is an independent European retailer of premium vehicle ventilation, roof hatches and interior lighting. We source straight from the OEM production line, hold real stock in our own Dutch warehouse and ship across Europe within 24 hours.</p></div></section>
+<section class="page-hero"><img class="bg" src="{scene('assets/media/magazijn-6.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>About</span></div><div class="eyebrow">About Pegasus Depot</div><h1 class="h1">The ventilation specialist with the stock to prove it.</h1><p class="lead">Pegasus Depot is an independent European retailer of premium vehicle ventilation, roof hatches and interior lighting. We source straight from the OEM production line, hold real stock in our own Dutch warehouse and ship across Europe within 24 hours.</p></div></section>
 <section class="section ivory"><div class="wrap"><div class="split"><div><div class="eyebrow">Our story</div><h2 class="h2" style="margin:12px 0 16px">Built for bodybuilders. Now open to everyone.</h2><p class="lead">The ventilators, valves, hatches and lights in this shop have been fitted for years by bus builders, ambulance converters, horsebox manufacturers and van outfitters across Europe, usually through trade channels only. Pegasus Depot opens that same OEM-grade catalogue to every workshop, fleet and owner who wants to order online, at a fair price, from stock.</p>
 <ul class="checks"><li>{ICON['check']}<div><b>OEM-grade quality</b>Every product comes from the same production line the vehicle builders rely on.</div></li><li>{ICON['check']}<div><b>Real stock, real speed</b>Thousands of units on the shelf. Order before 15:00 CET and it ships the same working day.</div></li><li>{ICON['check']}<div><b>Specialists, not call centres</b>Questions about cut-outs, airflow or voltage are answered by people who know the products inside out.</div></li></ul></div>
 <div class="story-grid"><img src="{scene('assets/media/Le-Mans-ventilator-2.webp',1200)}" alt="Le Mans ventilators in the warehouse"><img src="{scene('assets/media/magazijn-6.webp',800)}" alt="Assembly of rooftop ventilators"><img src="{scene('assets/media/Magazijn-1.webp',800)}" alt="Stock shelves"></div></div></div></section>
@@ -773,7 +871,7 @@ def page_about():
 
 def page_trade():
     body = f'''
-<section class="page-hero"><img class="bg" src="{scene('assets/media/IMG_010422.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Trade</span></div><div class="eyebrow">Trade &amp; fleet accounts</div><h1 class="h1">Volume pricing for the people who fit it for a living.</h1><p class="lead">Bodybuilders, van converters, horsebox manufacturers, ambulance outfitters, fleet workshops and dealers: open a trade account and buy at trade prices, ex-VAT, with a dedicated contact.</p></div></section>
+<section class="page-hero"><img class="bg" src="{scene('assets/media/IMG_010422.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Trade</span></div><div class="eyebrow">Trade &amp; fleet accounts</div><h1 class="h1">Volume pricing for the people who fit it for a living.</h1><p class="lead">Bodybuilders, van converters, horsebox manufacturers, ambulance outfitters, fleet workshops and dealers: open a trade account and buy at trade prices, ex-VAT, with a dedicated contact.</p></div></section>
 <section class="section ivory"><div class="wrap contact-grid"><div><div class="eyebrow">What you get</div><h2 class="h2" style="margin:12px 0 18px">Built around your workshop, not our webshop.</h2>
 <ul class="checks"><li>{ICON['check']}<div><b>Tiered volume pricing</b>Discounts from the first 10 units, better at 50 and project pricing above.</div></li><li>{ICON['check']}<div><b>Ex-VAT invoicing and 30-day terms</b>For approved EU businesses with a valid VAT number.</div></li><li>{ICON['check']}<div><b>Project support</b>Drawings, EMC reports, cut-out templates and airflow advice for new vehicle designs.</div></li><li>{ICON['check']}<div><b>Custom colours and OEM options</b>Grilles and valves in your fleet colour and motorless versions, available on request for larger programmes.</div></li><li>{ICON['check']}<div><b>Call-off stock</b>Reserve quantities for a build programme and call them off as you need them.</div></li></ul></div>
 <div class="info-card">{form_open('Trade account request')}<div class="form-row"><div class="field"><label>Company</label><input name="company" required></div><div class="field"><label>VAT number</label><input name="vat"></div></div><div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="field"><label>What do you build or run?</label><select name="segment"><option>Van conversions / bodybuilding</option><option>Horseboxes / animal transport</option><option>Buses / coaches</option><option>Ambulances / emergency vehicles</option><option>Campers / leisure</option><option>Marine</option><option>Fleet workshop</option><option>Dealer / reseller</option></select></div><div class="field"><label>Expected annual volume</label><select name="volume"><option>10 to 50 units</option><option>50 to 250 units</option><option>250+ units</option></select></div><div class="field"><label>Message</label><textarea name="message" rows="4" placeholder="Which products, which vehicles, which timeline?"></textarea></div><button class="btn btn-gold btn-block">Request a trade account {ICON['arrow']}</button><p class="note">We reply within one working day.</p></form></div></div></section>
@@ -782,14 +880,14 @@ def page_trade():
 
 def page_contact():
     body = f'''
-<section class="page-hero" style="min-height:340px"><img class="bg" src="{scene('assets/media/Magazijn-1.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Contact</span></div><div class="eyebrow">Contact</div><h1 class="h1">Talk to an engineer, not a bot.</h1><p class="lead">Cut-out sizes, 12V or 24V, how many fans for a 7-metre body: ask us. We answer within 24 hours on working days, usually much faster.</p></div></section>
+<section class="page-hero" style="min-height:340px"><img class="bg" src="{scene('assets/media/Magazijn-1.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Contact</span></div><div class="eyebrow">Contact</div><h1 class="h1">Talk to an engineer, not a bot.</h1><p class="lead">Cut-out sizes, 12V or 24V, how many fans for a 7-metre body: ask us. We answer within 24 hours on working days, usually much faster.</p></div></section>
 <section class="section ivory"><div class="wrap contact-grid"><div class="info-card">{form_open('Contact form')}<div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="form-row"><div class="field"><label>Phone</label><input name="phone"></div><div class="field"><label>Vehicle type</label><select name="vehicle">{''.join(f'<option>{esc(v["name"])}</option>' for v in VEHICLES)}<option>Other</option></select></div></div><div class="field"><label>Message</label><textarea name="message" rows="6" placeholder="Tell us about the vehicle, the products you have in mind and any article numbers."></textarea></div><button class="btn btn-gold btn-block">Send message {ICON['arrow']}</button></form></div>
 <div style="display:grid;gap:16px"><div class="info-card"><b>Email</b><span>{esc(BRAND['email'])} · Mon to Fri 08:30 to 17:00 CET</span>{('<b>Phone</b><span>' + esc(BRAND['phone']) + '</span>') if BRAND.get('phone') else ''}<b>Warehouse</b><span>{esc(BRAND['address'])}</span></div><div class="info-card"><b>Technical documents</b><span>Most product pages carry a dimensional drawing; technical datasheets and EMC test reports are sent on request within one working day.</span></div><div class="info-card"><b>Returns</b><span>Unused items in original packaging can be returned within 30 days. See <a href="shipping-returns.html" style="text-decoration:underline">shipping &amp; returns</a>.</span></div></div></div></section>'''
     return simple_page('contact.html', 'Contact', 'Contact Pegasus Depot for technical advice, quotes and trade accounts.', body)
 
 def page_shipping():
     body = f'''
-<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="crumbs light-crumbs" style="padding:0 0 20px"><a href="/">Home</a> / <span>Shipping &amp; returns</span></div><div class="eyebrow">Shipping &amp; returns</div><h1 class="h1" style="margin:12px 0 24px">Fast out, easy back.</h1>
+<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="crumbs light-crumbs" style="padding:0 0 20px"><a href="/{PREFIX}">Home</a> / <span>Shipping &amp; returns</span></div><div class="eyebrow">Shipping &amp; returns</div><h1 class="h1" style="margin:12px 0 24px">Fast out, easy back.</h1>
 <h3 class="h3">Shipping</h3><p class="lead" style="margin:10px 0 22px">Orders placed before 15:00 CET on working days ship the same day from our warehouse in the Netherlands. Netherlands and Belgium: next working day. Germany, France, Austria, Denmark: 2 to 3 working days. Rest of EU: 3 to 5 working days. UK, Switzerland, Norway: 4 to 7 working days, duties may apply.</p>
 <table class="spec-table" style="margin-bottom:30px"><tr><th>Netherlands &amp; Belgium</th><td>€6.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Germany, France, Luxembourg, Austria, Denmark</th><td>€9.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Rest of EU</th><td>€14.95 · free from €{BRAND['free_shipping_from']}</td></tr><tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate and not included in free shipping · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
 <h3 class="h3">Returns &amp; warranty</h3><p class="lead" style="margin:10px 0 22px">Unused products in original packaging can be returned within 30 days for a full refund. Products that have been installed or cut to size cannot be returned unless defective. All products carry a 2-year manufacturer warranty against defects in materials and workmanship. Electric motors are EMC approved and tested before dispatch.</p>
@@ -817,7 +915,7 @@ def page_privacy():
 def page_checkout():
     body = f'''
 <section class="section ivory"><div class="wrap checkout"><div><div class="eyebrow">Checkout</div><h1 class="h1" style="margin:12px 0 8px">Review your order.</h1><p class="muted" style="margin-bottom:26px">Next: delivery address and payment on our secure checkout.</p>
-<form class="form" id="checkout-form"><h3 class="h4">Delivery country</h3><div class="field"><label>Country</label><select id="co-country"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Austria</option><option>Denmark</option><option>Luxembourg</option><option>Italy</option><option>Spain</option><option>Sweden</option><option>Ireland</option><option>Poland</option><option>Portugal</option><option>Finland</option><option>Czechia</option><option>Hungary</option><option>Romania</option><option>Greece</option><option>Other EU</option><option>United Kingdom</option><option>Switzerland</option><option>Norway</option></select></div>
+<form class="form" id="checkout-form"><h3 class="h4">Delivery country</h3><div class="field"><label>Country</label><select id="co-country">{''.join(f'<option value="{x}">{x}</option>' for x in ['Netherlands', 'Belgium', 'Germany', 'France', 'Austria', 'Denmark', 'Luxembourg', 'Italy', 'Spain', 'Sweden', 'Ireland', 'Poland', 'Portugal', 'Finland', 'Czechia', 'Hungary', 'Romania', 'Greece', 'Other EU', 'United Kingdom', 'Switzerland', 'Norway'])}</select></div>
 <h3 class="h4" style="margin-top:10px">Payment</h3><div class="pill-row"><span class="pill">Visa / Mastercard</span><span class="pill">American Express</span><span class="pill">Bancontact</span><span class="pill">Klarna</span><span class="pill">PayPal</span><span class="pill">Apple Pay / Google Pay</span></div>
 <button class="btn btn-gold btn-lg btn-block" id="co-btn" style="margin-top:18px"><span id="co-btn-lbl">Continue to secure checkout</span> {ICON['arrow']}</button><p class="muted" style="font-size:12.5px;text-align:center;margin-top:10px">Secured by Shopify · Ships within 24h · 30-day returns</p><p class="note">You will be taken to our secure checkout to enter your delivery address and payment. All prices include VAT. For the United Kingdom, Switzerland and Norway we prepare a personal shipping quote first via the contact page.</p></form></div>
 <aside class="summary"><h3 class="h4" style="margin-bottom:14px">Order summary</h3><div id="co-lines"></div><div class="hr" style="margin:16px 0"></div><div class="row"><span>Subtotal</span><b id="co-sub">€0</b></div><div class="row"><span>Shipping</span><b id="co-ship">–</b></div><div class="row total"><span>Total incl. VAT</span><b id="co-total">€0</b></div><p class="muted" style="font-size:12.5px;margin-top:14px">Ships within 24h · 30-day returns · 2-year warranty</p></aside></div></section>'''
@@ -837,7 +935,7 @@ def blog_card(a, depth):
 
 def page_blog():
     cards = ''.join(blog_card(a, 0) for a in BLOG)
-    body = f'''<section class="page-hero" style="min-height:360px"><img class="bg" src="{scene('assets/media/Le-Mans-ventilator-2.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <span>Guides</span></div><div class="eyebrow">Guides &amp; advice</div><h1 class="h1">Vehicle ventilation, explained by people who install it.</h1><p class="lead">Buying guides, installation notes and answers to the questions bodybuilders, fleet managers and owners ask us every week.</p></div></section>
+    body = f'''<section class="page-hero" style="min-height:360px"><img class="bg" src="{scene('assets/media/Le-Mans-ventilator-2.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Guides</span></div><div class="eyebrow">Guides &amp; advice</div><h1 class="h1">Vehicle ventilation, explained by people who install it.</h1><p class="lead">Buying guides, installation notes and answers to the questions bodybuilders, fleet managers and owners ask us every week.</p></div></section>
 <section class="section ivory"><div class="wrap"><div class="grid grid-3">{cards}</div></div></section>'''
     return simple_page('blog.html', 'Guides & advice on vehicle ventilation', 'Buying guides, installation notes and practical answers on rooftop ventilators, roof hatches, interior valves and floor ventilators for vans, campers, horse trailers, coaches and ambulances.', body, og='assets/media/Le-Mans-ventilator-2.webp')
 
@@ -850,19 +948,19 @@ def page_post(a):
     more = ''.join(blog_card(x, depth) for x in others)
     vid = a.get('vehicle') if a.get('vehicle') in VEH else None
     cta = f'<div class="upsell" style="margin-top:40px"><h6>Ready to specify?</h6><div class="up-row"><div><b>{esc(VEH[vid]["name"]) if vid else "Complete ventilation systems"}</b><span>Products, kits and advice for your vehicle, shipped from stock within 24h.</span></div><a class="btn btn-dark btn-sm" href="{r}{"vehicles/" + vid + ".html" if vid else "shop.html"}">Shop now</a></div></div>'
-    date_txt = _dt2.date.fromisoformat(a['date']).strftime('%-d %B %Y')
+    date_txt = fmt_date(a['date'])
     ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": a['title'], "description": a.get('meta') or a['excerpt'], "datePublished": a['date'], "dateModified": a['date'], "author": {"@type": "Organization", "name": "Pegasus Depot"}, "publisher": {"@type": "Organization", "name": "Pegasus Depot", "logo": {"@type": "ImageObject", "url": SITE_URL + "/icon-512.png"}}, "image": f"{SITE_URL}/{scene(blog_image(a), 1800)}", "mainEntityOfPage": f"{SITE_URL}/blog/{a['slug']}.html", "keywords": ", ".join(a.get('keywords', []))},
-          {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE_URL + "/blog.html"}, {"@type": "ListItem", "position": 3, "name": a['title'], "item": f"{SITE_URL}/blog/{a['slug']}.html"}]}]
+          {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/" + PREFIX}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE_URL + "/blog.html"}, {"@type": "ListItem", "position": 3, "name": a['title'], "item": f"{SITE_URL}/blog/{a['slug']}.html"}]}]
     if a.get('faq'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in a['faq']]})
-    body = f'''<section class="page-hero" style="min-height:380px"><img class="bg" src="{r}{scene(blog_image(a),1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/">Home</a> / <a href="{r}blog.html">Guides</a> / <span>{esc(a["title"][:40])}</span></div><div class="eyebrow">{esc(VEH[vid]["name"]) if vid else "Guide"} · {date_txt} · {a.get("read_min", 5)} min read</div><h1 class="h1" style="max-width:22ch">{esc(a["title"])}</h1><p class="lead">{esc(a["excerpt"])}</p></div></section>
+    body = f'''<section class="page-hero" style="min-height:380px"><img class="bg" src="{r}{scene(blog_image(a),1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <a href="{r}blog.html">Guides</a> / <span>{esc(a["title"][:40])}</span></div><div class="eyebrow">{esc(VEH[vid]["name"]) if vid else "Guide"} · {date_txt} · {a.get("read_min", 5)} min read</div><h1 class="h1" style="max-width:22ch">{esc(a["title"])}</h1><p class="lead">{esc(a["excerpt"])}</p></div></section>
 <section class="section ivory"><div class="wrap"><div class="post-grid"><article class="post">{secs}{faq_html}{cta}</article><aside class="post-aside"><div class="info-card"><h6 class="eyebrow" style="margin-bottom:10px">Talk to a specialist</h6><p class="muted" style="font-size:14px">Cut-out sizes, voltages, how many fans for your body length: ask us before you drill.</p><a class="btn btn-gold btn-sm btn-block" style="margin-top:12px" href="{r}contact.html">Ask a question</a></div><div class="info-card" style="margin-top:14px"><h6 class="eyebrow" style="margin-bottom:10px">Popular</h6><a class="row" href="{r}products/le-mans.html">Le Mans Rooftop Ventilator</a><a class="row" href="{r}products/le-mans-ll.html">Le Mans LL Brushless</a><a class="row" href="{r}products/roof-hatch-electric-large.html">Roof Hatch Electric 970 x 530</a><a class="row" href="{r}products/floor-ventilator-129.html">Floor Ventilator Ø 129 mm</a></div></aside></div></div></section>
 <section class="section ivory-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Keep reading</div><h2 class="h2">More guides.</h2></div><a class="link" href="{r}blog.html">All guides {ICON['arrow']}</a></div><div class="grid grid-3">{more}</div></div></section>'''
     h = head(f'{a["title"]} · Pegasus Depot', a.get('meta') or a['excerpt'], depth, blog_image(a), f'blog/{a["slug"]}.html', og_type='article', extra_meta=f'<meta property="article:published_time" content="{a["date"]}">')
     return h + header(depth) + ''.join(jsonld(x) for x in ld) + body + footer(depth)
 
 def page_404():
-    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">404</div><h1 class="h1" style="margin:12px 0 14px">That page drove off.</h1><p class="lead" style="margin:0 auto 24px">The page you are looking for does not exist or has moved. Try the shop or search for an article number.</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-gold" href="shop.html">Go to the shop</a><a class="btn btn-ghost" href="/">Home</a></div></div></section>'''
+    body = f'''<section class="section ivory"><div class="wrap center" style="max-width:680px"><div class="eyebrow">404</div><h1 class="h1" style="margin:12px 0 14px">That page drove off.</h1><p class="lead" style="margin:0 auto 24px">The page you are looking for does not exist or has moved. Try the shop or search for an article number.</p><div class="hero-cta" style="justify-content:center"><a class="btn btn-gold" href="shop.html">Go to the shop</a><a class="btn btn-ghost" href="/{PREFIX}">Home</a></div></div></section>'''
     return simple_page('404.html', 'Page not found', 'Page not found.', body, noindex=True)
 
 # ---------------------------------------------------------------- catalog.js + csv + sitemap
@@ -873,7 +971,7 @@ def write_catalog_js():
         'bundles': [{**{k: b[k] for k in ['id', 'name', 'tagline', 'summary', 'discount', 'items']}, 'images': [sq(b['images'][0], 400)]} for b in BUNDLES],
         'shopify': ({**SHOPIFY, 'variants': {**SHOPIFY['variants'], **{new: SHOPIFY['variants'][old] for new, old in SKU_ALIAS.items() if old in SHOPIFY['variants']}}, 'alias': SKU_ALIAS} if SHOPIFY else None),
     }
-    (ROOT / 'assets/js/catalog.js').write_text('window.CATALOG=' + json.dumps(slim, ensure_ascii=False) + ';')
+    (ROOT / ('assets/js/catalog-nl.js' if LANG == 'nl' else 'assets/js/catalog.js')).write_text('window.CATALOG=' + json.dumps(slim, ensure_ascii=False) + ';')
 
 def write_shopify_csv():
     cols = ['Handle', 'Title', 'Body (HTML)', 'Vendor', 'Product Category', 'Type', 'Tags', 'Published', 'Option1 Name', 'Option1 Value', 'Option2 Name', 'Option2 Value', 'Option3 Name', 'Option3 Value', 'Variant SKU', 'Variant Grams', 'Variant Inventory Tracker', 'Variant Inventory Qty', 'Variant Inventory Policy', 'Variant Fulfillment Service', 'Variant Price', 'Variant Compare At Price', 'Variant Requires Shipping', 'Variant Taxable', 'Variant Barcode', 'Image Src', 'Image Position', 'Image Alt Text', 'Gift Card', 'SEO Title', 'SEO Description', 'Variant Weight Unit', 'Status']
@@ -971,28 +1069,55 @@ def main():
     shutil.copy(ROOT / og, IMG_OUT / 'og-default.webp')
     urls = []
     def w(path, html):
-        html = add_img_dims(label_ids(html), path)
+        html = label_ids(html)
+        if LANG == 'nl':
+            html = translate_html(html)
+            # nl/ pages share the root assets; page links stay relative inside nl/
+            html = re.sub(r'((?:src|href|poster)=")(?:\.\./)*assets/', r'\1/assets/', html)
+            html = re.sub(r"(url\(')(?:\.\./)*assets/", r"\1/assets/", html)
+            html = html.replace('/assets/js/catalog.js?', '/assets/js/catalog-nl.js?')
+            html = re.sub(re.escape(SITE_URL) + r'/(?!nl/|assets/|icon-|favicon|apple-touch|site\.webmanifest|sitemap)', SITE_URL + '/nl/', html)
+        alt = alt_url(path[len(PREFIX):] if path.startswith(PREFIX) else path)
+        here = f'{SITE_URL}/{PREFIX}{"" if path.endswith("index.html") else path[len(PREFIX):]}'
+        en, nl = (here, alt) if LANG == 'en' else (alt, here)
+        html = html.replace('__HREFLANG__', '' if path == '404.html' else f'<link rel="alternate" hreflang="en" href="{en}"><link rel="alternate" hreflang="nl" href="{nl}"><link rel="alternate" hreflang="x-default" href="{en}">').replace('__ALT_URL__', alt)
+        html = add_img_dims(html, path)
         if path == '404.html':
-            html = re.sub(r'(href|src)="(?!https?:|mailto:|tel:|data:|#|/)', r'\1="/', html).replace('data-root=""', 'data-root="/"')
+            html = re.sub(r'(href|src)="(?!https?:|mailto:|tel:|data:|#|/)', r'\1="/', html).replace('data-root=""', 'data-root="/"').replace('data-pages=""', 'data-pages="/"')
+        (ROOT / path).parent.mkdir(parents=True, exist_ok=True)
         (ROOT / path).write_text(html, encoding='utf-8'); urls.append(path)
-    w('index.html', page_index())
-    w('shop.html', page_shop())
-    for p in PRODUCTS: w(f'products/{p["id"]}.html', page_product(p))
-    for b in BUNDLES: w(f'bundles/{b["id"]}.html', page_bundle(b))
-    for v in VEHICLES: w(f'vehicles/{v["id"]}.html', page_vehicle(v))
-    w('about.html', page_about()); w('trade.html', page_trade()); w('contact.html', page_contact())
+    build_pages(w)
+    write_catalog_js(); write_shopify_csv()
+    en_urls = list(urls)
+    apply_nl(); urls.clear()
+    build_pages(w); write_catalog_js()
+    if UNTRANSLATED:
+        (ROOT / 'exports').mkdir(exist_ok=True)
+        json.dump(dict(sorted(UNTRANSLATED.items(), key=lambda x: -x[1])), open(ROOT / 'exports/untranslated-nl.json', 'w'), indent=1, ensure_ascii=False)
+        print(f'NL: {len(UNTRANSLATED)} untranslated strings, see exports/untranslated-nl.json')
+    nl_urls = list(urls)
+    write_sitemap([u for u in en_urls + nl_urls if not u.endswith(('checkout.html', 'thank-you.html', '404.html'))])
+    print(f'Built {len(en_urls)} + {len(nl_urls)} pages, {len(PRODUCTS)} products, {len(VEHICLES)} vehicle pages.')
+
+def build_pages(w):
+    urls = []
+    w(PREFIX + 'index.html', page_index())
+    w(PREFIX + 'shop.html', page_shop())
+    for p in PRODUCTS: w(f'{PREFIX}products/{p["id"]}.html', page_product(p))
+    for v in VEHICLES: w(f'{PREFIX}vehicles/{v["id"]}.html', page_vehicle(v))
+    w(PREFIX + 'about.html', page_about()); w(PREFIX + 'trade.html', page_trade()); w(PREFIX + 'contact.html', page_contact())
     if BLOG:
-        (ROOT / 'blog').mkdir(exist_ok=True); w('blog.html', page_blog())
-        for a in BLOG: w(f'blog/{a["slug"]}.html', page_post(a))
-    w('shipping-returns.html', page_shipping()); w('terms.html', page_terms()); w('privacy.html', page_privacy())
-    w('checkout.html', page_checkout()); w('thank-you.html', page_thanks()); w('404.html', page_404()); urls.remove('404.html')
+        w(PREFIX + 'blog.html', page_blog())
+        for a in BLOG: w(f'{PREFIX}blog/{a["slug"]}.html', page_post(a))
+    w(PREFIX + 'shipping-returns.html', page_shipping()); w(PREFIX + 'terms.html', page_terms()); w(PREFIX + 'privacy.html', page_privacy())
+    w(PREFIX + 'checkout.html', page_checkout()); w(PREFIX + 'thank-you.html', page_thanks())
+    if LANG != 'en': return
+    w('404.html', page_404())
     # retired product URLs keep a noindex stub that forwards to the nearest live page
     (ROOT / 'bundles').mkdir(exist_ok=True)
     for old, target in list(RETIRED.items()) + [('bundles/' + k, t) for k, t in KIT_REDIRECTS.items()]:
         pre = '' if old == '__bundles__' else '../'
         (ROOT / ('bundles.html' if old == '__bundles__' else (old + '.html' if old.startswith('bundles/') else f'products/{old}.html'))).write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Pegasus Depot</title><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0; url={pre}{target}"><link rel="canonical" href="{SITE_URL}/{target}"></head><body><p>This product is no longer listed. <a href="{pre}{target}">Continue to the shop</a>.</p></body></html>')
-    write_catalog_js(); write_shopify_csv(); write_sitemap([u for u in urls if u not in ('checkout.html', 'thank-you.html')])
-    print(f'Built {len(urls)} pages, {len(PRODUCTS)} products, {len(BUNDLES)} bundles, {len(VEHICLES)} vehicle pages.')
 
 if __name__ == '__main__':
     main()

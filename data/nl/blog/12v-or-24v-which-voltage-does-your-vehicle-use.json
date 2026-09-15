@@ -1,0 +1,59 @@
+{
+ "slug": "12v-of-24v-welke-spanning-heeft-je-voertuig",
+ "title": "12V of 24V: welke spanning heeft je voertuig?",
+ "meta": "Rijdt je bestelwagen, camper, touringcar of paardenvrachtwagen op 12V of 24V? Zo check je het in minuten, waarom het telt voor ventilators en dakluiken.",
+ "excerpt": "Een dakventilator of dakluik op de verkeerde spanning monteren is de meest voorkomende bestelfout die we zien. Een paar minuten met het handboek of een multimeter bespaart een hoop gedoe.",
+ "keywords": [
+  "12V of 24V",
+  "spanning voertuig",
+  "24V dakluik",
+  "12V dakventilator",
+  "spanningsomvormer"
+ ],
+ "vehicle": "general",
+ "read_min": 5,
+ "sections": [
+  {
+   "h2": "Waarom de spanningsvraag altijd eerst komt",
+   "html": "<p>Voordat je een dakventilator, een dakluik of een toerenregelaar kiest, stellen we altijd één vraag: rijdt het voertuig op 12 V of 24 V? Het klinkt basaal, maar het is veruit de meest voorkomende oorzaak van retouren en verbaasde telefoontjes. Een 12 V-ventilator die op een 24 V-systeem wordt aangesloten draait veel te snel, wordt heet en gaat vroegtijdig kapot. Een 24 V-ventilator op 12 V komt nauwelijks in beweging, als hij al draait.</p><p>Het goede nieuws is dat het antwoord meestal makkelijk te vinden is en dat de meeste producten die we op voorraad hebben voor beide systemen leverbaar zijn. In deze gids lopen we de gebruikelijke spanningen per voertuigtype door, geven we drie manieren om het zeker te weten en leggen we uit wat je doet als het product dat je wilt niet past bij het systeem dat je hebt.</p>"
+  },
+  {
+   "h2": "Bestelwagens en campers: bijna altijd 12 V",
+   "html": "<p>Lichte bestelwagens, omgebouwde bestelbussen, campers op een bestelwagen- of lichte vrachtwagenchassis en de meeste van personenauto's afgeleide voertuigen hebben een 12 V-boordnet. Dat geldt voor de populaire Europese basisvoertuigen waarop campers worden gebouwd, en voor de kleine en middelgrote bestelwagens van vakmensen, koeriers en hondenvervoerders.</p><p>Campers en camperbussen hebben vaak twee 12 V-circuits: de startaccu voor de motor en een huishoudaccu voor het woongedeelte. Beide zijn 12 V, maar sluit ventilatie altijd aan op de huishoudkant, zodat een ventilator die 's nachts blijft draaien je 's ochtends nooit met een lege startaccu achterlaat. Een dakventilator zoals de <a href='products/le-mans.html'>Le Mans</a> past hier perfect, en met een <a href='products/speedcontrol.html'>toerenregelaar</a> zet je hem 's nachts flink lager voor stil gebruik.</p><p>Eén waarschuwing: sommige grotere campers en paardenvrachtwagens zijn gebouwd op een zwaar vrachtwagenchassis, en dat chassis is vaak 24 V terwijl het woon- of paardengedeelte op 12 V is ingericht. Als vuistregel: weegt het voertuig meer dan 7,5 ton, neem dan niets aan. Controleer het.</p>"
+  },
+  {
+   "h2": "Vrachtwagens, touringcars en zware chassis: meestal 24 V",
+   "html": "<p>Zware vrachtwagens, bussen, touringcars, grotere ambulances op een vrachtwagenchassis en de meeste veewagens en professionele paardenvrachtwagens boven 7,5 ton rijden op 24 V. De hogere spanning betekent een lagere stroom bij hetzelfde vermogen, en dat past goed bij lange kabeltrajecten, grote startmotoren en de vele accessoires die een touringcar aan boord heeft.</p><p>Daarom is bus- en touringcarapparatuur ook rond 24 V ontworpen. Onze elektrische <a href='products/roof-hatch-electric-large.html'>dakluiken</a> en de <a href='products/control-unit.html'>bedieningsunit</a> zijn voor die markt ontwikkeld, dus beschouw ze als 24 V-apparatuur tenzij de productpagina anders aangeeft. Wil je zo'n dakluik in een 12 V-voertuig monteren, lees dan verder, want daar is een eenvoudige oplossing voor.</p><p>Sommige touringcars en speciale voertuigen hebben een 12 V-subcircuit voor passagiersstopcontacten, radio's en telematica. Dat maakt het voertuig nog geen 12 V-voertuig. Bepaal altijd eerst de hoofdspanning van het boordnet en beslis daarna op welk circuit je daadwerkelijk gaat aansluiten.</p>"
+  },
+  {
+   "h2": "Drie manieren om het zeker te weten",
+   "html": "<p>Vertrouw nooit op een gok of op wat een vorige eigenaar je heeft verteld. Elk van deze methodes geeft je binnen een paar minuten een duidelijk antwoord.</p><ul><li>Kijk naar de accu's. Eén 12 V-accu, of meerdere 12 V-accu's parallel geschakeld (plus aan plus, min aan min), betekent een 12 V-systeem. Twee 12 V-accu's in serie (de plus van de ene verbonden met de min van de andere) betekent 24 V. Veel vrachtwagens hebben ook een sticker op de accubak.</li><li>Controleer de lampen en zekeringen. Koplamp- en interieurlampen zijn meestal op de voet gemarkeerd met 12 V of 24 V. Relais onder het dashboard dragen ook een spanningsaanduiding.</li><li>Gebruik een multimeter. Zet hem op gelijkspanning (DC) en meet over de hoofdaccupolen met de motor uit. Ongeveer 12,5 tot 12,8 V betekent een gezond 12 V-systeem. Ongeveer 25 tot 26 V betekent 24 V. Met draaiende motor loopt de meting op tot ruwweg 14 V respectievelijk 28 V, en dat is simpelweg de dynamo die laadt.</li></ul><p>Monteer je apparatuur voor een klant en kun je het voertuig niet zelf bekijken, vraag dan om een foto van het accucompartiment. Dat neemt alle twijfel weg en kost de klant dertig seconden.</p>"
+  },
+  {
+   "h2": "Het product afstemmen op het systeem",
+   "html": "<p>De meeste van onze dakventilators en andere elektrische producten zijn in beide spanningen leverbaar, en de productpagina laat zien welke varianten beschikbaar zijn. De belangrijkste taak is dus de juiste kiezen bij het bestellen. De bedrading, de montage en de dakuitsparing zijn voor beide identiek; alleen de motor verschilt. Twijfel je bij het afrekenen, kies dan niets en stuur ons een bericht via de <a href='contact.html'>contactpagina</a>. We beantwoorden liever een korte vraag dan dat we een onderdeel moeten omruilen.</p><p>Dakluiken en hun bedieningsunit zijn de uitzondering, omdat ze uit de 24 V-touringcarwereld komen; controleer de spanning op de productpagina voordat je bestelt. Voor een 12 V-voertuig: vraag het ons eerst, want een spanningsomvormer is meestal de oplossing. Een omvormer zet 12 V om naar een stabiele 24 V, alleen voor het luikcircuit, zodat de rest van het voertuig precies blijft zoals het was. Geef ons het voertuig en het aantal luiken dat je wilt monteren door en we adviseren het juiste vermogen van de omvormer.</p><p>Dezelfde omvormeraanpak werkt ook andersom als je een 24 V-vrachtwagenchassis hebt en een favoriet 12 V-accessoire. Als vuistregel: kies een omvormer altijd met wat marge boven de nominale stroom van de apparatuur, zeker bij alles met een motor, want motoren trekken bij het opstarten meer stroom dan tijdens het draaien.</p>"
+  },
+  {
+   "h2": "Een paar bedradingsgewoontes die problemen voorkomen",
+   "html": "<p>Welke spanning je ook hebt, een ventilator of dakluik is maar zo betrouwbaar als het circuit waaraan hij hangt. Zeker elk nieuw circuit dicht bij de accu af, gebruik kabel die is berekend op de stroom en de kabellengte, en houd massa-aansluitingen kort en schoon. Op een 12 V-voertuig zijn de stromen bij hetzelfde vermogen hoger, dus de kabeldikte is op een lang traject naar het dak belangrijker dan de meeste mensen verwachten.</p><p>Label het circuit bij de zekeringkast. Als het voertuig van eigenaar wisselt of naar een werkplaats gaat, voorkomt een duidelijk label met 'dakventilator, 12 V huishoudcircuit' dat de volgende persoon moet gokken. Wordt het voertuig zakelijk gebruikt, bijvoorbeeld als <a href='vehicles/buses-coaches.html'>touringcar</a> of ambulance, bewaar dan een notitie met de spanning en de zekeringwaarden bij de voertuigpapieren.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Kan ik een 12 V-dakventilator op een 24 V-vrachtwagen gebruiken?",
+   "a": "Niet rechtstreeks. De motor zou te snel draaien en kapotgaan. Bestel de 24 V-versie van de ventilator, of gebruik als je al een 12 V-exemplaar hebt een goed gedimensioneerde omvormer van 24 V naar 12 V voor dat circuit."
+  },
+  {
+   "q": "Zijn elektrische dakluiken leverbaar in 12 V?",
+   "a": "De elektrische dakluiken en hun bedieningsunit zijn ontwikkeld voor 24 V-touringcar- en bussystemen, dus controleer de spanning op de productpagina. Voor een 12 V-voertuig: vraag het ons voordat je bestelt; een spanningsomvormer die is afgestemd op het aantal luiken dat je monteert is meestal de oplossing."
+  },
+  {
+   "q": "Mijn camper staat op een vrachtwagenchassis. Welke spanning heb ik?",
+   "a": "Mogelijk allebei. Het chassis kan 24 V zijn terwijl het woongedeelte op 12 V is gebouwd. Controleer de accu's in het woongedeelte los van de startaccu's voordat je bestelt."
+  },
+  {
+   "q": "Verschilt de dakuitsparing of montage tussen de 12 V- en 24 V-versie?",
+   "a": "Nee. De behuizing, de afdichting en de uitsparing zijn hetzelfde. Alleen de motor en zijn specificatie verschillen, dus je kunt de spanning op het allerlaatste moment bepalen."
+  }
+ ]
+}

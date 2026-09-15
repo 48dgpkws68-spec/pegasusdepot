@@ -1,63 +1,63 @@
 {
-  "slug": "livestock-transport-ventilation-welfare-and-airflow",
-  "title": "Livestock Transport Ventilation: Welfare and Airflow Explained",
-  "meta": "Practical livestock transport ventilation: managing heat, moisture and ammonia with floor inlets, wind-driven extractors and powered roof fans.",
-  "excerpt": "Heat, moisture and ammonia build up fast in a closed livestock body. Here is how to make it breathe: fresh air in low, stale air out through the roof, and extraction that works with the engine off.",
-  "keywords": [
-    "livestock transport ventilation",
-    "horsebox ventilation",
-    "cattle trailer ventilation",
-    "ammonia in horse trailer",
-    "wind-driven roof extractor"
-  ],
-  "vehicle": "livestock",
-  "read_min": 7,
-  "sections": [
-    {
-      "h2": "What ventilation does for an animal on the move",
-      "html": "<p>An animal in a trailer or lorry is doing three things at once. It is producing heat, it is breathing out moisture, and it is standing in bedding that starts to give off ammonia within an hour or two. None of those things are a problem in a field. All three are a problem in a closed box on a warm day, and they compound each other: hot, humid air makes it harder for the animal to lose heat, and ammonia irritates the airways just when the animal needs to breathe freely.</p><p>Good ventilation deals with all three. It carries heat and moisture out, it dilutes ammonia before it reaches an irritating level, and it does it without blasting the animals with a cold draught. That last point matters as much as the rest. An animal that has sweated up and is then hit by a cold stream of air at speed is being asked to cope with two extremes in a single journey.</p><p>What follows is the practical side: where the air should come in, where it should go out, and what to fit so that it keeps working when the vehicle is stationary. We are not going to quote you regulations, because those vary with species, journey length and country, and your transporter authorisation will spell them out. We are going to explain how to make the box breathe.</p>"
-    },
-    {
-      "h2": "Heat: the biggest risk on a stationary vehicle",
-      "html": "<p>A moving livestock vehicle ventilates itself to a degree. Air pressure across the body forces some flow through side vents and slats, and the movement helps. The moment the vehicle stops, at a market, at a border, in a traffic jam on a motorway in July, that flow stops with it and the temperature inside starts to climb. A trailer with several large animals inside is a heat source, and a stationary one has no way of shedding it except through the roof.</p><p>This is why roof extraction matters more than any amount of side ventilation. Hot air rises. A powered ventilator in the roof pulls it out at the point where it collects, and it does so whether or not the vehicle is moving. The <a href='products/le-mans.html'>Le Mans</a> rooftop ventilator moves up to 850 cubic metres of air an hour through a 230 mm cut-out, and for a horsebox or a small livestock trailer that is enough to make a stationary wait tolerable rather than dangerous.</p><p>As a rule of thumb, plan for extraction that will work with the engine off. On a trailer that means a feed from the towing vehicle or a small dedicated battery. On a lorry it means a feed from the auxiliary battery. If the fan only works when the engine is running, you have solved the wrong problem.</p>"
-    },
-    {
-      "h2": "Ammonia and moisture at bedding level",
-      "html": "<p>Ammonia comes from urine breaking down in the bedding, so it is produced at floor level and its concentration is highest there. Moisture from breath and from wet bedding adds to the same layer. An extractor in the roof, on its own, pulls air across the top of the compartment and leaves the low layer where it is, which is exactly where the animals' noses are when they lower their heads.</p><p>The solution is to bring the fresh air in low. Floor-level inlets let cool, dry air in at bedding height, where it lifts the ammonia and moisture upwards to be extracted through the roof. This low-in, high-out pattern is the single most useful principle in livestock ventilation, and it is the one most often missed.</p><p>It also keeps the animals more comfortable. Air coming in at floor level warms slightly as it rises through the compartment, so by the time it reaches the animals' bodies it is no longer a cold stream, and the flow across the bedding helps to keep it drier for longer.</p>"
-    },
-    {
-      "h2": "Floor inlets: fresh air where it is needed",
-      "html": "<p>A floor ventilator is a robust grille and housing set into the floor that lets air in at the lowest point of the compartment. Our <a href='products/floor-ventilator-129.html'>129 mm floor ventilator</a> is the usual choice for horseboxes and cattle trailers; the smaller 80 mm version suits partitions and small compartments, or where the floor structure is tight. Fit them towards the front of each compartment, away from where the animals stand, and where wash-down water will not pool.</p><p>Two inlets per compartment is a sensible starting point, one each side, so that the flow is even and no animal is standing in a dead spot. On a long trailer, add a pair per partitioned section. The inlets do not need to be large. The extractor in the roof does the work of moving the air; the inlets just decide where it comes from.</p><p>Keep the inlets clear. Bedding and straw find their way into any hole in the floor, and a blocked inlet turns the roof extractor into a pump with nothing to pump. Make checking them part of the wash-down routine.</p>"
-    },
-    {
-      "h2": "Wind-driven extractors: airflow without a battery",
-      "html": "<p>Not every trailer has a reliable electrical feed, and not every operator wants to run cables through a body that is hosed out every day. Wind-driven and passive extractors solve this. The <a href='products/turbo-ii.html'>Turbo II</a> is a rooftop unit with a rotor that spins in the airflow over the roof. The faster you drive, the more it extracts, and it needs no wiring at all. It fits a 128 mm cut-out. The Turbo III is the compact version for an 80 mm cut-out, useful on partitioned trailers where you want one per section.</p><p>The <a href='products/exhaust-ventilator.html'>exhaust ventilator</a> works on a different principle. It is a venturi cowl: air passing over its shaped housing creates a low pressure that draws air up from the compartment beneath. There are no moving parts, nothing to seize up and nothing to wash out. It fits a cut-out of up to 140 mm.</p><p>The limitation is obvious. Both types work when the vehicle is moving and do very little when it is stationary. For a trailer that does short local journeys and is never parked with animals aboard, they are ideal. For a lorry that queues at markets or waits at ports, pair them with a powered extractor for the standing time.</p>"
-    },
-    {
-      "h2": "Powered extraction for loading, waiting and hot days",
-      "html": " Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='shop.html'>shop</a> with photos and prices alongside, so it all arrives in one order.html'>livestock transport page</a> covers cattle, pig and sheep bodies as well.</p>"
-    },
-    {
-      "h2": "Layout rules of thumb",
-      "html": "<p>These are the rules we come back to on every livestock body, whatever the species.</p><ul><li>Low in, high out. Inlets at bedding level, extraction at the roof.</li><li>One extractor per compartment. A partition stops airflow as well as animals.</li><li>Never point an inlet directly at where an animal stands. Fresh air should cross the bedding, not the animal.</li><li>Plan for the engine being off. Powered extraction needs a feed that works stationary.</li><li>Match the extractor to the space. A pony trailer does not need the airflow of a cattle lorry, and too much draught is as much a welfare problem as too little.</li><li>Make it cleanable. Every grille, inlet and housing will be hosed, so choose parts that come apart and drain.</li></ul><p>If you are building or refurbishing a livestock body and want a second opinion on where to put things, send us a sketch with the compartment sizes. As an independent European specialist we supply fitters and body builders across the continent from our own Dutch stock, and we are happy to talk through the layout before you cut anything.</p>"
-    }
-  ],
-  "faq": [
-    {
-      "q": "Is a wind-driven extractor enough for a livestock trailer?",
-      "a": "For short local journeys where the trailer is never parked with animals aboard, a wind-driven or venturi extractor works well and needs no wiring. If the vehicle waits at markets, ports or in traffic with animals inside, add a powered roof fan that works with the engine off."
-    },
-    {
-      "q": "Where should the air inlets go in a livestock trailer?",
-      "a": "Low, at bedding level, and towards the front of each compartment away from where the animals stand. Fresh air in low and stale air out through the roof lifts ammonia and moisture away from the animals' heads."
-    },
-    {
-      "q": "How do I reduce ammonia in a horsebox?",
-      "a": "Bring fresh air in at floor level with floor ventilators, extract at the roof with a powered fan, and keep the inlets clear of bedding. Ventilation dilutes ammonia; it does not remove the need for clean bedding."
-    },
-    {
-      "q": "Will a roof fan create a draught on the animals?",
-      "a": "Not if the inlets are placed properly. A roof extractor pulls air upwards and out. The draught comes from where the air enters, so keep inlets low and away from the animals, and use a speed controller to run the fan gently on cool days."
-    }
-  ]
+ "slug": "livestock-transport-ventilation-welfare-and-airflow",
+ "title": "Livestock Transport Ventilation: Welfare and Airflow Explained",
+ "meta": "Practical livestock transport ventilation: managing heat, moisture and ammonia with floor inlets, wind-driven extractors and powered roof fans.",
+ "excerpt": "Heat, moisture and ammonia build up fast in a closed livestock body. Here is how to make it breathe: fresh air in low, stale air out through the roof, and extraction that works with the engine off.",
+ "keywords": [
+  "livestock transport ventilation",
+  "horsebox ventilation",
+  "cattle trailer ventilation",
+  "ammonia in horse trailer",
+  "wind-driven roof extractor"
+ ],
+ "vehicle": "livestock",
+ "read_min": 7,
+ "sections": [
+  {
+   "h2": "What ventilation does for an animal on the move",
+   "html": "<p>An animal in a trailer or lorry is doing three things at once. It is producing heat, it is breathing out moisture, and it is standing in bedding that starts to give off ammonia within an hour or two. None of those things are a problem in a field. All three are a problem in a closed box on a warm day, and they compound each other: hot, humid air makes it harder for the animal to lose heat, and ammonia irritates the airways just when the animal needs to breathe freely.</p><p>Good ventilation deals with all three. It carries heat and moisture out, it dilutes ammonia before it reaches an irritating level, and it does it without blasting the animals with a cold draught. That last point matters as much as the rest. An animal that has sweated up and is then hit by a cold stream of air at speed is being asked to cope with two extremes in a single journey.</p><p>What follows is the practical side: where the air should come in, where it should go out, and what to fit so that it keeps working when the vehicle is stationary. We are not going to quote you regulations, because those vary with species, journey length and country, and your transporter authorisation will spell them out. We are going to explain how to make the box breathe.</p>"
+  },
+  {
+   "h2": "Heat: the biggest risk on a stationary vehicle",
+   "html": "<p>A moving livestock vehicle ventilates itself to a degree. Air pressure across the body forces some flow through side vents and slats, and the movement helps. The moment the vehicle stops, at a market, at a border, in a traffic jam on a motorway in July, that flow stops with it and the temperature inside starts to climb. A trailer with several large animals inside is a heat source, and a stationary one has no way of shedding it except through the roof.</p><p>This is why roof extraction matters more than any amount of side ventilation. Hot air rises. A powered ventilator in the roof pulls it out at the point where it collects, and it does so whether or not the vehicle is moving. The <a href='products/le-mans.html'>Le Mans</a> rooftop ventilator moves up to 850 cubic metres of air an hour through a 230 mm cut-out, and for a horsebox or a small livestock trailer that is enough to make a stationary wait tolerable rather than dangerous.</p><p>As a rule of thumb, plan for extraction that will work with the engine off. On a trailer that means a feed from the towing vehicle or a small dedicated battery. On a lorry it means a feed from the auxiliary battery. If the fan only works when the engine is running, you have solved the wrong problem.</p>"
+  },
+  {
+   "h2": "Ammonia and moisture at bedding level",
+   "html": "<p>Ammonia comes from urine breaking down in the bedding, so it is produced at floor level and its concentration is highest there. Moisture from breath and from wet bedding adds to the same layer. An extractor in the roof, on its own, pulls air across the top of the compartment and leaves the low layer where it is, which is exactly where the animals' noses are when they lower their heads.</p><p>The solution is to bring the fresh air in low. Floor-level inlets let cool, dry air in at bedding height, where it lifts the ammonia and moisture upwards to be extracted through the roof. This low-in, high-out pattern is the single most useful principle in livestock ventilation, and it is the one most often missed.</p><p>It also keeps the animals more comfortable. Air coming in at floor level warms slightly as it rises through the compartment, so by the time it reaches the animals' bodies it is no longer a cold stream, and the flow across the bedding helps to keep it drier for longer.</p>"
+  },
+  {
+   "h2": "Floor inlets: fresh air where it is needed",
+   "html": "<p>A floor ventilator is a robust grille and housing set into the floor that lets air in at the lowest point of the compartment. Our <a href='products/floor-ventilator-129.html'>129 mm floor ventilator</a> is the usual choice for horseboxes and cattle trailers; the smaller 80 mm version suits partitions and small compartments, or where the floor structure is tight. Fit them towards the front of each compartment, away from where the animals stand, and where wash-down water will not pool.</p><p>Two inlets per compartment is a sensible starting point, one each side, so that the flow is even and no animal is standing in a dead spot. On a long trailer, add a pair per partitioned section. The inlets do not need to be large. The extractor in the roof does the work of moving the air; the inlets just decide where it comes from.</p><p>Keep the inlets clear. Bedding and straw find their way into any hole in the floor, and a blocked inlet turns the roof extractor into a pump with nothing to pump. Make checking them part of the wash-down routine.</p>"
+  },
+  {
+   "h2": "Wind-driven extractors: airflow without a battery",
+   "html": "<p>Not every trailer has a reliable electrical feed, and not every operator wants to run cables through a body that is hosed out every day. Wind-driven and passive extractors solve this. The <a href='products/turbo-ii.html'>Turbo II</a> is a rooftop unit with a rotor that spins in the airflow over the roof. The faster you drive, the more it extracts, and it needs no wiring at all. It fits a 128 mm cut-out. The Turbo III is the compact version for an 80 mm cut-out, useful on partitioned trailers where you want one per section.</p><p>The <a href='products/exhaust-ventilator.html'>exhaust ventilator</a> works on a different principle. It is a venturi cowl: air passing over its shaped housing creates a low pressure that draws air up from the compartment beneath. There are no moving parts, nothing to seize up and nothing to wash out. It fits a cut-out of up to 140 mm.</p><p>The limitation is obvious. Both types work when the vehicle is moving and do very little when it is stationary. For a trailer that does short local journeys and is never parked with animals aboard, they are ideal. For a lorry that queues at markets or waits at ports, pair them with a powered extractor for the standing time.</p>"
+  },
+  {
+   "h2": "Powered extraction for loading, waiting and hot days",
+   "html": "<p>The powered roof ventilator is the piece that works when nothing else does. Fit it centrally in the roof of each compartment, wire it through a speed controller so that it can tick over on low during a cool journey and run on high in a queue, and give it a switch the driver can reach. On a horsebox the Le Mans or the Round, both on a 230 mm cut-out and both moving up to 850 cubic metres an hour, are the usual choice. Which one suits depends on the roof profile and the look you want.</p><p>Run the fan while loading. A fan on high during loading pulls the diesel fumes and dust out of the compartment before the animals are shut in, and it sets the airflow pattern before the doors close. Run it during unloading too, when the compartment is at its warmest and the animals are at their most stressed.</p><p>Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='products/le-mans.html'>product page</a> with photos and prices alongside, so it all arrives in one order. The <a href='vehicles/animal-transport.html'>livestock transport page</a> covers cattle, pig and sheep bodies as well.</p>"
+  },
+  {
+   "h2": "Layout rules of thumb",
+   "html": "<p>These are the rules we come back to on every livestock body, whatever the species.</p><ul><li>Low in, high out. Inlets at bedding level, extraction at the roof.</li><li>One extractor per compartment. A partition stops airflow as well as animals.</li><li>Never point an inlet directly at where an animal stands. Fresh air should cross the bedding, not the animal.</li><li>Plan for the engine being off. Powered extraction needs a feed that works stationary.</li><li>Match the extractor to the space. A pony trailer does not need the airflow of a cattle lorry, and too much draught is as much a welfare problem as too little.</li><li>Make it cleanable. Every grille, inlet and housing will be hosed, so choose parts that come apart and drain.</li></ul><p>If you are building or refurbishing a livestock body and want a second opinion on where to put things, send us a sketch with the compartment sizes. As an independent European specialist we supply fitters and body builders across the continent from our own Dutch stock, and we are happy to talk through the layout before you cut anything.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is a wind-driven extractor enough for a livestock trailer?",
+   "a": "For short local journeys where the trailer is never parked with animals aboard, a wind-driven or venturi extractor works well and needs no wiring. If the vehicle waits at markets, ports or in traffic with animals inside, add a powered roof fan that works with the engine off."
+  },
+  {
+   "q": "Where should the air inlets go in a livestock trailer?",
+   "a": "Low, at bedding level, and towards the front of each compartment away from where the animals stand. Fresh air in low and stale air out through the roof lifts ammonia and moisture away from the animals' heads."
+  },
+  {
+   "q": "How do I reduce ammonia in a horsebox?",
+   "a": "Bring fresh air in at floor level with floor ventilators, extract at the roof with a powered fan, and keep the inlets clear of bedding. Ventilation dilutes ammonia; it does not remove the need for clean bedding."
+  },
+  {
+   "q": "Will a roof fan create a draught on the animals?",
+   "a": "Not if the inlets are placed properly. A roof extractor pulls air upwards and out. The draught comes from where the air enters, so keep inlets low and away from the animals, and use a speed controller to run the fan gently on cool days."
+  }
+ ]
 }

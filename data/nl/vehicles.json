@@ -1,0 +1,225 @@
+{
+ "vehicles": [
+  {
+   "id": "campers",
+   "name": "Campers & camperbussen",
+   "nav": "Campers",
+   "eyebrow": "Recreatievoertuigen",
+   "headline": "Koel slapen. Droog wakker worden.",
+   "intro": "Condens op de ramen, kookluchtjes die blijven hangen en nachten waarin het te warm is om te slapen: elke camperbezitter kent het. Een goede dakventilator met toerenregelaar ververst de lucht in een paar minuten en draait de hele nacht fluisterstil op de huishoudaccu.",
+   "pains": [
+    {
+     "title": "Condens & schimmel",
+     "text": "Twee mensen ademen per nacht ruim een liter vocht uit. Zuig het af voordat het in de wanden trekt."
+    },
+    {
+     "title": "Keuken- en badkamerluchtjes",
+     "text": "Een Winglet van 3 W boven het kookstel of in de natte cel voert stoom en geurtjes direct bij de bron af."
+    },
+    {
+     "title": "Warme nachten",
+     "text": "850 m³/h op een toerenregelaar trekt koele avondlucht door de hele leefruimte, zonder lawaai."
+    }
+   ],
+   "faq": [
+    {
+     "q": "Trekt een dakventilator mijn huishoudaccu leeg?",
+     "a": "De Winglet verbruikt 3 W. De Ronde dakventilator en de Le Mans verbruiken 80 W op vol vermogen, maar met de Speedcontrol draai je ze 's nachts meestal op 10 tot 20 W."
+    },
+    {
+     "q": "Kan ik mijn dakdragers of zonnepanelen blijven gebruiken?",
+     "a": "De Turbo III (59,5 mm) en de afzuigventilator zijn ontworpen om onder dakdragers te passen. De Le Mans is maar 64 mm hoog en past prima naast zonnepanelen; check de maattekening voor de exacte afmetingen."
+    }
+   ]
+  },
+  {
+   "id": "horse-trailers",
+   "name": "Paardentrailers & paardenvrachtwagens",
+   "nav": "Paardentrailers",
+   "eyebrow": "Paardensport",
+   "headline": "Rustige paarden komen fit aan.",
+   "intro": "Hitte, vocht en ammoniak hopen zich snel op in een gesloten paardenruimte. Onze ventilators, dakluiken en LED-lampen met blauwe nachtstand worden door toonaangevende bouwers van paardenvrachtwagens in heel Europa voorgeschreven om één reden: de paarden reizen beter.",
+   "pains": [
+    {
+     "title": "Hittestress onderweg",
+     "text": "Een Le Mans zuigt 850 m³/h af: de complete lucht van een tweepaardsruimte wordt elke paar minuten ververst."
+    },
+    {
+     "title": "Ammoniak & vocht",
+     "text": "Vloerventilators voeren zware gassen op vloerniveau af en voeden de dakventilator met verse lucht."
+    },
+    {
+     "title": "Laden bij het ochtendgloren",
+     "text": "Ronde LED-plafonnières met blauwe nachtstand houden de paarden rustig terwijl jij aan het werk bent."
+    }
+   ],
+   "faq": [
+    {
+     "q": "12V of 24V?",
+     "a": "Paardentrailers achter een auto of bestelwagen: 12V. Paardenvrachtwagens op een vrachtwagenchassis: meestal 24V. Bij twijfel controleer je het accusysteem van het voertuig."
+    },
+    {
+     "q": "Kan ik de ventilatie in de winter dichtzetten?",
+     "a": "Ja, met het V12- of Flower Power-binnenventiel. Het sneeuwfilter houdt sneeuw en insecten uit de inlaat."
+    }
+   ]
+  },
+  {
+   "id": "commercial-vans",
+   "name": "Bestelwagens & servicevoertuigen",
+   "nav": "Bestelwagens",
+   "eyebrow": "Carrosseriebouwers & wagenparken",
+   "headline": "Een frisse bus verkoopt zichzelf.",
+   "intro": "Gereedschap, gasflessen, chemicaliën, voedsel, honden of mensen: wat er ook achterin meerijdt, hitte en muffe lucht verkorten de levensduur. De lage dakventilators uit ons assortiment passen in elke ombouw zonder in te leveren op dakdragers of aerodynamica.",
+   "pains": [
+    {
+     "title": "Hitte in de laadruimte",
+     "text": "Een geparkeerde bestelwagen loopt binnen op tot 60 °C. De Le Mans of een windgedreven Turbo II houdt temperatuur en condens laag."
+    },
+    {
+     "title": "Gasflessen & oplosmiddelen",
+     "text": "Vloerventilators voeren zware gassen af op het laagste punt, precies waar ze zich verzamelen."
+    },
+    {
+     "title": "Dakdragers",
+     "text": "Afzuigventilator, Turbo II en Turbo III zijn allemaal ontworpen om onder de meeste dakdragers te passen."
+    }
+   ],
+   "faq": [
+    {
+     "q": "Elektrisch of windgedreven?",
+     "a": "Windgedreven (Turbo II, Turbo III, afzuigventilator) is stil, kost niets in gebruik en is onderhoudsvrij, maar werkt alleen tijdens het rijden. Elektrisch (Le Mans, Ronde dakventilator, Winglet) ventileert wanneer jij dat wilt, ook stilstaand."
+    },
+    {
+     "q": "Leveren jullie aan wagenparken en carrosseriebouwers?",
+     "a": "Ja. Neem contact op voor staffelprijzen en facturatie excl. btw."
+    }
+   ]
+  },
+  {
+   "id": "buses-coaches",
+   "name": "Bussen & touringcars",
+   "nav": "Bussen",
+   "eyebrow": "Openbaar vervoer",
+   "headline": "Gekeurde dakluiken. Bewezen dakventilators.",
+   "intro": "Stadsbussen, touringcars en minibussen hebben ventilatie nodig die voldoet aan strenge eisen voor luchtverplaatsing, geluid en veiligheid. Onze ECE 43R-dakluiken met nooduitgang conform EC 2001/85 en onze EMC-gekeurde 24V-ventilators worden gemonteerd door busbouwers en wagenparkwerkplaatsen in heel Europa.",
+   "pains": [
+    {
+     "title": "Nooduitgang conform de regels",
+     "text": "Dakluiken van 970 x 530 mm volgens EC 2001/85, met noodhamer, handbediend of elektrisch."
+    },
+    {
+     "title": "Passagierscomfort",
+     "text": "24V Le Mans-ventilators leveren 850 m³/h met slechts 52 dB(A), regelbaar in toerental."
+    },
+    {
+     "title": "Retrofit & nieuwbouw",
+     "text": "Voorgeboorde buitenframes en een dakdikte van 30 tot 70 mm maken de montage eenvoudig."
+    }
+   ],
+   "faq": [
+    {
+     "q": "Zijn de dakluiken gehomologeerd?",
+     "a": "Ja. De glazen koepel is gehomologeerd volgens ECE 43R, de luiken volgens EC 2004/104, en de uitvoeringen van 970 x 530 mm voldoen als nooduitgang aan EC 2001/85."
+    },
+    {
+     "q": "Werken de elektrische dakluiken op 12V?",
+     "a": "Het zijn 24V-units. Voor 12V-voertuigen leveren we op aanvraag een omvormer van 12V naar 24V (één per bedieningsunit)."
+    }
+   ]
+  },
+  {
+   "id": "ambulance-emergency",
+   "name": "Ambulances & hulpdiensten",
+   "nav": "Ambulances",
+   "eyebrow": "Hulpdiensten",
+   "headline": "Schone lucht voor bemanning en patiënt.",
+   "intro": "Ambulances, politiebussen, brandweervoertuigen en mobiele commandoposten draaien urenlang met de deuren dicht. Afzuiging van aerosolen en geuren, betrouwbare binnenverlichting en EMC-gekeurde elektronica zijn geen optie. Ze zijn de eis.",
+   "pains": [
+    {
+     "title": "Aerosolen & geuren",
+     "text": "De Le Mans zuigt 850 m³/h af uit de patiëntenruimte, regelbaar met de Speedcontrol."
+    },
+    {
+     "title": "EMC",
+     "text": "Al onze motoren zijn EMC-gekeurd, zodat ze nooit storen op medische of radioapparatuur."
+    },
+    {
+     "title": "Werkverlichting",
+     "text": "IK10 rechthoekige LED-plafonnières: 39 witte LED's om te werken, 12 blauwe voor een rustige nachtstand."
+    }
+   ],
+   "faq": [
+    {
+     "q": "Kan de ventilator continu draaien?",
+     "a": "Ja. De Le Mans is ontworpen voor continubedrijf; met de Speedcontrol draait hij urenlang stil op een lager toerental."
+    }
+   ]
+  },
+  {
+   "id": "animal-transport",
+   "name": "Veevervoer & dierentransport",
+   "nav": "Veevervoer",
+   "eyebrow": "Dierenwelzijn",
+   "headline": "Ventilatie die aan de welzijnsregels voldoet en tegen een schoonmaakbeurt kan.",
+   "intro": "Bij het vervoer van runderen, varkens, pluimvee en bijzondere dieren zijn de eisen aan ventilatie hoog door de dierdichtheid, de warmtelast en organisch vocht. Onze ABS-ventilators, vloerventilators en ventielen zijn bestand tegen een zware agrarische omgeving en veelvuldig reinigen.",
+   "pains": [
+    {
+     "title": "Dichtheid & hitte",
+     "text": "Meerdere borstelloze Le Mans LL-afzuigers houden de lucht in opbouwen met meerdere dekken in beweging."
+    },
+    {
+     "title": "Vocht & ammoniak",
+     "text": "Vloerventilators voeren zware gassen af; V12-ventielen sluiten het systeem af tijdens het reinigen."
+    },
+    {
+     "title": "Stilstand",
+     "text": "Elektrische ventilatie op een toerenregelaar houdt de lucht in beweging tijdens het laden en wachten."
+    }
+   ],
+   "faq": []
+  },
+  {
+   "id": "marine",
+   "name": "Boten & scheepvaart",
+   "nav": "Scheepvaart",
+   "eyebrow": "Op het water",
+   "headline": "Droge kajuiten, frisse bakskisten, geen schimmel.",
+   "intro": "Zout, vocht en krappe kajuiten maken ventilatie aan boord onmisbaar. Compacte windgedreven ventilators voor bakskisten en motorruimtes, elektrische afzuigers voor kombuis en toilet, en gepolijste metalen ventielen voor het interieur.",
+   "pains": [
+    {
+     "title": "Vocht in de kajuit",
+     "text": "Een Ronde dakventilator op een toerenregelaar ververst de kajuitlucht 's nachts zonder iemand wakker te maken."
+    },
+    {
+     "title": "Bakskisten & motorruimte",
+     "text": "Turbo III en afzuigventilators ventileren compartimenten passief zodra er wind staat."
+    }
+   ],
+   "faq": []
+  },
+  {
+   "id": "dog-transport",
+   "name": "Hondenvervoer & K9-transport",
+   "nav": "Hondenvervoer",
+   "eyebrow": "Politie, beveiliging, fokkers, jagers",
+   "headline": "Nooit een oververhitte hond achterin.",
+   "intro": "Honden in een gesloten voertuig lopen binnen enkele minuten gevaar. Combineer een windgedreven Turbo II voor onderweg, een vloerventilator voor verse lucht en een Winglet van 3 W die blijft afzuigen als de motor uit staat.",
+   "pains": [
+    {
+     "title": "Geparkeerde voertuigen",
+     "text": "De Winglet verbruikt maar 3 W en draait dus urenlang op de voertuigaccu."
+    },
+    {
+     "title": "Geuren",
+     "text": "De luchtstroom van vloer naar dak voert geuren naar buiten in plaats van naar de cabine."
+    },
+    {
+     "title": "Schoonspuiten",
+     "text": "ABS- en PC/ABS-onderdelen kunnen tegen veelvuldig reinigen."
+    }
+   ],
+   "faq": []
+  }
+ ]
+}

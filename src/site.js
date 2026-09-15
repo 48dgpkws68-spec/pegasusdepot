@@ -15,10 +15,50 @@
   });
   $('#burger')?.addEventListener('click', () => $('#mnav').classList.add('open'));
   $('#mnav-close')?.addEventListener('click', () => $('#mnav').classList.remove('open'));
+  /* language: remember an explicit choice; suggest the other language once when the browser prefers it */
+  (function () {
+    const cur = document.documentElement.lang || 'en';
+    let choice = null; try { choice = localStorage.getItem('pegasus_lang'); } catch (e) {}
+    $$('[data-lang]').forEach(a => a.addEventListener('click', () => { try { localStorage.setItem('pegasus_lang', a.dataset.lang); } catch (e) {} }));
+    $$('.lang-hint, .lang-row').forEach(a => a.addEventListener('click', () => { try { localStorage.setItem('pegasus_lang', a.getAttribute('lang')); } catch (e) {} }));
+    const bar = $('#lang-bar'); if (!bar || choice) return;
+    const pref = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+    const want = pref.startsWith('nl') ? 'nl' : 'en';
+    if (want === cur) return;
+    const alt = bar.dataset.alt;
+    bar.innerHTML = want === 'nl'
+      ? '<span>Deze site is ook in het Nederlands beschikbaar.</span><a class="btn btn-dark btn-sm" href="' + alt + '" hreflang="nl" lang="nl">Naar Nederlands</a><button class="x" type="button">Nee, blijf in het Engels</button>'
+      : '<span lang="en">This site is also available in English.</span><a class="btn btn-dark btn-sm" href="' + alt + '" hreflang="en" lang="en">Switch to English</a><button class="x" type="button" lang="nl">Nee, blijf in het Nederlands</button>';
+    bar.hidden = false;
+    bar.querySelector('a').addEventListener('click', () => { try { localStorage.setItem('pegasus_lang', want); } catch (e) {} });
+    bar.querySelector('.x').addEventListener('click', () => { try { localStorage.setItem('pegasus_lang', cur); } catch (e) {} bar.hidden = true; });
+  })();
   const C = window.CATALOG;
   if (!C) return;
   const ROOT = document.documentElement.getAttribute('data-root') || '';
-  const money = (n) => '€' + (Math.round(n * 100) / 100).toLocaleString('en-IE', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  const PAGES = document.documentElement.getAttribute('data-pages') ?? ROOT;
+  const NL = document.documentElement.lang === 'nl';
+  const T = NL ? {
+    'Added to your cart': 'Toegevoegd aan je winkelwagen', 'Restore previous cart': 'Vorige winkelwagen herstellen', 'Your cart is empty': 'Je winkelwagen is leeg',
+    'Add a rooftop ventilator, an interior valve or an accessory to get started.': 'Voeg een dakventilator, een binnenventiel of een accessoire toe om te beginnen.', 'Browse the shop': 'Naar de shop',
+    'Decrease': 'Minder', 'Increase': 'Meer', 'Remove': 'Verwijderen', 'Shipping': 'Verzending', 'Quoted': 'Op offerte', 'Free': 'Gratis',
+    'Shipping to the UK, Switzerland and Norway is quoted before you order.': 'Verzending naar het VK, Zwitserland en Noorwegen wordt vooraf per offerte bepaald.',
+    'Free EU shipping unlocked.': 'Gratis verzending in de EU behaald.', 'Orders with roof hatches carry a flat': 'Bestellingen met dakluiken krijgen een vaste toeslag van', 'oversize fee.': 'voor groot formaat.',
+    'You have unlocked free EU shipping.': 'Je hebt gratis verzending in de EU behaald.', 'Add': 'Nog', 'for free EU shipping': 'voor gratis verzending in de EU', '(plus a flat': '(plus een vaste toeslag van', 'oversize fee for roof hatches)': 'voor dakluiken)',
+    'Shipping calculated for': 'Verzending berekend voor', '; change your country at checkout.': '; kies je land bij het afrekenen.', 'Your cart is empty.': 'Je winkelwagen is leeg.',
+    'Quote via contact page': 'Offerte via contactpagina', '(incl. hatch oversize)': '(incl. toeslag dakluik)', 'Request shipping quote': 'Verzendofferte aanvragen', 'Request pallet quote': 'Palletofferte aanvragen', 'Continue to secure checkout': 'Doorgaan naar veilig afrekenen',
+    'Cart restored': 'Winkelwagen hersteld', 'See all': 'Bekijk alle', 'results': 'resultaten', 'No results. Try "Le Mans", "12V", "hatch" or an article number.': 'Geen resultaten. Probeer "Le Mans", "12V", "dakluik" of een artikelnummer.',
+    'Article no.': 'Artikelnr.', 'Quote': 'Offerte', 'RRP': 'Adviesprijs', 'below RRP': 'onder adviesprijs', 'ex VAT': 'excl. btw', 'incl.': 'incl.', 'for': 'voor', 'sets': 'sets',
+    'Not available with the current selection; selecting it switches the other option': 'Niet beschikbaar bij de huidige keuze; als je dit kiest wisselt de andere optie mee',
+    'product': 'product', 'products': 'producten', 'Show': 'Toon', 'No products match these filters': 'Geen producten voldoen aan deze filters', 'Try fewer filters or search by article number.': 'Probeer minder filters of zoek op artikelnummer.',
+    'One item needs manual handling. Taking you to our contact page.': 'Eén artikel vraagt handmatige afhandeling. We brengen je naar de contactpagina.', 'Message received': 'Bericht ontvangen', 'Sending…': 'Versturen…',
+    'Please send me the technical datasheet and drawing for article': 'Stuur mij de technische datasheet en tekening van artikel', 'Please send me a quote for:': 'Stuur mij een offerte voor:', 'Vehicle / application:': 'Voertuig / toepassing:',
+    'my country': 'mijn land', 'Please quote shipping to': 'Graag een verzendofferte naar', 'for this order:': 'voor deze bestelling:', 'Order value:': 'Orderwaarde:', 'incl. VAT.': 'incl. btw.', 'Delivery address:': 'Bezorgadres:',
+    'Thank you, we will be in touch within 24 hours.': 'Bedankt, we nemen binnen 24 uur contact op.',
+    'Netherlands': 'Nederland', 'Belgium': 'België', 'Germany': 'Duitsland', 'France': 'Frankrijk', 'Austria': 'Oostenrijk', 'Denmark': 'Denemarken', 'Luxembourg': 'Luxemburg', 'Italy': 'Italië', 'Spain': 'Spanje', 'Sweden': 'Zweden', 'Ireland': 'Ierland', 'Poland': 'Polen', 'Czechia': 'Tsjechië', 'Hungary': 'Hongarije', 'Romania': 'Roemenië', 'Greece': 'Griekenland', 'Other EU': 'Ander EU-land', 'United Kingdom': 'Verenigd Koninkrijk', 'Switzerland': 'Zwitserland', 'Norway': 'Noorwegen'
+  } : {};
+  const t = (s) => T[s] || s;
+  const money = (n) => '€' + (Math.round(n * 100) / 100).toLocaleString(NL ? 'nl-NL' : 'en-IE', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   const exn = (n) => Math.round(n / 1.21 * 100) / 100;
   const exv = (v) => v.price_ex != null ? v.price_ex : exn(v.price);
   const byId = {}; C.products.forEach(p => byId[p.id] = p);
@@ -35,7 +75,7 @@
     const k = lineKey(line);
     const ex = cart.find(l => lineKey(l) === k);
     if (ex) ex.qty += line.qty; else cart.push(line);
-    save(); openCart(); toast('Added to your cart');
+    save(); openCart(); toast(t('Added to your cart'));
   }
   function setQty(i, q) { if (q <= 0) cart.splice(i, 1); else cart[i].qty = q; save(); }
   const subtotal = () => cart.reduce((s, l) => s + l.price * l.qty, 0);
@@ -56,16 +96,16 @@
     const body = $('#cart-body'); if (!body) return;
     if (!cart.length) {
       let restore = '';
-      try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines && h.lines.length && Date.now() - h.t < 2 * 3600 * 1000) restore = '<br><br><button class="btn btn-sm" data-restore>Restore previous cart</button>'; } catch (e) {}
-      body.innerHTML = '<div class="empty"><b>Your cart is empty</b>Add a rooftop ventilator, an interior valve or an accessory to get started.<br><br><a class="btn btn-dark btn-sm" href="' + ROOT + 'shop.html">Browse the shop</a>' + restore + '</div>';
+      try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines && h.lines.length && Date.now() - h.t < 2 * 3600 * 1000) restore = '<br><br><button class="btn btn-sm" data-restore>' + t('Restore previous cart') + '</button>'; } catch (e) {}
+      body.innerHTML = '<div class="empty"><b>' + t('Your cart is empty') + '</b>' + t('Add a rooftop ventilator, an interior valve or an accessory to get started.') + '<br><br><a class="btn btn-dark btn-sm" href="' + PAGES + 'shop.html">' + t('Browse the shop') + '</a>' + restore + '</div>';
     } else {
       body.innerHTML = cart.map((l, i) => `
         <div class="ci">
           <img src="${ROOT + l.image}" alt="">
           <div><b>${l.title}</b><span>${l.sub || ''}</span>
-            <div class="ci-qty"><button data-q="${i}:-1" aria-label="Decrease">−</button><i>${l.qty}</i><button data-q="${i}:1" aria-label="Increase">+</button></div>
+            <div class="ci-qty"><button data-q="${i}:-1" aria-label="${t('Decrease')}">−</button><i>${l.qty}</i><button data-q="${i}:1" aria-label="${t('Increase')}">+</button></div>
           </div>
-          <div class="ci-price">${money(l.price * l.qty)}<br><a class="rm" data-rm="${i}" href="#">Remove</a></div>
+          <div class="ci-price">${money(l.price * l.qty)}<br><a class="rm" data-rm="${i}" href="#">${t('Remove')}</a></div>
         </div>`).join('');
     }
     const st = subtotal();
@@ -74,26 +114,26 @@
     const sh = shipping(st, country);
     const ship = sh.price || 0;
     $('#cart-sub').textContent = money(st);
-    const lbl = $('#cart-ship-lbl'); if (lbl) lbl.textContent = 'Shipping (' + sh.short + ')';
-    $('#cart-ship').textContent = st === 0 ? '–' : sh.quote ? 'Quoted' : (ship ? money(ship) : 'Free');
+    const lbl = $('#cart-ship-lbl'); if (lbl) lbl.textContent = t('Shipping') + ' (' + sh.short + ')';
+    $('#cart-ship').textContent = st === 0 ? '–' : sh.quote ? t('Quoted') : (ship ? money(ship) : t('Free'));
     $('#cart-total').textContent = money(st + ship);
     const bar = $('#ship-bar'); const txt = $('#ship-txt');
     if (bar) { bar.style.width = Math.min(100, st / free * 100) + '%'; }
-    if (txt) { txt.innerHTML = sh.quote ? 'Shipping to the UK, Switzerland and Norway is quoted before you order.' : st >= free ? (sh.hatches ? '<b>Free EU shipping unlocked.</b> Orders with roof hatches carry a flat €' + SHIP.oversize_price + ' oversize fee.' : '<b>You have unlocked free EU shipping.</b>') : 'Add <b>' + money(free - st) + '</b> for free EU shipping' + (sh.hatches ? ' (plus a flat €' + SHIP.oversize_price + ' oversize fee for roof hatches)' : ''); }
+    if (txt) { txt.innerHTML = sh.quote ? t('Shipping to the UK, Switzerland and Norway is quoted before you order.') : st >= free ? (sh.hatches ? '<b>' + t('Free EU shipping unlocked.') + '</b> ' + t('Orders with roof hatches carry a flat') + ' €' + SHIP.oversize_price + ' ' + t('oversize fee.') : '<b>' + t('You have unlocked free EU shipping.') + '</b>') : t('Add') + ' <b>' + money(free - st) + '</b> ' + t('for free EU shipping') + (sh.hatches ? ' ' + t('(plus a flat') + ' €' + SHIP.oversize_price + ' ' + t('oversize fee for roof hatches)') : ''); }
     if (bar) bar.parentElement.style.display = sh.quote ? 'none' : '';
-    const dn = $('#drawer-note'); if (dn) dn.textContent = 'Shipping calculated for ' + country + '; change your country at checkout.';
+    const dn = $('#drawer-note'); if (dn) dn.textContent = t('Shipping calculated for') + ' ' + t(country) + t('; change your country at checkout.');
     const co = $('#checkout-btn'); if (co) co.classList.toggle('disabled', !cart.length);
     body.onclick = (e) => {
       const q = e.target.closest('[data-q]'); if (q) { const [i, d] = q.dataset.q.split(':').map(Number); setQty(i, cart[i].qty + d); }
       const r = e.target.closest('[data-rm]'); if (r) { e.preventDefault(); setQty(+r.dataset.rm, 0); }
-      if (e.target.closest('[data-restore]')) { try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines) { cart = h.lines; localStorage.removeItem('pegasus_handoff'); save(); toast('Cart restored'); } } catch (x) {} }
+      if (e.target.closest('[data-restore]')) { try { const h = JSON.parse(localStorage.getItem('pegasus_handoff') || 'null'); if (h && h.lines) { cart = h.lines; localStorage.removeItem('pegasus_handoff'); save(); toast(t('Cart restored')); } } catch (x) {} }
     };
     // checkout page summary
     const sum = $('#co-lines');
     if (sum) {
-      sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">Your cart is empty.</p>';
-      $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? 'Quote via contact page' : (ship ? money(ship) + (sh.hatches ? ' (incl. hatch oversize)' : '') : 'Free'); $('#co-total').textContent = money(st + ship);
-      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? 'Request shipping quote' : (sh.hatches >= 3 ? 'Request pallet quote' : 'Continue to secure checkout');
+      sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">' + t('Your cart is empty.') + '</p>';
+      $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? t('Quote via contact page') : (ship ? money(ship) + (sh.hatches ? ' ' + t('(incl. hatch oversize)') : '') : t('Free')); $('#co-total').textContent = money(st + ship);
+      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? t('Request shipping quote') : (sh.hatches >= 3 ? t('Request pallet quote') : t('Continue to secure checkout'));
       const cob = $('#co-btn'); if (cob) cob.classList.toggle('disabled', !cart.length);
       if (!cart.length) $('#co-ship').textContent = '–';
     }
@@ -110,7 +150,7 @@
     const a = e.target.closest('[data-add-sku]'); if (!a) return;
     e.preventDefault();
     const { p, v } = bySku[a.dataset.addSku] || {};
-    if (!p || v.price == null) { location.href = ROOT + 'products/' + a.dataset.product + '.html'; return; }
+    if (!p || v.price == null) { location.href = PAGES + 'products/' + a.dataset.product + '.html'; return; }
     addLine({ type: 'product', id: p.id, skus: [v.sku], title: p.name, sub: v.label + ' · ' + v.sku, price: v.price, qty: 1, image: p.images[0] });
   });
 
@@ -132,8 +172,8 @@
       const all = idx.filter(x => q.split(/\s+/).every(w => x.txt.includes(w)) || x.n.includes(norm(q)));
       const hits = all.slice(0, 8);
       res.innerHTML = hits.map(x => x.p
-        ? `<a href="${ROOT}products/${x.p.id}.html"><img src="${ROOT + x.p.images[0]}" alt=""><div><b>${x.p.name}</b><span>${x.p.tagline}</span></div></a>`
-        : `<a href="${ROOT}bundles/${x.b.id}.html"><img src="${ROOT + x.b.images[0]}" alt=""><div><b>${x.b.name} <em class="gold">· Kit</em></b><span>${x.b.tagline}</span></div></a>`).join('') + (all.length > 8 ? `<a class="search-more" href="${ROOT}shop.html?q=${encodeURIComponent(si.value.trim())}">See all ${all.length} results</a>` : '') || '<p class="muted">No results. Try "Le Mans", "12V", "hatch" or an article number.</p>';
+        ? `<a href="${PAGES}products/${x.p.id}.html"><img src="${ROOT + x.p.images[0]}" alt=""><div><b>${x.p.name}</b><span>${x.p.tagline}</span></div></a>`
+        : `<a href="${PAGES}bundles/${x.b.id}.html"><img src="${ROOT + x.b.images[0]}" alt=""><div><b>${x.b.name} <em class="gold">· Kit</em></b><span>${x.b.tagline}</span></div></a>`).join('') + (all.length > 8 ? `<a class="search-more" href="${PAGES}shop.html?q=${encodeURIComponent(si.value.trim())}">${t('See all')} ${all.length} ${t('results')}</a>` : '') || '<p class="muted">' + t('No results. Try "Le Mans", "12V", "hatch" or an article number.') + '</p>';
     });
   }
 
@@ -151,23 +191,23 @@
         box.innerHTML = vals.map(val => {
           const avail = p.variants.some(v => v.options[k] === val && optNames.every(o => o === k || v.options[o] === sel[o]));
           const sw = /colour/i.test(k) ? `<i class="sw" style="background:${swatch(val)}"></i>` : '';
-          return `<button class="opt ${sel[k] === val ? 'on' : ''} ${avail ? '' : 'dim'}" data-k="${k}" data-v="${val}" ${avail ? '' : 'title="Not available with the current selection; selecting it switches the other option"'}>${sw}${val}</button>`;
+          return `<button class="opt ${sel[k] === val ? 'on' : ''} ${avail ? '' : 'dim'}" data-k="${k}" data-v="${val}" ${avail ? '' : 'title="' + t('Not available with the current selection; selecting it switches the other option') + '"'}>${sw}${val}</button>`;
         }).join('');
         const lbl = $(`[data-opt-label="${k}"]`); if (lbl) lbl.textContent = sel[k];
       });
       const v = cur();
-      $('#pdp-sku').textContent = 'Article no. ' + v.sku;
-      $('#pdp-price').textContent = v.price == null ? 'Quote' : money(exv(v));
+      $('#pdp-sku').textContent = t('Article no.') + ' ' + v.sku;
+      $('#pdp-price').textContent = v.price == null ? t('Quote') : money(exv(v));
       const pin = $('#pdp-incl'); if (pin && v.price != null) pin.textContent = money(v.price);
-      const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? 'RRP ' + money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
-      const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = Math.round((1 - v.price / v.compare_at) * 100) + '% below RRP'; sv.style.display = ''; } else sv.style.display = 'none'; }
-      const sp = $('#sticky-price'); if (sp) sp.innerHTML = v.price == null ? 'Quote' : money(exv(v)) + '<small> ex VAT</small>';
+      const was = $('#pdp-was'); if (was) { was.textContent = v.compare_at ? t('RRP') + ' ' + money(v.compare_at) : ''; was.style.display = v.compare_at ? '' : 'none'; }
+      const sv = $('#pdp-save'); if (sv) { if (v.compare_at && v.price) { sv.textContent = Math.round((1 - v.price / v.compare_at) * 100) + '% ' + t('below RRP'); sv.style.display = ''; } else sv.style.display = 'none'; }
+      const sp = $('#sticky-price'); if (sp) sp.innerHTML = v.price == null ? t('Quote') : money(exv(v)) + '<small> ' + t('ex VAT') + '</small>';
       // gallery follows the chosen option when the product maps options to images
       try { const map = JSON.parse(pdp.dataset.imgmap || '{}'); const hit = Object.keys(map).find(k => Object.values(sel).includes(k)); if (hit != null) { const th = $$('.thumbs button')[map[hit]]; if (th && !th.classList.contains('on')) th.click(); } } catch (e) {}
       updateAddons();
     }
     function swatch(val) {
-      const m = { 'white': '#FFFFFF', 'black': '#111', 'grey': '#9A9A9A', 'light grey': '#CFCFCF', 'dark grey': '#55585C', 'light grey / dark grey': 'linear-gradient(90deg,#CFCFCF 50%,#55585C 50%)' };
+      const m = { 'white': '#FFFFFF', 'black': '#111', 'grey': '#9A9A9A', 'light grey': '#CFCFCF', 'dark grey': '#55585C', 'light grey / dark grey': 'linear-gradient(90deg,#CFCFCF 50%,#55585C 50%)', 'wit': '#FFFFFF', 'zwart': '#111', 'grijs': '#9A9A9A', 'lichtgrijs': '#CFCFCF', 'donkergrijs': '#55585C' };
       return m[val.toLowerCase()] || '#ddd';
     }
     pdp.addEventListener('click', (e) => {
@@ -200,7 +240,7 @@
       $$('.tile', tiles).forEach(t => t.classList.toggle('on', t.dataset.pid === ap.id));
       const priced = ap.variants.filter(x => x.price != null);
       const key = ap.id + '|' + v.sku; if (vars.dataset.key === key) return; vars.dataset.key = key;
-      vars.innerHTML = priced.length > 1 ? priced.map(x => { const col = (x.options || {}).Colour; const map = ap.image_by_option || {}; const hasImg = Object.values(x.options || {}).some(o => map[o] != null); return `<button type="button" class="opt vchip${x.sku === v.sku ? ' on' : ''}" data-sku="${x.sku}">${hasImg ? `<img src="${ROOT + imgFor(ap, x)}" alt="">` : col ? `<i class="sw" style="background:${swatch(col)}"></i>` : ''}${x.label} <small>${money(exv(x))}</small></button>`; }).join('') : '';
+      vars.innerHTML = priced.length > 1 ? priced.map(x => { const col = (x.options || {}).Colour || (x.options || {}).Kleur; const map = ap.image_by_option || {}; const hasImg = Object.values(x.options || {}).some(o => map[o] != null); return `<button type="button" class="opt vchip${x.sku === v.sku ? ' on' : ''}" data-sku="${x.sku}">${hasImg ? `<img src="${ROOT + imgFor(ap, x)}" alt="">` : col ? `<i class="sw" style="background:${swatch(col)}"></i>` : ''}${x.label} <small>${money(exv(x))}</small></button>`; }).join('') : '';
     }
     function syncAddonRow(i) {
       const { p: ap, v } = addonVariant(i); const row = i.parentElement;
@@ -216,7 +256,7 @@
       const v = cur(); const q = qtyI ? getQ() : 1; let total = (v.price || 0);
       $$('.addon input').forEach(syncAddonRow);
       $$('.addon input:checked').forEach(i => total += +(addonVariant(i).v.price));
-      const t = $('#addon-total'); if (t) t.innerHTML = money(exn(total * q)) + ' <small>(' + money(total * q) + ' incl.)</small>' + (q > 1 ? ' for ' + q + ' sets' : '');
+      const tt = $('#addon-total'); if (tt) tt.innerHTML = money(exn(total * q)) + ' <small>(' + money(total * q) + ' ' + t('incl.') + ')</small>' + (q > 1 ? ' ' + t('for') + ' ' + q + ' ' + t('sets') : '');
       // same parts cheaper as a kit? compare the chosen set with every kit's item list
       const hint = $('#addon-kit-hint');
       if (hint) {
@@ -324,10 +364,10 @@
         return +a.dataset.order - +b.dataset.order;
       });
       sorted.forEach(c => grid.appendChild(c));
-      $('#shop-count').textContent = vis + ' product' + (vis === 1 ? '' : 's');
-      let em = $('#shop-empty'); if (!em) { em = document.createElement('div'); em.id = 'shop-empty'; em.className = 'empty'; em.innerHTML = '<b>No products match these filters</b>Try fewer filters or search by article number.'; grid.parentNode.insertBefore(em, grid.nextSibling); }
+      $('#shop-count').textContent = vis + ' ' + (vis === 1 ? t('product') : t('products'));
+      let em = $('#shop-empty'); if (!em) { em = document.createElement('div'); em.id = 'shop-empty'; em.className = 'empty'; em.innerHTML = '<b>' + t('No products match these filters') + '</b>' + t('Try fewer filters or search by article number.'); grid.parentNode.insertBefore(em, grid.nextSibling); }
       em.style.display = vis ? 'none' : '';
-      const ap = $('#apply-f'); if (ap) ap.textContent = 'Show ' + vis + ' product' + (vis === 1 ? '' : 's');
+      const ap = $('#apply-f'); if (ap) ap.textContent = t('Show') + ' ' + vis + ' ' + (vis === 1 ? t('product') : t('products'));
       $$('[data-f]').forEach(i => { const [k, v] = i.dataset.f.split(':'); i.checked = state[k].has(v); });
     }
     $$('[data-f]').forEach(i => i.addEventListener('change', () => { const [k, v] = i.dataset.f.split(':'); i.checked ? state[k].add(v) : state[k].delete(v); apply(); }));
@@ -353,16 +393,16 @@
     };
     cof.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!cart.length) { toast('Your cart is empty'); return; }
+      if (!cart.length) { toast(t('Your cart is empty')); return; }
       const country = localStorage.getItem('pegasus_country') || 'Netherlands';
       const shq = shipping(subtotal(), country);
-      if (shq.quote || shq.hatches >= 3) { location.href = ROOT + 'contact.html?quote=1'; return; }
+      if (shq.quote || shq.hatches >= 3) { location.href = PAGES + 'contact.html?quote=1'; return; }
       const S = C.shopify;
       const real = (sku) => (S && S.alias && S.alias[sku]) || sku;
       const parts = [];
       for (const l of cart) {
         const id = S && S.variants && S.variants[l.type === 'bundle' ? kitSku(l) : real((l.skus || [])[0])];
-        if (!id) { toast('One item needs manual handling. Taking you to our contact page.'); setTimeout(() => { location.href = ROOT + 'contact.html?quote=1'; }, 1400); return; }
+        if (!id) { toast(t('One item needs manual handling. Taking you to our contact page.')); setTimeout(() => { location.href = PAGES + 'contact.html?quote=1'; }, 1400); return; }
         parts.push(id + ':' + l.qty);
       }
       // hand the visible cart over to Shopify; keep a 2h backup so an abandoned checkout can be restored
@@ -371,25 +411,25 @@
       location.href = S.store + '/cart/' + parts.join(',');
     });
   }
-  const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = 'Message received'; } else { ty.textContent = qp.get('o') ? ' ' + qp.get('o') : ''; } }
+  const ty = $('#order-id'); if (ty) { const qp = new URLSearchParams(location.search); if (qp.get('form')) { $('#ty-order').style.display = 'none'; $('#ty-form').style.display = ''; $('#ty-eyebrow').textContent = t('Message received'); } else { ty.textContent = qp.get('o') ? ' ' + qp.get('o') : ''; } }
 
   /* ---------- forms: decode endpoint at runtime ---------- */
-  $$('form[data-fs]').forEach(f => { try { f.action = atob(f.dataset.fs); } catch (e) {} f.addEventListener('submit', () => { const b = f.querySelector('button'); if (b) { b.disabled = true; b.textContent = 'Sending…'; } }); });
+  $$('form[data-fs]').forEach(f => { try { f.action = atob(f.dataset.fs); } catch (e) {} f.addEventListener('submit', () => { const b = f.querySelector('button'); if (b) { b.disabled = true; b.textContent = t('Sending…'); } }); });
 
   /* ---------- contact prefill ---------- */
   (function () {
     const ta = $('.contact-grid textarea'); if (!ta) return;
     const q = new URLSearchParams(location.search);
-    if (q.get('datasheet')) ta.value = 'Please send me the technical datasheet and drawing for article ' + q.get('datasheet') + '.';
-    if (q.get('product') && byId[q.get('product')]) ta.value = 'Please send me a quote for: ' + byId[q.get('product')].name + '. Vehicle / application: ';
+    if (q.get('datasheet')) ta.value = t('Please send me the technical datasheet and drawing for article') + ' ' + q.get('datasheet') + '.';
+    if (q.get('product') && byId[q.get('product')]) ta.value = t('Please send me a quote for:') + ' ' + byId[q.get('product')].name + '. ' + t('Vehicle / application:') + ' ';
     if (q.get('quote') && cart.length) {
-      const country = localStorage.getItem('pegasus_country') || 'my country';
-      ta.value = 'Please quote shipping to ' + country + ' for this order:\n' + cart.map(l => l.qty + ' x ' + l.title + (l.sub ? ' (' + l.sub + ')' : '')).join('\n') + '\nOrder value: ' + money(subtotal()) + ' incl. VAT.\nDelivery address: ';
+      const country = localStorage.getItem('pegasus_country') || t('my country');
+      ta.value = t('Please quote shipping to') + ' ' + t(country) + ' ' + t('for this order:') + '\n' + cart.map(l => l.qty + ' x ' + l.title + (l.sub ? ' (' + l.sub + ')' : '')).join('\n') + '\n' + t('Order value:') + ' ' + money(subtotal()) + ' ' + t('incl. VAT.') + '\n' + t('Delivery address:') + ' ';
     }
   })();
 
   /* ---------- newsletter / contact (demo) ---------- */
-  $$('form[data-demo]').forEach(f => f.addEventListener('submit', (e) => { e.preventDefault(); toast('Thank you, we will be in touch within 24 hours.'); f.reset(); }));
+  $$('form[data-demo]').forEach(f => f.addEventListener('submit', (e) => { e.preventDefault(); toast(t('Thank you, we will be in touch within 24 hours.')); f.reset(); }));
 
   renderCart();
 })();

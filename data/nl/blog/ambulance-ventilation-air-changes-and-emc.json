@@ -1,0 +1,63 @@
+{
+ "slug": "ambulance-ventilatie-luchtverversing-en-emc",
+ "title": "Ambulanceventilatie: luchtverversing en EMC uitgelegd",
+ "meta": "Ambulanceventilatie: luchtverversingen per uur, afzuig- en toevoerindeling, EMC en borstelloze motoren, en schakelaars die de bemanning kan bedienen.",
+ "excerpt": "In een ambulance is het ventilatiesysteem klinische apparatuur, geen comfortextra. Deze gids behandelt luchtverversingen per uur, de luchtstroom, waarom het EMC-gedrag van de motor telt en bediening die een bemanning met handschoenen aan kan gebruiken.",
+ "keywords": [
+  "ambulance ventilatie",
+  "ventilatie patiëntenruimte",
+  "luchtverversingen per uur ambulance",
+  "EMC ventilatormotor",
+  "dakventilator hulpdienstvoertuig"
+ ],
+ "vehicle": "ambulance-emergency",
+ "read_min": 7,
+ "sections": [
+  {
+   "h2": "Schone lucht voor twee mensen die geen raam open kunnen zetten",
+   "html": "<p>Een ambulance is een van de weinige voertuigen waarin de mensen achterin geen enkele controle hebben over hun omgeving. De patiënt ligt, is vaak angstig en heeft soms moeite met ademen. De bemanning werkt over de patiënt heen in een ruimte vol apparatuur die warmte afgeeft. Niemand kan een raam opendraaien, en de deuren blijven dicht vanwege privacy, geluid en veiligheid onderweg.</p><p>Dat maakt het ventilatiesysteem klinische apparatuur in plaats van een comfortextra. Het moet de warmte van lichamen en elektronica afvoeren, verdunnen wat er in de lucht hangt, van uitlaatgassen die langs de weg naar binnen worden gezogen tot desinfectiedampen na een schoonmaak, en dat stil, voorspelbaar en zonder de medische apparatuur eromheen te storen. Onze ervaring is dat inbouwers die het zo benaderen uitkomen op een patiëntenruimte waar bemanningen graag in werken.</p><p>Dit artikel behandelt de drie vragen die bouwers van ambulances en hulpdienstvoertuigen ons het vaakst stellen: hoeveel lucht, hoe verplaats je die, en waarom het elektromagnetische gedrag van de motor net zo belangrijk is als de luchtverplaatsing.</p>"
+  },
+  {
+   "h2": "Luchtverversingen per uur: de vuistregel",
+   "html": "<p>Ventilatie van een patiëntenruimte wordt meestal uitgedrukt in luchtverversingen per uur: het aantal keren dat het volledige volume van de ruimte wordt vervangen. Bereken het volume van je ruimte, lengte maal breedte maal hoogte van het afgewerkte interieur, en deel de luchtverplaatsing van de ventilator daardoor. Een typische patiëntenruimte van een ambulance op bestelwagenbasis is klein, vaak in de orde van 8 tot 10 m³ zodra de kasten erin zitten.</p><p>Als vuistregel moet een patiëntenruimte van een ambulance zijn lucht met stilstaand voertuig vele keren per uur kunnen verversen, en het getal waar inbouwers mee werken ligt aanzienlijk hoger dan bij een camper of een passagiersbus. De exacte eis komt uit de specificatie waarnaar je voertuig wordt gebouwd, dus raadpleeg dat document in plaats van een getal uit een blog over te nemen, het onze inbegrepen. Wat we wel kunnen zeggen: je wilt een ventilator met flink wat reserve, zodat de vereiste verversing wordt gehaald op een gematigd, stil toerental in plaats van op vol vermogen.</p><p>De <a href='products/le-mans.html'>Le Mans dakventilator</a> met 850 m³/h geeft die reserve. Op een ruimte van 10 m³ haalt hij op volle snelheid ruim meer dan één volledige luchtverversing per minuut, wat betekent dat het dagelijkse toerental een fractie daarvan kan zijn, met de reserve klaar voor een schoonmaak of een zomerse standby. Waar stil continu draaien op de voertuigaccu voorrang heeft, levert de borstelloze <a href='products/le-mans-ll.html'>Le Mans LL</a> 515 tot 565 m³/h bij ongeveer 34 W en is hij onze gebruikelijke aanbeveling voor lange diensten op standby.</p>"
+  },
+  {
+   "h2": "Afzuigen, toevoeren of allebei: de luchtstroom ontwerpen",
+   "html": "<p>Eén afzuiger in het dak trekt lucht naar buiten, en de vervangende lucht komt binnen waar de carrosserie lekt: deurrubbers, kabeldoorvoeren, het tussenschot. In een ambulance is dat niet goed genoeg, want de vervangende lucht kan uitlaatgas zijn van het voertuig ervoor, of van de ambulance zelf die stationair draait op een incidentlocatie. Een ontworpen luchtinlaat geeft je controle over waar de verse lucht vandaan komt.</p><p>De indeling die we het vaakst zien, en die we zelf ook zouden bouwen, gebruikt een dakafzuiger richting de achterkant van de ruimte en een toevoerpunt vooraan, ofwel een tweede dakunit die op blazen staat, ofwel een lage inlaat zoals een vloerventilator met filter. De lucht beweegt van voor naar achter, langs de bemanning en over de patiënt, en naar buiten. Houd de directe luchtstroom weg van het gezicht van de patiënt en uit de werkzone bij het hoofdeinde van de brancard, en monteer de afzuiger niet direct boven de brancard, waar hij lucht over de luchtweg van de patiënt zou trekken.</p><p>Overdruk, waarbij een toevoerventilator iets harder draait dan de afzuiger, is het overwegen waard voor voertuigen die veel tijd doorbrengen bij incidenten langs de weg. Een lichte overdruk houdt dampen en stof buiten de deur terwijl de deuren dicht zijn. Een omkeerschakelaar op de dakunits geeft de inbouwer die mogelijkheid zonder een tweede product.</p>"
+  },
+  {
+   "h2": "EMC: waarom de motor net zo belangrijk is als de luchtverplaatsing",
+   "html": "<p>Een ambulance vervoert monitoren, een defibrillator, infuuspompen, radio's en dataterminals, allemaal gevoelig voor elektrische ruis en allemaal geacht te werken terwijl de ventilator draait. Een goedkope borstelmotor is een kleine radiozender: de borstels vonken als ze langs de collector gaan en de storing die daaruit voortkomt reist via de bedrading en door de lucht. In een gewone bestelwagen is dat wat geknetter op de radio. In een ambulance kan het een vals alarm op een monitor zijn of een wegvallende radioverbinding.</p><p>Elektromagnetische compatibiliteit, EMC, is het vakgebied dat ervoor zorgt dat apparatuur geen storing uitzendt die de buren hindert en er zelf ook niet door wordt gehinderd. Dat is de reden om te kiezen voor een goed ontstoorde motor in plaats van de goedkoopste ventilator uit het schap, en daarom wijzen we ambulance-inbouwers op de borstelloze Le Mans LL, die de mechanische borstels helemaal overbodig maakt; dat is een groot deel van de reden waarom hij zo stil is en zich elektrisch zo netjes gedraagt. Heeft je bouwdossier ondersteunende documentatie nodig, vraag het ons dan en we vertellen je precies wat er beschikbaar is voor het model dat je monteert.</p><p>Twee praktische opmerkingen van inbouwers. Ten eerste: leg de voeding van de ventilator gescheiden van de kabelbomen van monitoren en radio's, en verbind de behuizing met de carrosseriemassa. Ten tweede: monteer een echte toerenregelaar in plaats van een geïmproviseerde weerstand, want ruwe regelaars kunnen zelf ruis op de voeding zetten.</p>"
+  },
+  {
+   "h2": "Schakelaars, toerenregeling en de handen van de bemanning",
+   "html": "<p>Een ventilatiesysteem dat een bemanning niet zonder nadenken kan bedienen, wordt helemaal niet bediend. De bediening moet zitten waar de begeleider zit, duidelijk gemarkeerd zijn en simpel genoeg om te gebruiken met handschoenen aan en een patiënt voor je. Dat betekent normaal gesproken een aparte <a href='products/switch-fan.html'>ventilatorschakelaar</a> met een ondubbelzinnige aan en uit, en een <a href='products/speedcontrol.html'>toerenregelaar</a> voor de dagelijkse instelling, zo aangesloten dat de ventilator na het herstarten van het voertuig terugkeert op zijn laatste stand.</p><p>Denk ook aan de behuizing van de schakelaars. Ambulance-interieurs worden vele keren per week met desinfectiemiddel afgenomen, en vlakke, afgedichte schakelpanelen zijn veel makkelijker schoon te houden dan open tuimelschakelaars. Heeft het voertuig een centraal bedieningspaneel, dan kan de ventilator daar meestal vanuit worden aangestuurd, maar we pleiten toch voor een handmatige override die de bemanning kan bereiken zonder de blik van de patiënt af te halen.</p>"
+  },
+  {
+   "h2": "Dakluiken: nooduitgang en ventilatie in één",
+   "html": "<p>Veel ambulancespecificaties vragen om een nooduitgang in het dak, en een groot dakluik doet dubbel dienst als serieuze ventilatieopening bij stilstand. Het <a href='products/roof-hatch-electric-large.html'>elektrische dakluik van 970 x 530 mm</a> opent met één druk op de knop, wordt bediend vanuit zijn eigen bedieningsunit en biedt een volwaardige vluchtroute. In combinatie met een elektrische afzuiger geeft het de bemanning de keuze tussen een grote stroom verse lucht na een schoonmaak of tijdens een hete standby, en een gesloten, gecontroleerde ruimte onderweg.</p><p>Het dakluik is voorzien van ECE 43R-glas. Voor bouwers die op kleinere voertuigen de voorkeur geven aan handbediening is het handbediende dakluik van 530 x 530 mm de gebruikelijke keuze.</p>"
+  },
+  {
+   "h2": "Montage- en hygiëneopmerkingen",
+   "html": "<p>De volwaardige dakunits hebben een dakuitsparing van 230 mm nodig, geplaatst tussen de dakspanten en vrij van de verlichting, antennes en een eventuele lichtbalk op het dak. Dicht de zaagrand en het frame goed af; een ambulancedak wordt hard en vaak gewassen. Kies binnen een rooster dat zonder gereedschap kan worden verwijderd om schoon te maken, want op elke afzuiger verzamelt zich stof en pluis, en een interieur dat op klinisch niveau wordt schoongemaakt heeft ventilatie nodig die ook schoon te maken is.</p><p>Voor gebruik in de winter voorkomt een sneeuwfilter onder de kap dat stuifsneeuw de motor bereikt tijdens een lange standby in een sneeuwstorm, wat voor een hulpdienstvoertuig geen zeldzaamheid is. En als dit allemaal nieuw voor je is, dan zet onze <a href='vehicles/ambulance-emergency.html'>gids voor ambulances en hulpdienstvoertuigen</a> de gangbare indelingen op een rij, of stuur ons je tekening. Als onafhankelijke Europese specialist met eigen voorraad in Nederland leveren we aan inbouwers in heel Europa en zijn we gewend om volgens een bouwplanning te werken.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Hoeveel luchtverversingen per uur heeft een ambulance nodig?",
+   "a": "Het getal komt uit de specificatie waarnaar je voertuig wordt gebouwd, en het ligt aanzienlijk hoger dan bij een camper of een bus. In plaats van een getal te noemen, raden we aan het volume van je ruimte te berekenen, de vereiste verversing in je specificatie op te zoeken en een ventilator te kiezen die dat op een gematigd toerental haalt, zodat je reserve hebt voor hete dagen en schoonmaakbeurten."
+  },
+  {
+   "q": "Kan een dakventilator medische apparatuur storen?",
+   "a": "Een slecht ontstoorde borstelmotor wel. Daarom sturen we ambulance-inbouwers richting goed ontstoorde motoren en vooral de borstelloze Le Mans LL, die helemaal geen borstels heeft die kunnen vonken. Leg de ventilatorbedrading weg van de kabelbomen van monitoren en radio's en gebruik een echte toerenregelaar in plaats van een geïmproviseerde."
+  },
+  {
+   "q": "Moet de ventilatie draaien als de motor uit staat?",
+   "a": "Ja. Een ambulance brengt een groot deel van zijn leven door op standby of op een incidentlocatie met de motor uit en de deuren dicht. Sluit de ventilator aan op de hulpaccu en kies een zuinige unit zoals de borstelloze Le Mans LL, zodat hij een volledige dienst kan draaien zonder iets leeg te trekken."
+  },
+  {
+   "q": "Afzuigen of toevoeren voor de patiëntenruimte?",
+   "a": "Allebei, idealiter. Een afzuiger richting de achterkant voert warmte en dampen af; een toevoerpunt vooraan, of een gefilterde lage inlaat, bepaalt waar de verse lucht vandaan komt. De toevoer iets harder laten draaien geeft een lichte overdruk die dampen buiten houdt langs de weg."
+  }
+ ]
+}

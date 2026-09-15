@@ -1,64 +1,64 @@
 {
-  "slug": "interior-valves-and-grilles-finishing-the-ceiling",
-  "title": "Interior Valves and Grilles: Finishing the Ceiling Properly",
-  "meta": "Closable valves or fixed grilles under your roof ventilator? Colours, manual or electric operation and the Flower Power LED valve, explained by a fitter.",
-  "excerpt": "The grille or valve under your roof fan sets airflow, draught control and the look of the ceiling. A fitter's guide to fixed grilles, closable valves, the V12 and the Flower Power LED valve.",
-  "keywords": [
-    "interior ceiling valve",
-    "V12 valve",
-    "ventilation grille",
-    "Flower Power valve",
-    "camper roof fan valve",
-    "coach ceiling grille"
-  ],
-  "vehicle": "general",
-  "read_min": 6,
-  "sections": [
-    {
-      "h2": "What sits under the roof fan matters",
-      "html": "<p>A rooftop ventilator is fitted from above, and from inside the vehicle all you should see is a neat finishing piece in the ceiling. That piece is not just cosmetic. It sets how much air passes, whether you can shut the opening, how the airflow spreads across the interior, and how the ceiling looks to a passenger, a horse owner or an ambulance crew.</p><p>There are two families to choose from: fixed grilles, which are open all the time, and closable valves, which let you throttle or shut the opening from inside. Both are made for the 230 mm cut-out used by the Le Mans, Le Mans LL and Round ventilators, so the choice is about how you use the vehicle rather than what will physically fit.</p>"
-    },
-    {
-      "h2": "Fixed grilles: simple, open, robust",
-      "html": "<p>A <a href='products/grill-large.html'>fixed grille</a> is the straightforward option. It covers the cut-out, hides the fan housing, spreads the air across a wide face and has no moving parts. On a coach, a livestock body or a commercial van where the fan runs whenever the vehicle is in use, that is exactly what you want: nothing to adjust, nothing to break, easy to wipe down.</p><p>The drawback is that it is always open. When the fan is off, the grille still connects the interior to the outside through the fan housing. In summer that is fine and often welcome. On a cold, windy night in a camper, or when a vehicle stands in a wash bay, a permanently open ceiling is less appealing.</p><p>Grilles are also the sensible choice where the ceiling is exposed to knocks. A horse can put its head up, a loading crew can catch a pole on the ceiling, and a flat grille shrugs that off better than a valve with a moving centre.</p>"
-    },
-    {
-      "h2": "Closable valves: control from inside",
-      "html": "<p>A closable valve gives you a centre plate or dial that you turn to open, throttle or shut the opening. The <a href='products/v12-valve.html'>V12 valve</a> is the workhorse here: a round ceiling valve for the 230 mm cut-out that can be shut fully when the fan is not needed, opened a little for a trickle of background ventilation, or opened wide when the fan is running hard.</p><p>That control is worth having in any vehicle where people sleep or spend long periods. Shutting the valve at night in a camper stops cold air falling through the fan opening. Throttling it in a horsebox living area lets you keep a little air moving without a draught on the bed. In an ambulance it means the crew can shut the ceiling opening during a wash-down and open it again afterwards.</p><p>The trade-off is the moving part. A valve needs an occasional wipe and a check that the centre still turns freely, particularly in dusty livestock use. The Rotating Valve 300 is the larger relative in the same family, for ceilings where a bigger finishing piece looks more in proportion, which is often the case on a coach.</p>"
-    },
-    {
-      "h2": "Manual or electric operation",
-      "html": "<p>The V12 comes in two versions: a manual valve that you reach up and turn by hand, and an electric version (12/24V) that opens and closes from a switch, handy when the ceiling is high or the valve sits above a bed. On a camper with a low ceiling that is perfectly practical, and there is nothing to wire. Both versions share the same Ø 290 mm face and fit the Le Mans, Le Mans LL and Round ventilators, so you can start manual and swap to electric later without touching the roof.</p><p>An electric valve opens and closes from a switch, which changes things in two situations. The first is a high ceiling: a coach, a large horsebox or a van conversion with a raised roof, where reaching the valve means standing on a seat. The second is where you want the valve to follow the fan. Wired alongside the <a href='products/switch-fan.html'>fan switch</a>, the valve opens when the fan starts and shuts when it stops, so the ceiling is never left open by accident.</p><p>For an ambulance or a dog transport van with several compartments, an electric valve also means one person at the driver's seat can shut everything down in one go. If you run a fleet, that consistency is worth more than the small extra effort of wiring.</p>"
-    },
-    {
-      "h2": "Flower Power: valve and light in one",
-      "html": "<p>The <a href='products/flower-power.html'>Flower Power</a> valve is the option to look at when the ceiling has to do two jobs. It is a closable valve in the same 230 mm format, with an LED light built into the face, so the one opening in the ceiling gives you ventilation and interior lighting together.</p><p>That is useful in a horse trailer, where you often have one roof fan and would like light over the horses without cutting another hole. It suits small camper vans and dog transport boxes for the same reason: every hole in a roof is a potential leak, and combining functions keeps the count down.</p><p>Wire the LED on its own switch so you can have the light on with the fan off, or the other way round. The light is soft and even, which is what you want at night in a living area; for a bright working light over a treatment area or a loading ramp you would still add a dedicated <a href='products/lighting-round.html'>interior LED light</a>.</p>"
-    },
-    {
-      "h2": "Choosing a colour and finish",
-      "html": "<p>Grilles and valves are offered in a choice of colours, and it is worth taking a moment over this because the ceiling is the surface everyone looks at when they lie down. White or off-white blends into the lining of most campers, ambulances and horsebox living areas. A darker tone sits better against the dark headlining common in coaches and executive vans, where a white disc in a charcoal ceiling looks like an afterthought.</p><p>In animal areas, colour matters less than cleanability. A smooth face without deep ribs wipes down faster after a muddy trip. Check the product page for the finishes in stock at the moment, and if you are fitting several vehicles, order the same finish for all of them so the fleet looks consistent.</p>"
-    },
-    {
-      "h2": "Fitting notes from the workshop",
-      "html": " Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='shop.html'>shop</a> with photos and prices alongside, so it all arrives in one order. For coach work, the coach hatch kit does the same for a roof hatch installation.</p>"
-    }
-  ],
-  "faq": [
-    {
-      "q": "Can I fit a closable valve to a roof fan that currently has a fixed grille?",
-      "a": "In most cases yes. The V12 and Flower Power valves are made for the same 230 mm cut-out as the standard grille, so it is normally a matter of removing the grille and fitting the valve in its place. Check the depth of your ceiling lining, as a very thick lining can affect how the valve seats."
-    },
-    {
-      "q": "Is a fixed grille or a valve better for a horse trailer?",
-      "a": "For the horse area itself, a fixed grille is usually the better choice: no moving parts, nothing for a horse to knock, and easy to hose down. In the living area of a horsebox, where people sleep, a closable valve gives you control over draughts and cold air at night."
-    },
-    {
-      "q": "Does an electric valve need its own switch?",
-      "a": "It can be run from its own switch, or wired alongside the fan switch so that it opens and closes with the fan. The second option is the one most fitters use on coaches, ambulances and multi-compartment dog vans, because nobody has to remember to shut the ceiling."
-    },
-    {
-      "q": "Can the Flower Power light be used while the fan is switched off?",
-      "a": "Yes, provided the light is wired on its own switch, which is how it is normally installed. You can have light without the fan, the fan without light, or both together, all through the one ceiling opening."
-    }
-  ]
+ "slug": "interior-valves-and-grilles-finishing-the-ceiling",
+ "title": "Interior Valves and Grilles: Finishing the Ceiling Properly",
+ "meta": "Closable valves or fixed grilles under your roof ventilator? Colours, manual or electric operation and the Flower Power LED valve, explained by a fitter.",
+ "excerpt": "The grille or valve under your roof fan sets airflow, draught control and the look of the ceiling. A fitter's guide to fixed grilles, closable valves, the V12 and the Flower Power LED valve.",
+ "keywords": [
+  "interior ceiling valve",
+  "V12 valve",
+  "ventilation grille",
+  "Flower Power valve",
+  "camper roof fan valve",
+  "coach ceiling grille"
+ ],
+ "vehicle": "general",
+ "read_min": 6,
+ "sections": [
+  {
+   "h2": "What sits under the roof fan matters",
+   "html": "<p>A rooftop ventilator is fitted from above, and from inside the vehicle all you should see is a neat finishing piece in the ceiling. That piece is not just cosmetic. It sets how much air passes, whether you can shut the opening, how the airflow spreads across the interior, and how the ceiling looks to a passenger, a horse owner or an ambulance crew.</p><p>There are two families to choose from: fixed grilles, which are open all the time, and closable valves, which let you throttle or shut the opening from inside. Both are made for the 230 mm cut-out used by the Le Mans, Le Mans LL and Round ventilators, so the choice is about how you use the vehicle rather than what will physically fit.</p>"
+  },
+  {
+   "h2": "Fixed grilles: simple, open, robust",
+   "html": "<p>A <a href='products/grill-large.html'>fixed grille</a> is the straightforward option. It covers the cut-out, hides the fan housing, spreads the air across a wide face and has no moving parts. On a coach, a livestock body or a commercial van where the fan runs whenever the vehicle is in use, that is exactly what you want: nothing to adjust, nothing to break, easy to wipe down.</p><p>The drawback is that it is always open. When the fan is off, the grille still connects the interior to the outside through the fan housing. In summer that is fine and often welcome. On a cold, windy night in a camper, or when a vehicle stands in a wash bay, a permanently open ceiling is less appealing.</p><p>Grilles are also the sensible choice where the ceiling is exposed to knocks. A horse can put its head up, a loading crew can catch a pole on the ceiling, and a flat grille shrugs that off better than a valve with a moving centre.</p>"
+  },
+  {
+   "h2": "Closable valves: control from inside",
+   "html": "<p>A closable valve gives you a centre plate or dial that you turn to open, throttle or shut the opening. The <a href='products/v12-valve.html'>V12 valve</a> is the workhorse here: a round ceiling valve for the 230 mm cut-out that can be shut fully when the fan is not needed, opened a little for a trickle of background ventilation, or opened wide when the fan is running hard.</p><p>That control is worth having in any vehicle where people sleep or spend long periods. Shutting the valve at night in a camper stops cold air falling through the fan opening. Throttling it in a horsebox living area lets you keep a little air moving without a draught on the bed. In an ambulance it means the crew can shut the ceiling opening during a wash-down and open it again afterwards.</p><p>The trade-off is the moving part. A valve needs an occasional wipe and a check that the centre still turns freely, particularly in dusty livestock use. The Rotating Valve 300 is the larger relative in the same family, for ceilings where a bigger finishing piece looks more in proportion, which is often the case on a coach.</p>"
+  },
+  {
+   "h2": "Manual or electric operation",
+   "html": "<p>The V12 comes in two versions: a manual valve that you reach up and turn by hand, and an electric version (12/24V) that opens and closes from a switch, handy when the ceiling is high or the valve sits above a bed. On a camper with a low ceiling that is perfectly practical, and there is nothing to wire. Both versions share the same Ø 290 mm face and fit the Le Mans, Le Mans LL and Round ventilators, so you can start manual and swap to electric later without touching the roof.</p><p>An electric valve opens and closes from a switch, which changes things in two situations. The first is a high ceiling: a coach, a large horsebox or a van conversion with a raised roof, where reaching the valve means standing on a seat. The second is where you want the valve to follow the fan. Wired alongside the <a href='products/switch-fan.html'>fan switch</a>, the valve opens when the fan starts and shuts when it stops, so the ceiling is never left open by accident.</p><p>For an ambulance or a dog transport van with several compartments, an electric valve also means one person at the driver's seat can shut everything down in one go. If you run a fleet, that consistency is worth more than the small extra effort of wiring.</p>"
+  },
+  {
+   "h2": "Flower Power: valve and light in one",
+   "html": "<p>The <a href='products/flower-power.html'>Flower Power</a> valve is the option to look at when the ceiling has to do two jobs. It is a closable valve in the same 230 mm format, with an LED light built into the face, so the one opening in the ceiling gives you ventilation and interior lighting together.</p><p>That is useful in a horse trailer, where you often have one roof fan and would like light over the horses without cutting another hole. It suits small camper vans and dog transport boxes for the same reason: every hole in a roof is a potential leak, and combining functions keeps the count down.</p><p>Wire the LED on its own switch so you can have the light on with the fan off, or the other way round. The light is soft and even, which is what you want at night in a living area; for a bright working light over a treatment area or a loading ramp you would still add a dedicated <a href='products/lighting-round.html'>interior LED light</a>.</p>"
+  },
+  {
+   "h2": "Choosing a colour and finish",
+   "html": "<p>Grilles and valves are offered in a choice of colours, and it is worth taking a moment over this because the ceiling is the surface everyone looks at when they lie down. White or off-white blends into the lining of most campers, ambulances and horsebox living areas. A darker tone sits better against the dark headlining common in coaches and executive vans, where a white disc in a charcoal ceiling looks like an afterthought.</p><p>In animal areas, colour matters less than cleanability. A smooth face without deep ribs wipes down faster after a muddy trip. Check the product page for the finishes in stock at the moment, and if you are fitting several vehicles, order the same finish for all of them so the fleet looks consistent.</p>"
+  },
+  {
+   "h2": "Fitting notes from the workshop",
+   "html": "<p>A few things that make the difference between a professional ceiling and one that looks fitted in a hurry:</p><ul><li>Trim the ceiling lining to the cut-out cleanly and support its edge; the valve or grille flange should sit flat, not float over a sagging panel.</li><li>Run the valve cable and any LED cable before the lining goes back up. Retro-fitting wire above a finished ceiling is miserable work.</li><li>Test a closable valve through its full travel before final fixing; a lining that is slightly too thick can stop the centre from seating.</li><li>On a coach or bus with several ventilators, line the valves up in a row and set them all to the same orientation. Passengers notice.</li></ul><p>Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='products/le-mans.html'>product page</a> with photos and prices alongside, so it all arrives in one order.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I fit a closable valve to a roof fan that currently has a fixed grille?",
+   "a": "In most cases yes. The V12 and Flower Power valves are made for the same 230 mm cut-out as the standard grille, so it is normally a matter of removing the grille and fitting the valve in its place. Check the depth of your ceiling lining, as a very thick lining can affect how the valve seats."
+  },
+  {
+   "q": "Is a fixed grille or a valve better for a horse trailer?",
+   "a": "For the horse area itself, a fixed grille is usually the better choice: no moving parts, nothing for a horse to knock, and easy to hose down. In the living area of a horsebox, where people sleep, a closable valve gives you control over draughts and cold air at night."
+  },
+  {
+   "q": "Does an electric valve need its own switch?",
+   "a": "It can be run from its own switch, or wired alongside the fan switch so that it opens and closes with the fan. The second option is the one most fitters use on coaches, ambulances and multi-compartment dog vans, because nobody has to remember to shut the ceiling."
+  },
+  {
+   "q": "Can the Flower Power light be used while the fan is switched off?",
+   "a": "Yes, provided the light is wired on its own switch, which is how it is normally installed. You can have light without the fan, the fan without light, or both together, all through the one ceiling opening."
+  }
+ ]
 }

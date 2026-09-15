@@ -1,64 +1,64 @@
 {
-  "slug": "how-to-choose-a-rooftop-ventilator-for-your-van",
-  "title": "How to Choose a Rooftop Ventilator for Your Van",
-  "meta": "A practical buying guide to rooftop ventilators for vans: airflow per cubic metre of body, 12 V or 24 V, roof cut-out sizes, and extract versus supply.",
-  "excerpt": "Choosing a rooftop ventilator comes down to four questions: how much air, which voltage, what size hole, and which direction. Here is how an experienced converter works through them.",
-  "keywords": [
-    "rooftop ventilator",
-    "van roof fan",
-    "van ventilation",
-    "12V roof ventilator",
-    "roof vent cut-out size",
-    "extractor fan for van"
-  ],
-  "vehicle": "general",
-  "read_min": 6,
-  "sections": [
-    {
-      "h2": "Start with the air, not the fan",
-      "html": "<p>Most people who ring us about a rooftop ventilator start with a product name. The better place to start is the air itself. A van is a sealed metal box, and everything that happens inside it, people breathing, a dog panting, a kettle boiling, wet kit drying, tools warming up, adds heat and moisture that has nowhere to go. A rooftop ventilator gives that air a way out and, just as importantly, gives fresh air a way in.</p><p>So before you look at any model, write down three things: the volume of the body you want to ventilate, the voltage of the vehicle, and what the space is used for. Sleeping in a camper, hauling a working dog, running a mobile workshop and carrying passengers all ask something different from the fan on the roof. Once you have those three facts, the choice narrows very quickly.</p><p>This guide walks through the four decisions that matter: airflow, voltage, cut-out size and direction.</p>"
-    },
-    {
-      "h2": "How much airflow do you actually need?",
-      "html": "<p>Airflow is quoted in cubic metres per hour, m³/h. To make sense of that number you need the volume of your body in cubic metres, which is simply internal length times width times height. A typical medium panel van load area comes out somewhere around 8 to 12 m³, a long-wheelbase high-roof van nearer 15 m³, and a coachbuilt motorhome habitation area a little more again.</p><p>Now divide the ventilator's airflow by that volume and you get air changes per hour, the number of times the fan could in theory replace all the air in the body. As a rule of thumb, a space where people sleep is comfortable with a handful of air changes an hour on a quiet, low speed, while a space with animals, wet gear or working equipment wants far more, and wants it in reserve for hot days.</p><p>That reserve is why we usually point van converters at a full-size unit. The <a href='products/le-mans.html'>Le Mans rooftop ventilator</a> moves up to 850 m³/h, which on a 12 m³ body is a complete change of air roughly every minute at full speed. You will rarely run it flat out, but on a July afternoon with the doors shut you will be glad it is there. For a small compartment such as a toilet cubicle, a wardrobe or a single dog box, the <a href='products/winglet.html'>Winglet mini ventilator</a> at 65 m³/h is plenty and needs only a small hole.</p><p>If you plan to run the fan for long periods on battery, look at the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>. It delivers 515 to 565 m³/h while drawing around 34 W, which is the difference between a fan you switch on for ten minutes and a fan you leave running all night.</p>"
-    },
-    {
-      "h2": "Roof cut-out sizes and what fits where",
-      "html": "<p>Every rooftop ventilator needs a hole, and the size of that hole decides which units you can swap between later. It pays to know the figures before you pick up the jigsaw:</p><ul><li>Le Mans, Le Mans LL and Round: 230 mm cut-out</li><li>Turbo II wind-driven: 128 mm cut-out</li><li>Turbo III wind-driven: 80 mm cut-out</li><li>Winglet mini: 80 mm cut-out</li><li>Exhaust ventilator, passive venturi: up to 140 mm cut-out</li></ul><p>The practical lesson is that the three full-size powered units share the same 230 mm opening. Fit a Round today and you can move to a Le Mans or an LL later without touching the roof. Likewise the Winglet and the Turbo III share an 80 mm hole, so a wind-driven vent in a wet locker can become a powered one when you decide you need it.</p><p>Position matters as much as size. Keep the cut-out clear of roof ribs and cross members, away from solar panels and roof bars, and think about where the fan sits relative to the people or animals below. An extractor works best at the highest, warmest point of the roof, usually towards the rear.</p>"
-    },
-    {
-      "h2": "12 V or 24 V: match the vehicle, not the fan",
-      "html": "<p>This is the one people get wrong most often, and it is entirely avoidable. Cars, vans, most motorhomes and any trailer fed from a car's towing socket run on a 12 V system. Trucks, coaches, many minibuses and horseboxes built on a lorry chassis usually run on 24 V. Look at the battery, not the badge: if there are two batteries wired in series, you are on 24 V.</p><p>Fit a 12 V motor to a 24 V supply and it will run fast, hot and briefly. Fit a 24 V motor to 12 V and it will turn slowly and never reach its rated airflow. So when you order, check that you are choosing the right voltage version for the ventilator, the switch and the speed controller, and if you are unsure, take a photo of the battery bay and send it to us before you buy.</p><p>One more point for converters: if your vehicle has a leisure battery separate from the starter battery, wire the ventilator to the leisure side. That way a fan left running overnight can never leave you unable to start in the morning.</p>"
-    },
-    {
-      "h2": "Extract or supply: suck versus blow",
-      "html": "<p>A rooftop ventilator can pull air out of the vehicle or push it in, and the right direction depends on what you are trying to achieve. Extraction, sucking air out through the roof, is the default for most conversions. Warm air rises, so removing it at the roof is efficient, and it carries moisture, cooking smells and animal odours out with it. The fresh air has to come from somewhere, so pair an extractor with a low inlet such as a floor ventilator, a grille in a door or a second roof unit set to supply.</p><p>Supply, blowing air in, creates a slight positive pressure inside the body. That keeps road dust and exhaust fumes from creeping in through door seals, and occupants feel a gentle breeze from above, which is welcome in a hot cab or a passenger area. The downside is that moisture and smells are pushed out through whatever gap they can find rather than through a controlled outlet.</p><p>Many converters want both, and the full-size units can be wired with a reversing switch so the same fan extracts on summer evenings and supplies on dusty tracks. If you think you will ever want that flexibility, choose the switch and wiring for it at the start. It is a fiddly job to add later once the headlining is in.</p>"
-    },
-    {
-      "h2": "Powered, wind-driven or passive?",
-      "html": "<p>Not every roof needs a motor. A wind-driven unit such as the <a href='products/turbo-ii.html'>Turbo II</a> spins on the airflow over the roof and extracts continuously while the vehicle is moving, with no wiring and nothing to switch on. It is a good fit for a van that is rarely parked with anything living inside, or as a no-cost second vent alongside a powered fan.</p><p>A passive exhaust ventilator uses the venturi effect, the same low pressure over a moving roof, to draw air out, and is popular on tool vans, refrigerated bodies and anywhere you simply want stale air gone with no maintenance. What neither of these can do is move air when the vehicle is stationary and the wind is not blowing, which is exactly when a parked camper or a dog van is at its most uncomfortable. If anything will ever wait inside a parked vehicle, you need a powered unit.</p>"
-    },
-    {
-      "h2": "The parts people forget",
-      "html": " Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='shop.html'>shop</a> with photos and prices alongside, so it all arrives in one order. And if your use is specific, a horse trailer, a K9 van, a coach, have a look at the vehicle guides on this site or simply ask. We are an independent European specialist retailer with the full range in stock in the Netherlands, and we have talked a great many converters through exactly this decision.</p>"
-    }
-  ],
-  "faq": [
-    {
-      "q": "Can I run a rooftop ventilator while driving?",
-      "a": "Yes. Powered units are designed to run on the move as well as parked, and wind-driven units only work while the vehicle is moving. The hood keeps rain out at road speed, and a snow filter adds protection in winter conditions."
-    },
-    {
-      "q": "Will a 230 mm hole weaken my van roof?",
-      "a": "Not if it is placed between the roof ribs and clamped with the ventilator's own frame, which stiffens the edge of the opening. The 230 mm size is a long-established standard for full-size roof units, and thousands of vans run with one or more of them."
-    },
-    {
-      "q": "How noisy is a rooftop ventilator at night?",
-      "a": "It depends almost entirely on speed. Any full-size unit is loud at maximum, so fit a speed controller and run it low overnight. The brushless Le Mans LL is the quietest choice for sleeping vehicles because there are no brushes and the motor runs smoothly at low speed."
-    },
-    {
-      "q": "Do I need a fan at all if my van has opening windows?",
-      "a": "Windows only move air when there is wind or the vehicle is moving, and they let in rain and insects. A rooftop ventilator moves air on demand in any weather, and it does so with the doors and windows locked, which matters for security and for anything living inside a parked vehicle."
-    }
-  ]
+ "slug": "how-to-choose-a-rooftop-ventilator-for-your-van",
+ "title": "How to Choose a Rooftop Ventilator for Your Van",
+ "meta": "A practical buying guide to rooftop ventilators for vans: airflow per cubic metre of body, 12 V or 24 V, roof cut-out sizes, and extract versus supply.",
+ "excerpt": "Choosing a rooftop ventilator comes down to four questions: how much air, which voltage, what size hole, and which direction. Here is how an experienced converter works through them.",
+ "keywords": [
+  "rooftop ventilator",
+  "van roof fan",
+  "van ventilation",
+  "12V roof ventilator",
+  "roof vent cut-out size",
+  "extractor fan for van"
+ ],
+ "vehicle": "general",
+ "read_min": 6,
+ "sections": [
+  {
+   "h2": "Start with the air, not the fan",
+   "html": "<p>Most people who ring us about a rooftop ventilator start with a product name. The better place to start is the air itself. A van is a sealed metal box, and everything that happens inside it, people breathing, a dog panting, a kettle boiling, wet kit drying, tools warming up, adds heat and moisture that has nowhere to go. A rooftop ventilator gives that air a way out and, just as importantly, gives fresh air a way in.</p><p>So before you look at any model, write down three things: the volume of the body you want to ventilate, the voltage of the vehicle, and what the space is used for. Sleeping in a camper, hauling a working dog, running a mobile workshop and carrying passengers all ask something different from the fan on the roof. Once you have those three facts, the choice narrows very quickly.</p><p>This guide walks through the four decisions that matter: airflow, voltage, cut-out size and direction.</p>"
+  },
+  {
+   "h2": "How much airflow do you actually need?",
+   "html": "<p>Airflow is quoted in cubic metres per hour, m³/h. To make sense of that number you need the volume of your body in cubic metres, which is simply internal length times width times height. A typical medium panel van load area comes out somewhere around 8 to 12 m³, a long-wheelbase high-roof van nearer 15 m³, and a coachbuilt motorhome habitation area a little more again.</p><p>Now divide the ventilator's airflow by that volume and you get air changes per hour, the number of times the fan could in theory replace all the air in the body. As a rule of thumb, a space where people sleep is comfortable with a handful of air changes an hour on a quiet, low speed, while a space with animals, wet gear or working equipment wants far more, and wants it in reserve for hot days.</p><p>That reserve is why we usually point van converters at a full-size unit. The <a href='products/le-mans.html'>Le Mans rooftop ventilator</a> moves up to 850 m³/h, which on a 12 m³ body is a complete change of air roughly every minute at full speed. You will rarely run it flat out, but on a July afternoon with the doors shut you will be glad it is there. For a small compartment such as a toilet cubicle, a wardrobe or a single dog box, the <a href='products/winglet.html'>Winglet mini ventilator</a> at 65 m³/h is plenty and needs only a small hole.</p><p>If you plan to run the fan for long periods on battery, look at the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>. It delivers 515 to 565 m³/h while drawing around 34 W, which is the difference between a fan you switch on for ten minutes and a fan you leave running all night.</p>"
+  },
+  {
+   "h2": "Roof cut-out sizes and what fits where",
+   "html": "<p>Every rooftop ventilator needs a hole, and the size of that hole decides which units you can swap between later. It pays to know the figures before you pick up the jigsaw:</p><ul><li>Le Mans, Le Mans LL and Round: 230 mm cut-out</li><li>Turbo II wind-driven: 128 mm cut-out</li><li>Turbo III wind-driven: 80 mm cut-out</li><li>Winglet mini: 80 mm cut-out</li><li>Exhaust ventilator, passive venturi: up to 140 mm cut-out</li></ul><p>The practical lesson is that the three full-size powered units share the same 230 mm opening. Fit a Round today and you can move to a Le Mans or an LL later without touching the roof. Likewise the Winglet and the Turbo III share an 80 mm hole, so a wind-driven vent in a wet locker can become a powered one when you decide you need it.</p><p>Position matters as much as size. Keep the cut-out clear of roof ribs and cross members, away from solar panels and roof bars, and think about where the fan sits relative to the people or animals below. An extractor works best at the highest, warmest point of the roof, usually towards the rear.</p>"
+  },
+  {
+   "h2": "12 V or 24 V: match the vehicle, not the fan",
+   "html": "<p>This is the one people get wrong most often, and it is entirely avoidable. Cars, vans, most motorhomes and any trailer fed from a car's towing socket run on a 12 V system. Trucks, coaches, many minibuses and horseboxes built on a lorry chassis usually run on 24 V. Look at the battery, not the badge: if there are two batteries wired in series, you are on 24 V.</p><p>Fit a 12 V motor to a 24 V supply and it will run fast, hot and briefly. Fit a 24 V motor to 12 V and it will turn slowly and never reach its rated airflow. So when you order, check that you are choosing the right voltage version for the ventilator, the switch and the speed controller, and if you are unsure, take a photo of the battery bay and send it to us before you buy.</p><p>One more point for converters: if your vehicle has a leisure battery separate from the starter battery, wire the ventilator to the leisure side. That way a fan left running overnight can never leave you unable to start in the morning.</p>"
+  },
+  {
+   "h2": "Extract or supply: suck versus blow",
+   "html": "<p>A rooftop ventilator can pull air out of the vehicle or push it in, and the right direction depends on what you are trying to achieve. Extraction, sucking air out through the roof, is the default for most conversions. Warm air rises, so removing it at the roof is efficient, and it carries moisture, cooking smells and animal odours out with it. The fresh air has to come from somewhere, so pair an extractor with a low inlet such as a floor ventilator, a grille in a door or a second roof unit set to supply.</p><p>Supply, blowing air in, creates a slight positive pressure inside the body. That keeps road dust and exhaust fumes from creeping in through door seals, and occupants feel a gentle breeze from above, which is welcome in a hot cab or a passenger area. The downside is that moisture and smells are pushed out through whatever gap they can find rather than through a controlled outlet.</p><p>Many converters want both, and the full-size units can be wired with a reversing switch so the same fan extracts on summer evenings and supplies on dusty tracks. If you think you will ever want that flexibility, choose the switch and wiring for it at the start. It is a fiddly job to add later once the headlining is in.</p>"
+  },
+  {
+   "h2": "Powered, wind-driven or passive?",
+   "html": "<p>Not every roof needs a motor. A wind-driven unit such as the <a href='products/turbo-ii.html'>Turbo II</a> spins on the airflow over the roof and extracts continuously while the vehicle is moving, with no wiring and nothing to switch on. It is a good fit for a van that is rarely parked with anything living inside, or as a no-cost second vent alongside a powered fan.</p><p>A passive exhaust ventilator uses the venturi effect, the same low pressure over a moving roof, to draw air out, and is popular on tool vans, refrigerated bodies and anywhere you simply want stale air gone with no maintenance. What neither of these can do is move air when the vehicle is stationary and the wind is not blowing, which is exactly when a parked camper or a dog van is at its most uncomfortable. If anything will ever wait inside a parked vehicle, you need a powered unit.</p>"
+  },
+  {
+   "h2": "The parts people forget",
+   "html": "<p>The fan is the headline, but a good installation is a system. A <a href='products/speedcontrol.html'>speed controller</a> lets you run a big fan quietly at night and flat out in the afternoon, and it pays for itself in comfort the first warm weekend. A snow filter is worth fitting on any van that overwinters outdoors or works in the mountains, as it stops driven snow and heavy rain reaching the motor. Interior grilles finish the ceiling neatly and keep fingers and paws away from the blades.</p><p>Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='products/le-mans.html'>product page</a> with photos and prices alongside, so it all arrives in one order. And if your use is specific, a horse trailer, a K9 van, a coach, have a look at the vehicle guides on this site or simply ask. We are an independent European specialist retailer with the full range in stock in the Netherlands, and we have talked a great many converters through exactly this decision.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I run a rooftop ventilator while driving?",
+   "a": "Yes. Powered units are designed to run on the move as well as parked, and wind-driven units only work while the vehicle is moving. The hood keeps rain out at road speed, and a snow filter adds protection in winter conditions."
+  },
+  {
+   "q": "Will a 230 mm hole weaken my van roof?",
+   "a": "Not if it is placed between the roof ribs and clamped with the ventilator's own frame, which stiffens the edge of the opening. The 230 mm size is a long-established standard for full-size roof units, and thousands of vans run with one or more of them."
+  },
+  {
+   "q": "How noisy is a rooftop ventilator at night?",
+   "a": "It depends almost entirely on speed. Any full-size unit is loud at maximum, so fit a speed controller and run it low overnight. The brushless Le Mans LL is the quietest choice for sleeping vehicles because there are no brushes and the motor runs smoothly at low speed."
+  },
+  {
+   "q": "Do I need a fan at all if my van has opening windows?",
+   "a": "Windows only move air when there is wind or the vehicle is moving, and they let in rain and insects. A rooftop ventilator moves air on demand in any weather, and it does so with the doors and windows locked, which matters for security and for anything living inside a parked vehicle."
+  }
+ ]
 }

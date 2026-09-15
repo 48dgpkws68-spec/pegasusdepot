@@ -1,0 +1,758 @@
+{
+ "categories": [
+  {
+   "id": "rooftop-ventilators",
+   "name": "Dakventilators",
+   "short": "Elektrische en windgedreven dakventilators, 12V en 24V"
+  },
+  {
+   "id": "interior-valves",
+   "name": "Binnenventielen & roosters",
+   "short": "Afsluitbare plafondventielen, LED-ventielen en roosters"
+  },
+  {
+   "id": "controls",
+   "name": "Schakelaars & bediening",
+   "short": "3-standenschakelaars, toerenregelaars en bedieningsunits voor dakluiken"
+  },
+  {
+   "id": "roof-hatches",
+   "name": "Dakluiken",
+   "short": "ECE 43R glazen koepelluiken, handbediend en elektrisch"
+  },
+  {
+   "id": "floor-ventilation",
+   "name": "Vloerventilators & filters",
+   "short": "Vloerventilators en sneeuwfilters voor een complete luchtkringloop"
+  },
+  {
+   "id": "lighting",
+   "name": "LED-binnenverlichting",
+   "short": "IP67 plafonnières met witte en blauwe nachtstand, 12/24V"
+  },
+  {
+   "id": "fans-blowers",
+   "name": "Axiaal- & radiaalventilators",
+   "short": "OEM-blowers en koelventilators, samengesteld op aanvraag"
+  },
+  {
+   "id": "indoor-climate",
+   "name": "Binnenklimaat",
+   "short": "Ceilingflow plafondventilators en HEPA-luchtreinigers"
+  }
+ ],
+ "products": [
+  {
+   "id": "le-mans",
+   "name": "Le Mans dakventilator",
+   "short_name": "Le Mans",
+   "tagline": "De 850 m³/h-standaard in voertuigventilatie",
+   "summary": "De populairste elektrische dakventilator voor ambulances, paardenvrachtwagens, bussen en bedrijfswagens. 850 m³/h zuig- of blaaskracht onder een gestroomlijnde kap, leverbaar in 12V en 24V, wit of zwart.",
+   "description": [
+    "De Le Mans is waar stijl en pure luchtverplaatsing samenkomen. Een strakke, lage kap (slechts 64 mm boven het dak, dus prima naast zonnepanelen) verbergt een motor die 850 m³/h verplaatst in beide richtingen: warme, vochtige of vervuilde lucht afzuigen, of frisse lucht naar binnen blazen. Het is de ventilator die carrosseriebouwers in heel Europa voorschrijven wanneer een voertuig gewoon fris moet blijven.",
+    "Kies 12V voor bestelwagens, campers en personenwagens, of 24V voor vrachtwagens, touringcars en bussen. Beide versies zijn EMC-gekeurd, dus getest op storingsvrij samenwerken met je voertuigelektronica. Liever een passieve oplossing? De motorloze versie gebruikt dezelfde dakuitsparing van 230 mm en kan later worden omgebouwd naar elektrisch.",
+    "Maak de installatie compleet met een 3-standenschakelaar (blazen / uit / zuigen), een optionele toerenregelaar en een van onze binnenventielen of roosters. Alles past op dezelfde opening van 230 mm."
+   ],
+   "features": [
+    "850 m³/h luchtverplaatsing, zuigen en blazen",
+    "12V- of 24V-motor, 80 W, 2600 tpm",
+    "Slechts 52 dB(A) op vol vermogen, stiller met toerenregelaar",
+    "Laag profiel: 64 mm boven het dak, 385 x 312 mm grondvlak",
+    "Gestroomlijnde ABS-dakring met PA6-kap, 1,3 kg",
+    "Dakopening 230 mm (245 mm met ring)",
+    "EMC-gekeurde motor, testrapport beschikbaar",
+    "Regenbestendig ontwerp, sneeuwfilter optioneel"
+   ],
+   "specs": {
+    "Luchtverplaatsing": "850 m³/h",
+    "Spanning": "12V of 24V DC",
+    "Vermogen": "80 W (ca. 6 A bij 12V)",
+    "Nominaal toerental": "2600 tpm",
+    "Geluidsniveau": "52 dB(A)",
+    "Functie": "Zuigen en blazen (omkeerbaar)",
+    "Dakopening": "Ø 230 mm (buitenring Ø 245 mm)",
+    "Buitenmaten": "385 x 312 mm, 64 mm hoog",
+    "Gewicht": "1,3 kg",
+    "Materialen": "ABS-dakring, PA6-kap",
+    "Kleuren": "Wit RAL 9010 of zwart RAL 9005",
+    "Keuring": "EMC-gekeurd",
+    "Accessoires": "Schakelaar, toerenregelaar, binnenventiel, sneeuwfilter"
+   },
+   "badges": [
+    "Bestseller",
+    "EMC-gekeurd",
+    "12V / 24V"
+   ],
+   "faq": [
+    {
+     "q": "Hoe groot moet de dakopening zijn?",
+     "a": "Een gat van 230 mm. De dakring dekt tot 245 mm af, dus een iets te ruime uitsparing is geen probleem."
+    },
+    {
+     "q": "Maakt hij veel lawaai?",
+     "a": "Op vol vermogen meet de Le Mans 52 dB(A). Voeg de optionele toerenregelaar toe om hem stil op een fractie van het toerental te laten draaien, wat de meeste camper- en ambulancegebruikers 's nachts doen."
+    },
+    {
+     "q": "Is hij waterdicht?",
+     "a": "De Le Mans is ontworpen om bij normaal gebruik zware regen te weerstaan. Voor extreme omstandigheden voeg je het sneeuwfilter toe, dat ook insecten buitenhoudt."
+    },
+    {
+     "q": "Welke spanning heb ik nodig?",
+     "a": "12V voor personenauto's, bestelwagens en de meeste campers; 24V voor vrachtwagens, touringcars en bussen. Controleer de boordspanning van je voertuig voordat je bestelt."
+    },
+    {
+     "q": "Hoe monteer ik hem?",
+     "a": "Zaag een gat van 230 mm, bescherm de rand tegen corrosie, richt de pijl op de ring in de rijrichting en verlijm de ring met een MS-polymeerkit of schroef hem vast door de acht gaten in de rand. Monteer het binnenrooster of -ventiel voordat je de bedrading aansluit."
+    }
+   ]
+  },
+  {
+   "id": "le-mans-ll",
+   "name": "Le Mans LL borstelloze dakventilator",
+   "short_name": "Le Mans LL",
+   "tagline": "Borstelloos. Langere levensduur. Lager verbruik.",
+   "summary": "De long-life versie van de Le Mans. Een borstelloze motor zuigt 515 tot 565 m³/h lucht uit je voertuig bij slechts 34 W, zonder koolborstels die slijten. Ideaal voor vochtige laadruimtes, dierentransport, chemisch transport en touringcars.",
+   "description": [
+    "De Le Mans LL neemt de beproefde vorm van de Le Mans en voorziet die van een borstelloze motor. Het resultaat: een ventilator die jarenlang zonder onderhoud draait, slechts 34 W verbruikt en leverbaar is met een geïntegreerde toerenregeling.",
+    "De LL is een ventilator die uitsluitend afzuigt, en dat is precies wat de meeste laadruimtes, dierencompartimenten en toiletten van touringcars nodig hebben: een constante, gezonde afvoer van vochtige of vervuilde lucht. Combineer hem met een vloerventilator voor een complete luchtkringloop.",
+    "Bestel de 12V- of 24V-versie, met of zonder ingebouwde toerenregeling. Een binnenventiel is apart leverbaar. Zaagmal meegeleverd."
+   ],
+   "features": [
+    "Borstelloze motor, onderhoudsvrij",
+    "515 m³/h (12V) of 565 m³/h (24V) afzuiging",
+    "Slechts 34 W opgenomen vermogen",
+    "3100 tpm, 65 dB(A)",
+    "Optioneel geïntegreerde toerenregeling",
+    "Grijze ABS-dakring, witte PA6-kap",
+    "Dakopening 230 mm, EMC-gekeurd, zaagmal meegeleverd"
+   ],
+   "specs": {
+    "Luchtverplaatsing": "515 m³/h (12V) · 565 m³/h (24V)",
+    "Spanning": "12V of 24V DC",
+    "Vermogen": "34 W",
+    "Nominaal toerental": "3100 tpm",
+    "Geluidsniveau": "65 dB(A)",
+    "Functie": "Zuigen (afzuiging)",
+    "Motor": "Borstelloos",
+    "Dakopening": "Ø 230 mm",
+    "Inbouwhoogte": "ca. 100 mm",
+    "Materialen": "ABS-dakring (grijs), PA6-kap (wit RAL 9010)",
+    "Keuring": "EMC-gekeurd"
+   },
+   "badges": [
+    "Borstelloos",
+    "EMC-gekeurd",
+    "12V / 24V"
+   ],
+   "faq": [
+    {
+     "q": "Wat is het verschil met de standaard Le Mans?",
+     "a": "De LL heeft een borstelloze motor (langere levensduur, lager verbruik) en zuigt uitsluitend af. De standaard Le Mans kan blazen én zuigen en verplaatst meer lucht (850 m³/h)."
+    },
+    {
+     "q": "Kan ik het toerental regelen?",
+     "a": "Ja: bestel de versie 02-4250 (12V) of 02-4350 (24V) met de geïntegreerde toerenregeling. De losse Speedcontrol 30-3004 is ontworpen voor de Le Mans met koolborstels en de Ronde dakventilator."
+    }
+   ]
+  },
+  {
+   "id": "rooftop-round",
+   "name": "Ronde dakventilator",
+   "short_name": "Ronde dakventilator",
+   "tagline": "850 m³/h in een klassieke ronde behuizing",
+   "summary": "Dezelfde 850 m³/h-motor als de Le Mans in een ronde ABS-behuizing van slechts 62 mm hoog. Blazen en zuigen met de 3-standenschakelaar, minder geluid met een toerenregelaar. Geliefd in campers, caravans, aanhangers, woonboten en laadruimtes.",
+   "description": [
+    "Onze ronde elektrische dakventilator zorgt voor een gezonde aan- en afvoer van lucht in bedrijfswagens, campers en auto's. Hij deelt het motorplatform van de Le Mans (850 m³/h, 80 W), maar heeft een ronde kap van Ø 320 mm en slechts 62 mm hoog, die bij veel klassieke voertuigdaken past en onder de meeste dakdragers valt.",
+    "Kies met de 3-standenschakelaar tussen aanzuigen of afzuigen, en voeg de toerenregelaar toe om de luchtverplaatsing (en het geluid) terug te draaien wanneer je 's nachts alleen een beetje frisse lucht nodig hebt.",
+    "Leverbaar in 12V en 24V, wit of zwart, en als motorloze versie die later van een motor kan worden voorzien. De kap kan in je carrosseriekleur worden gespoten."
+   ],
+   "features": [
+    "850 m³/h luchtverplaatsing, zuigen en blazen",
+    "12V of 24V, 80 W, 2600 tpm, 52 dB(A)",
+    "Ronde kap Ø 320 mm, slechts 62 mm hoog",
+    "ABS / PA6-behuizing, wit of zwart, IP68-motor",
+    "Dakopening 230 mm (245 mm ring)",
+    "EMC-gekeurd",
+    "Optioneel: schakelaar, toerenregelaar, binnenventiel, sneeuwfilter"
+   ],
+   "specs": {
+    "Luchtverplaatsing": "850 m³/h",
+    "Spanning": "12V of 24V DC",
+    "Vermogen": "80 W",
+    "Nominaal toerental": "2600 tpm",
+    "Geluidsniveau": "52 dB(A)",
+    "Functie": "Zuigen en blazen",
+    "Dakopening": "Ø 230 mm (buitenring Ø 245 mm)",
+    "Buitenmaten": "Ø 320 mm, 62 mm hoog",
+    "Gewicht": "ca. 1,5 kg",
+    "Materialen": "ABS-dakring, PA6-kap",
+    "Kleuren": "Wit RAL 9010 of zwart RAL 9005",
+    "Keuring": "EMC-gekeurd"
+   },
+   "badges": [
+    "EMC-gekeurd",
+    "12V / 24V"
+   ],
+   "faq": [
+    {
+     "q": "Le Mans of Ronde: welke moet ik kiezen?",
+     "a": "Technisch identiek (850 m³/h, 80 W). De Le Mans heeft een lagere, meer aerodynamische kap; de Ronde past bij klassieke daken en krappe ruimtes. Beide gebruiken een opening van 230 mm."
+    }
+   ]
+  },
+  {
+   "id": "winglet",
+   "name": "Winglet mini-dakventilator",
+   "short_name": "Winglet",
+   "tagline": "3 watt. Gat van 80 mm. Geruisloos afzuigen.",
+   "summary": "Een kleine elektrische afzuiger voor kleine bestelwagens, camperkeukens, caravans, hondenboxen en toiletruimtes. 65 m³/h door een uitsparing van 80 mm bij slechts 3 W, compleet met binnenrooster, open/dicht-frame en zaagmal.",
+   "description": [
+    "De Winglet is ons antwoord voor ruimtes waar een volwaardige dakventilator overdreven is: een VW Caddy, de keuken van een camper, de badkamer van een caravan of een materiaalkast. Hij zuigt 65 m³/h muffe lucht af bij slechts 3 W, dus hij kan de hele nacht op een huishoudaccu draaien.",
+    "Voor de montage is één gat van 80 mm genoeg. De unit wordt compleet geleverd met binnenrooster, een open/dicht-ventiel en een zaagmal, en de lage kap (230 x 196 mm, 52 mm hoog) blijft ruim onder de meeste dakdragers.",
+    "Leverbaar in wit of zwart, elektrisch (12V) of motorloos."
+   ],
+   "features": [
+    "65 m³/h afzuiging bij slechts 3 W",
+    "Dakuitsparing van slechts 80 mm",
+    "Fluisterstil: 32 dB(A)",
+    "Compleet met open/dicht-frame, binnenrooster en zaagmal",
+    "Grondvlak 230 x 196 mm, 52 mm hoog, ca. 0,5 kg",
+    "Montageset voor dakdikte 1 tot 17 mm",
+    "Wit of zwart ABS, EMC-gekeurd"
+   ],
+   "specs": {
+    "Luchtverplaatsing": "65 m³/h",
+    "Spanning": "12V DC",
+    "Vermogen": "3 W",
+    "Geluidsniveau": "32 dB(A)",
+    "Functie": "Zuigen (afzuiging)",
+    "Dakopening": "Ø 80 mm",
+    "Grondvlak": "230 x 196 mm, 52 mm hoog",
+    "Dakdikte": "1 tot 17 mm (standaard montageset)",
+    "Materiaal": "ABS",
+    "Kleuren": "Wit of zwart",
+    "Keuring": "EMC-gekeurd"
+   },
+   "badges": [
+    "Compact",
+    "EMC-gekeurd",
+    "12V"
+   ],
+   "faq": [
+    {
+     "q": "Heeft hij een schakelaar nodig?",
+     "a": "Ja, een eenvoudige aan/uit-schakelaar of een van onze 3-standenschakelaars. De Winglet zuigt uitsluitend af, dus je gebruikt maar één stand."
+    }
+   ]
+  },
+  {
+   "id": "turbo-ii",
+   "name": "Turbo II windgedreven dakventilator",
+   "short_name": "Turbo II",
+   "tagline": "Nul watt. Ventileert elke keer dat je rijdt.",
+   "summary": "Een draaiende, windgedreven afzuiger die muffe lucht uit je bestelwagen, hondentransporter of paardentrailer blijft zuigen zonder één draad. Circa 245 m³/h bij snelwegsnelheid. Kap Ø 319 mm, uitsparing 128 mm, slechts 68 mm hoog zodat hij onder de meeste dakdragers past.",
+   "description": [
+    "De Turbo II is de klassieke draaiende paddenstoelventilator, verfijnd. De luchtstroom over het dak laat de UV-gestabiliseerde ABS-kap op twee kogellagers draaien en een venturi-effect zuigt lucht uit het voertuig: ruwweg 245 m³/h bij 100 km/h. Geen bedrading, geen stroomverbruik, geen geluid. Hij werkt gewoon zodra het voertuig rijdt of de wind waait.",
+    "Met 68 mm hoogte past hij onder de meeste dakdragers. Het boorgat van 128 mm en de inbouwdiepte van 26 mm maken hem eenvoudig achteraf te monteren, en de set bevat een binnenrooster en een afsluitbare schuif zodat je hem in de winter kunt dichtzetten.",
+    "Perfect voor het vervoer van honden, paarden en lading die niet in muffe lucht mag staan. Combineer hem met een vloerventilator voor een continue luchtstroom, ook bij stilstand."
+   ],
+   "features": [
+    "Windgedreven, geen elektriciteit nodig",
+    "Ca. 245 m³/h bij 100 km/h",
+    "Draaiende kap Ø 319 mm, 2 kogellagers, UV-gestabiliseerd ABS",
+    "Dakuitsparing 128 mm, diepte 26 mm, hoogte 68 mm",
+    "Past onder de meeste dakdragers",
+    "Binnenrooster en afsluitbare schuif meegeleverd",
+    "Montageset voor dakdikte 1 tot 21 mm",
+    "Wit of zwart, 1,2 kg"
+   ],
+   "specs": {
+    "Functie": "Zuigen (windgedreven)",
+    "Luchtverplaatsing": "ca. 245 m³/h bij 100 km/h",
+    "Diameter": "Ø 319 mm",
+    "Dakuitsparing": "Ø 128 mm",
+    "Hoogte": "68 mm",
+    "Inbouwdiepte": "26 mm",
+    "Lagers": "2 kogellagers",
+    "Dakdikte": "1 tot 21 mm (andere sets op aanvraag)",
+    "Gewicht": "1,2 kg",
+    "Materiaal": "UV-gestabiliseerd ABS",
+    "Meegeleverd": "Binnenrooster en schuif"
+   },
+   "badges": [
+    "Geen stroom nodig",
+    "Rooster & schuif inbegrepen"
+   ],
+   "faq": [
+    {
+     "q": "Ventileert hij ook bij stilstand?",
+     "a": "Alleen als er wind staat. Voor gegarandeerde luchtverplaatsing bij stilstand kies je een elektrisch model zoals de Le Mans of Winglet, of combineer je de Turbo II met een vloerventilator voor natuurlijke convectie."
+    }
+   ]
+  },
+  {
+   "id": "turbo-iii",
+   "name": "Turbo III compacte windgedreven ventilator",
+   "short_name": "Turbo III",
+   "tagline": "Het kleine broertje: gat van 80 mm, geen lijm",
+   "summary": "De compacte versie van de Turbo II. Kap Ø 210 mm, uitsparing 80 mm, 59,5 mm hoog, circa 120 m³/h bij snelwegsnelheid, compleet met open/dicht-ventiel. Klikt in elkaar zonder lijm. Voor boten, hondenboxen, kleine bestelwagens en compartimenten van touringcars.",
+   "description": [
+    "De Turbo III is een kleinere windgedreven ventilator voor ruimtes waar elke millimeter telt. Hij heeft slechts een gat van 80 mm nodig, is 59,5 mm hoog en schuift onder vrijwel elke dakdrager.",
+    "Net als zijn grote broer draait hij op twee kogellagers en zuigt hij lucht af via het venturi-effect (ruwweg 120 m³/h bij 100 km/h), maar hij is in enkele minuten in elkaar gezet en heeft geen lijm nodig. De binnenkant is afgewerkt met een stijlvol rooster en een open/dicht-ventiel.",
+    "Ideaal voor het ventileren van boten, hondentransporters, kleine servicewagens, caravans en touringcars. Gemaakt in Nederland."
+   ],
+   "features": [
+    "Windgedreven, geen stroomverbruik",
+    "Ca. 120 m³/h bij 100 km/h",
+    "Kap Ø 210 mm, slechts 59,5 mm hoog",
+    "Dakuitsparing 80 mm, diepte 14,5 mm",
+    "Compleet met binnenrooster en open/dicht-ventiel",
+    "Geen lijm nodig",
+    "Montageset voor dakdikte 1 tot 17 mm",
+    "ABS, wit of zwart, 0,55 kg"
+   ],
+   "specs": {
+    "Functie": "Zuigen (windgedreven)",
+    "Luchtverplaatsing": "ca. 120 m³/h bij 100 km/h",
+    "Diameter": "Ø 210 mm",
+    "Dakuitsparing": "Ø 80 mm",
+    "Hoogte": "59,5 mm",
+    "Inbouwdiepte": "14,5 mm",
+    "Lagers": "2 kogellagers",
+    "Dakdikte": "1 tot 17 mm",
+    "Gewicht": "0,55 kg",
+    "Materiaal": "ABS",
+    "Meegeleverd": "Binnenrooster en open/dicht-ventiel"
+   },
+   "badges": [
+    "Geen stroom nodig",
+    "Open/dicht-ventiel inbegrepen"
+   ],
+   "faq": []
+  },
+  {
+   "id": "exhaust-ventilator",
+   "name": "Afzuigventilator (venturi)",
+   "short_name": "Afzuigventilator",
+   "tagline": "Aerodynamisch, stil, geen bewegende delen",
+   "summary": "Een lage, aerodynamische ABS-ventilator (285 x 185 mm, 50 mm hoog) die tijdens het rijden via het venturi-effect lucht uit je bestelwagen zuigt. Geen motor, geen bewegende delen, praktisch onhoorbaar. Vaak gecombineerd met een elektrische dakventilator of los gebruikt.",
+   "description": [
+    "De mechanische afzuigventilator is de eenvoudigste manier om een bedrijfswagen fris te houden: de wind die over de kap stroomt, zuigt lucht uit de laadruimte eronder. Geen stroom, geen onderhoud, geen geluid, en hij blijft werken bij een licht briesje, ook bij stilstand.",
+    "Dankzij de hoogte van 50 mm werkt hij onder dakdragers, en omdat er geen bedrading nodig is, is de montage snel gedaan: zaag een gat van maximaal 140 mm, verlijm met carrosseriekit (nooit siliconenkit) en monteer het binnenrooster. Combineer hem met onze vloerventilator voor een gestage aanvoer van frisse lucht, of met een elektrische dakventilator voor geforceerde ventilatie bij stilstand.",
+    "Leverbaar in wit of zwart. Werk de binnenkant af met het ABS-rooster van Ø 140 mm."
+   ],
+   "features": [
+    "Afzuiging via venturi-effect, geen stroom nodig",
+    "Geen mechanisch bewegende delen, praktisch geruisloos",
+    "Laag aerodynamisch profiel: 285 x 185 mm, 50 mm hoog",
+    "ABS, wit of zwart, slechts 0,5 kg",
+    "Dakopening tot 140 mm",
+    "Binnenafwerking: rooster 35-26xx"
+   ],
+   "specs": {
+    "Functie": "Zuigen (venturi)",
+    "Dakopening": "max. Ø 140 mm",
+    "Afmetingen": "285 x 185 mm, 50 mm hoog",
+    "Gewicht": "0,5 kg",
+    "Materiaal": "ABS",
+    "Kleuren": "Wit of zwart",
+    "Vermogen": "Geen"
+   },
+   "badges": [
+    "Geen stroom nodig",
+    "Past onder dakdragers"
+   ],
+   "faq": []
+  },
+  {
+   "id": "v12-valve",
+   "name": "V12 binnenventiel",
+   "short_name": "V12 ventiel",
+   "tagline": "Het afsluitbare plafondventiel voor de Le Mans",
+   "summary": "ABS-plafondventiel van Ø 290 mm dat de binnenkant van je Le Mans of Ronde dakventilator afwerkt. Verstelbare lamellen voorkomen tocht; open hem voor volle luchtverplaatsing, sluit hem in de winter. Handbediend of elektrisch (12/24V), in wit, grijs of donkergrijs.",
+   "description": [
+    "De V12 is het binnenventiel dat de meeste klanten combineren met de Le Mans. Het dekt de dakopening van 230 mm af met een strak lamellenrooster van Ø 290 mm (slechts 20 mm hoog) dat je met de hand opent en sluit, of elektrisch vanaf je dashboard met de 12/24V-versie. Het dient bovendien als vingerbescherming voor de ventilatorbladen.",
+    "Gemaakt van hoogwaardig ABS is het meer een blikvanger dan zomaar een functionele afdekking. Drie kleurcombinaties laten het in elk interieur opgaan: wit, grijs of donkergrijs. Ontworpen voor voertuigen met een hemelbekleding of plafond.",
+    "Tip: bestel de elektrische versie samen met een Le Mans, een 3-standenschakelaar voor de ventilator en een aparte aan/uit-schakelaar voor het ventiel, en je hebt een volledig op afstand bediend ventilatiesysteem."
+   ],
+   "features": [
+    "Ø 290 mm, dekt de dakopening van 230 mm af",
+    "Luchtstroom openen en sluiten, verstelbare lamellen",
+    "Slechts 20 mm hoog, 0,5 kg",
+    "Elektrische versie wordt bediend met een aparte aan/uit-schakelaar (niet meegeleverd)",
+    "Handbediend of elektrisch 12V/24V",
+    "Hoogwaardig ABS, drie kleurstellingen",
+    "Past op Le Mans, Le Mans LL en Ronde dakventilator"
+   ],
+   "specs": {
+    "Totale diameter": "Ø 290 mm",
+    "Hoogte": "20 mm",
+    "Bediening": "Handbediend of elektrisch 12V/24V",
+    "Materiaal": "ABS",
+    "Gewicht": "0,5 kg (handbediend) · 0,6 kg (elektrisch)",
+    "Kleuren": "Wit, grijs, donkergrijs",
+    "Geschikt voor": "02-2200/2300 Le Mans, 02-4200/4300 Le Mans LL, 02-0200/0300 Ronde"
+   },
+   "badges": [
+    "Bestseller",
+    "Handbediend of elektrisch"
+   ],
+   "faq": [
+    {
+     "q": "Past hij op de Le Mans?",
+     "a": "Ja. De V12 is ontworpen voor de opening van 230 mm van de Le Mans, Le Mans LL en Ronde dakventilator."
+    }
+   ]
+  },
+  {
+   "id": "flower-power",
+   "name": "Flower Power binnenventiel",
+   "short_name": "Flower Power",
+   "tagline": "Afsluitbaar ventiel Ø 280 mm, optioneel met LED-verlichting",
+   "summary": "Een luxe afsluitbaar plafondrooster (Ø 280 mm) voor voertuigen met een plafond. Behoudt de maximale luchtverplaatsing, gaat met de hand open en dicht, en is leverbaar met 21 witte + 9 blauwe LED's in 12V of 24V.",
+   "description": [
+    "Flower Power is ons design-binnenventiel: een afsluitbaar rooster van Ø 280 mm met een kenmerkend radiaal patroon dat er in een luxe paardenvrachtwagen net zo goed uitziet als in een camper. Het behoudt de volledige luchtverplaatsing van je dakventilator en laat je hem toch helemaal afsluiten.",
+    "Kies de standaardversie in wit, lichtgrijs of lichtgrijs met donkergrijs accent, of de LED-versie met 21 witte en 9 blauwe LED's voor sfeer- en nachtverlichting, in 12V of 24V.",
+    "Ontworpen voor voertuigen met een hemel of plafond. Geen plafond? Kies dan een standaardrooster."
+   ],
+   "features": [
+    "Afsluitbaar binnenventiel Ø 280 mm",
+    "Behoudt maximale luchtverplaatsing in geopende stand",
+    "Optioneel LED: 21 witte + 9 blauwe LED's, 12V of 24V",
+    "Hoogwaardig ABS, modern design",
+    "Wit, lichtgrijs of tweekleurig grijs"
+   ],
+   "specs": {
+    "Totale diameter": "Ø 280 mm",
+    "Bediening": "Handmatig open/dicht",
+    "LED-versie": "21 witte / 9 blauwe LED's, 12V of 24V",
+    "Materiaal": "ABS",
+    "Kleuren": "Wit, lichtgrijs, lichtgrijs / donkergrijs",
+    "Geschikt voor": "Le Mans, Le Mans LL, Ronde dakventilator"
+   },
+   "badges": [
+    "Designventiel",
+    "LED-optie"
+   ],
+   "faq": []
+  },
+  {
+   "id": "rotating-valve-300",
+   "name": "Draaiventiel Ø 300 mm",
+   "short_name": "Draaiventiel 300",
+   "tagline": "Klassiek draaiventiel in zwart, wit of grijs",
+   "summary": "Een draaibaar plafondventiel van Ø 300 mm dat met een draai opent en sluit. Leverbaar in zwart, wit of grijs, en met geïntegreerde 12/24V-verlichting. Optionele microschakelaar zet de ventilator uit zodra het ventiel dicht is.",
+   "description": [
+    "Ons draaiventiel is de tijdloze binnenafwerking voor dakventilators: draaien om te openen, draaien om te sluiten. Met Ø 300 mm dekt het de dakopening van 230 mm van onze Le Mans en Ronde dakventilator volledig af.",
+    "Kies strak zwart, tijdloos wit of eigentijds grijs passend bij je interieur, of kies de witte versie met geïntegreerde 12V/24V-verlichting als sfeerverlichting.",
+    "Optioneel: een microschakelaar die de ventilator automatisch uitschakelt zodra het ventiel gesloten is."
+   ],
+   "features": [
+    "Draaibaar open/dicht-ventiel Ø 300 mm",
+    "Zwart, wit of grijs ABS",
+    "Versie met geïntegreerde 12/24V-verlichting (30 mm hoog)",
+    "Optionele microschakelaar (onderbreekt de ventilatorstroom bij sluiten)",
+    "Slechts 0,4 kg (0,7 kg met verlichting)"
+   ],
+   "specs": {
+    "Totale diameter": "Ø 300 mm",
+    "Bediening": "Draaiend open/dicht",
+    "Materiaal": "ABS",
+    "Gewicht": "0,4 kg · 0,7 kg met verlichting",
+    "Kleuren": "Grijs, wit, zwart",
+    "Verlichte versie": "35-2200, wit, 12V/24V"
+   },
+   "badges": [
+    "Verlichtingsoptie"
+   ],
+   "faq": []
+  },
+  {
+   "id": "grill-small",
+   "name": "ABS-rooster klein Ø 140 mm",
+   "short_name": "Rooster klein",
+   "tagline": "Strakke afwerking voor de afzuigventilator",
+   "summary": "ABS-binnenrooster van Ø 140 mm in wit, lichtgrijs of zwart. De nette, vaste binnenafdekking voor de afzuigventilator 02-1030. Speciale kleuren op aanvraag.",
+   "description": [
+    "Een kwaliteitsrooster van ABS met een honingraatvlak van Ø 140 mm dat de binnenzijde van onze afzuigventilator afdekt. Kies klassiek wit, subtiel lichtgrijs of strak zwart. Een andere kleur nodig? Speciale kleuren zijn op aanvraag leverbaar."
+   ],
+   "features": [
+    "Ø 140 mm x 4 mm",
+    "ABS, wit / lichtgrijs / zwart",
+    "Voor afzuigventilator 02-1030 (02-1026 / 02-1027)",
+    "Speciale kleuren op aanvraag"
+   ],
+   "specs": {
+    "Afmetingen": "Ø 140 mm x 4 mm",
+    "Materiaal": "ABS",
+    "Kleuren": "Wit, lichtgrijs, zwart",
+    "Geschikt voor": "02-1026 / 02-1027 / 02-1030"
+   },
+   "badges": [
+    "Voor 02-1030"
+   ],
+   "faq": []
+  },
+  {
+   "id": "grill-large",
+   "name": "ABS-rooster groot Ø 270 mm",
+   "short_name": "Rooster groot",
+   "tagline": "Honingraatrooster voor Le Mans en Ronde dakventilator",
+   "summary": "ABS-honingraatrooster van Ø 270 mm dat de binnenzijde van de Le Mans 02-2200 en de Ronde dakventilator 02-0200 afdekt. Vast (niet afsluitbaar) voor een vrije luchtstroom en een veilige vingerbescherming. Wit, lichtgrijs of zwart.",
+   "description": [
+    "Het grote ABS-rooster geeft de binnenkant van je Le Mans of Ronde dakventilator een strakke, professionele afwerking en laat de volledige luchtverplaatsing van 850 m³/h vrij. Het is niet afsluitbaar; wil je de luchtstroom kunnen dichtzetten, kies dan het V12- of Flower Power-ventiel.",
+    "Kies wit, lichtgrijs of zwart. Speciale kleuren op aanvraag."
+   ],
+   "features": [
+    "Honingraatrooster Ø 270 mm x 4 mm",
+    "ABS, wit / lichtgrijs / zwart",
+    "Vrije luchtstroom (niet afsluitbaar), vingerbescherming",
+    "Voor 02-0200 Ronde en 02-2200 Le Mans",
+    "Speciale kleuren op aanvraag"
+   ],
+   "specs": {
+    "Afmetingen": "Ø 270 mm x 4 mm",
+    "Materiaal": "ABS",
+    "Kleuren": "Wit, lichtgrijs, zwart",
+    "Geschikt voor": "02-0200/0300 Ronde, 02-2200/2300 Le Mans"
+   },
+   "badges": [
+    "Voor Le Mans"
+   ],
+   "faq": []
+  },
+  {
+   "id": "speedcontrol",
+   "name": "Speedcontrol 30-3004",
+   "short_name": "Speedcontrol",
+   "tagline": "Traploos regelbaar van 0 tot 100%, waterdichte behuizing",
+   "summary": "Traploze toerenregelaar voor DC-dakventilators. Draai de Le Mans terug voor stille nachtventilatie of laat hem op hete dagen vol draaien. 25 A continu, waterdichte behuizing, één unit kan meerdere ventilators aansturen.",
+   "description": [
+    "Met de Speedcontrol laat je elk van onze DC-dakventilators op precies het toerental draaien dat je nodig hebt: van een geruisloos zuchtje tot vol vermogen. Het bereik is traploos van 0 tot 100%, en in de nulstand verbruikt de unit helemaal geen stroom.",
+    "Geschikt voor 11 tot 30 VDC en 25 A continu (30 A piek), werkt hij op 12V- en 24V-systemen en kan hij één of meerdere ventilators tegelijk aansturen. De behuizing is waterdicht, de unit is stroombegrensd en beveiligd tegen spanningspieken, en hij wordt aangesloten met standaard 6,3 mm vlakstekkers. Geleverd met potmeterknop en handleiding."
+   ],
+   "features": [
+    "Traploze toerenregeling van 0 tot 100%",
+    "Ingang 11 tot 30 VDC, 12V- en 24V-systemen",
+    "25 A continu, 30 A max. uitgang",
+    "Waterdichte behuizing, 80 x 60 x 20 mm",
+    "Stroombegrensd en beveiligd tegen spanningspieken",
+    "Stuurt één of meerdere ventilators aan"
+   ],
+   "specs": {
+    "Ingangsspanning": "11 tot 30 VDC",
+    "Max. continue uitgang": "25 A",
+    "Max. uitgangsstroom": "30 A",
+    "Potmeter": "4k7",
+    "Aansluitingen": "6,3 mm vlakstekkers",
+    "Behuizing": "80 x 60 x 20 mm (30 mm incl. aansluitingen), waterdicht",
+    "Bereik": "0 tot 100%",
+    "Systemen": "12V en 24V (ingang 11 tot 30 VDC)"
+   },
+   "badges": [
+    "Waterdicht",
+    "11 tot 30V"
+   ],
+   "faq": [
+    {
+     "q": "Kan ik hem samen met een 3-standenschakelaar gebruiken?",
+     "a": "Ja. De schakelaar kiest blazen / uit / zuigen, de Speedcontrol bepaalt het toerental. Hoe langzamer de ventilator draait, hoe stiller hij is en hoe minder lucht hij verplaatst."
+    }
+   ]
+  },
+  {
+   "id": "switch-round",
+   "name": "3-standenschakelaar rond 89-4002",
+   "short_name": "Schakelaar rond",
+   "tagline": "Aan-uit-aan, rond inbouwmodel",
+   "summary": "Ronde dubbele wisselschakelaar (aan-uit-aan) om je Le Mans, Ronde dakventilator of Winglet te schakelen tussen aanzuigen, uit en afzuigen. Klikt in een dashboardgat van Ø 20 mm.",
+   "description": [
+    "De ronde 3-standenschakelaar voor onze dakventilators. Omhoog voor aanzuigen, omlaag voor afzuigen, midden voor uit. Het is een dubbele wisselschakelaar die de motor omkeert, dus je krijgt beide richtingen met één bedieningselement.",
+    "Geschikt voor de meeste voertuigen: hij klikt in een rond dashboardgat of een voorbereide schakelaarhouder. Controleer de maten van het montagegat in de datasheet voordat je bestelt. Combineer met de Speedcontrol voor traploze toerenregeling."
+   ],
+   "features": [
+    "3 standen: aan-uit-aan",
+    "Dubbele wisselschakelaar (keert de draairichting om)",
+    "Rond inbouwmodel, gat Ø 20 mm",
+    "Werkt met Le Mans, Le Mans LL, Ronde dakventilator en Winglet",
+    "Te combineren met Speedcontrol",
+    "Bij modellen die alleen afzuigen (Le Mans LL, Winglet) gebruik je gewoon één stand"
+   ],
+   "specs": {
+    "Type": "3-standen wipschakelaar, aan-uit-aan",
+    "Vorm": "Rond, inbouw",
+    "Montagegat": "Ø 20 mm (zie datasheet)",
+    "Geschikt voor": "Alle DC-dakventilators van Pegasus Depot",
+    "Spanning": "12V / 24V DC"
+   },
+   "badges": [
+    "3 standen"
+   ],
+   "faq": []
+  },
+  {
+   "id": "switch-square",
+   "name": "3-standenschakelaar vierkant 89-4005",
+   "short_name": "Schakelaar vierkant",
+   "tagline": "Aan-uit-aan, vierkant inbouwmodel",
+   "summary": "Vierkante dubbele wisselschakelaar (aan-uit-aan) voor de bediening aanzuigen / uit / afzuigen van je elektrische dakventilator. Klikt in een rechthoekige dashboarduitsparing.",
+   "description": [
+    "De vierkante 3-standenschakelaar voor onze dakventilators. Omhoog voor aanzuigen, omlaag voor afzuigen, midden uit. Dubbele wisselschakelaar, dus één schakelaar keert de motor om.",
+    "Een vierkant inbouwmodel voor de meeste voertuigen; hij klikt in een voorbereide houder of rechthoekige uitsparing (maten in de datasheet). Voeg de Speedcontrol toe om de ventilator traploos van 0 tot 100% te laten draaien."
+   ],
+   "features": [
+    "3 standen: aan-uit-aan",
+    "Dubbele wisselschakelaar (keert de draairichting om)",
+    "Vierkant inbouwmodel",
+    "Werkt met Le Mans, Le Mans LL, Ronde dakventilator en Winglet",
+    "Te combineren met Speedcontrol",
+    "Bij modellen die alleen afzuigen (Le Mans LL, Winglet) gebruik je gewoon één stand"
+   ],
+   "specs": {
+    "Type": "3-standen wipschakelaar, aan-uit-aan",
+    "Vorm": "Vierkant, inbouw",
+    "Montage": "Rechthoekige uitsparing (zie datasheet)",
+    "Geschikt voor": "Alle DC-dakventilators van Pegasus Depot",
+    "Spanning": "12V / 24V DC"
+   },
+   "badges": [
+    "3 standen"
+   ],
+   "faq": []
+  },
+  {
+   "id": "switch-fan",
+   "name": "Ventilatorschakelaar 89-4008 met symbolen",
+   "short_name": "Ventilatorschakelaar",
+   "tagline": "Verlichte wipschakelaar met ventilatiesymbolen",
+   "summary": "Premium rechthoekige 3-standen wipschakelaar met ventilatiesymbool en rode / amberkleurige verlichting. De dashboardwaardige bediening voor Le Mans, Le Mans LL, Ronde dakventilator en Winglet. 25 A 12V / 15 A 24V.",
+   "description": [
+    "De ventilatorschakelaar is de keuze wanneer het dashboard er OEM uit moet zien. Een rechthoekige wipschakelaar met opgedrukt ventilatiesymbool, rode en amberkleurige verlichting, en drie standen: aanzuigen, uit, afzuigen.",
+    "Het is een dubbele wisselschakelaar die de motor omkeert, geschikt voor 12V- (25 A) en 24V-systemen (15 A). Hij klikt in een standaard rechthoekige houder; controleer de uitsparingsmaten in de datasheet. Combineer met de Speedcontrol voor traploze luchtverplaatsing."
+   ],
+   "features": [
+    "3 standen: aan-uit-aan met ventilatiesymbool",
+    "Rode en amberkleurige verlichting",
+    "25 A bij 12V · 15 A bij 24V",
+    "Dubbele wisselschakelaar (keert de draairichting om)",
+    "Rechthoekige inbouw-wipschakelaar",
+    "Te combineren met Speedcontrol",
+    "Bij modellen die alleen afzuigen (Le Mans LL, Winglet) gebruik je gewoon één stand"
+   ],
+   "specs": {
+    "Type": "3-standen wipschakelaar, aan-uit-aan",
+    "Verlichting": "Rood en amber",
+    "Belasting": "25 A 12V DC · 15 A 24V DC",
+    "Vorm": "Rechthoekig, inbouw",
+    "Geschikt voor": "Alle DC-dakventilators van Pegasus Depot"
+   },
+   "badges": [
+    "Verlicht",
+    "3 standen"
+   ],
+   "faq": []
+  },
+  {
+   "id": "control-unit",
+   "name": "Bedieningsunit dakluik 30-6000",
+   "short_name": "Bedieningsunit",
+   "tagline": "Bedient één of twee elektrische dakluiken",
+   "summary": "Het 24V-bedieningspaneel voor onze elektrische dakluiken. Opent en sluit de voor- en achterzijde van één of twee luiken, toont de koepelstand op groene LED's, sluit automatisch als het contact uitgaat en laat ventilatie toe bij stilstand.",
+   "description": [
+    "Gebruik de 30-6000 altijd in combinatie met onze elektrische dakluiken. Deze compacte 24V-bedieningsunit stuurt één of twee luiken aan: open of sluit de voor- en achterzijde onafhankelijk van elkaar en lees de koepelstand af op het groene LED-display.",
+    "Veiligheid en comfort zijn ingebouwd. De unit sluit de luiken automatisch zodra de contactsleutel wordt omgedraaid, maar het luik kan bij stilstand nog steeds worden geopend voor ventilatie. Het display heeft een stroombesparingsfunctie en de drukknoppen zijn verlicht met oranje LED's voor bediening in het donker.",
+    "EMC-gekeurd en gehomologeerd volgens EC 2004/104. Voor 12V-voertuigen is op aanvraag een 12V-naar-24V-omvormer leverbaar."
+   ],
+   "features": [
+    "Bedient 1 of 2 elektrische dakluiken",
+    "Voor- en achterzijde apart openen/sluiten",
+    "Groen LED-display voor de koepelstand",
+    "Sluit automatisch als het contact wordt uitgeschakeld",
+    "Ventilatiestand beschikbaar met contact uit",
+    "Drukknoppen verlicht met oranje LED's",
+    "EMC-gekeurd, gehomologeerd EC 2004/104",
+    "96 x 49 x 28 mm, 24V"
+   ],
+   "specs": {
+    "Spanning": "24V (12V via omvormer, op aanvraag)",
+    "Bedient": "1 of 2 elektrische dakluiken",
+    "Afmetingen": "96 x 49 x 28 mm",
+    "Keuringen": "EMC-gekeurd, EC 2004/104",
+    "Display": "Groene LED's (stand), oranje LED's (knoppen)"
+   },
+   "badges": [
+    "EMC-gekeurd",
+    "EC 2004/104"
+   ],
+   "faq": [
+    {
+     "q": "Heb ik per luik een unit nodig?",
+     "a": "Nee. Eén 30-6000 bedient één of twee elektrische dakluiken."
+    },
+    {
+     "q": "Mijn voertuig is 12V. Kan ik hem gebruiken?",
+     "a": "Ja, met een 12V-naar-24V-omvormer (op aanvraag leverbaar, één per bedieningsunit)."
+    }
+   ]
+  },
+  {
+   "id": "floor-ventilator-129",
+   "name": "Vloerventilator Ø 129 mm",
+   "short_name": "Vloerventilator 129",
+   "tagline": "Sluit de kringloop: frisse lucht erin, zware gassen eruit",
+   "summary": "Zwarte PC/ABS-vloerventilator voor de laadvloer. Voert laaghangende gassen af en verhoogt de capaciteit van je dakventilator door hem een luchtinlaat te geven. Onmisbaar bij gasflessen, honden, paarden en oliehoudende goederen.",
+   "description": [
+    "Een dakventilator kan alleen afzuigen wat hij kan aanvullen. De vloerventilator geeft je voertuig een lage luchtinlaat, zodat de dakventilator op volle capaciteit werkt en er een constante stroom van vloer naar dak loopt. Tegelijk voert hij zware, laaghangende gassen af. Monteer hem diagonaal tegenover de dakventilator voor de beste dwarsstroom.",
+    "Gemaakt van sterk PC/ABS met een uitsparing van Ø 129 mm (flens Ø 169 mm, 90 mm diep) is hij het standaardadvies bij elke mechanische of elektrische dakventilator. Bijzonder geschikt bij het vervoer van gasflessen, honden, dieren en oliehoudende producten, en om te voldoen aan de ventilatierichtlijnen voor gasflessen in gesloten bestelwagens."
+   ],
+   "features": [
+    "Voert laaghangende gassen af",
+    "Verhoogt de capaciteit van de dakventilator",
+    "Uitsparing Ø 129 mm, flens Ø 169 mm, 90 mm diep",
+    "PC/ABS, zwart",
+    "Voor laadvloeren van bestelwagens en aanhangers"
+   ],
+   "specs": {
+    "Uitsparing": "Ø 129 mm",
+    "Materiaal": "PC / ABS",
+    "Kleur": "Zwart",
+    "Afmetingen": "Flens Ø 169 mm, 90 mm diep"
+   },
+   "badges": [
+    "Bestseller",
+    "PC/ABS"
+   ],
+   "faq": []
+  },
+  {
+   "id": "floor-ventilator-80",
+   "name": "Vloerventilator Ø 80 mm",
+   "short_name": "Vloerventilator 80",
+   "tagline": "Compacte inlaat voor kleine voertuigen",
+   "summary": "De compacte vloerventilator van 80 mm. Dezelfde dubbele functie als het model van 129 mm (gasafvoer en extra capaciteit voor de dakventilator) in een kleiner formaat voor kleine bestelwagens, hondenboxen en compartimenten.",
+   "description": [
+    "De vloerventilator van 80 mm brengt dezelfde logica naar kleine voertuigen: maak een lage inlaat zodat je Winglet, Turbo III of afzuigventilator daadwerkelijk lucht kan verplaatsen, en laat zware gassen op vloerniveau ontsnappen.",
+    "PC/ABS, zwart RAL 9005, uitsparing Ø 80 mm, buitenmaat Ø 119 mm, 90 mm diep, 0,4 kg. Aanbevolen bij elke mechanische of elektrische dakventilator."
+   ],
+   "features": [
+    "Voert laaghangende gassen af",
+    "Verhoogt de capaciteit van de dakventilator",
+    "Uitsparing Ø 80 mm",
+    "PC/ABS, zwart, 0,4 kg",
+    "Ideaal voor kleine bestelwagens en hondenboxen"
+   ],
+   "specs": {
+    "Uitsparing": "Ø 80 mm",
+    "Materiaal": "PC / ABS",
+    "Kleur": "Zwart RAL 9005",
+    "Buitenmaat": "Ø 119 mm, 90 mm diep",
+    "Gewicht": "0,4 kg"
+   },
+   "badges": [
+    "Nieuw",
+    "Compact"
+   ],
+   "faq": []
+  }
+ ]
+}
