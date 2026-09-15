@@ -604,3 +604,5 @@ h1,h2,h3,h4{font-weight:500;line-height:1.08;letter-spacing:-.01em}
 .ex-lbl{font-size:13px;color:var(--text-3);font-weight:600;margin-left:6px}
 .sticky-buy .price small{font-size:12px;color:var(--text-3);font-weight:600}
 #addon-total small{font-weight:500;color:var(--text-3)}
+
+.pain b{color:var(--text)}
