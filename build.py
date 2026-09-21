@@ -374,14 +374,17 @@ def product_ld(p):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
     return ''.join(jsonld(x) for x in ld)
 
-ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/icon-512.png", "email": BRAND['email'], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
+SOCIAL = [('Instagram', 'https://www.instagram.com/pegasusdepot/'), ('LinkedIn', 'https://www.linkedin.com/company/146603982/')]
+ORG_LD = {"@context": "https://schema.org", "@type": "OnlineStore", "name": "Pegasus Depot", "url": SITE_URL, "logo": SITE_URL + "/icon-512.png", "email": BRAND['email'], "sameAs": [u for _, u in SOCIAL], "address": {"@type": "PostalAddress", "addressCountry": "NL"}, "areaServed": "EU", "description": "Premium vehicle ventilation, roof hatches and interior LED lighting for vans, campers, horse trailers, buses and ambulances."}
 
 # ---------------------------------------------------------------- layout
 def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, preload=None, og_type='website', extra_meta=''):
     r = rel(depth)
+    if len(title) > 60 and title.endswith(' · Pegasus Depot'): title = title[:-len(' · Pegasus Depot')]
+    if len(desc) < 80: desc = desc.rstrip() + ' ' + tr('In stock in the Netherlands, shipped within 24h across Europe.')
     if len(desc) > 158:
         cut = desc[:155]; k = max(cut.rfind('. '), cut.rfind('.'))
-        desc = cut[:k + 1] if k > 60 else cut.rsplit(' ', 1)[0] + '…'
+        desc = cut[:k + 1] if k > 110 else cut.rsplit(' ', 1)[0] + '…'
     og = og_jpg(og_image or 'assets/img/og-default.webp')
     extra = ('<meta name="robots" content="noindex,nofollow">' if noindex else '') + (f'<link rel="preload" as="image" href="{r}{preload}" fetchpriority="high">' if preload else '')
     return f'''<!DOCTYPE html>
@@ -405,13 +408,13 @@ def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, pre
 
 def header(depth=0):
     r = rel(depth)
-    cat_items = ''.join(f'<a class="m-item" href="{r}shop.html?cat={c["id"]}"><img src="{r}{sq(c["image"],200)}" alt=""><div><b>{esc(c["name"])}</b><span>{esc(c["short"])}</span></div></a>' for c in CATS)
+    cat_items = ''.join(f'<a class="m-item" href="{r}shop.html?cat={c["id"]}"><img src="{r}{sq(c["image"],200)}" alt="{esc(c["name"])}"><div><b>{esc(c["name"])}</b><span>{esc(c["short"])}</span></div></a>' for c in CATS)
     veh_items = ''.join(f'<a class="m-item" href="{r}vehicles/{v["id"]}.html"><img src="{r}{scene(v["hero"],200)}" alt="" style="object-fit:cover;padding:0"><div><b>{esc(v["name"])}</b><span>{esc(v["eyebrow"])}</span></div></a>' for v in VEHICLES)
     best = [P['le-mans'], P['v12-valve'], P['turbo-ii'], P['winglet']]
     hero_b = [b for b in BUNDLES if b.get('hero')][:4]
     bundle_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>{esc(b["tagline"])}</span></div></a>' for b in hero_b)
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
-    best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt=""><div><b>{esc(p["short_name"])}</b><span>{money(ex_of(price_from(p)))}</span></div></a>' for p in best)
+    best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt="{esc(p["name"])}"><div><b>{esc(p["short_name"])}</b><span>{money(ex_of(price_from(p)))}</span></div></a>' for p in best)
     return f'''
 <div class="announce"><a class="lang-hint" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands? Bekijk deze site in het Nederlands' if LANG == 'en' else 'English? View this site in English'}</a><span>Free EU shipping from {money(BRAND['free_shipping_from'])}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
 <header class="header"><div class="wrap header-in">
@@ -471,7 +474,8 @@ def footer(depth=0):
     <div><h5>By vehicle</h5>{''.join(f'<a href="{r}vehicles/{v["id"]}.html">{esc(v["nav"])}</a>' for v in VEHICLES)}</div>
     <div><h5>Company</h5><a href="{r}about.html">About us</a><a href="{r}blog.html">Guides &amp; advice</a><a href="{r}trade.html">Trade &amp; fleet accounts</a><a href="{r}contact.html">Contact</a><a href="{r}shipping-returns.html">Shipping &amp; returns</a><a href="{r}terms.html">Terms &amp; warranty</a><a href="{r}privacy.html">Privacy</a></div>
     <div><h5>Why Pegasus Depot</h5><p>✓ OEM-grade products<br>✓ EMC approved motors<br>✓ Ships within 24h from NL<br>✓ 2-year warranty<br>✓ Trade pricing for fleets and bodybuilders</p>
-      <div class="pay" style="margin-top:16px"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>BANCONTACT</span><span>KLARNA</span><span>PAYPAL</span></div></div>
+      <div class="pay" style="margin-top:16px"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>BANCONTACT</span><span>KLARNA</span><span>PAYPAL</span></div>
+      <p style="margin-top:16px">{' · '.join(f'<a href="{u}" rel="noopener" target="_blank">{n}</a>' for n, u in SOCIAL)}</p></div>
   </div>
   <div class="footer-bottom"><span>© 2026 Pegasus Depot · {esc(BRAND['domain'])} · Prices ex VAT, incl. 21% VAT shown alongside</span><span>Pegasus Depot is an independent online retailer for vehicle ventilation and comfort.</span></div>
 </div></footer>
@@ -502,7 +506,7 @@ def card(p, depth=0, dark=False):
 def bundle_card(b, depth=0):
     r = rel(depth)
     full, price = bundle_calc(b)
-    imgs = ''.join(f'<img src="{r}{sq(i,500)}" alt="" loading="lazy">' for i in b['images'][:3])
+    imgs = ''.join(f'<img src="{r}{sq(i,500)}" alt="{esc(b["name"])}" loading="lazy">' for i in b['images'][:3])
     parts = [f'{it["qty"]}× ' * (it['qty'] > 1) + P[it['product']]['short_name'] for it in b['items']]
     return f'''<article class="bundle-card">
   <div class="bundle-media"><div class="stack">{imgs}</div><div class="plus">{''.join(f'<span>{esc(x)}</span>' for x in parts[:4])}{'<span>…</span>' if len(parts)>4 else ''}</div></div>
@@ -551,7 +555,7 @@ def page_index():
                     ('turbo-ii', '~245 m³/h at 100 km/h', 'None', '0 W', 'Silent', 'Ø 128 mm', 'Suck while driving'),
                     ('turbo-iii', '~120 m³/h at 100 km/h', 'None', '0 W', 'Silent', 'Ø 80 mm', 'Suck while driving'),
                     ('exhaust-ventilator', 'Venturi', 'None', '0 W', 'Silent', 'max. Ø 140 mm', 'Suck while driving')]
-    h = head('Pegasus Depot · Premium Vehicle Ventilation, Roof Hatches & LED Lighting', 'Rooftop ventilators, interior valves, switches, roof hatches and LED lighting for vans, campers, horse trailers, buses and ambulances. Dutch engineered, EMC approved, shipped within 24h across Europe.', 0, lm['images'][2], '', preload=scene(lm['images'][2], 2000))
+    h = head('Pegasus Depot · Vehicle Ventilation & Roof Hatches', 'Rooftop ventilators, interior valves, switches, roof hatches and LED lighting for vans, campers, horse trailers, buses and ambulances. Dutch engineered, EMC approved, shipped within 24h across Europe.', 0, lm['images'][2], '', preload=scene(lm['images'][2], 2000))
     h += jsonld(ORG_LD) + jsonld({"@context": "https://schema.org", "@type": "WebSite", "name": "Pegasus Depot", "url": SITE_URL})
     h += header(0)
     h += f'''
@@ -567,7 +571,7 @@ def page_index():
 
 <section class="section dark"><div class="wrap">
   <div class="sec-head reveal"><div><div class="eyebrow">Shop by category</div><h2 class="h2">Everything between the roof and the floor.</h2></div><a class="link" href="shop.html">View all {len(PRODUCTS)} products {ICON['arrow']}</a></div>
-  <div class="cat-grid reveal">{''.join(f'<a class="cat-tile" href="shop.html?cat={c["id"]}"><span class="count">{sum(1 for p in PRODUCTS if p["category"]==c["id"])} products</span><img src="{sq(c["image"],700)}" alt="" loading="lazy"><b>{esc(c["name"])}</b><span>{esc(c["short"])}</span></a>' for c in CATS)}</div>
+  <div class="cat-grid reveal">{''.join(f'<a class="cat-tile" href="shop.html?cat={c["id"]}"><span class="count">{sum(1 for p in PRODUCTS if p["category"]==c["id"])} products</span><img src="{sq(c["image"],700)}" alt="{esc(c["name"])}" loading="lazy"><b>{esc(c["name"])}</b><span>{esc(c["short"])}</span></a>' for c in CATS)}</div>
 </div></section>
 
 <section class="section ivory"><div class="wrap">
@@ -679,7 +683,7 @@ def page_product(p):
         gal.append((scene(img, 1400) if sc else sq(img, 1400), sc, scene(img, 240) if sc else sq(img, 240)))
     if p.get('drawing'):
         gal.append((opt(p['drawing'], 1400), False, opt(p['drawing'], 240)))
-    thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{small}" alt="" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc, small) in enumerate(gal))
+    thumbs = ''.join(f'<button class="{"on" if i==0 else ""}" data-src="{r}{src}" {"data-scene=1" if sc else ""} aria-label="Image {i+1}"><img src="{r}{small}" alt="{esc(p["name"])} {i+1}" class="{"scene" if sc else ""}" loading="lazy"></button>' for i, (src, sc, small) in enumerate(gal))
     gal = [(src, sc) for src, sc, _ in gal]
     badges = ''.join(f'<span class="badge {"gold" if b in ("Bestseller","New","Nieuw") else ""}">{esc(b)}</span>' for b in p.get('badges', []))
     opts_html = ''
@@ -710,13 +714,13 @@ def page_product(p):
             for m in members:
                 mp = P[m]; mv = [v for v in mp['variants'] if v.get('price') is not None]
                 groups_html += f'<optgroup label="{esc(mp["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(ex_price(v))} ex VAT</option>' for v in mv) + '</optgroup>'
-                tiles += f'<button type="button" class="tile{" on" if m == a else ""}" data-pid="{m}"><img src="{r}{sq(mp["images"][0],200)}" alt=""><span>{esc(mp["short_name"])}</span><em>{"from " if len(mv) > 1 else ""}{money(min(ex_price(v) for v in mv))} ex VAT</em></button>'
-            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(title)}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(ex_price(av))}</span></label><div class="addon-pick"><div class="addon-cap">{esc(caption)}</div><div class="addon-tiles">{tiles if len(members) > 1 else ""}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
+                tiles += f'<button type="button" class="tile{" on" if m == a else ""}" data-pid="{m}"><img src="{r}{sq(mp["images"][0],200)}" alt="{esc(mp["name"])}"><span>{esc(mp["short_name"])}</span><em>{"from " if len(mv) > 1 else ""}{money(min(ex_price(v) for v in mv))} ex VAT</em></button>'
+            addons += f'<div class="addon addon-group"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt="{esc(ap["name"])}"><div><b class="addon-title">{esc(title)}</b><span class="addon-sub">{esc(ap["short_name"])}{" · " + esc(av["label"]) if av["label"] != ap["short_name"] else ""} · {av["sku"]}</span></div><span class="p">+ {money(ex_price(av))}</span></label><div class="addon-pick"><div class="addon-cap">{esc(caption)}</div><div class="addon-tiles">{tiles if len(members) > 1 else ""}</div><div class="addon-vars"></div></div><select class="addon-var" data-user="0" hidden aria-hidden="true" tabindex="-1">{groups_html}</select></div>'
         else:
             sel = ''
             if len(priced) > 1:
                 sel = f'<select class="addon-var" data-user="0" aria-label="Choose option for {esc(ap["short_name"])}">' + ''.join(f'<option value="{v["sku"]}"{" selected" if v is av else ""}>{esc(v["label"])} · {money(ex_price(v))} ex VAT</option>' for v in priced) + '</select>'
-            addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt=""><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(ex_price(av))}</span></label>{sel}</div>'
+            addons += f'<div class="addon"><input type="checkbox" id="{uid}" data-sku="{av["sku"]}" data-price="{av["price"]}" data-product="{ap["id"]}"{checked}><label class="addon-main" for="{uid}"><img src="{r}{sq(ap["images"][0],200)}" data-pid="{ap["id"]}" alt="{esc(ap["name"])}"><div><b class="addon-title">{esc(ap["short_name"])}</b><span class="addon-sub">{esc(av["label"])} · {av["sku"]}</span></div><span class="p">+ {money(ex_price(av))}</span></label>{sel}</div>'
     in_bundles = [b for b in BUNDLES if any(it['product'] == p['id'] for it in b['items'])]
     upsell = ''
     if in_bundles:
@@ -934,7 +938,7 @@ def blog_image(a):
 
 def blog_card(a, depth):
     r = rel(depth)
-    return f'<a class="card card--post" href="{r}blog/{a["slug"]}.html"><div class="thumb"><img src="{r}{scene(blog_image(a), 900)}" alt="" loading="lazy"></div><div class="card-body"><div class="cat">{esc(VEH[a["vehicle"]]["name"] if a.get("vehicle") in VEH else "Guide")} · {a.get("read_min", 5)} min read</div><h3>{esc(a["title"])}</h3><p class="muted">{esc(a["excerpt"])}</p></div></a>'
+    return f'<a class="card card--post" href="{r}blog/{a["slug"]}.html"><div class="thumb"><img src="{r}{scene(blog_image(a), 900)}" alt="{esc(a["title"])}" loading="lazy"></div><div class="card-body"><div class="cat">{esc(VEH[a["vehicle"]]["name"] if a.get("vehicle") in VEH else "Guide")} · {a.get("read_min", 5)} min read</div><h3>{esc(a["title"])}</h3><p class="muted">{esc(a["excerpt"])}</p></div></a>'
 
 def page_blog():
     cards = ''.join(blog_card(a, 0) for a in BLOG)
@@ -1038,6 +1042,24 @@ def write_shopify_csv():
             for it in b['items']:
                 w.writerow([b['id'], b['name'], f'{int(b["discount"]*100)}%', P[it['product']]['name'], it.get('sku') or ' | '.join(it['choices']), it['qty'], price, full])
 
+def write_merchant_feed():
+    """Google Merchant Center product feed (RSS 2.0 with the g: namespace), one file per language."""
+    import xml.sax.saxutils as X
+    items = []
+    for p in PRODUCTS:
+        if p.get('quote_only'): continue
+        zones = {z['id']: z for z in BRAND['shipping']['zones']}
+        for v in p['variants']:
+            if v.get('price') is None: continue
+            img = SITE_URL + '/' + sq(p['images'][0], 1400)
+            desc = ' '.join(p['description'])[:4900]
+            title = f"{p['name']} {v['label']}" if v['label'] != p['short_name'] else p['name']
+            oversize = p['category'] in BRAND['shipping'].get('oversize_categories', [])
+            ship = ''.join(f"<g:shipping><g:country>{ISO[c]}</g:country><g:price>{(z['price'] + (BRAND['shipping']['oversize_price'] if oversize else 0)):.2f} EUR</g:price></g:shipping>" for z in BRAND['shipping']['zones'] if z.get('price') is not None for c in z['countries'] if c in ISO)
+            items.append(f"<item><g:id>{X.escape(v['sku'])}</g:id><g:item_group_id>{p['id']}</g:item_group_id><g:title>{X.escape(title[:150])}</g:title><g:description>{X.escape(desc)}</g:description><g:link>{SITE_URL}/{PREFIX}products/{p['id']}.html</g:link><g:image_link>{img}</g:image_link><g:availability>in_stock</g:availability><g:price>{v['price']:.2f} EUR</g:price><g:brand>Pegasus Depot</g:brand><g:mpn>{X.escape(v['sku'])}</g:mpn><g:identifier_exists>no</g:identifier_exists><g:condition>new</g:condition><g:product_type>{X.escape(CAT[p['category']]['name'])}</g:product_type>{ship}" + ''.join(f"<g:product_detail><g:attribute_name>{X.escape(k)}</g:attribute_name><g:attribute_value>{X.escape(str(val))}</g:attribute_value></g:product_detail>" for k, val in (v.get('options') or {}).items()) + "</item>")
+    (ROOT / 'feeds').mkdir(exist_ok=True)
+    (ROOT / f'feeds/google-merchant-{LANG}.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel><title>Pegasus Depot</title><link>' + SITE_URL + '/' + PREFIX + '</link><description>Vehicle ventilation, roof hatches and LED lighting</description>' + ''.join(items) + '</channel></rss>\n', encoding='utf-8')
+
 def lastmod(u):
     import subprocess
     try:
@@ -1090,15 +1112,19 @@ def main():
         (ROOT / path).parent.mkdir(parents=True, exist_ok=True)
         (ROOT / path).write_text(html, encoding='utf-8'); urls.append(path)
     build_pages(w)
-    write_catalog_js(); write_shopify_csv()
+    write_catalog_js(); write_shopify_csv(); write_merchant_feed()
     en_urls = list(urls)
     apply_nl(); urls.clear()
-    build_pages(w); write_catalog_js()
+    build_pages(w); write_catalog_js(); write_merchant_feed()
     if UNTRANSLATED:
         (ROOT / 'exports').mkdir(exist_ok=True)
         json.dump(dict(sorted(UNTRANSLATED.items(), key=lambda x: -x[1])), open(ROOT / 'exports/untranslated-nl.json', 'w'), indent=1, ensure_ascii=False)
         print(f'NL: {len(UNTRANSLATED)} untranslated strings, see exports/untranslated-nl.json')
     nl_urls = list(urls)
+    # stale pages (renamed blog slugs) must not linger in the published tree
+    for d in ('blog', 'nl/blog'):
+        for f in (ROOT / d).glob('*.html'):
+            if str(f.relative_to(ROOT)) not in en_urls + nl_urls: f.unlink()
     write_sitemap([u for u in en_urls + nl_urls if not u.endswith(('checkout.html', 'thank-you.html', '404.html'))])
     print(f'Built {len(en_urls)} + {len(nl_urls)} pages, {len(PRODUCTS)} products, {len(VEHICLES)} vehicle pages.')
 
