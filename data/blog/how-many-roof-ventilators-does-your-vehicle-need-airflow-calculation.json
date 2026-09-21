@@ -1,0 +1,64 @@
+{
+ "slug": "how-many-roof-ventilators-does-your-vehicle-need-airflow-calculation",
+ "title": "How Many Roof Ventilators Does Your Vehicle Need? The Airflow Calculation",
+ "meta": "Work out how many roof ventilators a vehicle needs from body volume and air changes per hour, with worked examples for a van, horsebox, coach and dog van.",
+ "excerpt": "One fan or three? The answer is a short calculation: body volume in cubic metres, the air changes per hour the use demands, and the m³/h each ventilator delivers. Here it is, with four worked examples.",
+ "keywords": [
+  "air changes per hour vehicle",
+  "roof ventilator airflow calculation",
+  "how many roof fans van",
+  "horsebox ventilation calculation",
+  "coach ventilation m3/h",
+  "dog van airflow"
+ ],
+ "vehicle": "general",
+ "read_min": 7,
+ "sections": [
+  {
+   "h2": "The formula in one line",
+   "html": "<p>Every question about how many roof ventilators a vehicle needs comes back to the same short sum. Take the internal volume of the body in cubic metres, multiply it by the number of air changes per hour the use calls for, and you have the airflow you need in m³/h. Divide that by the airflow of the ventilator you have in mind and you know how many units to fit.</p><p>Written out: <strong>required airflow (m³/h) = body volume (m³) × air changes per hour</strong>, and <strong>number of ventilators = required airflow ÷ airflow per ventilator</strong>.</p><p>The three inputs are easy to find. Volume is internal length times width times height, measured with a tape after insulation and partitions. Air changes per hour depend on what lives or happens in the body, and we give guide figures below. Airflow per ventilator comes straight from the product page: the <a href='products/le-mans.html'>Le Mans</a> and the <a href='products/rooftop-round.html'>Round</a> deliver 850 m³/h, the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a> 515 m³/h at 12 V or 565 m³/h at 24 V, and the <a href='products/winglet.html'>Winglet</a> 65 m³/h.</p><p>One caveat: rated airflow assumes a free inlet. Every extraction figure below assumes a <a href='products/floor-ventilator-129.html'>floor ventilator</a>, a door grille or a second roof unit set to supply.</p>"
+  },
+  {
+   "h2": "How many air changes per hour?",
+   "html": "<p>There is no single legal number for road vehicles, so we work from figures that converters and body builders have settled on over the years. They are conservative for the hot afternoon rather than the mild morning, which is the moment that decides whether an installation was adequate.</p><table><thead><tr><th>Use of the body</th><th>Air changes per hour (guide)</th><th>Why</th></tr></thead><tbody><tr><td>Sleeping, one or two people</td><td>6 to 10</td><td>Moisture from breathing, quiet running at night</td></tr><tr><td>Living and cooking in a camper</td><td>15 to 25</td><td>Steam, cooking smells, heat from a hob</td></tr><tr><td>Tool van, courier, workshop</td><td>10 to 20</td><td>Fumes from fuel, solvents, warm equipment</td></tr><tr><td>Passenger coach or minibus</td><td>15 to 25</td><td>Heat from a full load, CO2, comfort while parked</td></tr><tr><td>Horses and livestock</td><td>25 to 40</td><td>Large animals produce a lot of heat and moisture</td></tr><tr><td>Dogs in kennels</td><td>30 to 50</td><td>Small compartments heat up very fast, panting adds moisture</td></tr></tbody></table><p>Animals need far more than people, because a horse gives off several times the heat of an adult, and a kennel compartment is a small volume with a great deal of body heat in it. Design for the top of the range: the ventilator runs on a low speed most of the time and flat out only on the days that matter.</p>"
+  },
+  {
+   "h2": "Worked example 1: a long-wheelbase panel van",
+   "html": "<p>Take a typical long-wheelbase, high-roof panel van converted for weekends away. Internal load area 3.4 m long, 1.8 m wide and 1.9 m high after insulation, which comes to <strong>11.6 m³</strong>.</p><ul><li>Sleeping: 11.6 × 10 = 116 m³/h</li><li>Living and cooking: 11.6 × 25 = 290 m³/h</li></ul><p>A single Le Mans at 850 m³/h covers the cooking figure almost three times over, so the fan runs at a third of its speed on a <a href='products/speedcontrol.html'>speed controller</a>, well below its 52 dB(A) full-speed rating, and goes to full only on a heatwave afternoon. For the night-time figure of 116 m³/h a full-size unit on its lowest setting is more than enough, and the Winglet at 65 m³/h is not, unless you fit two or accept that it is a trickle vent rather than a ventilator.</p><p>Verdict: <strong>one full-size roof ventilator</strong> at the rear, wired for extraction, plus a floor inlet or a Winglet at the front set to supply so the air travels the length of the van. If the fan will run all night on a leisure battery, choose the Le Mans LL at 34 W over the Le Mans at 80 W.</p>"
+  },
+  {
+   "h2": "Worked example 2: a two-horse horsebox",
+   "html": "<p>A 3.5 tonne two-horse box has a horse area roughly 3.3 m long, 2.2 m wide and 2.3 m high, which gives <strong>16.7 m³</strong>. Horses stand in it in summer traffic, often stationary, sometimes for hours at a show.</p><ul><li>Design figure: 16.7 × 40 = 668 m³/h</li><li>Minimum figure: 16.7 × 25 = 418 m³/h</li></ul><p>One Le Mans at 850 m³/h clears the design figure with a margin. However, horseboxes are about even distribution as much as total volume: two horses stand side by side in separate bays, and a single fan over one of them leaves the other in stiller air. The usual layout is therefore <strong>two full-size ventilators</strong>, one over each bay, or one reversible Le Mans set to supply at the front of the horse area and one set to extract at the rear so that air moves along the horses rather than over their heads. With two units you also have redundancy if a motor ever fails on the way to an event.</p><p>The body is normally 12 V on a car-derived chassis and 24 V on a lorry chassis, so check the battery before ordering, and fit a <a href='products/snowfilter.html'>snow filter</a> if the box lives outside all year. Read more on the <a href='vehicles/horse-trailers.html'>horse trailer ventilation page</a>.</p>"
+  },
+  {
+   "h2": "Worked example 3: a 12 metre coach",
+   "html": "<p>A full-size touring coach has a passenger saloon around 11 m long, 2.4 m wide and 1.9 m high, which is <strong>50 m³</strong>. The air conditioning handles the driving hours; what the roof ventilators do is keep the saloon breathable when the engine is off, and give an emergency change of air if the air conditioning fails on a motorway in August.</p><ul><li>Design figure: 50 × 25 = 1250 m³/h</li><li>Minimum figure: 50 × 15 = 750 m³/h</li></ul><p>1250 divided by 850 is 1.5, so the specification becomes <strong>two Le Mans ventilators</strong>, one in the front third of the roof and one in the rear third, giving 1700 m³/h at full speed and 34 air changes an hour. On a 24 V coach system that is the 24 V version of each fan, and the two units can share one Speedcontrol 30-3004, since two Le Mans on 24 V draw well under its 25 A continuous rating.</p><p>Coaches also carry <a href='products/roof-hatch-manual-large.html'>roof hatches</a> that double as emergency exits. A hatch cracked open at the front is a large passive inlet for two fans extracting at the rear. See the <a href='vehicles/buses-coaches.html'>bus and coach page</a> for the complete layout.</p>"
+  },
+  {
+   "h2": "Worked example 4: a dog transport van",
+   "html": "<p>A dog van is the case where the numbers surprise people. A medium van fitted with four kennel boxes has a kennel compartment of roughly 1.8 m long, 1.7 m wide and 1.3 m high, only <strong>4.0 m³</strong>. Four working dogs after a run generate a great deal of heat in that small space, and the van is frequently parked.</p><ul><li>Design figure: 4.0 × 50 = 200 m³/h</li><li>Minimum figure: 4.0 × 30 = 120 m³/h</li></ul><p>On paper a single Winglet at 65 m³/h is not enough and a Le Mans at 850 m³/h is four times more than required. In practice the answer is <strong>one full-size ventilator on a speed controller</strong>, because the reserve is what protects a dog on a day when the van is parked in the sun, and because a full-size fan on a quarter of its speed is quieter than a small fan working flat out. Pair it with a <a href='products/floor-ventilator-80.html'>Ø 80 mm floor ventilator</a> under each kennel row so cool air enters low and warm air leaves at the roof. A wind-driven <a href='products/turbo-ii.html'>Turbo II</a>, moving about 245 m³/h at 100 km/h, makes a good no-power second outlet for the driving hours, but it does nothing when parked, which is when dogs are at risk. The <a href='vehicles/dog-transport.html'>dog transport page</a> shows the full layout.</p>"
+  },
+  {
+   "h2": "Rules that finish the calculation",
+   "html": "<p>The sum gives you a number of ventilators. A few practical rules turn that number into a layout that works:</p><ul><li><strong>Round up, never down.</strong> 1.5 ventilators means two. The extra unit runs slowly and quietly rather than one running hard.</li><li><strong>Inlet area matches outlet area.</strong> A 230 mm roof cut-out wants an inlet of similar area: a Ø 129 mm floor ventilator plus a door grille, or a second roof unit in supply.</li><li><strong>Extract high and at the rear, supply low and at the front.</strong> Warm air collects at the highest point of the roof, so that is where an extractor earns its keep.</li><li><strong>Split long bodies.</strong> Anything over about 5 m internal length benefits from two units placed apart rather than one big one in the middle.</li><li><strong>Match the voltage.</strong> 12 V for cars, vans and most trailers, 24 V for lorries and coaches. The Speedcontrol accepts 11 to 30 V so it suits both.</li><li><strong>Allow for battery draw.</strong> A Le Mans takes about 6 A at 12 V, the LL about 2.8 A. Over an eight hour night that is 48 Ah against 23 Ah from the leisure battery.</li></ul><p>Send us the internal dimensions and the use of the body and we will run the calculation and propose a layout with switches, valves and inlets. As an independent European specialist retailer with our own stock in the Netherlands we ship within 24 hours, so the whole system arrives together.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is rated airflow the real figure I will get in the vehicle?",
+   "a": "Only with a free inlet. Rated m³/h is measured with an open path in and out. With an adequate inlet you get close to it; with the body sealed you get a fraction. Always pair an extractor with a floor ventilator, a door grille or a second roof unit in supply."
+  },
+  {
+   "q": "Can one Speedcontrol run all the ventilators from the calculation?",
+   "a": "Usually yes. The Speedcontrol 30-3004 is rated 25 A continuous. A Le Mans draws about 6 A at 12 V, so up to four can run from one controller at 12 V, and more at 24 V. The Le Mans LL has its own integrated speed control version instead."
+  },
+  {
+   "q": "Does a wind-driven ventilator count towards the total?",
+   "a": "Only for the driving hours. The Turbo II moves around 245 m³/h at 100 km/h and the Turbo III around 120 m³/h, but both stop when the vehicle stops. If anyone or anything waits inside a parked vehicle, base the calculation on powered units and treat wind-driven vents as a bonus."
+  },
+  {
+   "q": "What if my calculation lands between a Winglet and a full-size unit?",
+   "a": "Choose the full-size unit with a speed controller. A Le Mans at a quarter of its speed is quieter than a Winglet working hard, and the reserve is there for hot days. The Winglet is best for small separate compartments such as a toilet cubicle, a wardrobe or a single kennel box."
+  }
+ ]
+}

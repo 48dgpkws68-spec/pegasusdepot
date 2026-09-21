@@ -1,0 +1,64 @@
+{
+ "slug": "speedcontrol-speed-controller-for-rooftop-ventilators-why-and-how",
+ "title": "Speedcontrol: A Speed Controller for Rooftop Ventilators, Why and How",
+ "meta": "Why a roof ventilator needs a speed controller, how the Speedcontrol 30-3004 wires in with a 3-way switch, and noise and power at low speed.",
+ "excerpt": "A full-size roof ventilator has two speeds without a controller: off and loud. The Speedcontrol 30-3004 gives it every speed in between. Here is why that matters, how to wire it with a 3-way switch, and what it does to noise and battery draw.",
+ "keywords": [
+  "speed controller roof ventilator",
+  "Speedcontrol 30-3004",
+  "fan speed controller 12V 24V",
+  "wiring 3-way switch roof fan",
+  "quiet roof ventilator night",
+  "PWM fan controller van"
+ ],
+ "vehicle": "general",
+ "read_min": 7,
+ "sections": [
+  {
+   "h2": "Why a big fan needs a small dial",
+   "html": "<p>The <a href='products/le-mans.html'>Le Mans</a> and the <a href='products/rooftop-round.html'>Round</a> rooftop ventilator move 850 m³/h at 2600 rpm. That is exactly what you want at three in the afternoon with two horses in the back or a hob on the go. It is not what you want at three in the morning, and a fan that only knows full speed gets switched off at night, at which point it is doing nothing at all.</p><p>A speed controller solves this. It lets the same fan trickle along at a fraction of its speed, quiet enough to sleep under, then go to full power with a turn of the knob. In practice a full-size ventilator on a controller spends most of its life between 20 and 40 per cent, which is why we call the controller half of the product.</p><p>The <a href='products/speedcontrol.html'>Speedcontrol 30-3004</a> is the unit we sell for the brushed Le Mans and Round ventilators. It is stepless from 0 to 100 per cent, accepts 11 to 30 V DC so it works on both 12 V and 24 V vehicles, and is rated 25 A continuous with a 30 A peak, so one unit can drive several ventilators. The waterproof housing is 80 x 60 x 20 mm, 30 mm including the 6.3 mm flat connectors, so it can live behind a panel in a horsebox or a wet locker.</p>"
+  },
+  {
+   "h2": "What is inside, in plain terms",
+   "html": "<p>The Speedcontrol does not waste power as heat the way a resistor dimmer would. It switches the supply to the motor on and off very rapidly and varies the proportion of time it is on, so the motor sees an average voltage anywhere between zero and the full battery voltage. This is why the unit stays cool, is efficient at low speed, and draws no current at all at the zero position.</p><p>The knob on the dashboard is a 4k7 potentiometer supplied with the unit. It carries only a tiny signal current, so it can be mounted anywhere with thin wire, well away from the controller itself. The controller is current-limited and transient-suppressed, so it tolerates the voltage spikes from alternators, relays and jump starts that kill cheaper electronics.</p><p>Two things it is not. It is not for the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>, which has its own electronics and is sold as the 02-4250 (12 V) or 02-4350 (24 V) with integrated speed control. And it is not a direction switch, which is why it works together with the 3-way switch rather than instead of it.</p>"
+  },
+  {
+   "h2": "Wiring with a 3-way switch",
+   "html": "<p>A reversible ventilator such as the Le Mans has three states: blow, off and extract. The double-changeover 3-way switch, whether the <a href='products/switch-round.html'>round 89-4002</a>, the <a href='products/switch-square.html'>square 89-4005</a> or the illuminated <a href='products/switch-fan.html'>Fan Switch 89-4008</a>, selects the state by swapping the polarity to the motor. The Speedcontrol sets how fast the motor turns in whichever direction the switch has chosen. The order in the circuit therefore matters, and the correct order is <strong>battery, fuse, Speedcontrol, switch, motor</strong>.</p><ul><li><strong>Fuse first.</strong> From the leisure battery positive, through a fuse close to the battery. A Le Mans draws about 6 A at 12 V, so a 10 A fuse per ventilator is appropriate, or size for the total if several fans share one controller.</li><li><strong>Supply into the Speedcontrol.</strong> Positive and negative from the fused supply go to the input terminals of the controller. Use the 6.3 mm flat connectors it is built for, crimped, not twisted.</li><li><strong>Controller output to the switch.</strong> The controlled positive and negative go to the centre pair of terminals on the 3-way switch. This is the supply the switch will reverse.</li><li><strong>Switch to the motor.</strong> The two outer pairs of the switch are cross-wired so that one position sends the controlled supply to the motor one way round and the other position the opposite way round. Centre is off.</li><li><strong>Potentiometer to the controller.</strong> The three thin wires from the knob go to the potentiometer terminals on the controller. Mount the knob next to the switch so the two controls read as one.</li></ul><p>The controller sits before the switch so it only ever sees one polarity; put it after the switch and it would be fed backwards in one of the two positions. On extraction-only units a single switch position is used and the other is left unconnected.</p>"
+  },
+  {
+   "h2": "Noise at reduced speed",
+   "html": "<p>The Le Mans is rated at 52 dB(A) at its nominal 2600 rpm. Fan noise falls steeply with speed, far more steeply than airflow does, because most of the sound comes from air turbulence at the blade tips and that turbulence drops away as the tips slow down. The figures below are the accepted fan-law estimates rather than measurements on your particular roof, but they show the shape of the curve well:</p><table><thead><tr><th>Setting</th><th>Approx. speed</th><th>Approx. airflow</th><th>Approx. noise</th><th>How it sounds</th></tr></thead><tbody><tr><td>100%</td><td>2600 rpm</td><td>850 m³/h</td><td>52 dB(A)</td><td>Clearly audible, like a desk fan on high</td></tr><tr><td>70%</td><td>1800 rpm</td><td>600 m³/h</td><td>about 44 dB(A)</td><td>A steady hum, fine while driving or cooking</td></tr><tr><td>50%</td><td>1300 rpm</td><td>425 m³/h</td><td>about 37 dB(A)</td><td>Quiet room level, comfortable for evenings</td></tr><tr><td>30%</td><td>800 rpm</td><td>250 m³/h</td><td>about 26 dB(A)</td><td>Barely audible, suited to sleeping</td></tr></tbody></table><p>At 30 per cent the Le Mans still moves around 250 m³/h, twenty air changes an hour on a 12 m³ van body, at a noise level below a quiet bedroom. A large fan turning slowly is quieter than a small fan turning fast, and that is the whole argument for the full-size unit plus the controller.</p><p>A fan that is noisy at low speed usually has a mechanical cause, a loose cover or a ring not sitting flat on the roof, rather than an electrical one.</p>"
+  },
+  {
+   "h2": "Power and battery life at reduced speed",
+   "html": "<p>Here the news is even better than for noise. The power a fan needs rises with the cube of its speed, so halving the speed cuts the power to roughly an eighth. The Le Mans draws 80 W at full speed, about 6.7 A at 12 V. The same fan-law estimate gives:</p><ul><li>100%: 80 W, about 6.7 A at 12 V, 160 Ah over 24 hours</li><li>70%: about 27 W, 2.3 A, 55 Ah over 24 hours</li><li>50%: about 10 W, 0.8 A, 20 Ah over 24 hours</li><li>30%: about 2 to 3 W, 0.2 A, 5 Ah over 24 hours</li></ul><p>Brushed motors do not follow the cube law perfectly at the bottom of the range, so treat the lowest figures as optimistic, but the message holds: a Le Mans at a night-time setting draws about as much as an LED lamp, and a 100 Ah leisure battery will run it at sleeping speed for weeks.</p><p>This also changes the comparison with the brushless Le Mans LL, which draws 34 W for 515 m³/h and is the right choice where a fan must extract hard all day on battery. For a camper that wants quiet air overnight and full power occasionally, a Le Mans with a Speedcontrol delivers more air at the top, comparable draw at the bottom, and the reversing function the LL does not have.</p>"
+  },
+  {
+   "h2": "Several fans on one controller",
+   "html": "<p>The 25 A continuous rating of the Speedcontrol is generous. A Le Mans or a Round draws about 6 to 7 A at 12 V and about 3.5 A at 24 V, so one controller comfortably runs three ventilators on a 12 V system and more on 24 V. This is how coaches, horse lorries and ambulances are usually wired: two or three roof units on a single knob, so the driver sets one speed for the whole body.</p><table><thead><tr><th>System</th><th>Draw per Le Mans</th><th>Max. ventilators per Speedcontrol</th></tr></thead><tbody><tr><td>12 V</td><td>about 6.7 A</td><td>3</td></tr><tr><td>24 V</td><td>about 3.5 A</td><td>6</td></tr></tbody></table><p>Two rules when sharing. Each ventilator keeps its own 3-way switch after the controller, so one can blow while another extracts, and its own fuse. And run the controlled supply in cable sized for the total current, 2.5 mm² for two or three fans on 12 V.</p>"
+  },
+  {
+   "h2": "Installation checklist",
+   "html": "<p>Before you order, run through this list:</p><ul><li>The ventilator is a brushed Le Mans or Round. For the Le Mans LL, order the 02-4250 or 02-4350 with integrated control instead.</li><li>You have a 3-way switch per reversible fan, or a single-position switch for extraction-only units.</li><li>The vehicle voltage is between 11 and 30 V, in other words a normal 12 V or 24 V system.</li><li>Total continuous current of all fans on the controller is under 25 A.</li><li>You have a dry, reachable spot for the 80 x 60 x 20 mm controller within the cable run, and a Ø 10 mm hole on the dashboard for the knob.</li><li>Crimp terminals and a crimping tool for the 6.3 mm flat connectors, plus an inline fuse holder.</li></ul><p>The Speedcontrol, the switches and the ventilators are all in our own stock in the Netherlands and ship within 24 hours as one order. If you send us a sketch of the body and the number of fans, we will confirm the wiring order and fuse sizes before you start.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does the Speedcontrol work on the Le Mans LL?",
+   "a": "No. The LL is brushless and has its own electronics, so it is sold with an integrated speed control unit as the 02-4250 (12 V) or 02-4350 (24 V). The separate Speedcontrol 30-3004 is for the brushed Le Mans, Round and similar DC roof fans."
+  },
+  {
+   "q": "Can I fit the Speedcontrol after the 3-way switch instead of before it?",
+   "a": "Fit it before the switch. The controller expects one fixed polarity on its input. The 3-way switch reverses the motor downstream of the controller, so the controlled output is what gets reversed. This gives the same speed range in both directions."
+  },
+  {
+   "q": "Why does the fan not start at the lowest setting?",
+   "a": "A brushed motor needs a minimum voltage to overcome friction from rest. Turn the knob up until the fan starts, then back down to the speed you want. Once turning, it will run happily well below its starting point."
+  },
+  {
+   "q": "Does running at low speed shorten the life of the ventilator?",
+   "a": "The opposite. Brushes and bearings wear with speed and heat, so a Le Mans that runs at 30 to 50 per cent for most of its hours will outlast one switched between off and full. The controller itself is solid state with nothing to wear."
+  }
+ ]
+}

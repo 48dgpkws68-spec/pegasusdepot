@@ -349,6 +349,8 @@ def rel(depth):
 
 PRIVATE = json.load(open(ROOT / 'data/private.json')) if (ROOT / 'data/private.json').exists() else {}
 ANALYTICS_HTML = PRIVATE.get('analytics_html', '')
+# site verification tags (Search Console, Bing) live in data/private.json: {"gsc_meta": "...", "bing_meta": "..."}
+VERIFY_HTML = (f'<meta name="google-site-verification" content="{PRIVATE["gsc_meta"]}">' if PRIVATE.get('gsc_meta') else '') + (f'<meta name="msvalidate.01" content="{PRIVATE["bing_meta"]}">' if PRIVATE.get('bing_meta') else '')
 FORM_TARGET = PRIVATE.get('form_target') or BRAND['email']
 FORM_ENDPOINT_B64 = base64.b64encode(('https://formsubmit.co/' + FORM_TARGET).encode()).decode()
 def form_open(subject, depth=0, cls='form', extra=''):
@@ -397,7 +399,7 @@ def head(title, desc, depth=0, og_image=None, canonical=None, noindex=False, pre
 <link rel="canonical" href="{SITE_URL}/{PREFIX}{canonical or ''}">__HREFLANG__
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:type" content="{og_type}"><meta property="og:url" content="{SITE_URL}/{PREFIX}{canonical or ''}"><meta property="og:image" content="{SITE_URL}/{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:image" content="{SITE_URL}/{og}"><meta property="og:site_name" content="Pegasus Depot"><meta name="twitter:card" content="summary_large_image">{extra}{extra_meta}
 <meta name="theme-color" content="#0B0C0E">
-<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">{ANALYTICS_HTML}
+<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">{VERIFY_HTML}{ANALYTICS_HTML}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="{r}assets/css/site.css?v={VERSION}">

@@ -1,0 +1,64 @@
+{
+ "slug": "food-truck-and-catering-van-ventilation-heat-steam-and-smells",
+ "title": "Food Truck and Catering Van Ventilation: Heat, Steam and Smells",
+ "meta": "How to ventilate a food truck or catering van: roof extraction over the cooking zone, low inlets, positive pressure at the hatch, battery draw, lighting.",
+ "excerpt": "A food truck is a kitchen in a steel box with a hatch in one wall. Heat, steam and smells build up in minutes. Here is how to lay out roof extraction, inlets and lighting so the crew stays cool and the customers only smell what you want them to.",
+ "keywords": [
+  "food truck ventilation",
+  "catering van roof extractor",
+  "food truck roof fan 12V",
+  "catering trailer ventilation",
+  "steam extraction food van",
+  "food truck heat"
+ ],
+ "vehicle": "commercial-vans",
+ "read_min": 7,
+ "sections": [
+  {
+   "h2": "Why a food truck is the hardest box to ventilate",
+   "html": "<p>Most vehicles we ventilate have a slow problem: moisture from breathing, heat from the sun, an animal warming the air over an hour. A food truck has a fast one. A griddle, a fryer and a bain-marie in a body of 15 m³ can raise the air temperature by ten degrees in the time it takes to serve the first queue, and the steam from a pasta boiler or a coffee machine condenses on every cold surface it finds. Add the smell of frying that clings to the customer's coat at the hatch and you have three problems at once: heat, steam and smells.</p><p>The good news is that all three leave by the same route, upwards, and a roof ventilator is precisely a hole in the highest point of the body with a motor in it. The layout below is what we recommend for coffee vans, burger trucks, pizza trailers and mobile bars, using stock items.</p><p>One honest boundary first. A roof ventilator is general ventilation. A deep fat fryer or a charcoal grill will usually need a grease-filtered canopy under local rules, and that is separate kit. The roof ventilators and inlets in this guide handle everything the canopy does not: the heat that escapes it, the steam from pots and dishwashers, the body heat of the crew, and the smell that would otherwise sit in the truck overnight.</p>"
+  },
+  {
+   "h2": "Step one: extract at the highest point, above the cooking zone",
+   "html": "<p>Warm, wet, smelly air rises and collects against the roof. Put the extractor where it collects, which is usually directly above or just behind the cooking line, and it will do most of the work before the air has a chance to spread to the serving side.</p><p>The workhorse is the <a href='products/le-mans.html'>Le Mans rooftop ventilator</a>: 850 m³/h, reversible, 80 W, 52 dB(A) at full speed, in a 230 mm roof cut-out. On a typical 3.5 m x 2.1 m x 2.0 m catering body, 14.7 m³, that is nearly 60 complete air changes an hour at full speed, the reserve you want when the fryer lid comes off.</p><p>If the truck runs its equipment from batteries or a small inverter generator and the fan will run for a whole service, look at the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a>. It extracts 515 m³/h at 12 V or 565 m³/h at 24 V for only 34 W, and the version with integrated speed control (02-4250 at 12 V, 02-4350 at 24 V) lets the crew turn it down between rushes. It cannot reverse, but over a hob you never want it to.</p><p>Either way, fit the <a href='products/speedcontrol.html'>Speedcontrol</a> to a Le Mans or choose the LL with control built in. Full speed is for the lunch peak; a third of that is for set-up and cleaning down.</p>"
+  },
+  {
+   "h2": "Step two: give the air a way in, low and away from the customers",
+   "html": "<p>An extractor with no inlet pulls a vacuum and stalls. In a food truck it does something worse: it drags air in through the serving hatch, past the customers, and with it the generator exhaust and road dust. The inlet has to be deliberate and somewhere clean.</p><ul><li><strong>Floor ventilators</strong> are the cleanest option. A <a href='products/floor-ventilator-129.html'>Ø 129 mm floor ventilator</a> under the prep bench or behind the fridge brings cool air in from under the vehicle where the temperature is lowest. Two of them roughly match the open area of one 230 mm roof unit. The <a href='products/floor-ventilator-rvs.html'>stainless steel version</a> suits a floor that is hosed down every night.</li><li><strong>A second roof ventilator set to supply</strong> at the serving end. A <a href='products/rooftop-round.html'>Round ventilator</a> wired through a 3-way switch to blow inwards creates a gentle positive pressure at the hatch, so the air moves from the customer side towards the cooking side and out through the extractor. Customers feel a cool draught from above rather than a waft of frying.</li><li><strong>Door or wall grilles</strong> in the rear or side door, low down, as a no-power fallback.</li></ul><p>Inlet area should at least equal outlet area. A 230 mm cut-out is about 415 cm²; a Ø 129 mm floor ventilator about 130 cm², so plan on three floor inlets, or one plus a supply roof unit.</p>"
+  },
+  {
+   "h2": "Step three: manage the steam separately from the heat",
+   "html": "<p>Steam is the problem that shows up later, as dripping ceilings, rust on screw heads and a musty smell on Monday morning. It condenses on the coldest surface it can find, which in a truck is the uninsulated roof skin and the metal of the serving hatch.</p><p>Three measures work together. First, close the loop with an interior valve: the <a href='products/v12-valve.html'>V12 interior valve</a>, manual or electric 12/24 V, sits under the roof ventilator and closes the opening when the truck is parked, so damp night air does not come back in. Second, if the coffee machine, dishwasher or boiler is at the opposite end from the cooking line, give it its own small extractor: the <a href='products/winglet.html'>Winglet</a> at 65 m³/h, 3 W and 32 dB(A) in an 80 mm cut-out is ideal above a dishwasher or a wash-up sink, and it takes an <a href='products/switch-rocker.html'>on/off rocker switch</a> rather than a 3-way. Third, leave the extractor on a low speed for twenty minutes after the last customer, with the hatch closed, to dry the body before you drive off. On a speed controller that costs almost nothing in battery.</p><p>For the drive between pitches a wind-driven <a href='products/turbo-ii.html'>Turbo II</a>, roughly 245 m³/h at 100 km/h with no wiring, means the truck arrives already aired.</p>"
+  },
+  {
+   "h2": "Sizing the electrics: battery, generator and fuses",
+   "html": "<p>Food trucks are usually 12 V on a van chassis and 24 V on a lorry chassis, and many carry a leisure battery bank topped up by a generator or by shore power on a pitch. Ventilation is a small load next to a fridge or a coffee machine, but it runs for the whole service, so it is worth adding up.</p><table><thead><tr><th>Ventilator</th><th>Power</th><th>Draw at 12 V</th><th>8 hour service</th><th>At 40% speed, 8 hours (est.)</th></tr></thead><tbody><tr><td>Le Mans, 850 m³/h</td><td>80 W</td><td>about 6.7 A</td><td>about 54 Ah</td><td>about 4 Ah</td></tr><tr><td>Le Mans LL, 515 m³/h</td><td>34 W</td><td>about 2.8 A</td><td>about 23 Ah</td><td>about 3 Ah</td></tr><tr><td>Winglet, 65 m³/h</td><td>3 W</td><td>about 0.25 A</td><td>about 2 Ah</td><td>n/a</td></tr></tbody></table><p>The last column is the point. A Le Mans that runs flat out only during the rush and at 40 per cent the rest of the day uses a fraction of the battery its nameplate suggests. Fuse each ventilator separately, 10 A for a Le Mans at 12 V, and run the fan circuit from the leisure side so a fan left on overnight never stops the truck starting in the morning. The illuminated <a href='products/switch-fan.html'>Fan Switch 89-4008</a> is rated 25 A at 12 V and 15 A at 24 V and is the right switch for a kitchen wall, because the crew can see at a glance that the extractor is on.</p>"
+  },
+  {
+   "h2": "Lighting that survives a kitchen",
+   "html": "<p>Every food truck we have seen has one lamp too few over the prep bench and one that has gone cloudy from steam. Specify lighting and ventilation together.</p><p>The <a href='products/lighting-round.html'>Ø 150 mm dome LED light</a> is IP67 and IK10, which means it can be wiped or hosed with the rest of the ceiling, and it gives about 230 lm at 2 W with a 50 per cent dimming option via the wiring. For the long prep bench the <a href='products/lighting-rectangle.html'>350 x 140 mm rectangular dome light</a> gives about 368 lm at roughly 3.2 W in a neutral 5000 K white that shows food colours honestly. Both have a blue night light mode, useful for a truck that sleeps on site at a festival and needs a low glow without attracting insects to an open hatch.</p><p>Position lights between the roof ventilator and the walls, clear of the interior valve, and keep them on the same fused circuit as the fans so one isolator switches the kitchen off at night.</p>"
+  },
+  {
+   "h2": "A complete parts list for a typical catering van",
+   "html": "<p>For a 3.5 m body with a cooking line on one side and a serving hatch on the other, this is the layout we would propose:</p><ul><li>One <a href='products/le-mans.html'>Le Mans</a> 12 V above the cooking line, wired to extract, with <a href='products/speedcontrol.html'>Speedcontrol 30-3004</a> and <a href='products/switch-fan.html'>Fan Switch 89-4008</a></li><li>One <a href='products/rooftop-round.html'>Round ventilator</a> 12 V at the serving end, on a 3-way switch, normally set to supply</li><li>Two <a href='products/floor-ventilator-129.html'>Ø 129 mm floor ventilators</a> under the prep bench</li><li>Two <a href='products/v12-valve.html'>V12 interior valves</a>, one under each roof unit, to close the openings when parked</li><li>One <a href='products/winglet.html'>Winglet</a> above the wash-up area with a rocker switch</li><li>One <a href='products/snowfilter.html'>snow filter</a> per Le Mans or Round if the truck works winter markets</li><li>Two rectangular and two round dome LED lights</li><li><a href='products/seal-foam.html'>Super Seal roof filler foam</a> under each 230 mm unit on a ribbed roof</li></ul><p>All of it is in our own stock in the Netherlands and ships within 24 hours, so a converter can cut the roof on Monday and be wiring on Wednesday. If your body is a different size, send us the internal dimensions and the appliances you run and we will size the layout for you. There is more on the general case on the <a href='vehicles/commercial-vans.html'>commercial vans page</a>.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can a roof ventilator replace an extraction canopy over a fryer?",
+   "a": "No. A fryer or a grill normally needs a grease-filtered canopy under local food hygiene and fire rules. The roof ventilator handles the general heat, steam and smells that the canopy does not capture, and it keeps the crew comfortable. Use both."
+  },
+  {
+   "q": "Will the extractor pull generator exhaust into the truck?",
+   "a": "Only if it has no proper inlet. Fit floor ventilators or a supply roof unit so the fan draws from a clean, low source rather than through the hatch. Park with the generator downwind of the hatch and the extractor on the far side of the roof."
+  },
+  {
+   "q": "How loud is a Le Mans in a serving area?",
+   "a": "52 dB(A) at full speed, which is audible but well below the noise of a coffee grinder or a fryer. On the speed controller at 40 to 50 per cent it drops to the level of a quiet room, and that is where it runs most of the day."
+  },
+  {
+   "q": "Can I hose down the ceiling with the ventilators and lights fitted?",
+   "a": "Yes. The dome LED lights are IP67 and IK10, the interior valves are ABS, and the roof units seal at the roof skin. Avoid pointing a pressure washer directly at the interior valve from below; wipe it instead."
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "slug": "van-conversion-ventilation-checklist-before-you-cut-the-roof",
+ "title": "Van Conversion Ventilation Checklist: Before You Cut the Roof",
+ "meta": "A step-by-step checklist for DIY van converters: airflow, voltage, roof position, cut-out sizes, roof thickness, parts, tools, sealing and wiring.",
+ "excerpt": "The hole in the roof is the one job in a van conversion you cannot undo. Run through these ten checks first and the ventilator will fit first time, seal properly and run for years.",
+ "keywords": [
+  "van conversion ventilation checklist",
+  "cutting van roof for fan",
+  "roof vent cut-out 230 mm",
+  "DIY camper roof fan installation",
+  "van roof fan wiring",
+  "campervan ventilation plan"
+ ],
+ "vehicle": "campers",
+ "read_min": 7,
+ "sections": [
+  {
+   "h2": "Why the roof fan comes first, not last",
+   "html": "<p>Most self-build conversions start with the bed and the kitchen and treat ventilation as a finishing touch. Then the headlining goes in, the ribs disappear behind ply, and the ventilator ends up wherever a hole can still be cut. Fit it first. The cut-out is the one irreversible job in the whole build, and the fan sets where the cables run, where the inlets go and where the roof insulation has to be left thin.</p><p>This checklist is the sequence we walk converters through on the phone. It covers ten checks: airflow, voltage, position, cut-out size, roof thickness, the parts list, tools, cutting, sealing and wiring. Do them in order and the ventilator will fit first time. The general guidance on the <a href='vehicles/campers.html'>camper page</a> sits alongside it.</p>"
+  },
+  {
+   "h2": "Checks 1 and 2: how much air, and which voltage",
+   "html": "<p><strong>Check 1: airflow.</strong> Measure the internal body after insulation: length times width times height. A long-wheelbase high-roof van comes out around 11 to 13 m³. Multiply by the air changes you need, roughly 10 an hour for sleeping and up to 25 for cooking, and you have the m³/h to aim for. On that basis one full-size roof ventilator covers almost any van: the <a href='products/le-mans.html'>Le Mans</a> and <a href='products/rooftop-round.html'>Round</a> give 850 m³/h, the brushless <a href='products/le-mans-ll.html'>Le Mans LL</a> 515 m³/h at 12 V. The <a href='products/winglet.html'>Winglet</a> at 65 m³/h is a second vent for a toilet cubicle or wardrobe, not a main fan. If you will sleep in the van for more than a night at a time, plan on a <a href='products/speedcontrol.html'>speed controller</a> from the outset, because a full-size fan on a low setting is both quieter and cheaper on battery than a small fan running hard.</p><p><strong>Check 2: voltage.</strong> Vans are 12 V. Coaches, lorries and some minibus conversions are 24 V. Look at the battery bay: two batteries in series means 24 V. Order the ventilator, the switch and the controller in the matching version, and wire the fan to the leisure battery, not the starter battery, so a fan left running overnight cannot strand you in the morning.</p>"
+  },
+  {
+   "h2": "Checks 3 and 4: position and cut-out size",
+   "html": "<p><strong>Check 3: position.</strong> Stand inside the van with the roof still bare and find the flat panels between the transverse ribs. The ventilator ring has to sit on a flat section with clearance from the ribs on every side. Outside, solar panels, roof bars and the awning rail all want the same space, so draw the roof to scale first. The extractor goes towards the rear, at the highest point of the roof, and the inlet goes low at the front, usually a floor ventilator near the sliding door. Avoid the rear edge where the roof curves down, because the ring will not sit flat.</p><p><strong>Check 4: cut-out size.</strong> Each unit has one figure that decides everything:</p><table><thead><tr><th>Ventilator</th><th>Roof cut-out</th><th>Outer footprint</th><th>Height above roof</th></tr></thead><tbody><tr><td>Le Mans</td><td>Ø 230 mm</td><td>385 x 312 mm</td><td>64 mm</td></tr><tr><td>Le Mans LL</td><td>Ø 230 mm</td><td>similar to Le Mans</td><td>about 100 mm</td></tr><tr><td>Round</td><td>Ø 230 mm</td><td>Ø 320 mm</td><td>62 mm</td></tr><tr><td>Turbo II wind-driven</td><td>Ø 128 mm</td><td>Ø 319 mm</td><td>68 mm</td></tr><tr><td>Turbo III wind-driven</td><td>Ø 80 mm</td><td>Ø 210 mm</td><td>59.5 mm</td></tr><tr><td>Winglet</td><td>Ø 80 mm</td><td>230 x 196 mm</td><td>52 mm</td></tr><tr><td>Exhaust ventilator (venturi)</td><td>up to Ø 140 mm</td><td>285 x 185 mm</td><td>50 mm</td></tr></tbody></table><p>The three full-size powered units share the 230 mm hole, so a Round today can become a Le Mans LL later. The Winglet and Turbo III share 80 mm. Mark the outer footprint on the roof as well as the hole, because the footprint is what has to clear the ribs and the solar frame. Check the overall height against any height limit you care about: a Le Mans adds 64 mm, the LL about 100 mm.</p>"
+  },
+  {
+   "h2": "Checks 5 and 6: roof thickness and the full parts list",
+   "html": "<p><strong>Check 5: roof thickness.</strong> Each mounting set clamps a range of roof thicknesses, and with insulation and a ply ceiling a 1 mm steel roof can become 40 mm or more. The Winglet and Turbo III standard sets take 1 to 17 mm; the Turbo II 1 to 21 mm. The full-size units mount to the steel skin with the interior valve fitted to the ceiling separately, so leave the insulation clear of the ring on the inside and finish the ceiling with a <a href='products/v12-valve.html'>V12 interior valve</a> or a <a href='products/flower-power.html'>Flower Power valve</a> at Ø 290 or Ø 280 mm. If your roof is ribbed or corrugated, order <a href='products/seal-foam.html'>Super Seal filler foam</a> to fill the profile under the ring.</p><p><strong>Check 6: the parts list.</strong> Order everything at once so the roof is only opened up one time:</p><ul><li>The ventilator itself in the right voltage and colour</li><li>A <a href='products/switch-round.html'>3-way switch</a> for a reversible unit, or a <a href='products/switch-rocker.html'>rocker switch</a> for a Winglet</li><li>The Speedcontrol 30-3004, or the LL with integrated control (02-4250 at 12 V)</li><li>An interior valve to finish the ceiling and close the opening in winter</li><li>A <a href='products/floor-ventilator-80.html'>floor ventilator</a>, Ø 80 or Ø 129 mm, as the inlet</li><li>A <a href='products/snowfilter.html'>snow filter</a> if the van winters outside (Le Mans and Round only)</li><li>Filler foam for a ribbed roof, plus a cartridge of polyurethane or MS polymer roof sealant</li><li>Cable, inline fuse holder with a 10 A fuse, crimp terminals for 6.3 mm connectors</li></ul>"
+  },
+  {
+   "h2": "Checks 7 and 8: tools and the cut itself",
+   "html": "<p><strong>Check 7: tools.</strong> A jigsaw with fine metal blades, or a nibbler if you have one, a step drill or hole saw for the pilot, a file, a deburring tool, masking tape, a marker, a rust-inhibiting primer, a sealant gun and a vacuum. The saw template supplied with the ventilator is your friend: tape it to the roof and trace it rather than measuring a circle yourself.</p><p><strong>Check 8: the cut.</strong> Work in this order and it goes smoothly:</p><ul><li>Cover the area in masking tape so the jigsaw shoe does not scratch the paint, then trace the template onto the tape.</li><li>Drill a pilot hole inside the line, big enough for the blade. Check from inside that nothing runs under the panel: no cable, no roof rib, no brake line on a coachbuilt body.</li><li>Cut slowly, supporting the cut-out from below so it does not drop and tear the last few millimetres.</li><li>File the edge smooth, deburr both faces, vacuum every filing off the roof and out of the van. Steel swarf left on a painted roof rusts within a week.</li><li>Prime the bare edge and let it dry before anything touches it.</li></ul><p>A 230 mm hole between the ribs does not weaken a van roof once the ring is clamped on; the ring stiffens the edge. What does cause trouble is a hole cut over a rib, so if the template will not sit flat, move it.</p>"
+  },
+  {
+   "h2": "Checks 9 and 10: sealing and wiring",
+   "html": "<p><strong>Check 9: sealing.</strong> Dry fit the ventilator first and confirm the ring sits flat with no daylight under it. On a ribbed roof, lay the filler foam along the profile so the sealant has something to bear on. Apply a continuous bead of sealant to the underside of the ring, lower it into place, and tighten the fixings evenly in a star pattern until sealant just squeezes out all round. Do not overtighten. Wipe the excess, let it cure, then hose it the next day and check inside with a torch.</p><p><strong>Check 10: wiring.</strong> The fan circuit is short: leisure battery positive, fuse close to the battery, Speedcontrol if fitted, 3-way switch, motor, and negative back to the battery. A Le Mans draws about 6 A at 12 V, so 2.5 mm² cable and a 10 A fuse suit a run of a few metres. Route the cable along a rib and through a grommet, never across a cut edge. Mount the switch and the knob within reach of the bed and label extract and supply. Test every switch position and the full range of the controller before the interior valve goes on, because once the ceiling is closed a wiring fault is an afternoon's work.</p>"
+  },
+  {
+   "h2": "Printable checklist",
+   "html": "<p>Copy this into your build notes and tick as you go:</p><ul><li>1. Body volume measured, target m³/h chosen, one full-size fan or Winglet decided</li><li>2. Vehicle voltage confirmed at the battery, leisure circuit identified</li><li>3. Position drawn to scale, clear of ribs, solar, bars and the roof curve</li><li>4. Cut-out and outer footprint marked: 230, 128 or 80 mm</li><li>5. Roof thickness measured with insulation, valve or mounting set chosen</li><li>6. Complete parts list ordered in one go, including foam, sealant, fuse and cable</li><li>7. Jigsaw, fine blades, step drill, file, tape, primer, sealant gun ready</li><li>8. Template taped, pilot drilled, underside checked, cut supported, edge primed</li><li>9. Dry fit, foam, continuous bead, even tightening, cure, hose test</li><li>10. Fuse at battery, controller before switch, every position tested, labelled</li></ul><p>If anything on the list is unclear, take a photo of the roof and the battery bay and send it to us. We are an independent European specialist retailer with the full range in our own stock in the Netherlands, we ship within 24 hours, and we would rather answer the question before the jigsaw comes out than after.</p>"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Should I fit the roof ventilator before or after insulating the roof?",
+   "a": "Cut the hole and mount the ventilator to the bare steel first, then insulate around it, then fit the interior valve to the finished ceiling. That way the ring clamps to the skin as designed and you can inspect the seal from inside before it is covered."
+  },
+  {
+   "q": "Can I fit a roof ventilator next to a solar panel?",
+   "a": "Yes, but leave clearance for the outer footprint, 385 x 312 mm for a Le Mans, plus room to get a sealant gun and a screwdriver round the ring. Put the ventilator behind the panel in the direction of travel so the panel does not shade the fan hood into a pocket of still air."
+  },
+  {
+   "q": "Which sealant should I use on a van roof?",
+   "a": "A polyurethane or MS polymer sealant intended for vehicle bodies, applied as one continuous bead under the ring. Do not use silicone: it does not adhere well to painted steel, and nothing else will stick to it later if you ever need to reseal."
+  },
+  {
+   "q": "Do I really need an inlet if I have a roof extractor?",
+   "a": "Yes. With the doors and windows shut a sealed van gives the fan nothing to pull from, and airflow collapses. A Ø 80 or Ø 129 mm floor ventilator near the front is the usual answer; a cracked window works only until it rains."
+  }
+ ]
+}
