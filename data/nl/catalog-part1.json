@@ -2,12 +2,12 @@
  "categories": [
   {
    "id": "rooftop-ventilators",
-   "name": "Dakventilators",
-   "short": "Elektrische en windgedreven dakventilators, 12V en 24V"
+   "name": "Dakventilatoren",
+   "short": "Elektrische en windgedreven dakventilatoren, 12V en 24V"
   },
   {
    "id": "interior-valves",
-   "name": "Binnenventielen & roosters",
+   "name": "Binnenrozetten & roosters",
    "short": "Afsluitbare plafondventielen, LED-ventielen en roosters"
   },
   {
@@ -51,7 +51,7 @@
    "description": [
     "De Le Mans is waar stijl en pure luchtverplaatsing samenkomen. Een strakke, lage kap (slechts 64 mm boven het dak, dus prima naast zonnepanelen) verbergt een motor die 850 m³/h verplaatst in beide richtingen: warme, vochtige of vervuilde lucht afzuigen, of frisse lucht naar binnen blazen. Het is de ventilator die carrosseriebouwers in heel Europa voorschrijven wanneer een voertuig gewoon fris moet blijven.",
     "Kies 12V voor bestelwagens, campers en personenwagens, of 24V voor vrachtwagens, touringcars en bussen. Beide versies zijn EMC-gekeurd, dus getest op storingsvrij samenwerken met je voertuigelektronica. Liever een passieve oplossing? De motorloze versie gebruikt dezelfde dakuitsparing van 230 mm en kan later worden omgebouwd naar elektrisch.",
-    "Maak de installatie compleet met een 3-standenschakelaar (blazen / uit / zuigen), een optionele toerenregelaar en een van onze binnenventielen of roosters. Alles past op dezelfde opening van 230 mm."
+    "Maak de installatie compleet met een 3-standenschakelaar (blazen / uit / zuigen), een optionele toerenregelaar en een van onze binnenrozetten of roosters. Alles past op dezelfde opening van 230 mm."
    ],
    "features": [
     "850 m³/h luchtverplaatsing, zuigen en blazen",
@@ -76,7 +76,7 @@
     "Materialen": "ABS-dakring, PA6-kap",
     "Kleuren": "Wit RAL 9010 of zwart RAL 9005",
     "Keuring": "EMC-gekeurd",
-    "Accessoires": "Schakelaar, toerenregelaar, binnenventiel, sneeuwfilter"
+    "Accessoires": "Schakelaar, toerenregelaar, binnenrozet, sneeuwfilter"
    },
    "badges": [
     "Bestseller",
@@ -115,7 +115,7 @@
    "description": [
     "De Le Mans LL neemt de beproefde vorm van de Le Mans en voorziet die van een borstelloze motor. Het resultaat: een ventilator die jarenlang zonder onderhoud draait, slechts 34 W verbruikt en leverbaar is met een geïntegreerde toerenregeling.",
     "De LL is een ventilator die uitsluitend afzuigt, en dat is precies wat de meeste laadruimtes, dierencompartimenten en toiletten van touringcars nodig hebben: een constante, gezonde afvoer van vochtige of vervuilde lucht. Combineer hem met een vloerventilator voor een complete luchtkringloop.",
-    "Bestel de 12V- of 24V-versie, met of zonder ingebouwde toerenregeling. Een binnenventiel is apart leverbaar. Zaagmal meegeleverd."
+    "Bestel de 12V- of 24V-versie, met of zonder ingebouwde toerenregeling. Een binnenrozet is apart leverbaar. Zaagmal meegeleverd."
    ],
    "features": [
     "Borstelloze motor, onderhoudsvrij",
@@ -173,7 +173,7 @@
     "ABS / PA6-behuizing, wit of zwart, IP68-motor",
     "Dakopening 230 mm (245 mm ring)",
     "EMC-gekeurd",
-    "Optioneel: schakelaar, toerenregelaar, binnenventiel, sneeuwfilter"
+    "Optioneel: schakelaar, toerenregelaar, binnenrozet, sneeuwfilter"
    ],
    "specs": {
     "Luchtverplaatsing": "850 m³/h",
@@ -366,12 +366,12 @@
   },
   {
    "id": "v12-valve",
-   "name": "V12 binnenventiel",
+   "name": "V12 binnenrozet",
    "short_name": "V12 ventiel",
    "tagline": "Het afsluitbare plafondventiel voor de Le Mans",
    "summary": "ABS-plafondventiel van Ø 290 mm dat de binnenkant van je Le Mans of Ronde dakventilator afwerkt. Verstelbare lamellen voorkomen tocht; open hem voor volle luchtverplaatsing, sluit hem in de winter. Handbediend of elektrisch (12/24V), in wit, grijs of donkergrijs.",
    "description": [
-    "De V12 is het binnenventiel dat de meeste klanten combineren met de Le Mans. Het dekt de dakopening van 230 mm af met een strak lamellenrooster van Ø 290 mm (slechts 20 mm hoog) dat je met de hand opent en sluit, of elektrisch vanaf je dashboard met de 12/24V-versie. Het dient bovendien als vingerbescherming voor de ventilatorbladen.",
+    "De V12 is het binnenrozet dat de meeste klanten combineren met de Le Mans. Het dekt de dakopening van 230 mm af met een strak lamellenrooster van Ø 290 mm (slechts 20 mm hoog) dat je met de hand opent en sluit, of elektrisch vanaf je dashboard met de 12/24V-versie. Het dient bovendien als vingerbescherming voor de ventilatorbladen.",
     "Gemaakt van hoogwaardig ABS is het meer een blikvanger dan zomaar een functionele afdekking. Drie kleurcombinaties laten het in elk interieur opgaan: wit, grijs of donkergrijs. Ontworpen voor voertuigen met een hemelbekleding of plafond.",
     "Tip: bestel de elektrische versie samen met een Le Mans, een 3-standenschakelaar voor de ventilator en een aparte aan/uit-schakelaar voor het ventiel, en je hebt een volledig op afstand bediend ventilatiesysteem."
    ],
@@ -406,17 +406,17 @@
   },
   {
    "id": "flower-power",
-   "name": "Flower Power binnenventiel",
+   "name": "Flower Power binnenrozet",
    "short_name": "Flower Power",
    "tagline": "Afsluitbaar ventiel Ø 280 mm, optioneel met LED-verlichting",
    "summary": "Een luxe afsluitbaar plafondrooster (Ø 280 mm) voor voertuigen met een plafond. Behoudt de maximale luchtverplaatsing, gaat met de hand open en dicht, en is leverbaar met 21 witte + 9 blauwe LED's in 12V of 24V.",
    "description": [
-    "Flower Power is ons design-binnenventiel: een afsluitbaar rooster van Ø 280 mm met een kenmerkend radiaal patroon dat er in een luxe paardenvrachtwagen net zo goed uitziet als in een camper. Het behoudt de volledige luchtverplaatsing van je dakventilator en laat je hem toch helemaal afsluiten.",
+    "Flower Power is ons design-binnenrozet: een afsluitbaar rooster van Ø 280 mm met een kenmerkend radiaal patroon dat er in een luxe paardenvrachtwagen net zo goed uitziet als in een camper. Het behoudt de volledige luchtverplaatsing van je dakventilator en laat je hem toch helemaal afsluiten.",
     "Kies de standaardversie in wit, lichtgrijs of lichtgrijs met donkergrijs accent, of de LED-versie met 21 witte en 9 blauwe LED's voor sfeer- en nachtverlichting, in 12V of 24V.",
     "Ontworpen voor voertuigen met een hemel of plafond. Geen plafond? Kies dan een standaardrooster."
    ],
    "features": [
-    "Afsluitbaar binnenventiel Ø 280 mm",
+    "Afsluitbaar binnenrozet Ø 280 mm",
     "Behoudt maximale luchtverplaatsing in geopende stand",
     "Optioneel LED: 21 witte + 9 blauwe LED's, 12V of 24V",
     "Hoogwaardig ABS, modern design",
@@ -443,7 +443,7 @@
    "tagline": "Klassiek draaiventiel in zwart, wit of grijs",
    "summary": "Een draaibaar plafondventiel van Ø 300 mm dat met een draai opent en sluit. Leverbaar in zwart, wit of grijs, en met geïntegreerde 12/24V-verlichting. Optionele microschakelaar zet de ventilator uit zodra het ventiel dicht is.",
    "description": [
-    "Ons draaiventiel is de tijdloze binnenafwerking voor dakventilators: draaien om te openen, draaien om te sluiten. Met Ø 300 mm dekt het de dakopening van 230 mm van onze Le Mans en Ronde dakventilator volledig af.",
+    "Ons draaiventiel is de tijdloze binnenafwerking voor dakventilatoren: draaien om te openen, draaien om te sluiten. Met Ø 300 mm dekt het de dakopening van 230 mm van onze Le Mans en Ronde dakventilator volledig af.",
     "Kies strak zwart, tijdloos wit of eigentijds grijs passend bij je interieur, of kies de witte versie met geïntegreerde 12V/24V-verlichting als sfeerverlichting.",
     "Optioneel: een microschakelaar die de ventilator automatisch uitschakelt zodra het ventiel gesloten is."
    ],
@@ -526,9 +526,9 @@
    "name": "Speedcontrol 30-3004",
    "short_name": "Speedcontrol",
    "tagline": "Traploos regelbaar van 0 tot 100%, waterdichte behuizing",
-   "summary": "Traploze toerenregelaar voor DC-dakventilators. Draai de Le Mans terug voor stille nachtventilatie of laat hem op hete dagen vol draaien. 25 A continu, waterdichte behuizing, één unit kan meerdere ventilators aansturen.",
+   "summary": "Traploze toerenregelaar voor DC-dakventilatoren. Draai de Le Mans terug voor stille nachtventilatie of laat hem op hete dagen vol draaien. 25 A continu, waterdichte behuizing, één unit kan meerdere ventilators aansturen.",
    "description": [
-    "Met de Speedcontrol laat je elk van onze DC-dakventilators op precies het toerental draaien dat je nodig hebt: van een geruisloos zuchtje tot vol vermogen. Het bereik is traploos van 0 tot 100%, en in de nulstand verbruikt de unit helemaal geen stroom.",
+    "Met de Speedcontrol laat je elk van onze DC-dakventilatoren op precies het toerental draaien dat je nodig hebt: van een geruisloos zuchtje tot vol vermogen. Het bereik is traploos van 0 tot 100%, en in de nulstand verbruikt de unit helemaal geen stroom.",
     "Geschikt voor 11 tot 30 VDC en 25 A continu (30 A piek), werkt hij op 12V- en 24V-systemen en kan hij één of meerdere ventilators tegelijk aansturen. De behuizing is waterdicht, de unit is stroombegrensd en beveiligd tegen spanningspieken, en hij wordt aangesloten met standaard 6,3 mm vlakstekkers. Geleverd met potmeterknop en handleiding."
    ],
    "features": [
@@ -567,7 +567,7 @@
    "tagline": "Aan-uit-aan, rond inbouwmodel",
    "summary": "Ronde dubbele wisselschakelaar (aan-uit-aan) om je Le Mans, Ronde dakventilator of Winglet te schakelen tussen aanzuigen, uit en afzuigen. Klikt in een dashboardgat van Ø 20 mm.",
    "description": [
-    "De ronde 3-standenschakelaar voor onze dakventilators. Omhoog voor aanzuigen, omlaag voor afzuigen, midden voor uit. Het is een dubbele wisselschakelaar die de motor omkeert, dus je krijgt beide richtingen met één bedieningselement.",
+    "De ronde 3-standenschakelaar voor onze dakventilatoren. Omhoog voor aanzuigen, omlaag voor afzuigen, midden voor uit. Het is een dubbele wisselschakelaar die de motor omkeert, dus je krijgt beide richtingen met één bedieningselement.",
     "Geschikt voor de meeste voertuigen: hij klikt in een rond dashboardgat of een voorbereide schakelaarhouder. Controleer de maten van het montagegat in de datasheet voordat je bestelt. Combineer met de Speedcontrol voor traploze toerenregeling."
    ],
    "features": [
@@ -582,7 +582,7 @@
     "Type": "3-standen wipschakelaar, aan-uit-aan",
     "Vorm": "Rond, inbouw",
     "Montagegat": "Ø 20 mm (zie datasheet)",
-    "Geschikt voor": "Alle DC-dakventilators van Pegasus Depot",
+    "Geschikt voor": "Alle DC-dakventilatoren van Pegasus Depot",
     "Spanning": "12V / 24V DC"
    },
    "badges": [
@@ -597,7 +597,7 @@
    "tagline": "Aan-uit-aan, vierkant inbouwmodel",
    "summary": "Vierkante dubbele wisselschakelaar (aan-uit-aan) voor de bediening aanzuigen / uit / afzuigen van je elektrische dakventilator. Klikt in een rechthoekige dashboarduitsparing.",
    "description": [
-    "De vierkante 3-standenschakelaar voor onze dakventilators. Omhoog voor aanzuigen, omlaag voor afzuigen, midden uit. Dubbele wisselschakelaar, dus één schakelaar keert de motor om.",
+    "De vierkante 3-standenschakelaar voor onze dakventilatoren. Omhoog voor aanzuigen, omlaag voor afzuigen, midden uit. Dubbele wisselschakelaar, dus één schakelaar keert de motor om.",
     "Een vierkant inbouwmodel voor de meeste voertuigen; hij klikt in een voorbereide houder of rechthoekige uitsparing (maten in de datasheet). Voeg de Speedcontrol toe om de ventilator traploos van 0 tot 100% te laten draaien."
    ],
    "features": [
@@ -612,7 +612,7 @@
     "Type": "3-standen wipschakelaar, aan-uit-aan",
     "Vorm": "Vierkant, inbouw",
     "Montage": "Rechthoekige uitsparing (zie datasheet)",
-    "Geschikt voor": "Alle DC-dakventilators van Pegasus Depot",
+    "Geschikt voor": "Alle DC-dakventilatoren van Pegasus Depot",
     "Spanning": "12V / 24V DC"
    },
    "badges": [
@@ -644,7 +644,7 @@
     "Verlichting": "Rood en amber",
     "Belasting": "25 A 12V DC · 15 A 24V DC",
     "Vorm": "Rechthoekig, inbouw",
-    "Geschikt voor": "Alle DC-dakventilators van Pegasus Depot"
+    "Geschikt voor": "Alle DC-dakventilatoren van Pegasus Depot"
    },
    "badges": [
     "Verlicht",

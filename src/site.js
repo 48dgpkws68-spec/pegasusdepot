@@ -40,7 +40,7 @@
   const NL = document.documentElement.lang === 'nl';
   const T = NL ? {
     'Added to your cart': 'Toegevoegd aan je winkelwagen', 'Restore previous cart': 'Vorige winkelwagen herstellen', 'Your cart is empty': 'Je winkelwagen is leeg',
-    'Add a rooftop ventilator, an interior valve or an accessory to get started.': 'Voeg een dakventilator, een binnenventiel of een accessoire toe om te beginnen.', 'Browse the shop': 'Naar de shop',
+    'Add a rooftop ventilator, an interior valve or an accessory to get started.': 'Voeg een dakventilator, een binnenrozet of een accessoire toe om te beginnen.', 'Browse the shop': 'Naar de shop',
     'Decrease': 'Minder', 'Increase': 'Meer', 'Remove': 'Verwijderen', 'Shipping': 'Verzending', 'Quoted': 'Op offerte', 'Free': 'Gratis',
     'Shipping to the UK, Switzerland and Norway is quoted before you order.': 'Verzending naar het VK, Zwitserland en Noorwegen wordt vooraf per offerte bepaald.',
     'Free EU shipping unlocked.': 'Gratis verzending in de EU behaald.', 'Orders with roof hatches carry a flat': 'Bestellingen met dakluiken krijgen een vaste toeslag van', 'oversize fee.': 'voor groot formaat.',
