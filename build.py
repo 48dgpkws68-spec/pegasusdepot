@@ -154,7 +154,7 @@ _zones = [z for z in BRAND['shipping']['zones'] if z.get('price') is not None]
 _days = {'nl': (1, 2), 'be': (1, 2), 'eu1': (2, 3), 'eu': (3, 5)}
 SHIPPING_LD = [_ship_ld(z['price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
 OVERSIZE_LD = [_ship_ld(BRAND['shipping']['oversize_price'], z['countries'], *_days.get(z['id'], (3, 5))) for z in _zones]
-RETURN_LD = {"@type": "MerchantReturnPolicy", "applicableCountry": [ISO[x] for z in _zones for x in z['countries'] if x in ISO], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 30, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"}
+RETURN_LD = {"@type": "MerchantReturnPolicy", "returnPolicyCountry": "NL", "applicableCountry": [ISO[x] for z in _zones for x in z['countries'] if x in ISO], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 30, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"}
 ANALYTICS_HTML = ''
 RETIRED = {'__bundles__': 'shop.html', 'rotary-valve': 'shop.html?cat=interior-valves', 'rotary-valve-metal': 'shop.html?cat=interior-valves', 'step-converter': 'products/control-unit.html'}
 
@@ -370,7 +370,7 @@ def product_ld(p):
         o['hasMerchantReturnPolicy'] = RETURN_LD
     if offers:
         prices = [float(o['price']) for o in offers]
-        d["offers"] = {"@type": "AggregateOffer", "lowPrice": f"{min(prices):.2f}", "highPrice": f"{max(prices):.2f}", "priceCurrency": "EUR", "offerCount": len(offers), "offers": offers}
+        d["offers"] = {"@type": "AggregateOffer", "lowPrice": f"{min(prices):.2f}", "highPrice": f"{max(prices):.2f}", "priceCurrency": "EUR", "offerCount": len(offers), "offers": offers, "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": f"{SITE_URL}/products/{p['id']}.html", "shippingDetails": offers[0]['shippingDetails'], "hasMerchantReturnPolicy": RETURN_LD}
     ld = ([d] if offers else []) + [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/" + PREFIX}, {"@type": "ListItem", "position": 2, "name": "Shop", "item": SITE_URL + "/shop.html"}, {"@type": "ListItem", "position": 3, "name": CAT[p['category']]['name'], "item": f"{SITE_URL}/shop.html?cat={p['category']}"}, {"@type": "ListItem", "position": 4, "name": p['name']}]}]
     if p.get('faq'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in p['faq']]})
