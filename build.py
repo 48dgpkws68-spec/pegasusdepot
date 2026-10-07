@@ -1054,11 +1054,13 @@ def write_merchant_feed():
         for v in p['variants']:
             if v.get('price') is None: continue
             img = SITE_URL + '/' + sq(p['images'][0], 1400)
-            desc = ' '.join(p['description'])[:4900]
+            fits = [P[f]['name'] for f in p.get('fits', []) if f in P]
+            compat = ((' Compatibel met: ' if LANG == 'nl' else ' Compatible with: ') + ', '.join(fits) + '.') if fits else ''
+            desc = (' '.join(p['description']) + compat)[:4900]
             title = f"{p['name']} {v['label']}" if v['label'] != p['short_name'] else p['name']
             oversize = p['category'] in BRAND['shipping'].get('oversize_categories', [])
             ship = ''.join(f"<g:shipping><g:country>{ISO[c]}</g:country><g:price>{(z['price'] + (BRAND['shipping']['oversize_price'] if oversize else 0)):.2f} EUR</g:price></g:shipping>" for z in BRAND['shipping']['zones'] if z.get('price') is not None for c in z['countries'] if c in ISO)
-            items.append(f"<item><g:id>{X.escape(v['sku'])}</g:id><g:item_group_id>{p['id']}</g:item_group_id><g:title>{X.escape(title[:150])}</g:title><g:description>{X.escape(desc)}</g:description><g:link>{SITE_URL}/{PREFIX}products/{p['id']}.html</g:link><g:image_link>{img}</g:image_link><g:availability>in_stock</g:availability><g:price>{v['price']:.2f} EUR</g:price><g:brand>Pegasus Depot</g:brand><g:mpn>{X.escape(v['sku'])}</g:mpn><g:identifier_exists>no</g:identifier_exists><g:condition>new</g:condition><g:product_type>{X.escape(CAT[p['category']]['name'])}</g:product_type>{ship}" + ''.join(f"<g:product_detail><g:attribute_name>{X.escape(k)}</g:attribute_name><g:attribute_value>{X.escape(str(val))}</g:attribute_value></g:product_detail>" for k, val in (v.get('options') or {}).items()) + "</item>")
+            items.append(f"<item><g:id>{X.escape(v['sku'])}</g:id><g:item_group_id>{p['id']}</g:item_group_id><g:title>{X.escape(title[:150])}</g:title><g:description>{X.escape(desc)}</g:description><g:link>{SITE_URL}/{PREFIX}products/{p['id']}.html</g:link><g:image_link>{img}</g:image_link><g:availability>in_stock</g:availability><g:price>{v['price']:.2f} EUR</g:price><g:brand>Pegasus Depot</g:brand><g:mpn>{X.escape(v['sku'])}</g:mpn><g:identifier_exists>no</g:identifier_exists><g:condition>new</g:condition><g:google_product_category>Vehicles &amp; Parts &gt; Vehicle Parts &amp; Accessories</g:google_product_category><g:product_type>{X.escape(CAT[p['category']]['name'])}</g:product_type>{ship}" + ''.join(f"<g:product_detail><g:attribute_name>{X.escape(k)}</g:attribute_name><g:attribute_value>{X.escape(str(val))}</g:attribute_value></g:product_detail>" for k, val in (v.get('options') or {}).items()) + "</item>")
     (ROOT / 'feeds').mkdir(exist_ok=True)
     (ROOT / f'feeds/google-merchant-{LANG}.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel><title>Pegasus Depot</title><link>' + SITE_URL + '/' + PREFIX + '</link><description>Vehicle ventilation, roof hatches and LED lighting</description>' + ''.join(items) + '</channel></rss>\n', encoding='utf-8')
 
