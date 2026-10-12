@@ -121,6 +121,7 @@
     if (bar) { bar.style.width = Math.min(100, st / free * 100) + '%'; }
     if (txt && free) { txt.innerHTML = sh.quote ? t('Shipping to the UK, Switzerland and Norway is quoted before you order.') : st >= free ? (sh.hatches ? '<b>' + t('Free EU shipping unlocked.') + '</b> ' + t('Orders with roof hatches carry a flat') + ' €' + SHIP.oversize_price + ' ' + t('oversize fee.') : '<b>' + t('You have unlocked free EU shipping.') + '</b>') : t('Add') + ' <b>' + money(free - st) + '</b> ' + t('for free EU shipping') + (sh.hatches ? ' ' + t('(plus a flat') + ' €' + SHIP.oversize_price + ' ' + t('oversize fee for roof hatches)') : ''); }
     if (bar) bar.parentElement.style.display = (sh.quote || !free) ? 'none' : '';
+    const sbx = document.querySelector('.ship-bar'); if (sbx) sbx.style.display = (!free && !sh.quote) ? 'none' : '';
     const dn = $('#drawer-note'); if (dn) dn.textContent = t('Shipping calculated for') + ' ' + t(country) + t('; change your country at checkout.');
     const co = $('#checkout-btn'); if (co) co.classList.toggle('disabled', !cart.length);
     body.onclick = (e) => {
