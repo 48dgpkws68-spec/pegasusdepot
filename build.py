@@ -418,7 +418,7 @@ def header(depth=0):
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
     best_items = ''.join(f'<a class="m-item" href="{r}products/{p["id"]}.html"><img src="{r}{sq(p["images"][0],200)}" alt="{esc(p["name"])}"><div><b>{esc(p["short_name"])}</b><span>{money(ex_of(price_from(p)))}</span></div></a>' for p in best)
     return f'''
-<div class="announce"><a class="lang-hint" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands? Bekijk deze site in het Nederlands' if LANG == 'en' else 'English? View this site in English'}</a><span>Free EU shipping from {money(BRAND['free_shipping_from'])}, hatches excluded</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
+<div class="announce"><a class="lang-hint" href="__ALT_URL__" hreflang="{'nl' if LANG == 'en' else 'en'}" lang="{'nl' if LANG == 'en' else 'en'}">{'Nederlands? Bekijk deze site in het Nederlands' if LANG == 'en' else 'English? View this site in English'}</a><span>EU shipping from €9.50, Netherlands next day</span><span>Ships within 24h from stock</span><span>Trade &amp; fleet accounts welcome</span><span>EMC approved · Dutch engineered</span></div>
 <header class="header"><div class="wrap header-in">
   <a class="logo" href="/{PREFIX}" aria-label="Pegasus Depot home">{LOGO_IMG}<span>PEGASUS<small>DEPOT</small></span></a>
   <ul class="nav">
@@ -627,7 +627,7 @@ def page_index():
     {"q":"12V or 24V?","a":"Cars, vans, campers and trailers towed by them are 12V. Trucks, coaches, buses and most horse trucks on a truck chassis are 24V. Roof hatches and the control unit are 24V; for 12V vehicles we supply a converter."},
     {"q":"Do I need a switch and a speed controller?","a":"Electric roof fans need a 3-way switch to select blow / off / suck. The Speedcontrol is optional but recommended: it lets the fan run quietly at reduced speed and draws no current at zero."},
     {"q":"Can I close the vent in winter?","a":"Yes. Choose a closable interior valve: V12 (manual or electric), Flower Power or the rotating valve. The honeycomb grille is fixed and cannot be closed."},
-    {"q":"How fast do you ship?","a":"Orders placed before 15:00 CET ship the same working day from our warehouse in the Netherlands. Free EU shipping from €499.99 (roof hatches ship at a flat €29 oversize rate)."},
+    {"q":"How fast do you ship?","a":"Orders placed before 15:00 CET ship the same working day from our warehouse in the Netherlands. Shipping starts at €9.50 in the Netherlands (roof hatches add a flat €29 oversize fee)."},
     {"q":"Do you offer trade pricing?","a":"Yes. Bodybuilders, converters, fleets and dealers can request a trade account for volume pricing and ex-VAT invoicing."},
   ])}</div>
 </div></section>
@@ -751,7 +751,7 @@ def page_product(p):
     sticky_btn = f'<a class="btn btn-gold" href="{r}contact.html">Request a quote</a>' if quote else '<button class="btn btn-gold" id="sticky-add">Add to cart</button>'
     oversize = p['category'] in BRAND['shipping'].get('oversize_categories', [])
     _pf0 = price_from(p)
-    vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches, not included in free shipping' if oversize else 'free EU shipping from €499.99 · ex-VAT invoicing for trade accounts')
+    vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches' if oversize else 'shipping from €9.50 · ex-VAT invoicing for trade accounts')
     rating_txt = 'Specified by European bodybuilders for 20+ years · ' + ('EMC test report available' if 'EMC' in json.dumps(p) else ('Dimensional drawing on this page' if p.get('drawing') else '2-year warranty'))
     if 'New' in p.get('badges', []) or 'Nieuw' in p.get('badges', []): rating_txt = 'New in the range · 2-year warranty · 30-day returns'
     elif p['category'] == 'indoor-climate': rating_txt = 'Indoor climate · 2-year warranty · 30-day returns'
@@ -898,10 +898,10 @@ def page_shipping():
     body = f'''
 <section class="section ivory"><div class="wrap" style="max-width:860px"><div class="crumbs light-crumbs" style="padding:0 0 20px"><a href="/{PREFIX}">Home</a> / <span>Shipping &amp; returns</span></div><div class="eyebrow">Shipping &amp; returns</div><h1 class="h1" style="margin:12px 0 24px">Fast out, easy back.</h1>
 <h3 class="h3">Shipping</h3><p class="lead" style="margin:10px 0 22px">Orders placed before 15:00 CET on working days ship the same day from our warehouse in the Netherlands. Netherlands and Belgium: next working day. Germany, France, Austria, Denmark: 2 to 3 working days. Rest of EU: 3 to 5 working days. UK, Switzerland, Norway: 4 to 7 working days, duties may apply.</p>
-<table class="spec-table" style="margin-bottom:30px">{''.join(f"<tr><th>{esc(z['label'])}</th><td>{money(z['price'])} · free from {money(z['free_from'])}</td></tr>" for z in BRAND['shipping']['zones'] if z.get('price') is not None)}<tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate and not included in free shipping · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
+<table class="spec-table" style="margin-bottom:30px">{''.join(f"<tr><th>{esc(z['label'])}</th><td>{money(z['price'])} per order</td></tr>" for z in BRAND['shipping']['zones'] if z.get('price') is not None)}<tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
 <h3 class="h3">Returns &amp; warranty</h3><p class="lead" style="margin:10px 0 22px">Unused products in original packaging can be returned within 30 days for a full refund. Products that have been installed or cut to size cannot be returned unless defective. All products carry a 2-year manufacturer warranty against defects in materials and workmanship. Electric motors are EMC approved and tested before dispatch.</p>
 <p class="note">Trade customers: returns and warranty claims are handled through your account contact. Keep the article number and the batch label from the box.</p></div></section>'''
-    return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, free EU shipping from €499.99, 30-day returns and 2-year warranty.', body)
+    return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, EU shipping from €9.50, 30-day returns and 2-year warranty.', body)
 
 def page_terms():
     body = '''<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="eyebrow">Terms &amp; warranty</div><h1 class="h1" style="margin:12px 0 24px">Terms of sale</h1>

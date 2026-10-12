@@ -9,7 +9,7 @@
     "address": "EU warehouse, the Netherlands",
     "currency": "EUR",
     "vat_note": "All prices include 21% VAT. Ex-VAT pricing available for business accounts at checkout.",
-    "free_shipping_from": 499.99,
+    "free_shipping_from": null,
     "ships_in": "Ships within 24h from our Dutch warehouse",
     "shipping": {
       "zones": [
@@ -20,7 +20,7 @@
             "Netherlands"
           ],
           "price": 9.5,
-          "free_from": 499.99
+          "free_from": null
         },
         {
           "id": "be",
@@ -29,7 +29,7 @@
             "Belgium"
           ],
           "price": 18.5,
-          "free_from": 499.99
+          "free_from": null
         },
         {
           "id": "eu1",
@@ -42,7 +42,7 @@
             "Denmark"
           ],
           "price": 24.5,
-          "free_from": 499.99
+          "free_from": null
         },
         {
           "id": "eu",
@@ -69,7 +69,7 @@
             "Other EU"
           ],
           "price": 34.5,
-          "free_from": 499.99
+          "free_from": null
         },
         {
           "id": "noneu",
