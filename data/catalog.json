@@ -87,6 +87,12 @@
         "roof-hatches"
       ],
       "oversize_price": 29
+    },
+    "legal": {
+      "name": "Pegasus Depot",
+      "address": "Kazemat 7, 3905 NR Veenendaal, the Netherlands",
+      "kvk": "91594928",
+      "vat": "NL004902591B17"
     }
   },
   "categories": [
