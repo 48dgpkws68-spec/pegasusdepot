@@ -50,6 +50,14 @@ LANG = 'en'
 PREFIX = ''            # 'nl/' for the Dutch build: output folder and URL prefix
 SLUG_NL = {}           # english blog slug -> dutch blog slug
 SLUG_EN = {}
+# vooraf vullen, zodat ook de Engelse build (vóór apply_nl) de juiste NL-blogslug kent voor hreflang en taalknop
+for _a in BLOG:
+    _fp = ROOT / 'data/nl/blog' / Path(_a['_file']).name
+    try:
+        _s = re.sub(r'[^a-z0-9-]+', '-', json.load(open(_fp))['slug'].lower()).strip('-')
+        SLUG_NL[_a['slug']] = _s; SLUG_EN[_s] = _a['slug']
+    except Exception:
+        pass
 OPT_NL = {'Colour': 'Kleur', 'Voltage': 'Spanning', 'Diameter': 'Diameter', 'Light': 'Verlichting', 'Operation': 'Bediening', 'Speed control': 'Toerenregeling',
           'White': 'Wit', 'Black': 'Zwart', 'Grey': 'Grijs', 'Light grey': 'Lichtgrijs', 'Dark grey': 'Donkergrijs', 'Motorless': 'Motorloos', 'Manual': 'Handbediend',
           'Electric 12/24V': 'Elektrisch 12/24V', 'Integrated': 'Ingebouwd', 'No': 'Nee', 'Without': 'Zonder', 'No LED': 'Zonder LED', 'LED 12V': 'LED 12V', 'LED 24V': 'LED 24V', '12/24V light': '12/24V verlichting',
