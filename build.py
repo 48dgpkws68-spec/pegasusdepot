@@ -960,7 +960,9 @@ def page_blog():
 
 def page_post(a):
     depth = 1; r = rel(depth)
-    secs = ''.join(f'<h2 class="h3" style="margin:34px 0 12px">{esc(x["h2"])}</h2><div class="post-body">{x["html"]}</div>' for x in a.get('sections', []))
+    # links in de artikel-JSON zijn relatief aan de siteroot (products/..., vehicles/...); vanuit blog/ moet daar ../ voor
+    fix_rel = lambda h: re.sub(r"""href=(['"])(?!https?:|/|#|\.\./|mailto:|tel:)""", lambda m: 'href=' + m.group(1) + r, h)
+    secs = ''.join(f'<h2 class="h3" style="margin:34px 0 12px">{esc(x["h2"])}</h2><div class="post-body">{fix_rel(x["html"])}</div>' for x in a.get('sections', []))
     faq = ''.join(f'<details><summary>{esc(q["q"])}</summary><p>{esc(q["a"])}</p></details>' for q in a.get('faq', []))
     faq_html = f'<h2 class="h3" style="margin:40px 0 14px">Frequently asked</h2><div class="faq">{faq}</div>' if faq else ''
     others = [x for x in BLOG if x['slug'] != a['slug']][:3]
