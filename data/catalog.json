@@ -834,7 +834,24 @@
         "floor-ventilator-80",
         "winglet"
       ],
-      "faq": [],
+      "faq": [
+        {
+          "q": "Does the Turbo III help against condensation in winter?",
+          "a": "It helps by carrying warm, moist air out of the vehicle while you drive or when there is wind, without using any power. Breathing, cooking and wet clothes produce the moisture, so a steady air change is what keeps windows and walls drier. When parked in still weather the airflow is low, so combine it with a floor ventilator or open a window briefly."
+        },
+        {
+          "q": "Can I close it in winter?",
+          "a": "Yes. The interior grille has an open/close valve, so you can shut it on very cold nights or in a car wash and open it again when you drive."
+        },
+        {
+          "q": "How much air does it move?",
+          "a": "Around 120 m³/h at 100 km/h. Less at lower speeds and when parked, because it is driven by airflow over the roof."
+        },
+        {
+          "q": "Will it fit under my roof rack?",
+          "a": "Most likely. The Turbo III is only 59.5 mm high and needs an 80 mm hole in a roof of 1 to 17 mm thick."
+        }
+      ],
       "addons": [
         "floor-ventilator-80"
       ]

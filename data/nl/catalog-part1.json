@@ -328,7 +328,24 @@
     "Geen stroom nodig",
     "Open/dicht-ventiel inbegrepen"
    ],
-   "faq": []
+   "faq": [
+    {
+     "q": "Helpt de Turbo III tegen condens in de winter?",
+     "a": "Hij helpt door warme, vochtige lucht naar buiten af te voeren terwijl je rijdt of als het waait, zonder stroom. Het vocht komt van ademen, koken en natte kleding, dus juist een constante luchtverversing houdt ramen en wanden droger. Geparkeerd bij windstil weer is de luchtstroom laag: combineer hem dan met een vloerventilator of zet even een raam open."
+    },
+    {
+     "q": "Kan ik hem in de winter dichtzetten?",
+     "a": "Ja. Het binnenrooster heeft een open/dicht-ventiel, dus je zet hem dicht op hele koude nachten of in de wasstraat en weer open als je gaat rijden."
+    },
+    {
+     "q": "Hoeveel lucht verplaatst hij?",
+     "a": "Ongeveer 120 m³/h bij 100 km/h. Bij lagere snelheid en geparkeerd minder, omdat de wind over het dak hem aandrijft."
+    },
+    {
+     "q": "Past hij onder mijn dakdrager?",
+     "a": "Waarschijnlijk wel. De Turbo III is maar 59,5 mm hoog en heeft een gat van 80 mm nodig in een dak van 1 tot 17 mm dik."
+    }
+   ]
   },
   {
    "id": "exhaust-ventilator",
