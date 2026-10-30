@@ -2569,9 +2569,9 @@
           "options": {
             "Colour": "Black"
           },
-          "price": 327,
+          "price": 361.79,
           "compare_at": null,
-          "price_ex": 270.25
+          "price_ex": 299
         },
         {
           "sku": "24-0009",
@@ -2579,9 +2579,9 @@
           "options": {
             "Colour": "White"
           },
-          "price": 327,
+          "price": 361.79,
           "compare_at": null,
-          "price_ex": 270.25
+          "price_ex": 299
         }
       ],
       "images": [
