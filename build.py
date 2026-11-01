@@ -550,6 +550,19 @@ def trust_strip():
 </div></div>'''
 
 # ---------------------------------------------------------------- pages
+def turbo_spot():
+    """Uitgelicht op home: Turbo III (sinds 1 nov 2026, de enige die nu echt verkoopt via bol). Directe kleurknoppen in de eigen winkelwagen."""
+    t = P['turbo-iii']
+    COL_EN = {'Wit': 'White', 'Zwart': 'Black'}  # NL-overlay vertaalt het label al; de knoptekst gaat via nl.json
+    btns = ''.join(f'<button class="btn {"btn-dark" if i == 0 else "btn-ghost"}" data-add-sku="{v["sku"]}" data-product="turbo-iii">Add {COL_EN.get(v["label"], v["label"]).lower()} to cart</button>' for i, v in enumerate(t['variants']))
+    return f'''<section class="section ivory-2" id="turbo-iii"><div class="wrap">
+  <div class="split reveal"><div class="media"><img src="{sq(t['images'][0],1000)}" alt="{esc(t['name'])}" loading="lazy"><span class="tag">Turbo III · Ø 80 mm</span></div>
+  <div><div class="eyebrow">Winter pick · no power needed</div><h2 class="h2" style="margin:12px 0 16px">Fresh air while you drive. Zero watts.</h2><p class="lead">{esc(t['summary'])}</p>
+  <ul class="checks"><li>{ICON['check']}<div><b>Against condensation</b>Keeps air moving in the cold months without draining your battery.</div></li><li>{ICON['check']}<div><b>Small cut-out</b>80 mm hole, roof thickness 1 to 17 mm, no glue.</div></li><li>{ICON['check']}<div><b>Valve included</b>Close it from the inside when you park for the night.</div></li></ul>
+  <div class="price" style="margin:6px 0 18px">{pr2(price_from(t), ex_from(t))}</div>
+  <div class="hero-cta">{btns}<a class="link" href="products/turbo-iii.html">Specs and winter FAQ {ICON['arrow']}</a></div></div></div>
+</div></section>'''
+
 def page_index():
     lm = P['le-mans']
     best_ids = ['le-mans', 'v12-valve', 'turbo-ii', 'winglet', 'speedcontrol', 'switch-fan', 'floor-ventilator-129', 'roof-hatch-electric-large']
@@ -579,6 +592,7 @@ def page_index():
   <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>3</b><span>add-on groups on every fan page: switch, valve, floor inlet</span></div><div class="stat"><b>{sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)}</b><span>article numbers, all EMC approved where it matters</span></div></div>
 </div></section>
 {trust_strip()}
+{turbo_spot()}
 
 <section class="section dark"><div class="wrap">
   <div class="sec-head reveal"><div><div class="eyebrow">Shop by category</div><h2 class="h2">Everything between the roof and the floor.</h2></div><a class="link" href="shop.html">View all {len(PRODUCTS)} products {ICON['arrow']}</a></div>
