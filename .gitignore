@@ -11,3 +11,4 @@ docs/
 PRICING.md
 data/private.json
 exports/
+*.bak-*
