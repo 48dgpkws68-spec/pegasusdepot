@@ -1,0 +1,38 @@
+{
+ "slug": "laying-up-a-camper-for-winter-storage-ventilation-without-power",
+ "title": "Laying Up a Camper for Winter: Ventilation Without Power",
+ "meta": "Putting your camper or van into winter storage? Why a sealed vehicle turns damp over the months, how much a fan would cost your battery and how a wind-driven or passive vent keeps air moving without power.",
+ "excerpt": "A camper that stands closed for four months is a slow condensation experiment. Here is how to keep a little air moving through the storage season without leaving a fan draining the battery.",
+ "keywords": ["camper winter storage", "lay up motorhome for winter", "winterise camper ventilation", "camper storage damp", "wind driven roof vent", "ventilation without power"],
+ "vehicle": "campers",
+ "read_min": 5,
+ "date": "2026-11-04",
+ "sections": [
+  {
+   "h2": "Why a closed camper turns damp in storage",
+   "html": "<p>When the season ends most owners do the sensible things: drain the water system, take the bedding home, empty the fridge and shut everything tight. The last step is the one that causes trouble. Every camper still holds moisture after the summer: in the cushions, the carpet, the wooden furniture and the air itself. Shut it up and that moisture has nowhere to go.</p><p>Through autumn and winter the outside temperature swings between mild days and cold nights. On every cold night the metal skin, the windows and the frame cool down below the dew point of the air inside, and water forms on them. On the next mild day some of it evaporates again, only to settle once more the following night. Repeat that for four months and you open the door in spring to a musty smell, spotted curtains and damp behind the cupboards. The <a href='blog/condensation-in-vans-and-campers-how-ventilation-solves-it.html'>condensation guide</a> explains the dew point in more detail.</p>"
+  },
+  {
+   "h2": "Leaving a fan running: what it costs the battery",
+   "html": "<p>The obvious fix is to leave a roof fan on low. That works while the camper is in use, but in storage there is usually no hook-up and nobody to check the battery. Some simple arithmetic shows why it is a gamble.</p><p>The smallest fan we sell, the <a href='products/winglet.html'>Winglet</a>, draws 3 W. At 12 V that is a quarter of an amp, or about 6 Ah every 24 hours. Over a week that is roughly 42 Ah, which is a large share of a typical leisure battery, and over a whole winter it would flatten it many times over. A Le Mans LL at 34 W uses more than ten times as much. Without solar or mains, a powered fan is not a storage solution, and a deeply discharged battery in frost is a second problem you do not want.</p>"
+  },
+  {
+   "h2": "Air exchange without a wire",
+   "html": "<p>For the storage months you want a small, constant exchange of air that needs no power at all. There are two ways to get it.</p><p><strong>A wind-driven ventilator.</strong> The <a href='products/turbo-iii.html'>Turbo III</a> (€96.80) has a rotating cowl that turns in the wind and pulls air out of the vehicle. On the motorway it extracts around 120 m³/h through an 80 mm cut-out; parked, the flow depends on the wind and is much smaller, but outdoors it rarely stops completely, and that small, continuous exchange is exactly what storage needs. It comes with an open/close valve and is only 59.5 mm high. For a larger van the <a href='products/turbo-ii.html'>Turbo II</a> (€108.90) does the same with a 128 mm cut-out and around 245 m³/h at motorway speed.</p><p><strong>A passive vent.</strong> The motorless versions of the <a href='products/winglet.html'>Winglet</a> (€89), the <a href='products/le-mans.html'>Le Mans</a> (€66.55) and the <a href='products/rooftop-round.html'>Round</a> (€72.60) have no fan. They give warm, moist air a permanent way out at the highest point of the roof. If the camper is stored indoors, out of the wind, a passive vent at the top is the honest choice, because a wind-driven cowl only spins when there is wind.</p>"
+  },
+  {
+   "h2": "Do not forget the inlet",
+   "html": "<p>Air only leaves through the roof if new air can come in somewhere else. Most campers already have fixed safety vents in the floor or near the gas locker; keep those clear and never tape them shut for winter. If yours has none, a <a href='products/floor-ventilator-80.html'>floor ventilator Ø 80 mm</a> (€54.45) under a seat or bed base gives a clean, low inlet. The air then crosses the camper from low to high on its way out, which is the path that keeps the corners and lockers dry. The <a href='blog/floor-ventilators-explained-why-your-roof-fan-needs-an-inlet.html'>floor ventilator guide</a> explains why the pair works better than either part alone.</p>"
+  },
+  {
+   "h2": "Storage checklist for the ventilation",
+   "html": "<ul><li>Leave a closable roof valve open during storage, unless the camper stands outside where driven snow could enter; then fit a <a href='products/snowfilter.html'>snow filter</a> (€9.68) in a Le Mans or Round, or close the valve during heavy snow.</li><li>Keep at least one low inlet open and free of leaves and mud.</li><li>Prop cupboard doors and the fridge door ajar so air reaches the corners.</li><li>Stand mattresses and cushions on their edge, or take them home.</li><li>Switch powered fans off and disconnect or charge the leisure battery according to its manufacturer.</li><li>Visit once a month if you can: open up for an hour on a dry day and check the inside of the roof and the windows.</li></ul><p>Fitting a vent means cutting the roof, so do it before the camper goes into storage. The <a href='blog/installing-a-rooftop-ventilator-step-by-step.html'>installation guide</a> covers the cut-out and sealing. Orders ship from the Netherlands; see <a href='shipping-returns.html'>shipping and returns</a> for delivery times.</p>"
+  }
+ ],
+ "faq": [
+  {"q": "Can I leave my roof fan running while the camper is in storage?", "a": "Only if it has solar or a mains hook-up and you check the battery. Even the 3 W Winglet uses about 6 Ah a day at 12 V, which empties a leisure battery within weeks. For unattended storage a wind-driven or motorless vent is the safer choice."},
+  {"q": "Does the Turbo III work when the camper is parked?", "a": "Yes, as long as there is wind: the cowl turns and extracts air. The 120 m³/h figure applies at motorway speed; parked, the flow is much smaller and depends on the weather. Indoors, without wind, a passive vent at the highest point does the job better."},
+  {"q": "Should I close all vents for winter?", "a": "No. Never close the fixed safety vents near the gas installation. A sealed camper is what gives you damp in spring. Keep a small, permanent path for air from low to high and only close a valve during heavy driven snow."},
+  {"q": "Do I still need a dehumidifier in storage?", "a": "Ventilation and a moisture absorber or dehumidifier do different jobs and can be combined. Ventilation replaces moist air with outside air; an absorber pulls water out of air that is not moving. In a well ventilated camper the absorber simply fills up more slowly."}
+ ]
+}
