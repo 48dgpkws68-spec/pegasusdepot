@@ -779,6 +779,7 @@ def page_product(p):
                  + '<br><span>Order before 15:00 CET on a working day: ships the same day, Netherlands and Belgium next working day.</span>'
                  + (f' <span>Roof hatches add a flat oversize fee of</span> {money(BRAND["shipping"]["oversize_price"])}.' if oversize else '') + '</p>')
     biz_line = f'<p class="biz-line" style="font-size:13px;color:var(--text-2);margin:8px 2px 0;line-height:1.6"><b>Ordering for a business or 10+ units?</b> <a href="{r}trade.html#trade-form" data-umami-event="zakelijk-pdp" style="color:var(--gold);text-decoration:underline">Request a proforma invoice</a> in your company name.</p>'
+    bol_line = (f'<p class="bol-line" style="font-size:13px;color:var(--text-2);margin:6px 2px 0;line-height:1.6"><b>Prefer to order via bol.com?</b> <a href="{p["bol_url"]}" target="_blank" rel="noopener" data-umami-event="bol-alternatief-klik" data-umami-event-product="{p["id"]}" style="color:var(--gold);text-decoration:underline">The {esc(p["short_name"])} is also in our own bol.com store</a>.</p>') if p.get('bol_url') and LANG == 'nl' else ''
     _pf0 = price_from(p)
     vat_txt = ('<b id="pdp-incl">' + money(_pf0) + '</b> incl. 21% VAT · ' if _pf0 is not None else '') + ('+€' + str(BRAND['shipping']['oversize_price']) + ' flat oversize fee on orders with roof hatches' if oversize else 'shipping from €9.50 · ex-VAT invoicing for trade accounts')
     rating_txt = 'Specified by European bodybuilders for 20+ years · ' + ('EMC test report available' if 'EMC' in json.dumps(p) else ('Dimensional drawing on this page' if p.get('drawing') else '2-year warranty'))
@@ -804,7 +805,7 @@ def page_product(p):
     {opts_html}
     <div class="buy-row">{qty_html}{buy_btn}</div>
     {'' if quote else ship_line}
-    {'' if quote else biz_line}
+    {'' if quote else biz_line + bol_line}
     {upsell}
     {addons_html}
     <ul class="buy-meta"><li>{ICON['truck']}<span><b>Ships within 24h</b> from stock in the Netherlands</span></li><li>{ICON['shield']}<span><b>2-year warranty</b> and 30-day returns on unused items</span></li><li>{ICON['chat']}<span><b>Installation advice</b> by email, within one working day</span></li></ul>
