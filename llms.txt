@@ -1,0 +1,46 @@
+# Pegasus Depot
+
+> Nederlandse webwinkel in voertuigventilatie: dakventilatoren, binnenrozetten en roosters, schakelaars, dakluiken en LED-verlichting voor bestelwagens, campers, paardentrailers, bussen en ambulances. Site in het Engels en Nederlands.
+
+## Kerngegevens
+
+- Prijzen op de site excl. en incl. btw, bijvoorbeeld Le Mans dakventilator 850 m³/h € 105 excl. btw (€ 127,05 incl.).
+- Bestellingen voor 15:00 uur worden dezelfde werkdag verzonden vanuit het magazijn in Nederland; verzending in de EU vanaf € 9,50.
+- 2 jaar garantie; zakelijke prijzen voor wagenparken en carrosseriebouwers, bestellen op proformafactuur mogelijk.
+- Turbo III windgedreven dakventilator is ook te koop in de eigen bol.com-winkel van Pegasus Depot.
+- Pegasus Depot, Kazemat 7, 3905 NR Veenendaal · KvK 91594928 · btw NL004902591B17 · martin@pegasusdepot.com.
+
+## Belangrijkste pagina's
+
+- [Pegasus Depot · Vehicle Ventilation & Roof Hatches](https://pegasusdepot.com/): Rooftop ventilators, interior valves, switches, roof hatches and LED lighting for vans, campers, horse trailers, buses and ambulances.
+- [Shop all vehicle ventilation products · Pegasus Depot](https://pegasusdepot.com/shop.html): All rooftop ventilators, interior valves, switches, roof hatches, floor vents and LED lighting. Filter by category, vehicle type and voltage.
+- [Le Mans Rooftop Ventilator · Pegasus Depot](https://pegasusdepot.com/products/le-mans.html): The most popular electric roof fan for ambulances, horse trucks, buses and commercial vehicles. 850 m³/h of suction or blowing power under a streamlined…
+- [Winglet Mini Roof Fan · Pegasus Depot](https://pegasusdepot.com/products/winglet.html): A tiny electric extractor for small vans, camper kitchens, caravans, dog boxes and toilet compartments. 65 m³/h through an 80 mm cut-out at just 3 W,…
+- [Turbo II Wind-Driven Rooftop Ventilator · Pegasus Depot](https://pegasusdepot.com/products/turbo-ii.html): A rotating, wind-powered extractor that keeps pulling stale air out of your van, dog transporter or horse trailer without a single wire.
+- [Turbo III Compact Wind-Driven Ventilator · Pegasus Depot](https://pegasusdepot.com/products/turbo-iii.html): The compact version of the Turbo II. Ø 210 mm cowl, 80 mm cut-out, 59.5 mm high, around 120 m³/h at motorway speed, complete with open/close valve.
+- [Ventilation for Campers & Motorhomes · Pegasus Depot](https://pegasusdepot.com/vehicles/campers.html): Condensation on the windows, cooking smells that linger and nights too hot to sleep: every camper owner knows the drill.
+- [Ventilation for Horse Trailers & Horseboxes · Pegasus Depot](https://pegasusdepot.com/vehicles/horse-trailers.html): Heat, humidity and ammonia build up fast in a closed horse compartment. Our ventilators, roof hatches and blue night-mode LED lights are specified by…
+- [Ventilation for Commercial Vans & Service Vehicles](https://pegasusdepot.com/vehicles/commercial-vans.html): Tools, gas bottles, chemicals, food, dogs or people: whatever rides in the back, heat build-up and stale air shorten its life.
+- [Ventilation for Buses & Coaches · Pegasus Depot](https://pegasusdepot.com/vehicles/buses-coaches.html): City buses, coaches and minibuses need ventilation that meets strict standards for airflow, noise and safety. Our ECE 43R roof hatches with EC 2001/85…
+- [Ventilation for Ambulances & Emergency Vehicles](https://pegasusdepot.com/vehicles/ambulance-emergency.html): Ambulances, police vans, fire service vehicles and mobile command units run for hours with the doors closed. Aerosol and odour extraction, reliable…
+- [Ventilation for Animal & Livestock Transport · Pegasus Depot](https://pegasusdepot.com/vehicles/animal-transport.html): Cattle, pigs, poultry and specialty animal transport face high ventilation demands from animal density, heat load and organic moisture.
+- [Ventilation for Boats & Marine · Pegasus Depot](https://pegasusdepot.com/vehicles/marine.html): Salt, humidity and confined cabins make ventilation essential on board. Compact wind-driven vents for lockers and engine rooms, electric extractors for…
+- [Ventilation for Dog & K9 Transport · Pegasus Depot](https://pegasusdepot.com/vehicles/dog-transport.html): Dogs in a closed vehicle are at risk within minutes. Combine a wind-driven Turbo II for driving, a floor ventilator for fresh air and a 3 W Winglet that…
+- [About us · Pegasus Depot](https://pegasusdepot.com/about.html): Pegasus Depot is a Dutch online store for OEM-grade vehicle ventilation, roof hatches and LED lighting, based in Veenendaal and shipping across Europe.
+- [Trade & fleet accounts · Pegasus Depot](https://pegasusdepot.com/trade.html): Order on proforma, trade pricing, ex-VAT invoicing and project support for bodybuilders, converters, fleets and dealers.
+- [Contact · Pegasus Depot](https://pegasusdepot.com/contact.html): Contact Pegasus Depot for technical advice, quotes and trade accounts. In stock in the Netherlands, shipped within 24h across Europe.
+- [Turbo II vs Turbo III: Wind-Driven Ventilators Compared](https://pegasusdepot.com/blog/turbo-ii-vs-turbo-iii-wind-driven-ventilators-compared.html): Turbo II, Turbo III and the venturi exhaust ventilator compared: 245 or 120 m³/h at 100 km/h, 128, 80 or 140 mm cut-outs, no wiring and no power draw.
+- [Laying Up a Camper for Winter: Ventilation Without Power](https://pegasusdepot.com/blog/laying-up-a-camper-for-winter-storage-ventilation-without-power.html): Putting your camper or van into winter storage? Why a sealed vehicle turns damp over the months, how much a fan would cost your battery and how a…
+- [How to Choose a Rooftop Ventilator for Your Van](https://pegasusdepot.com/blog/how-to-choose-a-rooftop-ventilator-for-your-van.html): A practical buying guide to rooftop ventilators for vans: airflow per cubic metre of body, 12 V or 24 V, roof cut-out sizes, and extract versus supply.
+- [How Many Roof Ventilators Does Your Vehicle Need? The Airflow Calculation](https://pegasusdepot.com/blog/how-many-roof-ventilators-does-your-vehicle-need-airflow-calculation.html): Work out how many roof ventilators a vehicle needs from body volume and air changes per hour, with worked examples for a van, horsebox, coach and dog van.
+- [Condensation in Vans and Campers: How Ventilation Solves It](https://pegasusdepot.com/blog/condensation-in-vans-and-campers-how-ventilation-solves-it.html): Wet windows, damp bedding and mould in your van or camper? Where the moisture comes from, what dew point means and how extraction plus an inlet fixes it.
+- [Shipping & returns · Pegasus Depot](https://pegasusdepot.com/shipping-returns.html): Same-day dispatch before 15:00 CET, EU shipping from €9.50, 30-day returns and 2-year warranty.
+- [Pegasus Depot · Voertuigventilatie & dakluiken](https://pegasusdepot.com/nl/index.html): Dakventilatoren, binnenrozetten, schakelaars, dakluiken en LED-verlichting voor bestelwagens, campers, paardentrailers, bussen en ambulances.
+- [Alle producten voor voertuigventilatie · Pegasus Depot](https://pegasusdepot.com/nl/shop.html): Alle dakventilatoren, binnenrozetten, schakelaars, dakluiken, vloerventilators en LED-verlichting. Filter op categorie, voertuigtype en spanning.
+- [Le Mans dakventilator · Pegasus Depot](https://pegasusdepot.com/nl/products/le-mans.html): De populairste elektrische dakventilator voor ambulances, paardenvrachtwagens, bussen en bedrijfswagens. 850 m³/h zuig- of blaaskracht onder een…
+- [Winglet mini-dakventilator · Pegasus Depot](https://pegasusdepot.com/nl/products/winglet.html): Een kleine elektrische afzuiger voor kleine bestelwagens, camperkeukens, caravans, hondenboxen en toiletruimtes.
+- [Turbo II windgedreven dakventilator · Pegasus Depot](https://pegasusdepot.com/nl/products/turbo-ii.html): Een draaiende, windgedreven afzuiger die muffe lucht uit je bestelwagen, hondentransporter of paardentrailer blijft zuigen zonder één draad.
+- [Turbo III compacte windgedreven ventilator · Pegasus Depot](https://pegasusdepot.com/nl/products/turbo-iii.html): De compacte versie van de Turbo II. Kap Ø 210 mm, uitsparing 80 mm, 59,5 mm hoog, circa 120 m³/h bij snelwegsnelheid, compleet met open/dicht-ventiel.
+- [Zakelijk & wagenpark · Pegasus Depot](https://pegasusdepot.com/nl/trade.html): Bestellen op proforma, zakelijke prijzen, facturen excl. btw en projectondersteuning voor carrosseriebouwers, inbouwers, wagenparken en dealers.
+
+Sitemap met alle pagina's: https://pegasusdepot.com/sitemap.xml
