@@ -421,7 +421,7 @@ def header(depth=0):
     r = rel(depth)
     cat_items = ''.join(f'<a class="m-item" href="{r}shop.html?cat={c["id"]}"><img src="{r}{sq(c["image"],200)}" alt="{esc(c["name"])}"><div><b>{esc(c["name"])}</b><span>{esc(c["short"])}</span></div></a>' for c in CATS)
     veh_items = ''.join(f'<a class="m-item" href="{r}vehicles/{v["id"]}.html"><img src="{r}{scene(v["hero"],200)}" alt="" style="object-fit:cover;padding:0"><div><b>{esc(v["name"])}</b><span>{esc(v["eyebrow"])}</span></div></a>' for v in VEHICLES)
-    best = [P['le-mans'], P['v12-valve'], P['turbo-ii'], P['winglet']]
+    best = [P['turbo-iii'], P['le-mans'], P['v12-valve'], P['turbo-ii']]
     hero_b = [b for b in BUNDLES if b.get('hero')][:4]
     bundle_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>{esc(b["tagline"])}</span></div></a>' for b in hero_b)
     kit_items = ''.join(f'<a class="m-item" href="{r}bundles/{b["id"]}.html"><img src="{r}{sq(b["images"][0],200)}" alt=""><div><b>{esc(b["name"])}</b><span>Save {int(b["discount"]*100)}%</span></div></a>' for b in hero_b[:2])
@@ -677,7 +677,7 @@ def page_shop():
   </aside>
   <div>
     <div class="shop-top"><div><span id="shop-count" style="font-weight:700"></span> <span class="muted">· prices ex VAT, incl. VAT alongside</span></div><div style="display:flex;gap:10px"><button class="btn btn-ghost btn-sm mob-filter" id="mob-filter">Filters</button><select id="sort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name A to Z</option></select></div></div>
-    <div class="grid grid-3" id="shop-grid">{''.join(card(p) for p in PRODUCTS)}</div>
+    <div class="grid grid-3" id="shop-grid">{''.join(card(p) for p in sorted(PRODUCTS, key=lambda p: p['id'] != 'turbo-iii'))}</div>
   </div>
 </div></section>
 {newsletter()}'''
