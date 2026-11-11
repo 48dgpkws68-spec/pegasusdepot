@@ -2356,6 +2356,8 @@
         "commercial-vans"
       ],
       "accessories": [
+        "turbo-iii",
+        "le-mans",
         "lighting-round",
         "roof-hatch-manual-large"
       ],
@@ -2929,6 +2931,8 @@
         "commercial-vans"
       ],
       "accessories": [
+        "turbo-iii",
+        "le-mans",
         "lighting-round",
         "lighting-rectangle"
       ]
