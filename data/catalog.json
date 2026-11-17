@@ -305,7 +305,8 @@
       "image_by_option": {
         "Black": 1,
         "White": 0
-      }
+      },
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-le-mans-dakventilator-850-m-h-zuigen-en-blazen-laag-profiel-emc-gekeurd-12v-wit/9300000401948662/"
     },
     {
       "id": "le-mans-ll",
@@ -420,7 +421,8 @@
       "addons": [
         "flower-power",
         "floor-ventilator-129"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-le-mans-ll-borstelloze-dakventilator-zuinig-34-w-lange-levensduur-emc-gekeurd-12v/9300000401948656/"
     },
     {
       "id": "rooftop-round",
