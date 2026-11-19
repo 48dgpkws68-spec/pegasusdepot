@@ -541,6 +541,10 @@ def newsletter(depth=0):
   <div>{form_open('Trade pricing request (band)', depth, cls='')}<input type="email" name="email" placeholder="Your work email" required><button class="btn btn-gold">Request trade pricing</button></form><p class="muted" style="font-size:12.5px;margin-top:12px">Or email {esc(BRAND['email'])}. No spam, no newsletters you did not ask for.</p></div>
 </div></div></section>'''
 
+def holiday_line():
+    """Feestdagen-regel op home (directeur 19 nov 2026): alleen levertijden die al op shipping-returns.html staan, geen korting, geen deadline of timer."""
+    return '<div class="wrap" style="padding-top:18px;padding-bottom:4px"><p style="margin:0;font-size:14.5px;line-height:1.6;color:var(--text-2)"><b>In time for the holidays.</b> Order before 15:00 on a working day and it ships the same day: Netherlands and Belgium next working day, Germany, France, Austria or Denmark in 2 to 3 working days, the rest of the EU in 3 to 5. Unused items can go back within 30 days. <a class="link" href="shipping-returns.html" data-umami-event="feestdagen-verzending">Shipping &amp; returns</a></p></div>'
+
 def trust_strip():
     return f'''<div class="trust"><div class="wrap trust-in">
   <div class="trust-item">{ICON['truck']}<div><b>Ships within 24h</b><span>From our Dutch warehouse, across the EU</span></div></div>
@@ -592,6 +596,7 @@ def page_index():
   <div class="hero-stats"><div class="stat"><b>850</b><span>m³/h airflow from the Le Mans, our bestseller</span></div><div class="stat"><b>24h</b><span>dispatch from stock in the Netherlands</span></div><div class="stat"><b>3</b><span>add-on groups on every fan page: switch, valve, floor inlet</span></div><div class="stat"><b>{sum(1 for p in PRODUCTS for v in p['variants'] if v.get('price') is not None)}</b><span>article numbers, all EMC approved where it matters</span></div></div>
 </div></section>
 {trust_strip()}
+{holiday_line()}
 {turbo_spot()}
 
 <section class="section dark"><div class="wrap">
