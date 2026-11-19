@@ -46,7 +46,7 @@
     'Free EU shipping unlocked.': 'Gratis verzending in de EU behaald.', 'Orders with roof hatches carry a flat': 'Bestellingen met dakluiken krijgen een vaste toeslag van', 'oversize fee.': 'voor groot formaat.',
     'You have unlocked free EU shipping.': 'Je hebt gratis verzending in de EU behaald.', 'Add': 'Nog', 'for free EU shipping': 'voor gratis verzending in de EU', '(plus a flat': '(plus een vaste toeslag van', 'oversize fee for roof hatches)': 'voor dakluiken)',
     'Shipping calculated for': 'Verzending berekend voor', '; change your country at checkout.': '; kies je land bij het afrekenen.', 'Your cart is empty.': 'Je winkelwagen is leeg.',
-    'Quote via contact page': 'Offerte via contactpagina', '(incl. hatch oversize)': '(incl. toeslag dakluik)', 'Request shipping quote': 'Verzendofferte aanvragen', 'Request pallet quote': 'Palletofferte aanvragen', 'Continue to secure checkout': 'Doorgaan naar veilig afrekenen',
+    'Quote via contact page': 'Offerte via contactpagina', '(incl. hatch oversize)': '(incl. toeslag dakluik)', 'Request shipping quote': 'Verzendofferte aanvragen', 'Request pallet quote': 'Palletofferte aanvragen', 'Continue to secure checkout': 'Doorgaan naar veilig afrekenen', 'Order kit via proforma': 'Kit bestellen via proforma', 'Kits are not in our online checkout yet. Send your order and we reply within one working day with a proforma: kit price as shown, shipping included. You pay and we ship from stock.': 'Kits zitten nog niet in onze online kassa. Stuur je bestelling en je krijgt binnen één werkdag een proforma: kitprijs zoals getoond, verzending inbegrepen. Je betaalt en wij verzenden uit voorraad.', 'Kits are ordered via proforma. Taking you to the order form.': 'Kits bestel je via proforma. We sturen je door naar het bestelformulier.', 'Please send me a proforma for this order:': 'Stuur mij een proforma voor deze bestelling:', 'Delivery country:': 'Bezorgland:',
     'Cart restored': 'Winkelwagen hersteld', 'See all': 'Bekijk alle', 'results': 'resultaten', 'No results. Try "Le Mans", "12V", "hatch" or an article number.': 'Geen resultaten. Probeer "Le Mans", "12V", "dakluik" of een artikelnummer.',
     'Article no.': 'Artikelnr.', 'Quote': 'Offerte', 'Retail price': 'Adviesprijs', 'below retail price': 'onder adviesprijs', 'ex VAT': 'excl. btw', 'incl.': 'incl.', 'for': 'voor', 'sets': 'sets',
     'Not available with the current selection; selecting it switches the other option': 'Niet beschikbaar bij de huidige keuze; als je dit kiest wisselt de andere optie mee',
@@ -64,6 +64,9 @@
   const byId = {}; C.products.forEach(p => byId[p.id] = p);
   const bySku = {}; C.products.forEach(p => p.variants.forEach(v => bySku[v.sku] = { p, v }));
   const bundleById = {}; (C.bundles || []).forEach(b => bundleById[b.id] = b);
+  // kits without their own Shopify variant cannot go through the online checkout yet: route them to a proforma instead of a dead end
+  const kitVariantSku = (l) => { const b = bundleById[l.id] || { items: [] }; const S0 = C.shopify; const real0 = (sku) => (S0 && S0.alias && S0.alias[sku]) || sku; const g = b.items.map((it, i) => it.choices ? (l.skus || [])[i] : null).filter(Boolean).slice(0, 3); return 'KIT-' + l.id.toUpperCase() + (g.length ? '-' + g.map(real0).join('-') : ''); };
+  const manualKits = () => cart.some(l => l.type === 'bundle' && !(C.shopify && C.shopify.variants && C.shopify.variants[kitVariantSku(l)]));
 
   /* ---------- cart ---------- */
   const KEY = 'pegasus_cart_v1';
@@ -134,8 +137,9 @@
     if (sum) {
       sum.innerHTML = cart.length ? cart.map(l => `<div class="row"><span>${l.qty} × ${l.title}<br><small class="muted">${l.sub || ''}</small></span><b>${money(l.price * l.qty)}</b></div>`).join('') : '<p class="muted">' + t('Your cart is empty.') + '</p>';
       $('#co-sub').textContent = money(st); $('#co-ship').textContent = sh.quote ? t('Quote via contact page') : (ship ? money(ship) + (sh.hatches ? ' ' + t('(incl. hatch oversize)') : '') : t('Free')); $('#co-total').textContent = money(st + ship);
-      const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = sh.quote ? t('Request shipping quote') : (sh.hatches >= 3 ? t('Request pallet quote') : t('Continue to secure checkout'));
+      const mk = manualKits(); const cbl = $('#co-btn-lbl'); if (cbl) cbl.textContent = mk ? t('Order kit via proforma') : sh.quote ? t('Request shipping quote') : (sh.hatches >= 3 ? t('Request pallet quote') : t('Continue to secure checkout'));
       const cob = $('#co-btn'); if (cob) cob.classList.toggle('disabled', !cart.length);
+      if (cob) { let kn = $('#co-kit-note'); if (mk && !kn) { kn = document.createElement('p'); kn.id = 'co-kit-note'; kn.className = 'muted'; kn.style.cssText = 'font-size:13px;margin-top:12px;line-height:1.5'; kn.textContent = t('Kits are not in our online checkout yet. Send your order and we reply within one working day with a proforma: kit price as shown, shipping included. You pay and we ship from stock.'); cob.insertAdjacentElement('afterend', kn); } if (kn) kn.style.display = mk ? '' : 'none'; }
       if (!cart.length) $('#co-ship').textContent = '–';
     }
   }
@@ -396,6 +400,7 @@
       e.preventDefault();
       if (!cart.length) { toast(t('Your cart is empty')); return; }
       const country = localStorage.getItem('pegasus_country') || 'Netherlands';
+      if (manualKits()) { try { window.umami && umami.track('kit-proforma', { kits: cart.filter(l => l.type === 'bundle').map(l => l.id).join(',') }); } catch (x) {} toast(t('Kits are ordered via proforma. Taking you to the order form.')); setTimeout(() => { location.href = PAGES + 'contact.html?quote=1&kit=1'; }, 1200); return; }
       const shq = shipping(subtotal(), country);
       if (shq.quote || shq.hatches >= 3) { location.href = PAGES + 'contact.html?quote=1'; return; }
       const S = C.shopify;
@@ -425,6 +430,7 @@
     if (q.get('product') && byId[q.get('product')]) ta.value = t('Please send me a quote for:') + ' ' + byId[q.get('product')].name + '. ' + t('Vehicle / application:') + ' ';
     if (q.get('quote') && cart.length) {
       const country = localStorage.getItem('pegasus_country') || t('my country');
+      if (q.get('kit')) { ta.value = t('Please send me a proforma for this order:') + '\n' + cart.map(l => l.qty + ' x ' + l.title + (l.sub ? ' (' + l.sub + ')' : '')).join('\n') + '\n' + t('Order value:') + ' ' + money(subtotal()) + ' ' + t('incl. VAT.') + '\n' + t('Delivery country:') + ' ' + t(country) + '\n' + t('Delivery address:') + ' '; return; }
       ta.value = t('Please quote shipping to') + ' ' + t(country) + ' ' + t('for this order:') + '\n' + cart.map(l => l.qty + ' x ' + l.title + (l.sub ? ' (' + l.sub + ')' : '')).join('\n') + '\n' + t('Order value:') + ' ' + money(subtotal()) + ' ' + t('incl. VAT.') + '\n' + t('Delivery address:') + ' ';
     }
   })();
