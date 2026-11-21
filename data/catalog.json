@@ -553,7 +553,8 @@
         "snowfilter",
         "floor-ventilator-129",
         "seal-foam"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-ronde-dakventilator-850-m-h-zuigen-en-blazen-klassiek-model-emc-gekeurd-12v-wit/9300000401948653/"
     },
     {
       "id": "winglet",
@@ -667,7 +668,8 @@
       "addons": [
         "switch-rocker",
         "floor-ventilator-80"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-winglet-mini-dakventilator-fluisterstil-voor-gat-van-80-mm-12v-wit/9300000401948685/"
     },
     {
       "id": "turbo-ii",
@@ -756,7 +758,8 @@
       ],
       "image_by_option": {
         "Black": 0
-      }
+      },
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-turbo-ii-windgedreven-dakventilator-245-m-h-zonder-stroom-incl-binnenrooster-en-schuif-wit/9300000401948659/"
     },
     {
       "id": "turbo-iii",
@@ -932,7 +935,8 @@
       "addons": [
         "grill-small",
         "floor-ventilator-129"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-afzuigventilator-venturi-voor-bestelwagen-en-aanhanger-stroomloos-past-onder-dakdragers-wit/9300000401948624/"
     },
     {
       "id": "v12-valve",
@@ -1073,7 +1077,8 @@
         "le-mans",
         "le-mans-ll",
         "rooftop-round"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-v12-binnenrozet-o-290-mm-afsluitbaar-plafondventiel-voor-le-mans-en-ronde-dakventilator-handbediend-wit/9300000401948664/"
     },
     {
       "id": "flower-power",
@@ -1200,7 +1205,8 @@
         "le-mans",
         "le-mans-ll",
         "rooftop-round"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-flower-power-binnenrozet-o-280-mm-afsluitbaar-plafondventiel-voor-le-mans-en-ronde-dakventilator-wit/9300000401948642/"
     },
     {
       "id": "rotating-valve-300",
@@ -1302,7 +1308,8 @@
         "le-mans",
         "le-mans-ll",
         "rooftop-round"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-draaiventiel-o-300-mm-afsluitbaar-plafondventiel-voor-dakventilator-optioneel-met-verlichting-wit/9300000401948665/"
     },
     {
       "id": "grill-small",
@@ -1375,7 +1382,8 @@
       "faq": [],
       "fits": [
         "exhaust-ventilator"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-abs-binnenrooster-klein-o-140-mm-strakke-afwerking-voor-afzuigventilator-venturi-wit/9300000401948672/"
     },
     {
       "id": "grill-large",
@@ -1453,7 +1461,8 @@
       "fits": [
         "le-mans",
         "rooftop-round"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-abs-binnenrooster-groot-o-270-mm-honingraat-rooster-voor-le-mans-en-ronde-dakventilator-wit/9300000401948636/"
     },
     {
       "id": "speedcontrol",
@@ -1519,7 +1528,8 @@
           "q": "Can I use it together with a 3-way switch?",
           "a": "Yes. The switch selects blow / off / suck, the Speedcontrol sets the speed. The slower the fan runs, the quieter it is and the less air it moves."
         }
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-speedcontrol-toerenregelaar-12v-24v-voor-dakventilator-traploos-0-tot-100-waterdicht/9300000401948654/"
     },
     {
       "id": "switch-round",
@@ -1581,7 +1591,8 @@
         "le-mans",
         "rooftop-round",
         "v12-valve"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-3-standen-schakelaar-rond-12v-24v-inbouw-wipschakelaar-voor-dakventilator/9300000401948666/"
     },
     {
       "id": "switch-square",
@@ -1642,7 +1653,8 @@
         "le-mans",
         "rooftop-round",
         "v12-valve"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-3-standen-schakelaar-vierkant-12v-24v-inbouw-wipschakelaar-voor-dakventilator/9300000401948669/"
     },
     {
       "id": "switch-fan",
@@ -1705,7 +1717,8 @@
         "le-mans",
         "rooftop-round",
         "v12-valve"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-verlichte-ventilatorschakelaar-3-standen-12v-24v-met-symbolen-voor-dakventilator/9300000401948663/"
     },
     {
       "id": "control-unit",
@@ -1772,7 +1785,8 @@
           "a": "Yes, with a 12V to 24V converter (available on request, one per control unit)."
         }
       ],
-      "addons": []
+      "addons": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-bedieningsunit-24v-voor-elektrische-dakluiken-bedient-1-of-2-dakluiken-emc-gekeurd/9300000401948622/"
     },
     {
       "id": "floor-ventilator-129",
@@ -1827,7 +1841,8 @@
         "turbo-ii",
         "exhaust-ventilator"
       ],
-      "faq": []
+      "faq": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-vloerventilator-o-129-mm-zwart-luchtinlaat-voor-dakventilator-in-bestelwagen-trailer-en-camper/9300000401948629/"
     },
     {
       "id": "floor-ventilator-80",
@@ -1881,7 +1896,8 @@
         "winglet",
         "turbo-iii"
       ],
-      "faq": []
+      "faq": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-vloerventilator-o-80-mm-zwart-compact-luchtinlaat-voor-camper-bestelwagen-en-hondenbus/9300000401948661/"
     },
     {
       "id": "snowfilter",
@@ -1932,7 +1948,8 @@
         "le-mans",
         "rooftop-round"
       ],
-      "faq": []
+      "faq": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-sneeuwfilter-voor-le-mans-en-ronde-dakventilator-houdt-sneeuw-regen-en-insecten-buiten/9300000401948645/"
     },
     {
       "id": "roof-hatch-manual-small",
@@ -2282,7 +2299,8 @@
       "image_by_option": {
         "Grey": 1,
         "White": 0
-      }
+      },
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-led-plafonniere-rond-o-150-mm-12v-24v-wit-en-blauw-nachtlicht-waterdicht-ip67-wit/9300000401948680/"
     },
     {
       "id": "lighting-rectangle",
@@ -2370,7 +2388,8 @@
       "image_by_option": {
         "Grey": 0,
         "White": 1
-      }
+      },
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-led-plafonniere-rechthoekig-350-x-140-mm-12v-24v-wit-en-blauw-nachtlicht-ip66-ik10-wit/9300000401948679/"
     },
     {
       "id": "axial-ventilator",
@@ -2606,7 +2625,8 @@
       "addons": [
         "ceilingflow-frame",
         "air-purifier-small"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-ceilingflow-plafondventilator-595-x-595-mm-voor-systeemplafonds-plug-and-play-met-afstandsbediening-wit/9300000401948628/"
     },
     {
       "id": "ceilingflow-frame",
@@ -2660,7 +2680,8 @@
       "accessories": [
         "ceilingflow"
       ],
-      "faq": []
+      "faq": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-montageframe-voor-ceilingflow-plafondventilator-alleen-frame-ventilator-niet-inbegrepen-wit/9300000401948626/"
     },
     {
       "id": "air-purifier-small",
@@ -2716,7 +2737,8 @@
         "ceilingflow",
         "air-purifier-large"
       ],
-      "faq": []
+      "faq": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-hepa-luchtreiniger-klein-h13-met-actieve-kool-fluisterstil-27-db-voor-8-tot-15-m/9300000401948627/"
     },
     {
       "id": "air-purifier-large",
@@ -2773,7 +2795,8 @@
         "ceilingflow",
         "air-purifier-small"
       ],
-      "faq": []
+      "faq": [],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-hepa-luchtreiniger-groot-h13-met-actieve-kool-en-anionen-cadr-600-m-h-voor-42-tot-74-m/9300000401948631/"
     },
     {
       "id": "switch-rocker",
@@ -2826,7 +2849,8 @@
       ],
       "fits": [
         "winglet"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-aan-uit-wipschakelaar-voor-winglet-mini-dakventilator-klikmontage/9300000401948693/"
     },
     {
       "id": "seal-foam",
@@ -2883,7 +2907,8 @@
       "fits": [
         "le-mans",
         "rooftop-round"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-super-seal-opvulschuim-voor-dakventilator-afdichtstrip-voor-oneffen-daken/9300000401948690/"
     },
     {
       "id": "rock-light",
@@ -2999,7 +3024,8 @@
         "le-mans",
         "rooftop-round",
         "floor-ventilator-129"
-      ]
+      ],
+      "bol_url": "https://www.bol.com/nl/nl/p/pegasus-depot-rvs-vloerventilator-afspuitbaar-roestvrij-vloerrooster-voor-paardentrailer-en-bestelwagen-o-83-mm/9300000401948637/"
     },
     {
       "id": "reading-light",
