@@ -567,6 +567,20 @@ def turbo_spot():
   <div class="hero-cta">{btns}<a class="link" href="products/turbo-iii.html">Specs and winter FAQ {ICON['arrow']}</a></div></div></div>
 </div></section>'''
 
+def lemans_spot():
+    """Uitgelicht op home naast Turbo III (directeur 22 nov 2026, #10b): 3 Le Mans-orders via bol in 10 dagen. 12V-kleurknoppen in de eigen winkelwagen, NL ook de bol-route. Geen korting, geen timer."""
+    t = P['le-mans']
+    BTN = {'02-2200': 'Add 12V white to cart', '02-2200-ZW': 'Add 12V black to cart'}  # op sku, want het NL-label is vertaald
+    btns = ''.join(f'<button class="btn {"btn-dark" if i == 0 else "btn-ghost"}" data-add-sku="{v["sku"]}" data-product="le-mans">{BTN[v["sku"]]}</button>' for i, v in enumerate(v for v in t['variants'] if v['sku'] in BTN))
+    bol = (f'<p class="bol-line" style="font-size:13px;color:var(--text-2);margin:12px 2px 0;line-height:1.6"><b>Prefer to order via bol.com?</b> <a href="{t["bol_url"]}" target="_blank" rel="noopener" data-umami-event="bol-alternatief-klik" data-umami-event-product="le-mans" data-umami-event-plek="home" style="color:var(--gold);text-decoration:underline">The Le Mans is also in our own bol.com store</a>.</p>') if t.get('bol_url') and LANG == 'nl' else ''
+    return f'''<section class="section ivory" id="le-mans"><div class="wrap">
+  <div class="split reveal"><div class="media"><img src="{sq(t['images'][0],1000)}" alt="{esc(t['name'])}" loading="lazy"><span class="tag">Le Mans · 850 m³/h</span></div>
+  <div><div class="eyebrow">Our bestseller · 12V and 24V</div><h2 class="h2" style="margin:12px 0 16px">Serious airflow for vans, horse trucks and ambulances.</h2><p class="lead">{esc(t['summary'])}</p>
+  <ul class="checks"><li>{ICON['check']}<div><b>Suction and blowing</b>Reversible, 850 m³/h under a low cover of 64 mm.</div></li><li>{ICON['check']}<div><b>EMC approved</b>No interference with the electronics of your vehicle.</div></li><li>{ICON['check']}<div><b>Complete it on the page</b>Switch, speed control and interior valve added in one click.</div></li></ul>
+  <div class="price" style="margin:6px 0 18px">{pr2(price_from(t), ex_from(t))}</div>
+  <div class="hero-cta">{btns}<a class="link" href="products/le-mans.html" data-umami-event="home-naar-lemans">All voltages and specs {ICON['arrow']}</a></div>{bol}</div></div>
+</div></section>'''
+
 def page_index():
     lm = P['le-mans']
     best_ids = ['le-mans', 'v12-valve', 'turbo-ii', 'winglet', 'speedcontrol', 'switch-fan', 'floor-ventilator-129', 'roof-hatch-electric-large']
@@ -598,6 +612,7 @@ def page_index():
 {trust_strip()}
 {holiday_line()}
 {turbo_spot()}
+{lemans_spot()}
 
 <section class="section dark"><div class="wrap">
   <div class="sec-head reveal"><div><div class="eyebrow">Shop by category</div><h2 class="h2">Everything between the roof and the floor.</h2></div><a class="link" href="shop.html">View all {len(PRODUCTS)} products {ICON['arrow']}</a></div>
@@ -682,7 +697,7 @@ def page_shop():
   </aside>
   <div>
     <div class="shop-top"><div><span id="shop-count" style="font-weight:700"></span> <span class="muted">· prices ex VAT, incl. VAT alongside</span></div><div style="display:flex;gap:10px"><button class="btn btn-ghost btn-sm mob-filter" id="mob-filter">Filters</button><select id="sort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name A to Z</option></select></div></div>
-    <div class="grid grid-3" id="shop-grid">{''.join(card(p) for p in sorted(PRODUCTS, key=lambda p: p['id'] != 'turbo-iii'))}</div>
+    <div class="grid grid-3" id="shop-grid">{''.join(card(p) for p in sorted(PRODUCTS, key=lambda p: {'turbo-iii': 0, 'le-mans': 1}.get(p['id'], 2)))}</div>
   </div>
 </div></section>
 {newsletter()}'''
