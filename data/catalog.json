@@ -2723,9 +2723,9 @@
           "sku": "24-0125",
           "label": "Small",
           "options": {},
-          "price": 149,
-          "compare_at": 179,
-          "price_ex": 123.14
+          "price": 132,
+          "compare_at": null,
+          "price_ex": 109.09
         }
       ],
       "images": [
@@ -2781,9 +2781,9 @@
           "sku": "24-0600",
           "label": "Large",
           "options": {},
-          "price": 449,
-          "compare_at": 499,
-          "price_ex": 371.07
+          "price": 359,
+          "compare_at": null,
+          "price_ex": 296.69
         }
       ],
       "images": [
