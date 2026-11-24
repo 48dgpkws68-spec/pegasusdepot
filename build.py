@@ -127,7 +127,7 @@ def apply_nl():
         if not fp.exists(): continue
         try: b = json.load(open(fp))
         except Exception as e: print('NL BLOG SKIP', fp, e); continue
-        b['slug'] = re.sub(r'[^a-z0-9-]+', '-', b['slug'].lower()).strip('-'); b['date'] = a['date']; b['_file'] = a['_file']
+        b['slug'] = re.sub(r'[^a-z0-9-]+', '-', b['slug'].lower()).strip('-'); b['date'] = a['date']; b['_file'] = a['_file']; b['modified'] = b.get('modified') or a.get('modified')
         SLUG_NL[a['slug']] = b['slug']; SLUG_EN[b['slug']] = a['slug']; nl_blog.append(b)
     BLOG = nl_blog
     BLOG.sort(key=lambda a: a['date'], reverse=True)
@@ -370,8 +370,15 @@ def form_open(subject, depth=0, cls='form', extra=''):
 def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
 
+def buyable(v):
+    """True when the checkout can hand this variant to Shopify (otherwise the cart sends the customer to the contact page)."""
+    if not SHOPIFY: return True
+    sku = SKU_ALIAS.get(v['sku'], v['sku'])
+    return sku in SHOPIFY.get('variants', {})
+UNBUYABLE = set()
 def product_ld(p):
-    offers = [{"@type": "Offer", "sku": v['sku'], "name": v['label'], "price": f"{v['price']:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": f"{SITE_URL}/products/{p['id']}.html", "shippingDetails": {"@type": "OfferShippingDetails", "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "NL"}}, **({"gtin13": v['gtin']} if v.get('gtin') else {})} for v in p['variants'] if v.get('price') is not None]
+    UNBUYABLE.update(v['sku'] for v in p['variants'] if v.get('price') is not None and not buyable(v))
+    offers = [{"@type": "Offer", "sku": v['sku'], "name": v['label'], "price": f"{v['price']:.2f}", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "url": f"{SITE_URL}/products/{p['id']}.html", "shippingDetails": {"@type": "OfferShippingDetails", "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "NL"}}, **({"gtin13": v['gtin']} if v.get('gtin') else {})} for v in p['variants'] if v.get('price') is not None and buyable(v)]
     d = {"@context": "https://schema.org", "@type": "Product", "name": p['name'], "sku": p['variants'][0]['sku'], "description": p['summary'], "brand": {"@type": "Brand", "name": "Pegasus Depot"}, "image": [f"{SITE_URL}/{sq(p['images'][0], 1400)}"], "category": CAT[p['category']]['name'], "url": f"{SITE_URL}/products/{p['id']}.html"}
     for o in offers:
         o['shippingDetails'] = OVERSIZE_LD if p['category'] in BRAND['shipping'].get('oversize_categories', []) else SHIPPING_LD
@@ -807,7 +814,7 @@ def page_product(p):
     elif p['category'] == 'indoor-climate': rating_txt = 'Indoor climate · 2-year warranty · 30-day returns'
     _pv = [v for v in p['variants'] if v.get('price') is not None]
     _pm = (f'<meta property="product:price:amount" content="{_pv[0]["price"]:.2f}"><meta property="product:price:currency" content="EUR">' if _pv else '') + f'<meta property="og:image:alt" content="{esc(p["name"])}">'
-    h = head(f'{p["name"]} · Pegasus Depot', p['summary'], depth, p['images'][0], f'products/{p["id"]}.html', og_type='product', extra_meta=_pm)
+    h = head(f'{p.get("meta_title") or p["name"]} · Pegasus Depot', p.get('meta') or p['summary'], depth, p['images'][0], f'products/{p["id"]}.html', og_type='product', extra_meta=_pm)
     h += product_ld(p)
     h += header(depth)
     h += f'''
@@ -949,7 +956,7 @@ def page_contact():
 <section class="page-hero" style="min-height:340px"><img class="bg" src="{scene('assets/media/Magazijn-1.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Contact</span></div><div class="eyebrow">Contact</div><h1 class="h1">Talk to an engineer, not a bot.</h1><p class="lead">Cut-out sizes, 12V or 24V, how many fans for a 7-metre body: ask us. We answer within 24 hours on working days, usually much faster.</p></div></section>
 <section class="section ivory"><div class="wrap contact-grid"><div class="info-card">{form_open('Contact form')}<div class="form-row"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Email</label><input type="email" name="email" required></div></div><div class="form-row"><div class="field"><label>Phone</label><input name="phone"></div><div class="field"><label>Vehicle type</label><select name="vehicle">{''.join(f'<option>{esc(v["name"])}</option>' for v in VEHICLES)}<option>Other</option></select></div></div><div class="field"><label>Message</label><textarea name="message" rows="6" placeholder="Tell us about the vehicle, the products you have in mind and any article numbers."></textarea></div><button class="btn btn-gold btn-block">Send message {ICON['arrow']}</button></form></div>
 <div style="display:grid;gap:16px"><div class="info-card"><b>Email</b><span>{esc(BRAND['email'])} · Mon to Fri 08:30 to 17:00 CET</span>{('<b>Phone</b><span>' + esc(BRAND['phone']) + '</span>') if BRAND.get('phone') else ''}<b>Address</b><span>{esc(BRAND['legal']['name'])}<br>{esc(BRAND['address'])}<br>KvK {BRAND['legal']['kvk']} · VAT {BRAND['legal']['vat']}</span></div><div class="info-card"><b>Technical documents</b><span>Most product pages carry a dimensional drawing; technical datasheets and EMC test reports are sent on request within one working day.</span></div><div class="info-card"><b>Returns</b><span>Unused items in original packaging can be returned within 30 days. See <a href="shipping-returns.html" style="text-decoration:underline">shipping &amp; returns</a>.</span></div></div></div></section>'''
-    return simple_page('contact.html', 'Contact', 'Contact Pegasus Depot for technical advice, quotes and trade accounts.', body)
+    return simple_page('contact.html', 'Contact Us: Technical Advice & Quotes', 'Contact Pegasus Depot for technical advice on roof fans, roof hatches and wiring, for quotes and trade accounts. We reply within 24 hours on working days.', body)
 
 def page_shipping():
     body = f'''
@@ -958,7 +965,7 @@ def page_shipping():
 <table class="spec-table" style="margin-bottom:30px">{''.join(f"<tr><th>{esc(z['label'])}</th><td>{money(z['price'])} per order</td></tr>" for z in BRAND['shipping']['zones'] if z.get('price') is not None)}<tr><th>Roof hatches (oversize)</th><td>Flat €29 per order that contains roof hatches, on top of the zone rate · 3 or more hatches ship on a pallet, quoted before you order</td></tr><tr><th>UK, CH, NO and non-EU</th><td>Personal quote before you order: choose your country at checkout and we reply within one working day</td></tr></table>
 <h3 class="h3">Returns &amp; warranty</h3><p class="lead" style="margin:10px 0 22px">Unused products in original packaging can be returned within 30 days for a full refund. Products that have been installed or cut to size cannot be returned unless defective. All products carry a 2-year manufacturer warranty against defects in materials and workmanship. Electric motors are EMC approved and tested before dispatch.</p>
 <p class="note">Trade customers: returns and warranty claims are handled through your account contact. Keep the article number and the batch label from the box.</p></div></section>'''
-    return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch before 15:00 CET, EU shipping from €9.50, 30-day returns and 2-year warranty.', body)
+    return simple_page('shipping-returns.html', 'Shipping & returns', 'Same-day dispatch from stock in the Netherlands before 15:00 CET, EU shipping from €9.50 per order, 30-day returns and a 2-year warranty.', body)
 
 def page_terms():
     body = '''<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="eyebrow">Terms &amp; warranty</div><h1 class="h1" style="margin:12px 0 24px">Terms of sale</h1>
@@ -969,7 +976,7 @@ def page_terms():
 <h3 class="h3">Right of withdrawal</h3><p class="lead" style="margin:8px 0 18px">Consumers in the EU may cancel an order within 14 days of delivery without giving a reason. Tell us by e-mail or through the contact form within that period and return the goods within 14 days of your notice; we refund the order including standard delivery within 14 days of receiving the goods (or proof of dispatch). Return shipping is at your cost unless the item is faulty. Items that show installation marks or are no longer complete may be refunded at a reduced value. Consumer disputes can also be submitted to the EU online dispute resolution platform at ec.europa.eu/consumers/odr.</p><h3 class="h3">Warranty</h3><p class="lead" style="margin:8px 0 18px">Two years against defects in materials and workmanship from the date of delivery. Excluded: wear, incorrect installation, incorrect voltage, mechanical damage and modifications. Warranty is repair or replacement at our discretion. This does not affect your statutory rights under EU consumer law.</p>
 <h3 class="h3">Specifications</h3><p class="lead" style="margin:8px 0 18px">Technical data is taken from the manufacturer's datasheets and may be updated without notice. Always check the current drawing before cutting a roof.</p>
 <h3 class="h3">Governing law</h3><p class="lead" style="margin:8px 0 18px">Dutch law applies. Disputes are submitted to the competent court in the Netherlands.</p></div></section>'''
-    return simple_page('terms.html', 'Terms & warranty', 'Terms of sale and warranty conditions of Pegasus Depot.', body)
+    return simple_page('terms.html', 'Terms & warranty', 'Terms of sale and warranty of Pegasus Depot: prices, payment, delivery, the 14-day right of withdrawal and two years of warranty on defects.', body)
 
 def page_privacy():
     body = '''<section class="section ivory"><div class="wrap" style="max-width:860px"><div class="eyebrow">Privacy</div><h1 class="h1" style="margin:12px 0 24px">Privacy policy</h1>
@@ -977,7 +984,7 @@ def page_privacy():
 <h3 class="h3">What we store</h3><p class="lead" style="margin:8px 0 18px">Name, company, address, email, phone, order history and, for trade accounts, VAT number. Payment details are processed by our payment provider and never stored on our servers.</p>
 <h3 class="h3">Cookies</h3><p class="lead" style="margin:8px 0 18px">Your cart is stored in your browser's local storage. We use privacy-friendly analytics without cross-site tracking.</p>
 <h3 class="h3">Who processes your data</h3><p class="lead" style="margin:8px 0 18px">Orders and payments are handled by Shopify (Shopify International Ltd., Ireland) on our behalf; the contact and trade forms are delivered through FormSubmit. Both act as processors and only receive the data needed to complete your order or answer your message. Carriers receive your name, address and phone number for delivery.</p><h3 class="h3">Your rights</h3><p class="lead" style="margin:8px 0 18px">You can request, correct or delete your data at any time by emailing martin@pegasusdepot.com.</p></div></section>'''
-    return simple_page('privacy.html', 'Privacy', 'Privacy policy of Pegasus Depot.', body)
+    return simple_page('privacy.html', 'Privacy Policy', 'How Pegasus Depot handles your personal data: what we store for orders and questions, who processes it on our behalf, cookies and your rights.', body)
 
 def page_checkout():
     body = f'''
@@ -1004,13 +1011,21 @@ def page_blog():
     cards = ''.join(blog_card(a, 0) for a in BLOG)
     body = f'''<section class="page-hero" style="min-height:360px"><img class="bg" src="{scene('assets/media/Le-Mans-ventilator-2.webp',1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <span>Guides</span></div><div class="eyebrow">Guides &amp; advice</div><h1 class="h1">Vehicle ventilation, explained by people who install it.</h1><p class="lead">Buying guides, installation notes and answers to the questions bodybuilders, fleet managers and owners ask us every week.</p></div></section>
 <section class="section ivory"><div class="wrap"><div class="grid grid-3">{cards}</div></div></section>'''
-    return simple_page('blog.html', 'Guides & advice on vehicle ventilation', 'Buying guides, installation notes and practical answers on rooftop ventilators, roof hatches, interior valves and floor ventilators for vans, campers, horse trailers, coaches and ambulances.', body, og='assets/media/Le-Mans-ventilator-2.webp')
+    return simple_page('blog.html', 'Guides & advice on vehicle ventilation', 'Buying guides, installation tips and practical answers on roof fans, roof hatches, interior valves and floor vents for vans, campers and horse trailers.', body, og='assets/media/Le-Mans-ventilator-2.webp')
+
+AUTHOR = 'Nick van Straaten'
+def shipping_table():
+    """Delivery time and cost per zone, straight from catalog.json (used by the {{shipping_table}} placeholder in guides)."""
+    days = {'nl': 'Next working day', 'be': 'Next working day', 'eu1': '2 to 3 working days', 'eu': '3 to 5 working days'}
+    rows = ''.join(f"<tr><th>{esc(z['label'])}</th><td>{days.get(z['id'], '3 to 5 working days')}</td><td>{money(z['price'])} per order</td></tr>" if z.get('price') is not None
+                   else f"<tr><th>{esc(z['label'])}</th><td>4 to 7 working days, duties may apply</td><td>Quote before you order</td></tr>" for z in BRAND['shipping']['zones'])
+    return f'<table class="spec-table" style="margin:14px 0 18px"><tr><th>Delivery to</th><th>Delivery time after dispatch</th><th>Shipping cost</th></tr>{rows}</table>'
 
 def page_post(a):
     depth = 1; r = rel(depth)
     # links in de artikel-JSON zijn relatief aan de siteroot (products/..., vehicles/...); vanuit blog/ moet daar ../ voor
     fix_rel = lambda h: re.sub(r"""href=(['"])(?!https?:|/|#|\.\./|mailto:|tel:)""", lambda m: 'href=' + m.group(1) + r, h)
-    secs = ''.join(f'<h2 class="h3" style="margin:34px 0 12px">{esc(x["h2"])}</h2><div class="post-body">{fix_rel(x["html"])}</div>' for x in a.get('sections', []))
+    secs = ''.join(f'<h2 class="h3" style="margin:34px 0 12px"{(" id=" + chr(34) + x["id"] + chr(34)) if x.get("id") else ""}>{esc(x["h2"])}</h2><div class="post-body">{fix_rel(x["html"]).replace("{{shipping_table}}", shipping_table())}</div>' for x in a.get('sections', []))
     faq = ''.join(f'<details><summary>{esc(q["q"])}</summary><p>{esc(q["a"])}</p></details>' for q in a.get('faq', []))
     faq_html = f'<h2 class="h3" style="margin:40px 0 14px">Frequently asked</h2><div class="faq">{faq}</div>' if faq else ''
     others = [x for x in BLOG if x['slug'] != a['slug']][:3]
@@ -1018,14 +1033,14 @@ def page_post(a):
     vid = a.get('vehicle') if a.get('vehicle') in VEH else None
     cta = f'<div class="upsell" style="margin-top:40px"><h6>Ready to specify?</h6><div class="up-row"><div><b>{esc(VEH[vid]["name"]) if vid else "Complete ventilation systems"}</b><span>Products, kits and advice for your vehicle, shipped from stock within 24h.</span></div><a class="btn btn-dark btn-sm" href="{r}{"vehicles/" + vid + ".html" if vid else "shop.html"}">Shop now</a></div></div>'
     date_txt = fmt_date(a['date'])
-    ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": a['title'], "description": a.get('meta') or a['excerpt'], "datePublished": a['date'], "dateModified": a['date'], "author": {"@type": "Organization", "name": "Pegasus Depot"}, "publisher": {"@type": "Organization", "name": "Pegasus Depot", "logo": {"@type": "ImageObject", "url": SITE_URL + "/icon-512.png"}}, "image": f"{SITE_URL}/{scene(blog_image(a), 1800)}", "mainEntityOfPage": f"{SITE_URL}/blog/{a['slug']}.html", "keywords": ", ".join(a.get('keywords', []))},
+    ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": a['title'], "description": a.get('meta') or a['excerpt'], "datePublished": a['date'], "dateModified": a.get('modified') or a['date'], "author": {"@type": "Person", "name": AUTHOR}, "publisher": {"@type": "Organization", "name": "Pegasus Depot", "logo": {"@type": "ImageObject", "url": SITE_URL + "/icon-512.png"}}, "image": f"{SITE_URL}/{scene(blog_image(a), 1800)}", "mainEntityOfPage": f"{SITE_URL}/blog/{a['slug']}.html", "keywords": ", ".join(a.get('keywords', []))},
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/" + PREFIX}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE_URL + "/blog.html"}, {"@type": "ListItem", "position": 3, "name": a['title'], "item": f"{SITE_URL}/blog/{a['slug']}.html"}]}]
     if a.get('faq'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in a['faq']]})
-    body = f'''<section class="page-hero" style="min-height:380px"><img class="bg" src="{r}{scene(blog_image(a),1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <a href="{r}blog.html">Guides</a> / <span>{esc(a["title"][:40])}</span></div><div class="eyebrow">{esc(VEH[vid]["name"]) if vid else "Guide"} · {date_txt} · {a.get("read_min", 5)} min read</div><h1 class="h1" style="max-width:22ch">{esc(a["title"])}</h1><p class="lead">{esc(a["excerpt"])}</p></div></section>
+    body = f'''<section class="page-hero" style="min-height:380px"><img class="bg" src="{r}{scene(blog_image(a),1800)}" alt=""><div class="wrap"><div class="crumbs"><a href="/{PREFIX}">Home</a> / <a href="{r}blog.html">Guides</a> / <span>{esc(a["title"][:40])}</span></div><div class="eyebrow">{esc(VEH[vid]["name"]) if vid else "Guide"} · {date_txt} · {a.get("read_min", 5)} min read</div><h1 class="h1" style="max-width:22ch">{esc(a["title"])}</h1><p class="lead">{esc(a["excerpt"])}</p><p class="byline" style="margin-top:14px;font-size:14px;opacity:.85">{f"By {AUTHOR} · Updated {fmt_date(a['modified'])}" if a.get('modified') and a['modified'] != a['date'] else f"By {AUTHOR}"}</p></div></section>
 <section class="section ivory"><div class="wrap"><div class="post-grid"><article class="post">{secs}{faq_html}{cta}</article><aside class="post-aside"><div class="info-card"><h6 class="eyebrow" style="margin-bottom:10px">Talk to a specialist</h6><p class="muted" style="font-size:14px">Cut-out sizes, voltages, how many fans for your body length: ask us before you drill.</p><a class="btn btn-gold btn-sm btn-block" style="margin-top:12px" href="{r}contact.html">Ask a question</a></div><div class="info-card" style="margin-top:14px"><h6 class="eyebrow" style="margin-bottom:10px">Popular</h6><a class="row" href="{r}products/le-mans.html">Le Mans Rooftop Ventilator</a><a class="row" href="{r}products/le-mans-ll.html">Le Mans LL Brushless</a><a class="row" href="{r}products/roof-hatch-electric-large.html">Roof Hatch Electric 970 x 530</a><a class="row" href="{r}products/floor-ventilator-129.html">Floor Ventilator Ø 129 mm</a></div></aside></div></div></section>
 <section class="section ivory-2"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Keep reading</div><h2 class="h2">More guides.</h2></div><a class="link" href="{r}blog.html">All guides {ICON['arrow']}</a></div><div class="grid grid-3">{more}</div></div></section>'''
-    h = head(f'{a["title"]} · Pegasus Depot', a.get('meta') or a['excerpt'], depth, blog_image(a), f'blog/{a["slug"]}.html', og_type='article', extra_meta=f'<meta property="article:published_time" content="{a["date"]}">')
+    h = head(f'{a.get("meta_title") or a["title"]} · Pegasus Depot', a.get('meta') or a['excerpt'], depth, blog_image(a), f'blog/{a["slug"]}.html', og_type='article', extra_meta=f'<meta property="article:published_time" content="{a["date"]}"><meta property="article:modified_time" content="{a.get("modified") or a["date"]}"><meta name="author" content="{AUTHOR}">')
     return h + header(depth) + ''.join(jsonld(x) for x in ld) + body + footer(depth)
 
 def page_404():
@@ -1134,7 +1149,7 @@ def lastmod(u):
         return BUILD_DATE
 
 def write_sitemap(urls):
-    (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE_URL}/{"" if u == "index.html" else u}</loc><lastmod>{lastmod(u)}</lastmod></url>\n' for u in urls) + '</urlset>\n')
+    (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE_URL}/{u[:-len("index.html")] if u.endswith("index.html") else u}</loc><lastmod>{lastmod(u)}</lastmod></url>\n' for u in urls) + '</urlset>\n')
     (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /build.py\nDisallow: /src/\nDisallow: /data/\nDisallow: /checkout.html\nDisallow: /thank-you.html\nSitemap: {SITE_URL}/sitemap.xml\n')
     (ROOT / 'CNAME').write_text(BRAND['domain'] + '\n')
 
@@ -1151,6 +1166,7 @@ def label_ids(html):
     return re.sub(r'<label>([^<]+)</label><(input|select|textarea)\b([^>]*)', f, html)
 
 # ---------------------------------------------------------------- main
+SEO_WARN = []; SEO_TITLES = {}
 def main():
     shutil.copy(ROOT / 'src/site.css', ROOT / 'assets/css/site.css')
     shutil.copy(ROOT / 'src/site.js', ROOT / 'assets/js/site.js')
@@ -1171,6 +1187,15 @@ def main():
         en, nl = (here, alt) if LANG == 'en' else (alt, here)
         html = html.replace('__HREFLANG__', '' if path == '404.html' else f'<link rel="alternate" hreflang="en" href="{en}"><link rel="alternate" hreflang="nl" href="{nl}"><link rel="alternate" hreflang="x-default" href="{en}">').replace('__ALT_URL__', alt)
         html = add_img_dims(html, path)
+        if 'name="robots" content="noindex' not in html and path != '404.html':
+            _t = H.unescape((re.search(r'<title>(.*?)</title>', html) or [None, ''])[1])
+            _d = H.unescape((re.search(r'<meta name="description" content="([^"]*)"', html) or [None, ''])[1])
+            SEO_TITLES.setdefault(_t, []).append(path)
+            if len(_t) > 60: SEO_WARN.append(f'title {len(_t)} > 60: {path}')
+            if not 110 <= len(_d) <= 160: SEO_WARN.append(f'description {len(_d)} outside 110-160: {path}')
+            _vis = H.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<script\b[\s\S]*?</script>|<style\b[\s\S]*?</style>', '', html)))
+            if '\u2014' in _vis or '\u2014' in _t + _d: SEO_WARN.append(f'em-dash (house rule): {path}')
+            if LANG == 'nl' and ', en ' in _vis: SEO_WARN.append(f'", en" in Dutch text (house rule): {path}')
         if path == '404.html':
             html = re.sub(r'(href|src)="(?!https?:|mailto:|tel:|data:|#|/)', r'\1="/', html).replace('data-root=""', 'data-root="/"').replace('data-pages=""', 'data-pages="/"')
         (ROOT / path).parent.mkdir(parents=True, exist_ok=True)
@@ -1190,6 +1215,9 @@ def main():
         for f in (ROOT / d).glob('*.html'):
             if str(f.relative_to(ROOT)) not in en_urls + nl_urls: f.unlink()
     write_sitemap([u for u in en_urls + nl_urls if not u.endswith(('checkout.html', 'thank-you.html', '404.html'))])
+    SEO_WARN.extend(f'duplicate title "{t}": {", ".join(v)}' for t, v in SEO_TITLES.items() if len(v) > 1)
+    for x in SEO_WARN: print('SEO', x)
+    if UNBUYABLE: print('SHOPIFY: no variant id in data/shopify-map.json, left out of the Product offers (cart goes to contact):', ', '.join(sorted(UNBUYABLE)))
     print(f'Built {len(en_urls)} + {len(nl_urls)} pages, {len(PRODUCTS)} products, {len(VEHICLES)} vehicle pages.')
 
 def build_pages(w):

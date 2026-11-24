@@ -9,7 +9,8 @@
   "van ventilation",
   "12V roof ventilator",
   "roof vent cut-out size",
-  "extractor fan for van"
+  "extractor fan for van",
+  "van roof vent near me"
  ],
  "vehicle": "general",
  "read_min": 6,
@@ -41,6 +42,11 @@
   {
    "h2": "The parts people forget",
    "html": "<p>The fan is the headline, but a good installation is a system. A <a href='products/speedcontrol.html'>speed controller</a> lets you run a big fan quietly at night and flat out in the afternoon, and it pays for itself in comfort the first warm weekend. A snow filter is worth fitting on any van that overwinters outdoors or works in the mountains, as it stops driven snow and heavy rain reaching the motor. Interior grilles finish the ceiling neatly and keep fingers and paws away from the blades.</p><p>Everything that goes with it, the switch, the interior valve and the floor inlet, can be added on the <a href='products/le-mans.html'>product page</a> with photos and prices alongside, so it all arrives in one order. And if your use is specific, a horse trailer, a K9 van, a coach, have a look at the vehicle guides on this site or simply ask. We are a Dutch specialist retailer with the full range in stock in the Netherlands, and we have talked a great many converters through exactly this decision.</p>"
+  },
+  {
+   "h2": "Van roof vent near me: delivery times and local fitting",
+   "id": "van-roof-vent-near-me",
+   "html": "<p><strong>Pegasus Depot sells van roof vents online and ships them from stock in the Netherlands. Order before 15:00 CET on a working day and it leaves the same day: next working day in the Netherlands and Belgium, 2 to 3 working days to Germany, France, Luxembourg, Austria and Denmark, 3 to 5 elsewhere in the EU.</strong></p>{{shipping_table}}<p>Searching for a roof vent near you usually means two things: you want the part quickly and you want someone local to fit it. The table above covers the first. Shipping is charged per order, not per item, so a fan, a switch and an interior valve travel for one rate, and the tracking link arrives by email as soon as the parcel leaves the warehouse.</p><p>For the fitting, any van converter, motorhome workshop, bodyshop or auto electrician near you can do the job. Give them three facts before they quote: the cut-out size from the list above, the vehicle voltage and where the fused feed will come from. Most product pages carry a dimensional drawing you can send ahead, and our <a href='blog/installing-a-rooftop-ventilator-step-by-step.html'>step-by-step installation guide</a> lists the tools and sealant they will need.</p><p>Outside the EU, in the United Kingdom, Switzerland or Norway, we ship on quote: choose your country at checkout and we reply within one working day with the shipping cost, before you pay. Import VAT or duties may be charged on arrival.</p><p>Fitting vents to several vehicles? Workshops and fleets can order on <a href='trade.html'>proforma with prices ex VAT</a>. In the Netherlands and Belgium our roof vents are also for sale in our own store on bol.com.</p>"
   }
  ],
  "faq": [
@@ -59,6 +65,15 @@
   {
    "q": "Do I need a fan at all if my van has opening windows?",
    "a": "Windows only move air when there is wind or the vehicle is moving, and they let in rain and insects. A rooftop ventilator moves air on demand in any weather, and it does so with the doors and windows locked, which matters for security and for anything living inside a parked vehicle."
+  },
+  {
+   "q": "Do you ship van roof vents to the UK?",
+   "a": "Yes, on quote. Choose United Kingdom at checkout and we email the shipping cost within one working day, before you pay. Delivery takes 4 to 7 working days and import VAT or duties may be charged on arrival."
+  },
+  {
+   "q": "Who can fit a van roof vent near me?",
+   "a": "Any van converter, motorhome workshop, bodyshop or auto electrician. Tell them the cut-out size (230 mm for the Le Mans, Le Mans LL and Round, 80 mm for the Winglet and Turbo III, 128 mm for the Turbo II) and whether the vehicle runs on 12 V or 24 V."
   }
- ]
+ ],
+ "modified": "2026-11-24"
 }
