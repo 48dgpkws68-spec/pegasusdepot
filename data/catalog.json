@@ -198,7 +198,8 @@
           },
           "price": 127.05,
           "compare_at": 185,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156727161167"
         },
         {
           "sku": "02-2200-ZW",
@@ -209,7 +210,8 @@
           },
           "price": 127.05,
           "compare_at": 185,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156727211237"
         },
         {
           "sku": "02-2300",
@@ -220,7 +222,8 @@
           },
           "price": 127.05,
           "compare_at": 185,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156727212272"
         },
         {
           "sku": "02-2300-ZW",
@@ -231,7 +234,8 @@
           },
           "price": 127.05,
           "compare_at": 185,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156727234250"
         },
         {
           "sku": "02-2900",
@@ -242,7 +246,8 @@
           },
           "price": 66.55,
           "compare_at": 115,
-          "price_ex": 55.0
+          "price_ex": 55.0,
+          "gtin": "6156727419480"
         }
       ],
       "images": [
@@ -357,7 +362,8 @@
           },
           "price": 187.55,
           "compare_at": 299,
-          "price_ex": 155.0
+          "price_ex": 155.0,
+          "gtin": "6156726554519"
         },
         {
           "sku": "02-4250",
@@ -368,7 +374,8 @@
           },
           "price": 199.65,
           "compare_at": 345,
-          "price_ex": 165.0
+          "price_ex": 165.0,
+          "gtin": "6156726846805"
         },
         {
           "sku": "02-4300",
@@ -379,7 +386,8 @@
           },
           "price": 187.55,
           "compare_at": 299,
-          "price_ex": 155.0
+          "price_ex": 155.0,
+          "gtin": "6156726881813"
         },
         {
           "sku": "02-4350",
@@ -390,7 +398,8 @@
           },
           "price": 199.65,
           "compare_at": 345,
-          "price_ex": 165.0
+          "price_ex": 165.0,
+          "gtin": "6156727114187"
         }
       ],
       "images": [
@@ -473,7 +482,8 @@
           },
           "price": 127.05,
           "compare_at": 159,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156728314340"
         },
         {
           "sku": "02-0200-ZW",
@@ -484,7 +494,8 @@
           },
           "price": 127.05,
           "compare_at": 159,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156728370353"
         },
         {
           "sku": "02-0300",
@@ -495,7 +506,8 @@
           },
           "price": 127.05,
           "compare_at": 159,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156728628645"
         },
         {
           "sku": "02-0300-ZW",
@@ -506,7 +518,8 @@
           },
           "price": 127.05,
           "compare_at": 159,
-          "price_ex": 105.0
+          "price_ex": 105.0,
+          "gtin": "6156728740774"
         },
         {
           "sku": "02-0900",
@@ -517,7 +530,8 @@
           },
           "price": 72.6,
           "compare_at": 99,
-          "price_ex": 60.0
+          "price_ex": 60.0,
+          "gtin": "6156728811894"
         }
       ],
       "images": [
@@ -605,7 +619,8 @@
           },
           "price": 102.85,
           "compare_at": 179,
-          "price_ex": 85.0
+          "price_ex": 85.0,
+          "gtin": "6156732931991"
         },
         {
           "sku": "02-5100",
@@ -616,7 +631,8 @@
           },
           "price": 102.85,
           "compare_at": 179,
-          "price_ex": 85.0
+          "price_ex": 85.0,
+          "gtin": "6156732933940"
         },
         {
           "sku": "02-5500",
@@ -627,7 +643,8 @@
           },
           "price": 89,
           "compare_at": 99,
-          "price_ex": 73.55
+          "price_ex": 73.55,
+          "gtin": "6156733226201"
         },
         {
           "sku": "02-5600",
@@ -638,7 +655,8 @@
           },
           "price": 89,
           "compare_at": 99,
-          "price_ex": 73.55
+          "price_ex": 73.55,
+          "gtin": "6156733262223"
         }
       ],
       "images": [
@@ -719,7 +737,8 @@
           },
           "price": 108.9,
           "compare_at": 139,
-          "price_ex": 90.0
+          "price_ex": 90.0,
+          "gtin": "6156731250260"
         },
         {
           "sku": "02-7000",
@@ -729,7 +748,8 @@
           },
           "price": 108.9,
           "compare_at": 139,
-          "price_ex": 90.0
+          "price_ex": 90.0,
+          "gtin": "6156731620643"
         }
       ],
       "images": [
@@ -809,7 +829,8 @@
           },
           "price": 96.8,
           "compare_at": 135,
-          "price_ex": 80.0
+          "price_ex": 80.0,
+          "gtin": "6156731755765"
         },
         {
           "sku": "02-6100",
@@ -819,7 +840,8 @@
           },
           "price": 96.8,
           "compare_at": 135,
-          "price_ex": 80.0
+          "price_ex": 80.0,
+          "gtin": "6156731914940"
         }
       ],
       "images": [
@@ -904,7 +926,8 @@
           },
           "price": 66.55,
           "compare_at": null,
-          "price_ex": 55.0
+          "price_ex": 55.0,
+          "gtin": "6156724969919"
         },
         {
           "sku": "02-1030-ZW",
@@ -914,7 +937,8 @@
           },
           "price": 66.55,
           "compare_at": null,
-          "price_ex": 55.0
+          "price_ex": 55.0,
+          "gtin": "6156725077033"
         }
       ],
       "images": [
@@ -982,7 +1006,8 @@
           },
           "price": 42.35,
           "compare_at": 69.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156732250290"
         },
         {
           "sku": "35-2410",
@@ -993,7 +1018,8 @@
           },
           "price": 42.35,
           "compare_at": 69.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156732652698"
         },
         {
           "sku": "35-2440",
@@ -1004,7 +1030,8 @@
           },
           "price": 42.35,
           "compare_at": 69.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156732681636"
         },
         {
           "sku": "35-2500",
@@ -1015,7 +1042,8 @@
           },
           "price": 48.4,
           "compare_at": 159,
-          "price_ex": 40.0
+          "price_ex": 40.0,
+          "gtin": "6156732910903"
         },
         {
           "sku": "35-2510",
@@ -1026,7 +1054,8 @@
           },
           "price": 48.4,
           "compare_at": 159,
-          "price_ex": 40.0
+          "price_ex": 40.0,
+          "gtin": "6156732918909"
         },
         {
           "sku": "35-2540",
@@ -1037,7 +1066,8 @@
           },
           "price": 48.4,
           "compare_at": 159,
-          "price_ex": 40.0
+          "price_ex": 40.0,
+          "gtin": "6156732927970"
         }
       ],
       "images": [
@@ -1121,7 +1151,8 @@
           },
           "price": 42.35,
           "compare_at": 69.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156725716765"
         },
         {
           "sku": "35-2810",
@@ -1132,7 +1163,8 @@
           },
           "price": 42.35,
           "compare_at": 69.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156725814805"
         },
         {
           "sku": "35-2900",
@@ -1143,7 +1175,8 @@
           },
           "price": 84.7,
           "compare_at": 129,
-          "price_ex": 70.0
+          "price_ex": 70.0,
+          "gtin": "6156725911931"
         },
         {
           "sku": "35-2905",
@@ -1154,7 +1187,8 @@
           },
           "price": 84.7,
           "compare_at": 129,
-          "price_ex": 70.0
+          "price_ex": 70.0,
+          "gtin": "6156726061093"
         },
         {
           "sku": "35-2910",
@@ -1165,7 +1199,8 @@
           },
           "price": 84.7,
           "compare_at": 129,
-          "price_ex": 70.0
+          "price_ex": 70.0,
+          "gtin": "6156726094084"
         },
         {
           "sku": "35-2915",
@@ -1176,7 +1211,8 @@
           },
           "price": 84.7,
           "compare_at": 129,
-          "price_ex": 70.0
+          "price_ex": 70.0,
+          "gtin": "6156726115161"
         }
       ],
       "images": [
@@ -1248,7 +1284,8 @@
           },
           "price": 42.35,
           "compare_at": 54.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156728913987"
         },
         {
           "sku": "35-2100",
@@ -1259,7 +1296,8 @@
           },
           "price": 42.35,
           "compare_at": 54.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156729333319"
         },
         {
           "sku": "35-2110",
@@ -1270,7 +1308,8 @@
           },
           "price": 42.35,
           "compare_at": 54.95,
-          "price_ex": 35.0
+          "price_ex": 35.0,
+          "gtin": "6156729585541"
         },
         {
           "sku": "35-2200",
@@ -1281,7 +1320,8 @@
           },
           "price": 72.6,
           "compare_at": 99,
-          "price_ex": 60.0
+          "price_ex": 60.0,
+          "gtin": "6156729614685"
         }
       ],
       "images": [
@@ -1345,7 +1385,8 @@
           },
           "price": 18.15,
           "compare_at": 24.95,
-          "price_ex": 15.0
+          "price_ex": 15.0,
+          "gtin": "6156726412451"
         },
         {
           "sku": "35-2610",
@@ -1355,7 +1396,8 @@
           },
           "price": 18.15,
           "compare_at": 24.95,
-          "price_ex": 15.0
+          "price_ex": 15.0,
+          "gtin": "6156726475425"
         },
         {
           "sku": "35-2620",
@@ -1365,7 +1407,8 @@
           },
           "price": 18.15,
           "compare_at": 24.95,
-          "price_ex": 15.0
+          "price_ex": 15.0,
+          "gtin": "6156726528534"
         }
       ],
       "images": [
@@ -1421,7 +1464,8 @@
           },
           "price": 24.2,
           "compare_at": 32.5,
-          "price_ex": 20.0
+          "price_ex": 20.0,
+          "gtin": "6156726165104"
         },
         {
           "sku": "35-2710",
@@ -1431,7 +1475,8 @@
           },
           "price": 24.2,
           "compare_at": 32.5,
-          "price_ex": 20.0
+          "price_ex": 20.0,
+          "gtin": "6156726243215"
         },
         {
           "sku": "35-2720",
@@ -1441,7 +1486,8 @@
           },
           "price": 24.2,
           "compare_at": 32.5,
-          "price_ex": 20.0
+          "price_ex": 20.0,
+          "gtin": "6156726271263"
         }
       ],
       "images": [
@@ -1504,7 +1550,8 @@
           "options": {},
           "price": 90.75,
           "compare_at": 99,
-          "price_ex": 75.0
+          "price_ex": 75.0,
+          "gtin": "6156730243263"
         }
       ],
       "images": [
@@ -1567,7 +1614,8 @@
           "options": {},
           "price": 12.1,
           "compare_at": 17.95,
-          "price_ex": 10.0
+          "price_ex": 10.0,
+          "gtin": "6156730734778"
         }
       ],
       "images": [
@@ -1630,7 +1678,8 @@
           "options": {},
           "price": 12.1,
           "compare_at": 14.95,
-          "price_ex": 10.0
+          "price_ex": 10.0,
+          "gtin": "6156731036079"
         }
       ],
       "images": [
@@ -1694,7 +1743,8 @@
           "options": {},
           "price": 14.52,
           "compare_at": 24.95,
-          "price_ex": 12.0
+          "price_ex": 12.0,
+          "gtin": "6156730611604"
         }
       ],
       "images": [
@@ -1760,7 +1810,8 @@
           "options": {},
           "price": 211.75,
           "compare_at": 219,
-          "price_ex": 175.0
+          "price_ex": 175.0,
+          "gtin": "6156724784789"
         }
       ],
       "images": [
@@ -1823,7 +1874,8 @@
           "options": {},
           "price": 60.5,
           "compare_at": 74.95,
-          "price_ex": 50.0
+          "price_ex": 50.0,
+          "gtin": "6156725346337"
         }
       ],
       "images": [
@@ -1880,7 +1932,8 @@
           "options": {},
           "price": 54.45,
           "compare_at": 67.5,
-          "price_ex": 45.0
+          "price_ex": 45.0,
+          "gtin": "6156725587556"
         }
       ],
       "images": [
@@ -1931,7 +1984,8 @@
           "options": {},
           "price": 9.68,
           "compare_at": 16.95,
-          "price_ex": 8.0
+          "price_ex": 8.0,
+          "gtin": "6156729797760"
         }
       ],
       "images": [
@@ -2262,7 +2316,8 @@
           },
           "price": 48.4,
           "compare_at": 69.95,
-          "price_ex": 40.0
+          "price_ex": 40.0,
+          "gtin": "6156727575568"
         },
         {
           "sku": "92-L02",
@@ -2272,7 +2327,8 @@
           },
           "price": 48.4,
           "compare_at": 69.95,
-          "price_ex": 40.0
+          "price_ex": 40.0,
+          "gtin": "6156727629667"
         }
       ],
       "images": [
@@ -2350,7 +2406,8 @@
           },
           "price": 78.65,
           "compare_at": 109,
-          "price_ex": 65.0
+          "price_ex": 65.0,
+          "gtin": "6156727512501"
         },
         {
           "sku": "92-L05",
@@ -2360,7 +2417,8 @@
           },
           "price": 78.65,
           "compare_at": 109,
-          "price_ex": 65.0
+          "price_ex": 65.0,
+          "gtin": "6156727548586"
         }
       ],
       "images": [
@@ -2595,7 +2653,8 @@
           },
           "price": 361.79,
           "compare_at": null,
-          "price_ex": 299
+          "price_ex": 299,
+          "gtin": "6156724449435"
         },
         {
           "sku": "24-0009",
@@ -2605,7 +2664,8 @@
           },
           "price": 361.79,
           "compare_at": null,
-          "price_ex": 299
+          "price_ex": 299,
+          "gtin": "6156724728769"
         }
       ],
       "images": [
@@ -2659,7 +2719,8 @@
           },
           "price": 49,
           "compare_at": null,
-          "price_ex": 40.5
+          "price_ex": 40.5,
+          "gtin": "6156724115149"
         },
         {
           "sku": "24-0113",
@@ -2669,7 +2730,8 @@
           },
           "price": 49,
           "compare_at": null,
-          "price_ex": 40.5
+          "price_ex": 40.5,
+          "gtin": "6156724416406"
         }
       ],
       "images": [
@@ -2725,7 +2787,8 @@
           "options": {},
           "price": 132,
           "compare_at": null,
-          "price_ex": 109.09
+          "price_ex": 109.09,
+          "gtin": "6156723442444"
         }
       ],
       "images": [
@@ -2783,7 +2846,8 @@
           "options": {},
           "price": 359,
           "compare_at": null,
-          "price_ex": 296.69
+          "price_ex": 296.69,
+          "gtin": "6156723355300"
         }
       ],
       "images": [
@@ -2830,7 +2894,8 @@
           "label": "On/off rocker switch",
           "price": 15.12,
           "options": {},
-          "price_ex": 12.5
+          "price_ex": 12.5,
+          "gtin": "6156730678621"
         }
       ],
       "images": [
@@ -2882,7 +2947,8 @@
           "label": "Super Seal foam strip",
           "price": 30.25,
           "options": {},
-          "price_ex": 25.0
+          "price_ex": 25.0,
+          "gtin": "6156729676614"
         }
       ],
       "images": [
@@ -2996,7 +3062,8 @@
           "price": 102.85,
           "options": {
             "Diameter": "Ø 129 mm"
-          }
+          },
+          "gtin": "6156725594592"
         },
         {
           "sku": "89-5400",
@@ -3005,7 +3072,8 @@
           "price": 90.75,
           "options": {
             "Diameter": "Ø 83 mm"
-          }
+          },
+          "gtin": "6156725666619"
         }
       ],
       "images": [
